@@ -10,7 +10,10 @@ export default defineConfig(({ mode }) => {
     base: '/',
     plugins: [react()],
     build: {
-      assetsDir: 'assets'
+      outDir: 'dist',
+      assetsDir: 'assets',
+      sourcemap: false,
+      emptyOutDir: true
     },
     resolve: {
       alias: {
