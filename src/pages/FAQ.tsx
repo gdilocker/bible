@@ -1,0 +1,533 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, HelpCircle, Building2, Globe, Mail, CreditCard, Shield, Scale, Headphones, Users } from 'lucide-react';
+
+interface FAQItem {
+  question: string;
+  answer: string | JSX.Element;
+}
+
+interface FAQSection {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  items: FAQItem[];
+}
+
+const FAQ: React.FC = () => {
+  const [openItems, setOpenItems] = useState<Set<string>>(new Set());
+
+  const toggleItem = (itemId: string) => {
+    const newOpenItems = new Set(openItems);
+    if (newOpenItems.has(itemId)) {
+      newOpenItems.delete(itemId);
+    } else {
+      newOpenItems.add(itemId);
+    }
+    setOpenItems(newOpenItems);
+  };
+
+  const faqSections: FAQSection[] = [
+    {
+      id: 'about',
+      title: 'Sobre a Plataforma',
+      icon: <Building2 className="w-5 h-5" />,
+      items: [
+        {
+          question: 'O que é o com.rich?',
+          answer: (
+            <div className="space-y-2">
+              <p>O <strong>com.rich</strong> é uma plataforma de identidade digital que oferece domínios exclusivos com a extensão <strong>.com.rich</strong>, desenvolvida para profissionais e marcas que desejam destacar-se online com um nome de domínio sofisticado e premium.</p>
+              <p>Além do registro de domínio, oferecemos integração com perfis sociais personalizáveis, permitindo que você centralize sua presença digital em um único lugar profissional.</p>
+              <p className="mt-3 text-sm">O serviço é operado por:<br />
+                <strong>Global Digital Identity LTD</strong><br />
+                Registered in England and Wales<br />
+                Company No. <strong>16339013</strong><br />
+                71-75 Shelton Street, Covent Garden,<br />
+                London, WC2H 9JQ
+              </p>
+            </div>
+          )
+        },
+        {
+          question: 'O com.rich é uma empresa independente?',
+          answer: 'Sim. O com.rich é operado pela Global Digital Identity LTD, empresa independente registrada no Reino Unido, que atua de forma autônoma em sua operação comercial e tecnológica. A plataforma mantém controle total sobre a experiência do usuário, suporte e gestão de contas.'
+        },
+        {
+          question: 'Onde os serviços são hospedados?',
+          answer: 'A infraestrutura técnica utiliza provedores internacionais de nuvem e segurança para garantir estabilidade, desempenho e proteção de dados. Todas as conexões são protegidas por criptografia SSL (HTTPS) e seguem padrões globais de segurança e conformidade.'
+        }
+      ]
+    },
+    {
+      id: 'licensing',
+      title: 'Licenciamento',
+      icon: <Shield className="w-5 h-5" />,
+      items: [
+        {
+          question: 'O que é o modelo de licenciamento exclusivo?',
+          answer: (
+            <div className="space-y-2">
+              <p>Ao adquirir um domínio .com.rich, você recebe uma <strong>licença exclusiva de uso</strong>. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com .com.rich Global Network.</p>
+              <p>É similar a alugar um imóvel premium: você tem uso exclusivo e total controle, mas não é o proprietário legal do registro.</p>
+            </div>
+          )
+        },
+        {
+          question: 'Ainda tenho controle total sobre meu domínio?',
+          answer: 'Sim! Como licenciado exclusivo, você tem 100% de controle sobre DNS, perfis, conteúdo e personalizações. A diferença está apenas na estrutura jurídica: você é o usuário exclusivo, não o proprietário registrado.'
+        },
+        {
+          question: 'Posso perder minha licença?',
+          answer: 'Sua licença é garantida enquanto você: (1) mantiver os pagamentos em dia, (2) seguir nossos Termos de Uso, (3) não usar o domínio para atividades ilícitas. Licenças só são revogadas em casos de violação grave ou ordem judicial.'
+        },
+        {
+          question: 'Posso transferir minha licença para outra pessoa?',
+          answer: 'Sim, transferências de licença são permitidas mediante aprovação. Entre em contato com support@com.rich para iniciar o processo.'
+        },
+        {
+          question: 'O que acontece se eu cancelar minha assinatura?',
+          answer: 'Sua licença expira ao final do período pago. Após o período de carência (30 dias), o domínio volta ao pool da .com.rich Global Network e pode ser licenciado para outro usuário.'
+        },
+        {
+          question: 'Por que vocês usam modelo de licenciamento?',
+          answer: 'O modelo de licenciamento nos permite manter controle central sobre a rede .com.rich, garantir qualidade do ecossistema, prevenir abuso e oferecer melhor suporte. Além disso, facilita resolução de disputas e proteção de marca.'
+        }
+      ]
+    },
+    {
+      id: 'domains',
+      title: 'Domínios',
+      icon: <Globe className="w-5 h-5" />,
+      items: [
+        {
+          question: 'O que é um domínio .com.rich?',
+          answer: 'É uma extensão de domínio premium e exclusiva, projetada para profissionais, marcas e indivíduos que buscam uma identidade digital sofisticada. Com uma licença exclusiva .com.rich (exemplo: seunome.com.rich), você terá uma URL personalizada que reflete sucesso e exclusividade.'
+        },
+        {
+          question: 'Como adquiro uma licença de domínio?',
+          answer: (
+            <ol className="list-decimal list-inside space-y-1">
+              <li>Pesquise o nome desejado na barra de busca do site.</li>
+              <li>Se estiver disponível, adicione ao carrinho.</li>
+              <li>Finalize o pagamento via PayPal (em dólares americanos – USD).</li>
+              <li>O sistema executa o registro automaticamente e envia a confirmação por e-mail.</li>
+              <li>Em poucos minutos, seu domínio estará ativo e visível no painel.</li>
+            </ol>
+          )
+        },
+        {
+          question: 'Por quanto tempo a licença é válida?',
+          answer: 'Todas as licenças são válidas por 1 ano, podendo ser renovadas anualmente através de planos de assinatura. Você pode gerenciar suas renovações diretamente no painel.'
+        },
+        {
+          question: 'Posso transferir minha licença para outro registrador?',
+          answer: 'Não. A extensão .com.rich é proprietária e exclusiva da Global Digital Identity LTD, e o modelo de licenciamento não permite transferência para outros registradores. Você mantém total controle sobre sua licença e configurações DNS enquanto sua assinatura estiver ativa, podendo apontar para qualquer hospedagem e gerenciar todos os aspectos técnicos através do nosso painel.'
+        },
+        {
+          question: 'O que acontece se eu não renovar minha licença?',
+          answer: 'Após o vencimento do plano, sua licença entra em período de carência (30 dias), durante o qual você ainda pode renová-la. Após esse prazo, a licença expira e o domínio volta ao pool da .com.rich Global Network, podendo ser licenciado para outro usuário.'
+        },
+        {
+          question: 'Posso usar minha licença para criar um site?',
+          answer: 'Sim. Por padrão, sua licença .com.rich exibe seu perfil social personalizado dentro da nossa plataforma. No entanto, você tem total flexibilidade para configurar os registros DNS pelo painel e redirecionar para qualquer site externo, serviço de hospedagem ou aplicação web de sua escolha. Sua licença permanece sob seu controle exclusivo durante todo o período contratado.'
+        }
+      ]
+    },
+    {
+      id: 'profile',
+      title: 'Perfil Social',
+      icon: <Mail className="w-5 h-5" />,
+      items: [
+        {
+          question: 'O que é o perfil social personalizado?',
+          answer: 'É uma página web vinculada ao seu domínio .com.rich onde você pode centralizar todos os seus links importantes: redes sociais, portfólio, contatos e muito mais. Funciona como um cartão de visitas digital profissional.'
+        },
+        {
+          question: 'Como personalizo meu perfil?',
+          answer: 'Através do painel de controle, você pode editar seu nome, biografia, foto de perfil, tema de cores e adicionar botões personalizados com links para suas redes sociais, site, WhatsApp, e-mail e outros.'
+        },
+        {
+          question: 'Preciso de um plano pago para ter um perfil?',
+          answer: 'Sim. O perfil social personalizado está disponível apenas para usuários com planos de assinatura ativos (Prime ou Elite).'
+        },
+        {
+          question: 'Posso usar meu domínio para criar um site completo?',
+          answer: 'Sim. Seu domínio .com.rich vem com um perfil social personalizado integrado na plataforma, mas você tem liberdade total para configurar os registros DNS e redirecionar para qualquer site ou serviço de hospedagem externo. Dessa forma, você mantém controle completo sobre como utiliza seu domínio.'
+        },
+        {
+          question: 'Como funciona a personalização de temas?',
+          answer: 'No painel, você pode escolher entre diferentes esquemas de cores e estilos visuais para que seu perfil reflita sua identidade pessoal ou marca.'
+        },
+        {
+          question: 'Meu perfil é público?',
+          answer: (
+            <div className="space-y-2">
+              <p>Você tem total controle sobre a privacidade do seu perfil. Você pode escolher entre:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li><strong>Público:</strong> Qualquer pessoa pode visualizar seu perfil e links</li>
+                <li><strong>Público com Senha:</strong> Visível para todos, mas requer senha para acesso</li>
+                <li><strong>Privado:</strong> Apenas você pode visualizar seu perfil</li>
+              </ul>
+              <p className="mt-3">Quando você protege seu perfil com senha, pode:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li>Usar a senha padrão da plataforma (comrich2024) para fácil compartilhamento</li>
+                <li>Definir uma senha personalizada exclusiva para seu perfil</li>
+                <li>Combinar ambas as opções, permitindo acesso com qualquer uma das senhas</li>
+              </ul>
+              <p className="mt-3">Configure estas opções no painel de gerenciamento do seu perfil.</p>
+            </div>
+          )
+        }
+      ]
+    },
+    {
+      id: 'payment',
+      title: 'Pagamentos e Faturamento',
+      icon: <CreditCard className="w-5 h-5" />,
+      items: [
+        {
+          question: 'Quais formas de pagamento são aceitas?',
+          answer: 'Aceitamos exclusivamente PayPal. Os pagamentos podem ser feitos com cartões de crédito, débito ou saldo PayPal, e são processados em dólares americanos (USD).'
+        },
+        {
+          question: 'Os planos são mensais ou anuais?',
+          answer: 'Os planos de assinatura (Prime e Elite) são cobrados mensalmente em dólares americanos (USD). O registro inicial do domínio é feito por 1 ano, e a renovação anual é incluída no plano de assinatura escolhido. Todos os planos incluem uma Experiência de Acesso Exclusivo de 14 dias.'
+        },
+        {
+          question: 'O pagamento é automático?',
+          answer: 'Sim. As assinaturas são renovadas automaticamente todos os meses através do PayPal. Você pode cancelar a assinatura a qualquer momento pelo painel, e o cancelamento entrará em vigor no final do período pago.'
+        },
+        {
+          question: 'Posso cancelar ou pedir reembolso?',
+          answer: 'Por se tratar de serviço digital ativado automaticamente, o registro de domínio não é reembolsável após concluído. Assinaturas podem ser canceladas a qualquer momento, mas não há devolução proporcional do período já pago.'
+        },
+        {
+          question: 'O que acontece se eu cancelar minha assinatura?',
+          answer: 'Ao cancelar, você mantém acesso ao seu domínio e perfil até o final do período pago. Após isso, o perfil social será desativado, mas você ainda terá o domínio registrado até o vencimento anual.'
+        }
+      ]
+    },
+    {
+      id: 'security',
+      title: 'Segurança e Proteção de Dados',
+      icon: <Shield className="w-5 h-5" />,
+      items: [
+        {
+          question: 'Meus dados estão seguros?',
+          answer: 'Sim. Todas as conexões usam HTTPS e criptografia TLS. Os dados de pagamento são processados diretamente pelo PayPal, e não são armazenados em nossos servidores. A Global Digital Identity LTD segue práticas compatíveis com o UK Data Protection Act 2018 e o GDPR europeu.'
+        },
+        {
+          question: 'Quais dados são coletados?',
+          answer: (
+            <div className="space-y-2">
+              <p>Apenas os necessários para executar o contrato: nome, e-mail, endereço e informações de pagamento.</p>
+              <p>Esses dados são usados exclusivamente para:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li>registrar o domínio em seu nome;</li>
+                <li>emitir faturas;</li>
+                <li>prover suporte técnico;</li>
+                <li>gerenciar seu perfil público.</li>
+              </ul>
+              <p>Nenhum dado é vendido, compartilhado ou usado para fins publicitários sem consentimento explícito.</p>
+            </div>
+          )
+        },
+        {
+          question: 'O com.rich utiliza cookies?',
+          answer: 'Sim, apenas cookies técnicos essenciais para autenticação, idioma e manutenção de sessão. Não utilizamos cookies de rastreamento publicitário de terceiros.'
+        },
+        {
+          question: 'O que devo fazer em caso de suspeita de fraude?',
+          answer: 'Entre em contato imediatamente pelo e-mail contact@com.rich. Casos comprovados de uso fraudulento resultam em suspensão imediata da conta e notificação às autoridades competentes.'
+        }
+      ]
+    },
+    {
+      id: 'affiliate',
+      title: 'Programa de Afiliados',
+      icon: <Users className="w-5 h-5" />,
+      items: [
+        {
+          question: 'Como funciona o Programa de Afiliados?',
+          answer: (
+            <div className="space-y-3">
+              <p>O Programa de Afiliados permite que você ganhe comissões recorrentes promovendo planos de assinatura e domínios da plataforma .com.rich.</p>
+              <div className="bg-gradient-to-r from-slate-50 to-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-black mb-2">📊 Estrutura de Comissões Recorrentes:</p>
+                <p className="mb-2">O percentual depende do seu plano de afiliado:</p>
+                <ul className="space-y-2 ml-4">
+                  <li><strong className="text-emerald-700">• Afiliado Prime: 25%</strong> recorrente em cada pagamento</li>
+                  <li><strong className="text-yellow-700">• Afiliado Elite: 50%</strong> recorrente em cada pagamento</li>
+                </ul>
+                <p className="text-sm mt-2 text-emerald-900 bg-emerald-50 p-2 rounded"><strong>✓</strong> Aplica-se a planos (mensal) e domínios regulares e Premium (anual).</p>
+              </div>
+            </div>
+          )
+        },
+        {
+          question: 'As comissões são recorrentes?',
+          answer: (
+            <div className="space-y-2">
+              <p><strong>Sim!</strong> Você recebe comissão a cada venda realizada através do seu link de parceria:</p>
+              <ul className="list-disc list-inside ml-2 space-y-1">
+                <li>Mensalidades de planos</li>
+                <li>Anualidades/renovações de domínios (regulares e Premium)</li>
+              </ul>
+              <p className="text-sm">Conforme seu plano de afiliado (25% Prime / 50% Elite) e sempre sobre o valor líquido.</p>
+            </div>
+          )
+        },
+        {
+          question: 'Quais são os requisitos para participar?',
+          answer: (
+            <div className="space-y-2">
+              <p>Para participar do programa de afiliados você DEVE ter:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li><strong>Licença .com.rich ativa</strong></li>
+                <li><strong>Plano de assinatura pago ativo</strong> (Prime ou Elite)</li>
+                <li>Perfil social integrado</li>
+                <li>Ser maior de 18 anos</li>
+              </ul>
+              <p className="mt-2 text-sm font-semibold text-amber-900 bg-amber-50 p-2 rounded">
+                ⚠️ Sem licença ativa E plano pago, o link de afiliado NÃO é gerado.
+              </p>
+            </div>
+          )
+        },
+        {
+          question: 'Existe comissão sobre domínios Premium?',
+          answer: 'Sim. Domínios Premium (Galeria) também geram comissão recorrente nas anualidades/renovações, com os mesmos percentuais e condições (25% Prime / 50% Elite).'
+        },
+        {
+          question: 'Quando eu não recebo comissão?',
+          answer: 'Em casos de estorno, inadimplência, chargeback ou cancelamento antes da liquidação. Cobranças não liquidadas não geram comissão.'
+        },
+        {
+          question: 'Qual é o valor mínimo para saque?',
+          answer: 'O valor mínimo para solicitar saque é US$ 200. As comissões ficam disponíveis para saque 30 dias após a confirmação do pagamento do cliente. Os pagamentos são processados em até 10 dias úteis via Wise, PayPal ou Payoneer.'
+        },
+        {
+          question: 'Onde posso ver os termos completos?',
+          answer: (
+            <p>
+              Todos os detalhes estão disponíveis em:
+              <br />
+              <a href="/afiliados/sobre" className="text-[#3B82F6] hover:underline font-medium">Sobre o Programa</a>
+              {' | '}
+              <a href="/afiliados/termos" className="text-[#3B82F6] hover:underline font-medium">Termos Completos</a>
+            </p>
+          )
+        }
+      ]
+    },
+    {
+      id: 'legal',
+      title: 'Termos Legais e Responsabilidade',
+      icon: <Scale className="w-5 h-5" />,
+      items: [
+        {
+          question: 'Quem é o responsável legal pelo serviço?',
+          answer: (
+            <p className="text-sm">
+              <strong>Global Digital Identity LTD</strong><br />
+              Registered in England and Wales – Company No. <strong>16339013</strong><br />
+              71-75 Shelton Street, Covent Garden, London, WC2H 9JQ
+            </p>
+          )
+        },
+        {
+          question: 'O com.rich é responsável pelo conteúdo publicado pelos usuários?',
+          answer: 'Não. Todo o conteúdo publicado nos perfis públicos ou hospedado através dos domínios é de responsabilidade exclusiva do titular da conta. A Global Digital Identity LTD atua apenas como intermediária técnica e administrativa.'
+        },
+        {
+          question: 'Existe alguma restrição de uso?',
+          answer: (
+            <div className="space-y-2">
+              <p>Sim. É proibido usar o serviço para:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li>publicação de conteúdo ilegal, difamatório, pornográfico ou que viole direitos autorais;</li>
+                <li>práticas de phishing, fraude ou golpes financeiros;</li>
+                <li>atividades que violem leis do Reino Unido ou do país do usuário;</li>
+                <li>spam ou uso abusivo dos recursos da plataforma.</li>
+              </ul>
+              <p>Violação dessas regras pode resultar em <strong>suspensão imediata e sem reembolso</strong>.</p>
+            </div>
+          )
+        },
+        {
+          question: 'Qual é a jurisdição legal do com.rich?',
+          answer: 'Todas as relações contratuais são regidas pelas leis da Inglaterra e País de Gales (England and Wales). Qualquer disputa será resolvida nos tribunais de Londres, Reino Unido.'
+        },
+        {
+          question: 'Qual idioma prevalece legalmente?',
+          answer: 'O idioma oficial e legalmente prevalente para todos os contratos, políticas, comunicações e interpretações jurídicas da Global Digital Identity LTD é o inglês. Versões traduzidas para outros idiomas (como português ou espanhol) são fornecidas apenas para conveniência. Em caso de discrepância entre versões, a versão em inglês prevalecerá integralmente.'
+        }
+      ]
+    },
+    {
+      id: 'support',
+      title: 'Suporte e Atendimento',
+      icon: <Headphones className="w-5 h-5" />,
+      items: [
+        {
+          question: 'Como posso entrar em contato com o suporte?',
+          answer: (
+            <div className="space-y-2">
+              <p>O atendimento é realizado <strong>exclusivamente por e-mail</strong> ou pelo <strong>formulário de contato disponível no site</strong>.</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li><strong>E-mail:</strong> contact@com.rich</li>
+                <li><strong>Formulário:</strong> disponível na página "Contato"</li>
+              </ul>
+              <p>Não há atendimento telefônico, WhatsApp ou redes sociais, para garantir segurança, privacidade e registro formal de todas as comunicações.</p>
+            </div>
+          )
+        },
+        {
+          question: 'Em quanto tempo respondem as solicitações?',
+          answer: 'Respondemos em até 24 horas. Dependendo da complexidade, a resolução pode levar de 3 a 5 dias úteis. Casos urgentes (como problemas críticos de domínio ou falhas técnicas) recebem prioridade imediata.'
+        },
+        {
+          question: 'O com.rich oferece suporte em outros idiomas?',
+          answer: 'Sim. Oferecemos atendimento em português, espanhol e inglês, conforme a origem do cliente. Contudo, em caso de conflito de interpretação, prevalece sempre o idioma inglês.'
+        },
+        {
+          question: 'Como posso reportar abuso ou uso indevido?',
+          answer: 'Envie um e-mail para abuse@com.rich com o máximo de informações possíveis (capturas de tela, URLs, data, domínio envolvido). As denúncias são analisadas pela equipe de conformidade dentro de 48h.'
+        },
+        {
+          question: 'Posso usar o com.rich em qualquer país?',
+          answer: 'Sim. O sistema é global, acessível de qualquer lugar do mundo. Alguns países podem ter restrições legais específicas para registro de domínios, que serão informadas caso se apliquem.'
+        },
+        {
+          question: 'O que diferencia o com.rich de outros serviços?',
+          answer: (
+            <ul className="list-disc list-inside space-y-1">
+              <li>Extensão de domínio exclusiva e premium (.com.rich).</li>
+              <li>Perfil social integrado para centralizar sua presença online.</li>
+              <li>Interface moderna e intuitiva.</li>
+              <li>Registro e ativação instantânea.</li>
+              <li>Pagamentos seguros via PayPal (USD).</li>
+              <li>Suporte humano real, via e-mail.</li>
+              <li>Empresa britânica com conformidade legal internacional.</li>
+            </ul>
+          )
+        }
+      ]
+    }
+  ];
+
+  return (
+    <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
+      <div className="relative pt-32 pb-16">
+        <motion.section
+          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
+              Perguntas <span className="bg-gradient-to-r from-[#60A5FA] via-[#3B82F6] to-[#60A5FA] bg-clip-text text-transparent">Frequentes</span>
+            </h1>
+            <p className="text-xl text-[#6B7280] leading-relaxed">
+              Encontre respostas para as dúvidas mais comuns sobre domínios .com.rich, perfis sociais, pagamentos, segurança e muito mais
+            </p>
+          </div>
+        </motion.section>
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            {faqSections.map((section, sectionIndex) => (
+              <motion.div
+                key={section.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: sectionIndex * 0.1 }}
+                className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
+              >
+                <div className="bg-black p-6">
+                  <div className="flex items-center gap-3 text-white">
+                    {section.icon}
+                    <h2 className="text-2xl font-bold">{section.title}</h2>
+                  </div>
+                </div>
+
+                <div className="divide-y divide-gray-200">
+                  {section.items.map((item, itemIndex) => {
+                    const itemId = `${section.id}-${itemIndex}`;
+                    const isOpen = openItems.has(itemId);
+
+                    return (
+                      <div key={itemId}>
+                        <button
+                          onClick={() => toggleItem(itemId)}
+                          className="w-full px-6 py-5 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+                        >
+                          <span className="text-lg font-semibold text-black pr-4">
+                            {item.question}
+                          </span>
+                          <motion.div
+                            animate={{ rotate: isOpen ? 180 : 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex-shrink-0"
+                          >
+                            <ChevronDown className="w-5 h-5 text-[#6B7280]" />
+                          </motion.div>
+                        </button>
+
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-6 pb-5 text-[#6B7280] leading-relaxed">
+                                {typeof item.answer === 'string' ? (
+                                  <p>{item.answer}</p>
+                                ) : (
+                                  item.answer
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="mt-16 p-8 bg-black rounded-2xl shadow-sm text-center"
+        >
+          <h3 className="text-2xl font-bold text-white mb-3">
+            Ainda tem dúvidas?
+          </h3>
+          <p className="text-white/80 mb-6 max-w-xl mx-auto">
+            Nossa equipe está pronta para ajudar. Entre em contato conosco e responderemos em até 24 horas.
+          </p>
+          <motion.a
+            href="/contato"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block px-8 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-100 transition-all"
+          >
+            Falar com Suporte
+          </motion.a>
+        </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FAQ;

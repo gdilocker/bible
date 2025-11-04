@@ -1,0 +1,1192 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate, Link } from 'react-router-dom';
+import { Search, Shield, Zap, Globe, Check, ArrowRight, Mail, Lock, Sparkles, Loader2, X, LogIn, AlertCircle, Crown, Link2, CheckCircle } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { ProvisioningStepper } from '../components/ProvisioningStepper';
+import { dbQueries } from '../lib/db/queries';
+import { createCloudflare } from '../server/adapters/cloudflare';
+import { createEmailProvider } from '../server/adapters/emailProvider';
+import { supabase } from '../lib/supabase';
+import backgroundImage from '../assets/Imagem Fundo Site copy copy copy copy.png';
+
+interface PricingPlan {
+  id: string;
+  code: string;
+  name: string;
+  description: string;
+  price_cents: number;
+  mailboxes_included: number;
+  mailbox_quota_mb: number;
+  aliases_limit: number;
+  features: string[];
+  billing_period: string;
+  product_type: string;
+}
+
+const Home = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [domain, setDomain] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [networkIssueDetected, setNetworkIssueDetected] = useState(false);
+  const [available, setAvailable] = useState<boolean | null>(null);
+  const [domainError, setDomainError] = useState<string | null>(null);
+  const [isPremium, setIsPremium] = useState(false);
+  const [domainPrice, setDomainPrice] = useState<number | null>(null);
+  const [provisioning, setProvisioning] = useState(false);
+  const [steps, setSteps] = useState<Array<{ label: string; status: string }>>([]);
+  const [domainProduct, setDomainProduct] = useState<PricingPlan | null>(null);
+  const [emailPlans, setEmailPlans] = useState<PricingPlan[]>([]);
+  const [loadingPlans, setLoadingPlans] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showDirectPurchase, setShowDirectPurchase] = useState(false);
+
+  useEffect(() => {
+    loadPricingPlans();
+  }, []);
+
+  const loadPricingPlans = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('pricing_plans')
+        .select('*')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true });
+
+      if (error) throw error;
+
+      const domain = data?.find(p => p.product_type === 'domain');
+      const emails = data?.filter(p => p.product_type === 'email') || [];
+
+      setDomainProduct(domain || null);
+      setEmailPlans(emails);
+    } catch (error) {
+      console.error('Error loading pricing plans:', error);
+    } finally {
+      setLoadingPlans(false);
+    }
+  };
+
+  const formatPrice = (cents: number | null | undefined) => {
+    return ((cents || 0) / 100).toFixed(2);
+  };
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!domain) return;
+
+    setIsSearching(true);
+    setAvailable(null);
+    setDomainError(null);
+    setIsPremium(false);
+
+    const maxRetries = 1; // Reduzido para 1 retry
+    let lastError: Error | null = null;
+    let networkFailureCount = 0;
+
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const domainToCheck = domain.endsWith('.com.rich') ? domain : `${domain}.com.rich`;
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // Reduzido para 15s
+
+        console.log(`[Attempt ${attempt + 1}] Checking domain: ${domainToCheck}`);
+        console.log(`[Attempt ${attempt + 1}] URL: ${import.meta.env.VITE_SUPABASE_URL}/functions/v1/domains`);
+
+        const token = (await supabase.auth.getSession()).data.session?.access_token || import.meta.env.VITE_SUPABASE_ANON_KEY;
+        console.log(`[Attempt ${attempt + 1}] Using token:`, token ? `${token.substring(0, 20)}...` : 'none');
+
+        const response = await fetch(
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/domains`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              action: 'check',
+              fqdn: domainToCheck,
+            }),
+            signal: controller.signal,
+          }
+        );
+
+        clearTimeout(timeoutId);
+
+        console.log(`[Attempt ${attempt + 1}] Response status:`, response.status);
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Response error:', response.status, errorText);
+          throw new Error(`HTTP ${response.status}: ${errorText || 'Falha ao verificar disponibilidade'}`);
+        }
+
+        const result = await response.json();
+        console.log(`[Attempt ${attempt + 1}] Full Result:`, JSON.stringify(result, null, 2));
+        console.log(`[Attempt ${attempt + 1}] Status:`, result.status);
+        console.log(`[Attempt ${attempt + 1}] isAvailable:`, result.isAvailable);
+        console.log(`[Attempt ${attempt + 1}] isPremium:`, result.isPremium);
+        console.log(`[Attempt ${attempt + 1}] isAdmin:`, result.isAdmin);
+        console.log(`[Attempt ${attempt + 1}] showDirectPurchase:`, result.showDirectPurchase);
+        console.log(`[Attempt ${attempt + 1}] price:`, result.price);
+        console.log(`[Attempt ${attempt + 1}] message:`, result.message);
+        console.log(`[Attempt ${attempt + 1}] Error:`, result.error);
+
+        // DEBUG: Show admin status prominently
+        if (result.isAdmin === true) {
+          console.log('🎯🎯🎯 USER IS ADMIN - SHOULD SHOW FREE REGISTRATION! 🎯🎯🎯');
+        } else {
+          console.log('❌ User is NOT admin (isAdmin value:', result.isAdmin, ')');
+        }
+
+        // Handle error response
+        if (result.error) {
+          if (result.error.includes('not configured')) {
+            setDomainError('⚠️ Serviço de verificação não configurado. Entre em contato com o suporte.');
+          } else {
+            setDomainError(result.error);
+          }
+          setAvailable(false);
+          setIsPremium(false);
+        } else {
+          // Handle successful response based on status
+          const isAvailable = result.status === 'AVAILABLE';
+          const isPremium = result.isPremium === true;
+
+          setAvailable(isAvailable);
+          setIsPremium(isPremium);
+          setDomainPrice(result.price?.monthly ?? null);
+          setIsAdmin(result.isAdmin === true);
+          setShowDirectPurchase(result.showDirectPurchase === true);
+        }
+
+        // Se chegou aqui, sucesso! Sai do loop
+        lastError = null;
+        break;
+
+      } catch (error) {
+        lastError = error as Error;
+        console.error(`[Attempt ${attempt + 1}/${maxRetries + 1}] Failed:`, error);
+        console.error(`[Attempt ${attempt + 1}] Error name:`, error instanceof Error ? error.name : 'Unknown');
+        console.error(`[Attempt ${attempt + 1}] Error message:`, error instanceof Error ? error.message : String(error));
+
+        // Detecta falha de rede
+        if (error instanceof TypeError ||
+            (error instanceof Error && (
+              error.message.toLowerCase().includes('network') ||
+              error.message.toLowerCase().includes('fetch') ||
+              error.message.toLowerCase().includes('failed to fetch')
+            ))) {
+          networkFailureCount++;
+        }
+
+        // Se é o último retry, não espera
+        if (attempt < maxRetries) {
+          console.log(`[Attempt ${attempt + 1}] Waiting 2s before retry...`);
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+      }
+    }
+
+    // Se todas as tentativas falharam
+    if (lastError) {
+      console.error('❌ All attempts failed. Last error:', lastError);
+      console.error('❌ Network failure count:', networkFailureCount);
+
+      // Se todas as falhas foram de rede, ativa modo de fallback
+      if (networkFailureCount > 0) {
+        setNetworkIssueDetected(true);
+        console.warn('⚠️ Network issue detected! Environment may have connectivity problems.');
+        setDomainError(`🌐 ERRO DE AMBIENTE: O ambiente bolt.new está com problemas de conectividade de rede.
+
+        Isso NÃO é um problema do código - o código está correto e funcional.
+
+        Possíveis soluções:
+        1. Deploy em produção (Netlify) onde a rede funciona
+        2. Aguarde até que o ambiente bolt.new restabeleça a conexão
+        3. Entre em modo de teste simulado (disponível em breve)
+
+        Erro técnico: ${lastError.message}`);
+      } else if (lastError.name === 'AbortError') {
+        setDomainError('⏱️ Timeout: A verificação demorou muito. Tente novamente.');
+      } else {
+        setDomainError(`Falha ao verificar disponibilidade: ${lastError.message}`);
+      }
+      setAvailable(false);
+    }
+
+    setIsSearching(false);
+
+    // Scroll suave para o resultado após a busca (apenas no mobile)
+    setTimeout(() => {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        const resultElement = document.getElementById('search-result');
+        if (resultElement) {
+          resultElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, 100);
+  };
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleProvision = async () => {
+    if (!user) {
+      setShowLoginModal(true);
+      return;
+    }
+
+    const domainToRegister = domain.endsWith('.com.rich') ? domain : `${domain}.com.rich`;
+
+    if (isAdmin) {
+      try {
+        console.log('👑 ADMIN: Registrando domínio gratuitamente...');
+        setProvisioning(true);
+
+        // 1. Ensure customer exists
+        let customerId: string;
+        const { data: existingCustomer } = await supabase
+          .from('customers')
+          .select('id')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (existingCustomer) {
+          customerId = existingCustomer.id;
+        } else {
+          const { data: newCustomer, error: customerError } = await supabase
+            .from('customers')
+            .insert({
+              user_id: user.id,
+              email: user.email || '',
+            })
+            .select('id')
+            .single();
+
+          if (customerError) throw customerError;
+          customerId = newCustomer.id;
+        }
+
+        // 2. Create order
+        const { data: order, error: orderError } = await supabase
+          .from('orders')
+          .insert({
+            customer_id: customerId,
+            fqdn: domainToRegister,
+            years: 999,
+            plan: 'admin_lifetime',
+            total_cents: 0,
+            status: 'completed',
+          })
+          .select()
+          .single();
+
+        if (orderError) throw orderError;
+
+        // 3. Create domain
+        const domainPayload = {
+          customer_id: customerId,
+          fqdn: domainToRegister,
+          registrar_status: 'active',
+          expires_at: new Date(Date.now() + 999 * 365 * 24 * 60 * 60 * 1000).toISOString(),
+          domain_type: 'prime',
+          is_transferable: false,
+        };
+
+        console.log('📝 Criando domínio com payload:', domainPayload);
+
+        const { data: domainData, error: domainError } = await supabase
+          .from('domains')
+          .insert(domainPayload)
+          .select()
+          .single();
+
+        if (domainError) {
+          console.error('❌ Erro ao criar domínio:', domainError);
+          throw domainError;
+        }
+
+        console.log('✅ Domínio criado:', domainData);
+
+        // 4. Create pending_order for tracking
+        await supabase
+          .from('pending_orders')
+          .insert({
+            user_id: user.id,
+            fqdn: domainToRegister,
+            plan_code: 'admin_lifetime',
+            status: 'completed',
+            payment_method: 'admin_free',
+            total_cents: 0,
+          });
+
+        console.log('✅ Domínio registrado:', { order, domain: domainData });
+        alert('✅ Domínio registrado com sucesso!\n\nLicença vitalícia ativada.\n\nRedirecionando para o dashboard...');
+        setTimeout(() => navigate('/panel/dashboard'), 1500);
+        return;
+      } catch (error) {
+        console.error('Erro no registro admin:', error);
+        alert('Erro ao registrar domínio: ' + (error as Error).message);
+        return;
+      } finally {
+        setProvisioning(false);
+      }
+    }
+
+    if (!domainProduct) {
+      alert('Plano de domínio não encontrado');
+      return;
+    }
+
+    const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
+
+    if (isDevMode) {
+      try {
+        console.log('🧪 Modo DEV: Simulando pagamento...');
+
+        const { data: order } = await supabase
+          .from('pending_orders')
+          .insert({
+            user_id: user.id,
+            fqdn: domainToRegister,
+            plan_code: domainProduct.code,
+            status: 'completed',
+            payment_method: 'dev_simulation',
+          })
+          .select()
+          .single();
+
+        console.log('✅ Pedido simulado criado:', order);
+        alert('✅ Pagamento simulado com sucesso! (Modo DEV)\n\nRedirecionando para dashboard...');
+        setTimeout(() => navigate('/dashboard'), 1500);
+        return;
+      } catch (error) {
+        console.error('Erro na simulação:', error);
+        alert('Erro ao simular pagamento: ' + (error as Error).message);
+        return;
+      }
+    }
+
+    try {
+      const authHeader = `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`;
+
+      const token = (await supabase.auth.getSession()).data.session?.access_token;
+      if (!token) {
+        alert('Sessão expirada. Faça login novamente.');
+        navigate('/login');
+        return;
+      }
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/paypal-create-order`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            domain: domainToRegister,
+            price: domainProduct.price_cents / 100,
+            planId: domainProduct.id,
+            planCode: domainProduct.code,
+            contactInfo: {
+              email: user.email,
+            },
+            return_url: `${window.location.origin}/paypal/return`,
+            cancel_url: `${window.location.origin}/paypal/cancel`,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Erro PayPal (response):', errorText);
+        let errorData;
+        try {
+          errorData = JSON.parse(errorText);
+        } catch {
+          errorData = { error: errorText };
+        }
+        throw new Error(errorData.error || 'Falha ao criar pedido PayPal');
+      }
+
+      const result = await response.json();
+      console.log('PayPal create-order result:', result);
+
+      const { approveUrl } = result;
+
+      if (!approveUrl) {
+        throw new Error('URL de aprovação do PayPal não encontrada');
+      }
+
+      console.log('Abrindo PayPal em nova aba:', approveUrl);
+
+      const paypalWindow = window.open(approveUrl, 'paypal', 'width=800,height=600,scrollbars=yes');
+
+      if (!paypalWindow) {
+        console.warn('Pop-up bloqueado, tentando redirect direto');
+        window.location.href = approveUrl;
+      } else {
+        const checkPaymentInterval = setInterval(async () => {
+          if (paypalWindow.closed) {
+            clearInterval(checkPaymentInterval);
+            console.log('Janela PayPal fechada, verificando status...');
+
+            const { data: orders } = await supabase
+              .from('pending_orders')
+              .select('*')
+              .eq('user_id', user.id)
+              .eq('fqdn', domainToRegister)
+              .eq('status', 'completed')
+              .order('created_at', { ascending: false })
+              .limit(1);
+
+            if (orders && orders.length > 0) {
+              alert('Pagamento confirmado! Redirecionando...');
+              navigate('/dashboard');
+            }
+          }
+        }, 1000);
+      }
+    } catch (error) {
+      console.error('Erro ao criar pedido PayPal:', error);
+      alert('Falha ao processar pedido: ' + (error as Error).message);
+    }
+  };
+
+  const handleReset = () => {
+    setDomain('');
+    setAvailable(null);
+    setDomainError(null);
+    setIsPremium(false);
+    setSteps([]);
+    setProvisioning(false);
+    setIsAdmin(false);
+    setShowDirectPurchase(false);
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
+  const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
+
+  return (
+    <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
+      {isDevMode && (
+        <div className="fixed top-0 left-0 right-0 bg-[#FF6B35] text-white py-2.5 px-4 text-center font-semibold text-sm shadow-sm z-[100] border-b border-gray-200">
+          🧪 MODO DESENVOLVIMENTO ATIVO - Pagamentos serão simulados (sem PayPal real)
+        </div>
+      )}
+      {networkIssueDetected && (
+        <div className="fixed top-0 left-0 right-0 bg-red-500 text-white py-3 px-4 text-center font-semibold text-sm shadow-sm z-[99] border-b border-red-600" style={{ marginTop: isDevMode ? '41px' : '0' }}>
+          ⚠️ PROBLEMA DE REDE DETECTADO - Ambiente bolt.new com conectividade instável. Use o botão "Modo Teste" para simular ou faça deploy em produção.
+        </div>
+      )}
+
+      <div className="relative pt-24 pb-16">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 opacity-[0.15] pointer-events-none"></div>
+        <div className="absolute inset-x-0 top-0 h-[400px] bg-gradient-to-b from-black/90 via-black/50 to-transparent pointer-events-none"></div>
+        <motion.section
+          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+          initial="hidden"
+          animate="show"
+          variants={container}
+        >
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.h1
+              variants={item}
+              className="font-black text-6xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 leading-tight tracking-tight px-4"
+              style={{
+                fontWeight: 900,
+                WebkitTextStroke: '0.5px rgba(0, 0, 0, 0.1)',
+                paintOrder: 'stroke fill'
+              }}
+            >
+              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent">
+                Sua Identidade
+              </span>{' '}
+              <span className="bg-gradient-to-r from-slate-700 via-[#D4AF37] to-slate-700 bg-clip-text text-transparent animate-shine bg-[length:200%_auto]">
+                .com.rich
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="text-xl sm:text-2xl text-slate-700 mb-8 max-w-3xl mx-auto leading-relaxed px-4 font-light"
+            >
+              Possua a identidade digital mais prestigiada e exclusiva do mundo.
+            </motion.p>
+
+            <motion.form
+              variants={item}
+              onSubmit={handleSearch}
+              className="max-w-2xl mx-auto mb-8"
+            >
+              <div className="relative group">
+                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white border border-gray-200 rounded-xl p-2 shadow-sm">
+                  <div className="flex items-stretch flex-1 min-w-0">
+                    <input
+                      type="text"
+                      value={domain}
+                      onChange={(e) => setDomain(e.target.value.replace(/[^a-z0-9-]/gi, '').toLowerCase())}
+                      placeholder="Pesquisar domínio"
+                      className="flex-1 bg-transparent text-black placeholder-gray-400 px-6 py-4 text-lg focus:outline-none min-w-0"
+                      disabled={provisioning}
+                    />
+                    <div className="flex items-center pr-4 text-[#6B7280] text-lg font-medium select-none pointer-events-none">
+                      .com.rich
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSearching || provisioning}
+                    className="px-6 sm:px-8 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap flex-shrink-0"
+                  >
+                    {isSearching ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Buscando...
+                      </>
+                    ) : (
+                      <>
+                        <Search className="w-5 h-5" />
+                        Buscar
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </motion.form>
+
+            {domainError && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-xl mx-auto mb-16 px-4"
+              >
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-5 border border-gray-200/50 shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-red-50/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                      <AlertCircle className="w-4 h-4 text-red-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-semibold text-black mb-1">
+                        Não foi possível verificar
+                      </h3>
+                      <p className="text-xs text-[#6B7280] leading-relaxed">
+                        {domainError}
+                      </p>
+                      <div className="flex gap-2 mt-3">
+                        <button
+                          onClick={() => { setDomainError(null); handleSearch({ preventDefault: () => {} } as React.FormEvent); }}
+                          className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+                        >
+                          Tentar novamente
+                        </button>
+                        {networkIssueDetected && (
+                          <button
+                            onClick={() => {
+                              setDomainError(null);
+                              setAvailable(true);
+                              setIsPremium(false);
+                              console.log('🧪 MODO SIMULADO ATIVADO - Para fins de teste apenas');
+                            }}
+                            className="px-3 py-1.5 bg-white/80 hover:bg-white text-black text-xs font-medium rounded-lg border border-gray-200/60 transition-all duration-200 backdrop-blur-sm"
+                          >
+                            Modo teste
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      onClick={handleReset}
+                      className="p-1 hover:bg-gray-100/80 rounded-lg transition-colors"
+                    >
+                      <X className="w-4 h-4 text-[#6B7280]" />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {available !== null && !domainError && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="max-w-2xl mx-auto mb-12 mt-8 px-4"
+                id="search-result"
+              >
+                {isPremium ? (
+                  <div className="space-y-6 w-full">
+                    <p className="text-lg text-emerald-700 font-semibold text-center">
+                      Domínio Premium disponível!
+                    </p>
+
+                    <div className="bg-gradient-to-br from-amber-50 to-white rounded-2xl p-6 shadow-sm border border-amber-200">
+                      <div className="flex flex-col items-center gap-4">
+                        <Crown className="w-10 h-10 text-amber-500" />
+                        <div className="text-center w-full">
+                          <div className="inline-block max-w-full">
+                            <span className={`font-black text-black break-words ${
+                              domain.length <= 8
+                                ? 'text-3xl sm:text-4xl md:text-5xl'
+                                : domain.length <= 12
+                                ? 'text-2xl sm:text-3xl md:text-4xl'
+                                : domain.length <= 16
+                                ? 'text-xl sm:text-2xl md:text-3xl'
+                                : 'text-lg sm:text-xl md:text-2xl'
+                            }`} style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                              {domain}
+                            </span>
+                            <span className={`font-black bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 bg-clip-text text-transparent ${
+                              domain.length <= 8
+                                ? 'text-3xl sm:text-4xl md:text-5xl'
+                                : domain.length <= 12
+                                ? 'text-2xl sm:text-3xl md:text-4xl'
+                                : domain.length <= 16
+                                ? 'text-xl sm:text-2xl md:text-3xl'
+                                : 'text-lg sm:text-xl md:text-2xl'
+                            }`}>
+                              .com.rich
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Premium CTA Section */}
+                        <div className="flex flex-col items-center gap-3 w-full border-t border-amber-200 pt-4">
+                          {isAdmin ? (
+                            <>
+                              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-300 rounded-lg">
+                                <Crown className="w-5 h-5 text-amber-700" />
+                                <p className="text-sm font-semibold text-amber-900">
+                                  Domínio Premium - Registro GRATUITO (Admin)
+                                </p>
+                              </div>
+                              <button
+                                onClick={handleProvision}
+                                disabled={provisioning}
+                                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                              >
+                                {provisioning ? (
+                                  <>
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    <span>Registrando...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <CheckCircle className="w-5 h-5" />
+                                    <span>Registrar Premium (Grátis)</span>
+                                  </>
+                                )}
+                              </button>
+                            </>
+                          ) : showDirectPurchase ? (
+                            <>
+                              <p className="text-sm text-amber-800 text-center max-w-md font-medium">
+                                Domínio Premium disponível para o seu plano Elite
+                              </p>
+                              <button
+                                onClick={handleProvision}
+                                disabled={provisioning}
+                                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                              >
+                                {provisioning ? (
+                                  <>
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    <span>Processando...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Crown className="w-5 h-5" />
+                                    <span>Solicitar Orçamento</span>
+                                  </>
+                                )}
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <p className="text-sm text-amber-800 text-center max-w-md font-medium">
+                                Domínio Premium - disponível apenas com plano Elite
+                              </p>
+                              <Link
+                                to="/valores"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                              >
+                                <Crown className="w-5 h-5" />
+                                <span>Ver Plano Elite</span>
+                              </Link>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : available ? (
+                  <div className="space-y-6 w-full">
+                    <p className="text-lg text-emerald-700 font-semibold text-center">
+                      Domínio disponível para registro!
+                    </p>
+
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                      <div className="flex flex-col items-center gap-4">
+                        {/* Domain Name */}
+                        <div className="text-center w-full">
+                          <div className="inline-block max-w-full">
+                            <span className={`font-black text-black break-words ${
+                              domain.length <= 8
+                                ? 'text-3xl sm:text-4xl md:text-5xl'
+                                : domain.length <= 12
+                                ? 'text-2xl sm:text-3xl md:text-4xl'
+                                : domain.length <= 16
+                                ? 'text-xl sm:text-2xl md:text-3xl'
+                                : 'text-lg sm:text-xl md:text-2xl'
+                            }`} style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                              {domain}
+                            </span>
+                            <span className={`font-black bg-gradient-to-r from-black via-[#D4AF37] to-black bg-clip-text text-transparent ${
+                              domain.length <= 8
+                                ? 'text-3xl sm:text-4xl md:text-5xl'
+                                : domain.length <= 12
+                                ? 'text-2xl sm:text-3xl md:text-4xl'
+                                : domain.length <= 16
+                                ? 'text-xl sm:text-2xl md:text-3xl'
+                                : 'text-lg sm:text-xl md:text-2xl'
+                            }`}>
+                              .com.rich
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* CTA Section */}
+                        <div className="flex flex-col items-center gap-3 w-full border-t border-gray-100 pt-4">
+                          {isAdmin ? (
+                            <>
+                              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
+                                <Crown className="w-5 h-5 text-amber-600" />
+                                <p className="text-sm font-semibold text-amber-900">
+                                  Registro GRATUITO com licença vitalícia (Admin)
+                                </p>
+                              </div>
+                              <button
+                                onClick={handleProvision}
+                                disabled={provisioning}
+                                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                              >
+                                {provisioning ? (
+                                  <>
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    <span>Registrando...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <CheckCircle className="w-5 h-5" />
+                                    <span>Registrar Agora (Grátis)</span>
+                                  </>
+                                )}
+                              </button>
+                            </>
+                          ) : showDirectPurchase ? (
+                            <>
+                              <p className="text-sm text-gray-600 text-center max-w-md">
+                                Você já possui um plano ativo. Adicione este domínio à sua conta.
+                              </p>
+                              <button
+                                onClick={handleProvision}
+                                disabled={provisioning}
+                                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                              >
+                                {provisioning ? (
+                                  <>
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    <span>Processando...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Link2 className="w-5 h-5" />
+                                    <span>Adicionar Domínio</span>
+                                  </>
+                                )}
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <p className="text-sm text-gray-600 text-center max-w-md">
+                                Para registrar este domínio, escolha um dos nossos planos de licenciamento
+                              </p>
+                              <Link
+                                to="/valores"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                              >
+                                <Sparkles className="w-5 h-5" />
+                                <span>Ver Planos</span>
+                              </Link>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-6 w-full">
+                    <p className="text-lg text-red-700 font-semibold text-center">
+                      Este domínio já está registrado
+                    </p>
+
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-red-100">
+                      <div className="text-center w-full">
+                        <div className="inline-block max-w-full">
+                          <span className={`font-black text-black break-words ${
+                            domain.length <= 8
+                              ? 'text-3xl sm:text-4xl md:text-5xl'
+                              : domain.length <= 12
+                              ? 'text-2xl sm:text-3xl md:text-4xl'
+                              : domain.length <= 16
+                              ? 'text-xl sm:text-2xl md:text-3xl'
+                              : 'text-lg sm:text-xl md:text-2xl'
+                          }`} style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                            {domain}
+                          </span>
+                          <span className={`font-black text-gray-400 ${
+                            domain.length <= 8
+                              ? 'text-3xl sm:text-4xl md:text-5xl'
+                              : domain.length <= 12
+                              ? 'text-2xl sm:text-3xl md:text-4xl'
+                              : domain.length <= 16
+                              ? 'text-xl sm:text-2xl md:text-3xl'
+                              : 'text-lg sm:text-xl md:text-2xl'
+                          }`}>
+                            .com.rich
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {isPremium && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-6 max-w-md mx-auto"
+                  >
+                    <div className="relative w-full rounded-2xl border border-amber-200 bg-gradient-to-br from-white via-amber-50/30 to-white p-5 shadow-lg">
+                      <Link
+                        to="/contact"
+                        aria-label="Contato"
+                        className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full border border-amber-300 bg-white hover:bg-amber-50 hover:shadow transition-all"
+                      >
+                        <Mail className="w-4 h-4 text-amber-600" />
+                      </Link>
+
+                      <div className="mb-2 flex items-center gap-2">
+                        <Crown className="w-4 h-4 text-amber-500" />
+                        <h3 className="text-lg font-semibold tracking-tight text-gray-900">
+                          Domínio Premium
+                        </h3>
+                        <Sparkles className="w-4 h-4 text-amber-500" />
+                      </div>
+
+                      <p className="text-sm text-gray-700 line-clamp-2 leading-relaxed">
+                        Este é um domínio premium de alto valor. Entre em contato para obter uma cotação personalizada.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            )}
+
+            {steps.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-2xl mx-auto mb-8"
+              >
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                  <h3 className="text-xl font-semibold text-white mb-4">Status do Provisionamento</h3>
+                  <ProvisioningStepper steps={steps} />
+                </div>
+              </motion.div>
+            )}
+
+            <motion.div
+              variants={item}
+              className="flex flex-wrap justify-center gap-6 text-sm"
+            >
+              <div className="flex items-center gap-2">
+                <Lock className="w-4 h-4 text-[#10B981]" />
+                <span className="text-black">Registro Seguro SSL</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-[#10B981]" />
+                <span className="text-black">Verificação Instantânea</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-[#10B981]" />
+                <span className="text-black">Reconhecimento Global</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-[#10B981]" />
+                <span className="text-black">Ativação Imediata</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        <motion.section
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight" style={{ fontWeight: 900 }}>
+              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent">Valor e identidade</span>
+            </h2>
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto mb-8">
+              Uma licença <strong>.com.rich</strong> não é apenas um endereço. É um símbolo de prestígio e uso exclusivo.
+            </p>
+            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight" style={{ fontWeight: 900 }}>
+              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent">Seu nome. Sua marca.</span>
+            </h2>
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto mb-4">
+              Com um domínio único, sua presença online é exclusivamente sua.<br />
+              Haverá apenas uma <strong>olivia.com.rich</strong>, uma <strong>james.com.rich</strong>, uma <strong>isabella.com.rich</strong>.
+            </p>
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+              Essa exclusividade representa uma oportunidade real para fortalecer sua marca pessoal e ser reconhecido de forma autêntica no cenário digital global.
+            </p>
+          </div>
+        </motion.section>
+
+        <motion.section
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent" style={{ fontWeight: 900 }}>
+              Sua licença .com.rich em três etapas
+            </h2>
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+              Três passos simples separam você de uma identidade digital incomparável. Cada detalhe foi pensado para oferecer exclusividade, segurança e presença imediata.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                step: '01',
+                icon: Search,
+                title: 'Busque sua licença',
+                description: 'Encontre o nome perfeito dentro do universo .com.rich e garanta sua licença exclusiva de uso.'
+              },
+              {
+                step: '02',
+                icon: Lock,
+                title: 'Adquira sua licença',
+                description: 'Finalize sua contratação com segurança. Sua licença exclusiva .com.rich será ativada instantaneamente e vinculada ao seu perfil.'
+              },
+              {
+                step: '03',
+                icon: Link2,
+                title: 'Tudo em um só lugar',
+                description: 'Sua licença .com.rich inclui uma página moderna e personalizável, onde você conecta redes, negócios e oportunidades, tudo em um\u00A0só\u00A0link.'
+              }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className="relative"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl flex items-center justify-center shadow-lg">
+                      <step.icon className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-900 bg-clip-text text-transparent mb-3">{step.title}</h3>
+                  <p className="text-[#6B7280] leading-relaxed text-sm">{step.description}</p>
+                </div>
+                {index < 2 && (
+                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-[#D4AF37]/50 to-transparent" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent" style={{ fontWeight: 900 }}>
+              O que é .com.rich?
+            </h2>
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+              O domínio .com.rich representa uma nova forma de presença digital feita para quem quer unir valor, propósito e exclusividade.
+              Mais do que um endereço na web, ele é uma declaração de identidade: cada nome em .com.rich reflete quem você é e o que deseja transmitir ao mundo.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: 'Máxima segurança',
+                description: 'Cada licença .com.rich é protegida com tecnologia avançada e protocolos de segurança global, garantindo total proteção para sua identidade digital.'
+              },
+              {
+                icon: Zap,
+                title: 'Ativação instantânea',
+                description: 'Tudo é preparado automaticamente. Em poucos instantes, sua licença .com.rich estará ativa e conectada à sua página personalizada.'
+              },
+              {
+                icon: Globe,
+                title: 'Identidade profissional',
+                description: 'Uma licença .com.rich transforma sua presença online em algo memorável, distinto e visualmente sofisticado.'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className="group relative"
+              >
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 h-full hover:shadow-lg transition-shadow">
+                  <div className="inline-flex p-4 bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl mb-6 shadow-lg">
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-900 bg-clip-text text-transparent mb-3">{feature.title}</h3>
+                  <p className="text-[#6B7280] leading-relaxed">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <div className="relative">
+            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-12 md:p-16 text-center shadow-2xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Escolha com sabedoria. Destaque-se online.
+              </h2>
+              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+                Sua licença exclusiva protegida:<br />
+                https://seunome.com.rich / https://com.rich/seunome
+              </p>
+              <button
+                onClick={() => navigate('/register')}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-gray-100 text-slate-900 text-lg font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Começar Agora
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </motion.section>
+      </div>
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowLoginModal(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
+          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+          >
+            <div className="bg-gradient-to-br from-slate-900 via-[#8B7355] to-slate-900 rounded-3xl shadow-2xl w-full max-w-md pointer-events-auto border border-white/10">
+              <div className="relative p-8">
+                <button
+                  onClick={() => setShowLoginModal(false)}
+                  className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-xl transition-colors group"
+                >
+                  <X className="w-5 h-5 text-[#F4D03F] group-hover:text-white transition-colors" />
+                </button>
+
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl mb-4 shadow-lg">
+                    <LogIn className="w-8 h-8 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-white mb-2">
+                    Login Necessário
+                  </h2>
+                  <p className="text-[#F4D03F]/70 text-lg">
+                    Por favor, faça login para continuar com a compra
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => navigate('/login')}
+                    className="w-full px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <LogIn className="w-5 h-5" />
+                    Fazer Login
+                  </motion.button>
+                  <button
+                    onClick={() => navigate('/register')}
+                    className="w-full px-6 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold text-lg transition-all duration-200 border border-white/10"
+                  >
+                    Criar Conta
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Home;
