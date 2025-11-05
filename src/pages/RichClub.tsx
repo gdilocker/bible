@@ -40,7 +40,7 @@ export default function RichClub() {
 
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
               <span className="block">Bem-vindo ao</span>
-              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent whitespace-nowrap">
                 Clube dos Milionários
               </span>
             </h1>
@@ -105,7 +105,8 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Experiências globais e encontros estratégicos
+              Experiências globais<br className="sm:hidden" />
+              <span className="sm:inline"> e </span>encontros estratégicos
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
@@ -159,7 +160,8 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Espaços, experiências e estabelecimentos aprovados
+              Espaços, experiências<br className="sm:hidden" />
+              <span className="sm:inline"> e </span>estabelecimentos aprovados
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
@@ -214,7 +216,8 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Design aprovado, legado e autenticidade
+              Design aprovado,<br className="sm:hidden" />
+              <span className="sm:inline"> </span>legado e autenticidade
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
@@ -264,7 +267,8 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Reconhecimento oficial como membro do Rich Club
+              Reconhecimento oficial<br className="sm:hidden" />
+              <span className="sm:inline"> </span>como membro do Rich Club
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
@@ -318,8 +322,7 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              <span className="text-gray-400">yourname</span>
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">.com.rich</span>
+              <span className="text-gray-400 whitespace-nowrap">yourname</span><span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent whitespace-nowrap">.com.rich</span>
             </h2>
 
             <div className="space-y-3 mb-12">
@@ -373,7 +376,7 @@ export default function RichClub() {
               <span className="text-emerald-300 text-xs font-semibold tracking-widest uppercase">Earn Commission</span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight whitespace-nowrap">
               Programa de Afiliados
             </h2>
 
@@ -413,7 +416,7 @@ export default function RichClub() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight">
               <span className="block">Pronto para elevar sua</span>
-              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent whitespace-nowrap">
                 presença digital?
               </span>
             </h2>
