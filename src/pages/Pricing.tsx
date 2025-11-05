@@ -52,8 +52,8 @@ const FALLBACK_PLANS: SubscriptionPlan[] = [
       'Destaque premium nas listagens e buscas',
       'Acesso antecipado à coleção de nomes premium',
       'Convites e benefícios exclusivos de membro',
-      'Suporte prioritário dedicado',
-      'Programa de afiliados: 50% de comissão recorrente em cada pagamento do cliente'
+      'Programa de afiliados: 50% de comissão recorrente em cada pagamento do cliente',
+      'Suporte prioritário dedicado'
     ],
     is_active: true,
     commission_rate: 0.50
