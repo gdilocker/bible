@@ -537,9 +537,7 @@ const Home = () => {
                 Sua Identidade
               </span>
               <br />
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent animate-shine bg-[length:200%_auto]" style={{
-                textShadow: '0 0 30px rgba(251, 191, 36, 0.3), 0 0 60px rgba(251, 191, 36, 0.2)'
-              }}>
+              <span className="text-amber-400">
                 .com.rich
               </span>
             </motion.h1>
