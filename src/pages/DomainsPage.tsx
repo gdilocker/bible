@@ -7,6 +7,7 @@ import { PageHeader } from '../components/PageHeader';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { ConfirmModal } from '../components/ConfirmModal';
+import { AlertModal } from '../components/AlertModal';
 
 interface Domain {
   id: string;
@@ -43,6 +44,18 @@ const DomainsPage: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [activeDomainId, setActiveDomainId] = useState<string | null>(null);
   const [customerId, setCustomerId] = useState<string | null>(null);
+
+  const [alertModal, setAlertModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    type: 'success' | 'error' | 'warning' | 'info';
+  }>({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'success'
+  });
 
   const hasPersonalDomain = domains.some(d => d.domain_type === 'personal');
   const hasBusinessDomain = domains.some(d => d.domain_type === 'business');
@@ -215,11 +228,21 @@ const DomainsPage: React.FC = () => {
           : d
       ));
 
-      alert('Domínio renovado com sucesso por mais 1 ano!');
+      setAlertModal({
+        isOpen: true,
+        title: 'Domínio Renovado!',
+        message: 'Seu domínio foi renovado com sucesso por mais 1 ano.',
+        type: 'success'
+      });
       setRenewModal({ isOpen: false, domainId: '', domainName: '', currentExpiry: '' });
     } catch (error) {
       console.error('Error renewing domain:', error);
-      alert('Erro ao renovar domínio. Por favor, tente novamente.');
+      setAlertModal({
+        isOpen: true,
+        title: 'Erro ao Renovar',
+        message: 'Não foi possível renovar o domínio. Por favor, tente novamente.',
+        type: 'error'
+      });
     }
   };
 
@@ -235,10 +258,20 @@ const DomainsPage: React.FC = () => {
       if (error) throw error;
 
       setActiveDomainId(domainId);
-      alert('Domínio ativado com sucesso! Este domínio agora está ativo no Dashboard.');
+      setAlertModal({
+        isOpen: true,
+        title: 'Domínio Ativado!',
+        message: 'Este domínio agora está ativo e visível no Dashboard.',
+        type: 'success'
+      });
     } catch (error) {
       console.error('Error activating domain:', error);
-      alert('Erro ao ativar domínio. Por favor, tente novamente.');
+      setAlertModal({
+        isOpen: true,
+        title: 'Erro ao Ativar',
+        message: 'Não foi possível ativar o domínio. Por favor, tente novamente.',
+        type: 'error'
+      });
     }
   };
 
@@ -254,10 +287,20 @@ const DomainsPage: React.FC = () => {
       if (error) throw error;
 
       setActiveDomainId(null);
-      alert('Domínio desativado com sucesso! Nenhum domínio está ativo no Dashboard agora.');
+      setAlertModal({
+        isOpen: true,
+        title: 'Domínio Desativado',
+        message: 'O domínio foi desativado. Nenhum domínio está ativo no Dashboard agora.',
+        type: 'info'
+      });
     } catch (error) {
       console.error('Error deactivating domain:', error);
-      alert('Erro ao desativar domínio. Por favor, tente novamente.');
+      setAlertModal({
+        isOpen: true,
+        title: 'Erro ao Desativar',
+        message: 'Não foi possível desativar o domínio. Por favor, tente novamente.',
+        type: 'error'
+      });
     }
   };
 
@@ -306,9 +349,15 @@ const DomainsPage: React.FC = () => {
       if (error) throw error;
 
       setDomains(domains.filter(d => d.id !== deleteModal.domainId));
+      setDeleteModal({ isOpen: false, domainId: '', domainName: '' });
     } catch (error) {
       console.error('Error deleting domain:', error);
-      alert('Erro ao excluir domínio. Por favor, tente novamente.');
+      setAlertModal({
+        isOpen: true,
+        title: 'Erro ao Excluir',
+        message: 'Não foi possível excluir o domínio. Por favor, tente novamente.',
+        type: 'error'
+      });
     }
   };
 
@@ -651,6 +700,14 @@ const DomainsPage: React.FC = () => {
         confirmText="Sim, Renovar"
         cancelText="Cancelar"
         variant="primary"
+      />
+
+      <AlertModal
+        isOpen={alertModal.isOpen}
+        onClose={() => setAlertModal({ ...alertModal, isOpen: false })}
+        title={alertModal.title}
+        message={alertModal.message}
+        type={alertModal.type}
       />
     </PanelLayout>
   );
