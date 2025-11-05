@@ -345,7 +345,7 @@ const AffiliateTerms: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <div className="relative py-12 sm:py-16 lg:py-20">
+      <div className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 lg:pt-48 lg:pb-24">
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
