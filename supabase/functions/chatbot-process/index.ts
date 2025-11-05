@@ -247,6 +247,7 @@ Informações oficiais sobre os planos:
 - Suporte prioritário
 
 **Supreme - By Request (sob consulta)**
+- 20% de comissão para afiliados
 - Licenciamento exclusivo global
 - Infraestrutura técnica personalizada
 - Plataforma digital independente
@@ -293,6 +294,7 @@ Official plan information:
 - Priority support
 
 **Supreme - By Request (custom pricing)**
+- 20% affiliate commission
 - Global exclusive licensing
 - Custom technical infrastructure
 - Independent digital platform
