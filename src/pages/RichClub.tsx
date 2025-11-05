@@ -39,7 +39,7 @@ export default function RichClub() {
             </div>
 
             <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[0.95] tracking-tight">
-              Welcome to the<br />
+              Bem-vindo ao<br />
               <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
                 Rich Club
               </span>
@@ -61,18 +61,20 @@ export default function RichClub() {
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute bottom-8 left-8 right-8 z-10 hidden lg:flex justify-between items-center">
-          <div className="flex items-center gap-4 text-white/60 text-sm">
-            <Crown className="w-5 h-5 text-amber-400" />
-            <span>Certificação Oficial</span>
-          </div>
-          <div className="flex items-center gap-4 text-white/60 text-sm">
-            <Globe2 className="w-5 h-5 text-amber-400" />
-            <span>Presença Global</span>
-          </div>
-          <div className="flex items-center gap-4 text-white/60 text-sm">
-            <Shield className="w-5 h-5 text-amber-400" />
-            <span>Exclusividade Garantida</span>
+        <div className="absolute bottom-12 left-0 right-0 z-10 flex justify-center">
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex items-center gap-3 text-white/80 text-sm font-medium">
+              <Crown className="w-5 h-5 text-amber-400" />
+              <span>Certificação Oficial</span>
+            </div>
+            <div className="flex items-center gap-3 text-white/80 text-sm font-medium">
+              <Globe2 className="w-5 h-5 text-amber-400" />
+              <span>Presença Global</span>
+            </div>
+            <div className="flex items-center gap-3 text-white/80 text-sm font-medium">
+              <Shield className="w-5 h-5 text-amber-400" />
+              <span>Exclusividade Garantida</span>
+            </div>
           </div>
         </div>
       </section>
