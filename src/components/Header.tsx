@@ -149,6 +149,16 @@ export default function Header() {
             ) : (
               <>
                 <Link
+                  to="/"
+                  className={`px-3 py-2 font-medium transition-colors ${
+                    location.pathname === '/'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  Inicial
+                </Link>
+                <Link
                   to="/panel/dashboard"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/panel/dashboard'
@@ -221,11 +231,21 @@ export default function Header() {
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          navigate('/panel/dashboard');
+                          navigate('/');
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
                         <Home className="w-5 h-5" />
+                        <span className="text-sm font-medium">Inicial</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          navigate('/panel/dashboard');
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
+                      >
+                        <UserCircle className="w-5 h-5" />
                         <span className="text-sm font-medium">Dashboard</span>
                       </button>
                       <button
