@@ -1,150 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRightLeft, Calendar, Shield } from 'lucide-react';
+import { Clock, Shield, RefreshCw, DollarSign, Calendar } from 'lucide-react';
 
 const DomainTransferPolicy: React.FC = () => {
-  const sections = [
-    {
-      title: '1. TRANSFERÊNCIAS PERMITIDAS',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>
-            Você pode transferir seu domínio para outro registrador ou para outra conta dentro da Global Digital Identity, desde que atenda aos requisitos estabelecidos.
-          </p>
-        </div>
-      )
-    },
-    {
-      title: '2. REQUISITOS PARA TRANSFERÊNCIA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Para iniciar uma transferência, o domínio deve:</p>
-          <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>Ter pelo menos 60 dias desde o registro ou última transferência</li>
-            <li>Estar desbloqueado (sem status "clientTransferProhibited")</li>
-            <li>Possuir código de autorização (EPP/Auth Code) válido</li>
-            <li>Ter informações de contato atualizadas e verificadas</li>
-            <li>Não estar em disputa ou processo legal</li>
-            <li>Não estar expirado há mais de 30 dias</li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      title: '3. PROCESSO DE TRANSFERÊNCIA SAÍDA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Para transferir seu domínio para outro registrador:</p>
-          <ol className="space-y-2 text-[#6B7280]/70 list-decimal list-inside">
-            <li>Acesse o painel de controle e localize o domínio</li>
-            <li>Desbloqueie o domínio removendo a proteção de transferência</li>
-            <li>Solicite o código de autorização (EPP Code)</li>
-            <li>Forneça o código ao novo registrador</li>
-            <li>Aprove a transferência quando receber o email de confirmação</li>
-          </ol>
-          <p>A transferência geralmente leva de 5 a 7 dias para ser concluída.</p>
-        </div>
-      )
-    },
-    {
-      title: '4. PROCESSO DE TRANSFERÊNCIA ENTRADA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Para transferir um domínio para a Global Digital Identity:</p>
-          <ol className="space-y-2 text-[#6B7280]/70 list-decimal list-inside">
-            <li>Obtenha o código de autorização do registrador atual</li>
-            <li>Desbloqueie o domínio no registrador atual</li>
-            <li>Inicie o processo de transferência em nosso site</li>
-            <li>Insira o código de autorização quando solicitado</li>
-            <li>Confirme a transferência através do email enviado</li>
-          </ol>
-        </div>
-      )
-    },
-    {
-      title: '5. CUSTOS DE TRANSFERÊNCIA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Transferências de domínio geralmente incluem:</p>
-          <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>Taxa de transferência que equivale a 1 ano de renovação</li>
-            <li>Adição de 1 ano ao período de registro atual</li>
-            <li>Sem taxas ocultas ou custos adicionais</li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      title: '6. CANCELAMENTO DE TRANSFERÊNCIA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Transferências podem ser canceladas:</p>
-          <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>Pelo registrador atual dentro de 5 dias</li>
-            <li>Pelo titular do domínio a qualquer momento antes da conclusão</li>
-            <li>Automaticamente se não aprovada em 5 dias</li>
-          </ul>
-          <p>Se você não autorizou uma transferência, negue-a imediatamente através do email de confirmação.</p>
-        </div>
-      )
-    },
-    {
-      title: '7. BLOQUEIOS DE TRANSFERÊNCIA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Transferências serão bloqueadas se:</p>
-          <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>O domínio foi registrado ou transferido há menos de 60 dias</li>
-            <li>Existe uma disputa UDRP (Uniform Domain Resolution Policy)</li>
-            <li>O domínio está sob investigação por fraude</li>
-            <li>Há pagamentos pendentes</li>
-            <li>O domínio está em processo de recuperação</li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      title: '8. TRANSFERÊNCIA ENTRE CONTAS',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Para transferir domínio entre contas da Global Digital Identity:</p>
-          <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>Processo mais rápido (geralmente 24-48 horas)</li>
-            <li>Requer aprovação de ambas as partes</li>
-            <li>Sem custo adicional</li>
-            <li>Não adiciona tempo ao registro</li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      title: '9. PROTEÇÃO DURANTE TRANSFERÊNCIA',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>Durante o processo de transferência:</p>
-          <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>O domínio permanece ativo e funcional</li>
-            <li>Configurações DNS são mantidas</li>
-            <li>Emails de confirmação são enviados para segurança</li>
-            <li>Você pode cancelar a qualquer momento</li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      title: '10. SUPORTE',
-      content: (
-        <div className="text-[#6B7280]/80 space-y-4">
-          <p>
-            Para assistência com transferências de domínio:<br />
-            Email: contact@com.rich<br />
-            Nossa equipe está disponível 24/7 para ajudar com o processo de transferência.
-          </p>
-        </div>
-      )
-    }
-  ];
-
   return (
     <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
       <div className="relative pt-32 pb-16">
@@ -155,15 +13,15 @@ const DomainTransferPolicy: React.FC = () => {
         >
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl mb-6 shadow-lg shadow-sm">
-              <ArrowRightLeft className="w-8 h-8 text-white" />
+              <Clock className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
-              Política de Transferência de Domínio
+              Política de Domínios Premium
             </h1>
             <p className="text-xl text-[#6B7280]/70 mb-4">.com.rich</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
-              <span className="text-sm">Última atualização: 21 de outubro de 2025</span>
+              <span className="text-sm">Última atualização: 13 de novembro de 2025</span>
             </div>
           </div>
         </motion.section>
@@ -192,22 +50,248 @@ const DomainTransferPolicy: React.FC = () => {
           </div>
 
           <div className="space-y-8">
-            {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="relative group"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
-                <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-xl p-6">
-                  <h2 className="text-2xl font-bold text-black mb-4">{section.title}</h2>
-                  {section.content}
+            {/* Section 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+              <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-xl p-6">
+                <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-3">
+                  <Shield className="w-6 h-6 text-blue-500" />
+                  1. Natureza Premium
+                </h2>
+                <div className="text-[#6B7280]/80 space-y-4">
+                  <p>
+                    Os domínios <strong>.com.rich</strong> são ativos digitais exclusivos e não se
+                    destinam ao uso genérico ou massivo. Cada registro é analisado e aprovado
+                    individualmente pela Global Digital Identity LTD.
+                  </p>
+                  <p>
+                    Ao adquirir um domínio .com.rich, você recebe uma <strong>licença exclusiva e
+                    pessoal de uso</strong>, condicionada ao pagamento regular e conformidade com
+                    nossos Termos de Uso.
+                  </p>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            {/* Section 2 - Lifecycle Table */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+              <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-xl p-6">
+                <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-3">
+                  <Clock className="w-6 h-6 text-blue-500" />
+                  2. Ciclo de Vida do Domínio
+                </h2>
+                <div className="text-[#6B7280]/80 space-y-4">
+                  <p className="mb-4">
+                    Todos os domínios .com.rich seguem um ciclo de vida estruturado para proteger
+                    tanto o titular quanto a integridade da rede.
+                  </p>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-2 border-slate-200 rounded-lg overflow-hidden">
+                      <thead className="bg-slate-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left font-semibold text-slate-900">Fase</th>
+                          <th className="px-4 py-3 text-left font-semibold text-slate-900">Dias</th>
+                          <th className="px-4 py-3 text-left font-semibold text-slate-900">Status</th>
+                          <th className="px-4 py-3 text-left font-semibold text-slate-900">Descrição</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        <tr className="bg-green-50">
+                          <td className="px-4 py-3 font-medium">Ativo</td>
+                          <td className="px-4 py-3">0</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">
+                              Normal
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Domínio ativo e renovado</td>
+                        </tr>
+                        <tr className="bg-amber-50">
+                          <td className="px-4 py-3 font-medium">Grace (Graça)</td>
+                          <td className="px-4 py-3">1–15</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-amber-100 text-amber-800 text-sm rounded-full font-medium">
+                              Atrasado
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Ainda pode renovar sem multa</td>
+                        </tr>
+                        <tr className="bg-red-50">
+                          <td className="px-4 py-3 font-medium">Redemption (Resgate)</td>
+                          <td className="px-4 py-3">16–45</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-red-100 text-red-800 text-sm rounded-full font-medium">
+                              Suspenso
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Requer taxa de recuperação ($25)</td>
+                        </tr>
+                        <tr className="bg-purple-50">
+                          <td className="px-4 py-3 font-medium">Registry Hold</td>
+                          <td className="px-4 py-3">46–60</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-purple-100 text-purple-800 text-sm rounded-full font-medium">
+                              Protegido
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Não pode ser registrado por terceiros</td>
+                        </tr>
+                        <tr className="bg-orange-50">
+                          <td className="px-4 py-3 font-medium">Auction (Leilão)</td>
+                          <td className="px-4 py-3">61–75</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-orange-100 text-orange-800 text-sm rounded-full font-medium">
+                              Leilão
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Pode ser adquirido por outro membro</td>
+                        </tr>
+                        <tr className="bg-slate-50">
+                          <td className="px-4 py-3 font-medium">Pending Delete</td>
+                          <td className="px-4 py-3">76–80</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-slate-200 text-slate-800 text-sm rounded-full font-medium">
+                              Exclusão final
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Sem possibilidade de restauração</td>
+                        </tr>
+                        <tr className="bg-blue-50">
+                          <td className="px-4 py-3 font-medium">Released</td>
+                          <td className="px-4 py-3">81+</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium">
+                              Liberado
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">Volta ao pool ou se torna premium</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="mt-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+                    <p className="text-sm text-blue-900">
+                      <strong>Importante:</strong> Durante todo o ciclo, você recebe notificações
+                      automáticas nos marcos D-14, D-7, D-3, D-1, D+1, D+10, D+16, D+30, D+45 e D+60.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Section 3 - Recovery Fees */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+              <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-xl p-6">
+                <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-3">
+                  <DollarSign className="w-6 h-6 text-green-500" />
+                  3. Resgate e Taxas
+                </h2>
+                <div className="text-[#6B7280]/80 space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Período de Graça (Dias 1-15)</h4>
+                    <p>
+                      Sem taxa adicional. Você pode renovar pagando apenas a mensalidade normal ($70 USD).
+                      Todos os serviços permanecem ativos durante este período.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Período de Resgate (Dias 16-45)</h4>
+                    <p>
+                      Taxa de recuperação: <strong>$25 USD</strong> + mensalidade ($70 USD).
+                      Total: <strong>$95 USD</strong>.
+                    </p>
+                    <p className="text-sm text-slate-600 mt-2">
+                      O domínio está suspenso e todos os serviços (DNS, perfil) estão inativos até o pagamento.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Registry Hold (Dias 46-60)</h4>
+                    <p>
+                      Taxa de recuperação elevada: <strong>$50 USD</strong> + mensalidade ($70 USD).
+                      Total: <strong>$120 USD</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Section 4 - Transfers */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500" />
+              <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-xl p-6">
+                <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-3">
+                  <RefreshCw className="w-6 h-6 text-purple-500" />
+                  4. Transferências e Bloqueio
+                </h2>
+                <div className="text-[#6B7280]/80 space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Bloqueio de 60 Dias</h4>
+                    <p>
+                      Todos os domínios recém-registrados ou recuperados ficam <strong>bloqueados
+                      contra transferência por 60 dias</strong>. Esta é uma medida de segurança para
+                      prevenir fraude e transações não autorizadas.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Transferência Autorizada</h4>
+                    <p>Transferências de licença são permitidas mediante:</p>
+                    <ul className="list-disc list-inside ml-4 space-y-1 text-slate-700">
+                      <li>Aprovação da Global Digital Identity LTD</li>
+                      <li>Pagamento de taxa administrativa</li>
+                      <li>Verificação de identidade de ambas as partes</li>
+                      <li>Ausência de pagamentos pendentes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-slate-500 to-slate-700 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500" />
+              <div className="relative bg-slate-50 backdrop-blur-xl border border-gray-200 rounded-xl p-6">
+                <h3 className="font-bold text-slate-900 mb-3">Dúvidas ou Disputas?</h3>
+                <p className="text-slate-700 mb-4">
+                  Para questões relacionadas a domínios, prazos ou recuperação, entre em contato:
+                </p>
+                <div className="space-y-2 text-sm">
+                  <p><strong>Suporte Geral:</strong> support@com.rich</p>
+                  <p><strong>Questões Jurídicas:</strong> legal@com.rich</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.section>
       </div>
