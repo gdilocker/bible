@@ -100,14 +100,13 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-              Experiências globais e encontros estratégicos
+              Experiências globais<br />e encontros<br />estratégicos
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-8"></div>
 
             <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              Conecte-se com líderes, empreendedores e visionários em eventos exclusivos ao redor do mundo.
-              Cada encontro é cuidadosamente curado para criar valor, fortalecer relações e gerar oportunidades únicas.
+              Conecte-se com líderes, empreendedores e visionários em eventos exclusivos<br />ao redor do mundo. Cada encontro é cuidadosamente curado para criar valor,<br />fortalecer relações e gerar oportunidades únicas.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -341,8 +340,7 @@ export default function RichClub() {
             </div>
 
             <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              Transforme sua rede de contatos em uma fonte de receita sustentável.
-              Membros do Rich Club que indicam novos associados recebem comissões generosas e recorrentes.
+              Transforme sua rede de contatos em uma fonte de receita sustentável. Membros do Rich<br />Club que indicam novos associados recebem comissões generosas e recorrentes.
             </p>
 
             <Link
