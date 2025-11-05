@@ -11,7 +11,6 @@ import espacosImage from '../assets/espacos-richapproved.jpg.jpg';
 import designImage from '../assets/design-legado.jpg.jpeg';
 import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
 import domainImage from '../assets/1234567 copy.png';
-import affiliateImage from '../assets/Imagens do site (16)-min (1) (1) (1)_batcheditor_fotor copy.jpg';
 
 export default function RichClub() {
   return (
@@ -330,26 +329,41 @@ export default function RichClub() {
       </section>
 
       {/* Affiliate Program */}
-      <section
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(0,0,0,.9), rgba(0,0,0,.6), rgba(0,0,0,.15)), url('/images/affiliate.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center right',
-          backgroundRepeat: 'no-repeat'
-        }}
-        className="relative min-h-[520px] flex flex-col justify-center text-white px-6 sm:px-12 lg:px-24"
-      >
-        <div className="max-w-2xl">
-          <div className="inline-block bg-gradient-to-r from-amber-500 to-yellow-400 text-black font-bold text-lg px-4 py-2 rounded-full mb-6">
-            Até 50% de Comissão
+      <section className="relative py-32 bg-gradient-to-b from-black via-emerald-950/20 to-black overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 rounded-full px-6 py-2 mb-8">
+              <TrendingUp className="w-4 h-4 text-emerald-400" />
+              <span className="text-emerald-300 text-xs font-semibold tracking-widest uppercase">Earn Commission</span>
+            </div>
+
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+              Programa de Afiliados
+            </h2>
+
+            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-emerald-500/20 to-emerald-600/10 backdrop-blur-md border border-emerald-500/30 rounded-full px-8 py-4 mb-8 shadow-lg shadow-emerald-500/20">
+              <span className="text-5xl font-bold text-emerald-400">50%</span>
+              <div className="text-left">
+                <div className="text-white font-semibold">de Comissão</div>
+                <div className="text-emerald-300 text-sm">sobre vendas confirmadas</div>
+              </div>
+            </div>
+
+            <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
+              Transforme sua rede de contatos em uma fonte de receita sustentável.
+              Membros do Rich Club que indicam novos associados recebem comissões generosas e recorrentes.
+            </p>
+
+            <Link
+              to="/afiliados/termos"
+              className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 hover:border-emerald-500/50 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 group"
+            >
+              Conheça o Programa
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">Programa de Afiliados Rich Club</h2>
-          <p className="text-lg sm:text-xl text-gray-100 leading-relaxed">
-            Membros do Rich Club recebem comissões generosas e recorrentes ao compartilhar o clube
-            com novos associados. Ganhe até 50% de comissão sobre vendas confirmadas e participe de
-            campanhas exclusivas de incentivo.
-          </p>
         </div>
       </section>
 
