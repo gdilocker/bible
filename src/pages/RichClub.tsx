@@ -106,7 +106,7 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Experiências globais e encontros estratégicos
+              Experiências globais<br className="hidden lg:block" /> e encontros estratégicos
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
