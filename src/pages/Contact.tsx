@@ -168,16 +168,30 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<'success' | 'error' | null>(null);
   const [userPlan, setUserPlan] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const fetchUserPlan = async () => {
+    const fetchUserData = async () => {
       if (!user) {
         console.log('[Contact] Usuário não logado');
         return;
       }
 
-      console.log('[Contact] Buscando plano para usuário:', user.id);
-      const { data, error } = await supabase
+      console.log('[Contact] Buscando dados para usuário:', user.id);
+
+      // Verificar se é admin
+      const { data: customerData } = await supabase
+        .from('customers')
+        .select('role')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      const userIsAdmin = customerData?.role === 'admin';
+      setIsAdmin(userIsAdmin);
+      console.log('[Contact] É admin?', userIsAdmin);
+
+      // Buscar plano de assinatura
+      const { data: subscriptionData, error } = await supabase
         .from('subscriptions')
         .select('plan_type')
         .eq('user_id', user.id)
@@ -188,11 +202,11 @@ const Contact: React.FC = () => {
         console.error('[Contact] Erro ao buscar plano:', error);
       }
 
-      console.log('[Contact] Plano encontrado:', data?.plan_type || 'nenhum');
-      setUserPlan(data?.plan_type || null);
+      console.log('[Contact] Plano encontrado:', subscriptionData?.plan_type || 'nenhum');
+      setUserPlan(subscriptionData?.plan_type || null);
     };
 
-    fetchUserPlan();
+    fetchUserData();
   }, [user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -253,10 +267,10 @@ const Contact: React.FC = () => {
                       {CONTACT_SUBJECTS.map((group) => (
                         <optgroup key={group.category} label={group.category}>
                           {group.options.map((option) => {
-                            // Ocultar opção de lugares exclusivos se não for Elite Member
+                            // Ocultar opção de lugares exclusivos se não for Elite Member ou Admin
                             if (option === 'Manifestar interesse em acessar lugares exclusivos') {
-                              console.log('[Contact] Verificando acesso Elite - userPlan:', userPlan, 'isElite:', userPlan === 'elite');
-                              if (userPlan !== 'elite') {
+                              console.log('[Contact] Verificando acesso Elite - userPlan:', userPlan, 'isAdmin:', isAdmin, 'isElite:', userPlan === 'elite');
+                              if (userPlan !== 'elite' && !isAdmin) {
                                 return null;
                               }
                             }
