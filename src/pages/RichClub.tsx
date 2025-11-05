@@ -33,7 +33,7 @@ export default function RichClub() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 mb-8 mt-8 sm:mt-0">
               <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
               <span className="text-amber-400 text-xs font-semibold tracking-[0.3em] uppercase">Exclusive Community</span>
             </div>
