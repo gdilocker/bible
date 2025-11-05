@@ -368,7 +368,7 @@ const Pricing: React.FC = () => {
                 Comissões Diferenciadas
               </h3>
               <p className="text-[#6B7280] text-sm mb-4 text-center">
-                25% no plano Prime ($12.50/mês) e 50% no plano Elite e Supreme ($35/mês)
+                25% no plano Prime ($12.50/mês) e 50% no plano Elite e Supreme (50%)
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center p-3 bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg border border-slate-200">
