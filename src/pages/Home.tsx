@@ -905,24 +905,24 @@ const Home = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-6 max-w-md mx-auto"
                   >
-                    <div className="relative w-full rounded-2xl border border-amber-200 bg-gradient-to-br from-white via-amber-50/30 to-white p-5 shadow-lg">
+                    <div className="relative w-full rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-950/40 via-amber-900/30 to-amber-950/40 backdrop-blur-sm p-5 shadow-lg shadow-amber-500/20">
                       <Link
                         to="/contact"
                         aria-label="Contato"
-                        className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full border border-amber-300 bg-white hover:bg-amber-50 hover:shadow transition-all"
+                        className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full border border-amber-500/30 bg-black/40 hover:bg-black/60 backdrop-blur-sm hover:shadow transition-all"
                       >
-                        <Mail className="w-4 h-4 text-amber-600" />
+                        <Mail className="w-4 h-4 text-amber-400" />
                       </Link>
 
                       <div className="mb-2 flex items-center gap-2">
-                        <Crown className="w-4 h-4 text-amber-500" />
-                        <h3 className="text-lg font-semibold tracking-tight text-gray-900">
+                        <Crown className="w-5 h-5 text-amber-400" />
+                        <h3 className="text-lg font-bold tracking-tight text-white">
                           Domínio Premium
                         </h3>
-                        <Sparkles className="w-4 h-4 text-amber-500" />
+                        <Sparkles className="w-5 h-5 text-amber-400" />
                       </div>
 
-                      <p className="text-sm text-gray-700 line-clamp-2 leading-relaxed">
+                      <p className="text-sm text-gray-200 leading-relaxed">
                         Este é um domínio premium de alto valor. Entre em contato para obter uma cotação personalizada.
                       </p>
                     </div>
