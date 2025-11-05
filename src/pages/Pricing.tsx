@@ -368,7 +368,7 @@ const Pricing: React.FC = () => {
                 Comissões Diferenciadas
               </h3>
               <p className="text-[#6B7280] text-sm mb-4 text-center">
-                25% no plano Prime ($12.50/mês), 50% no plano Elite ($35/mês) e 20% no plano Supreme
+                25% no plano Prime ($12.50/mês) e 50% no plano Elite e Supreme ($35/mês)
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center p-3 bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg border border-slate-200">
@@ -380,8 +380,8 @@ const Pricing: React.FC = () => {
                   <span className="font-bold text-amber-600">$35/mês</span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-gradient-to-r from-yellow-50 to-amber-100 rounded-lg border border-amber-200">
-                  <span className="text-black font-medium">Supreme</span>
-                  <span className="font-bold text-yellow-600">20%</span>
+                  <span className="text-black font-medium">Elite & Supreme</span>
+                  <span className="font-bold text-yellow-600">$35/mês (50%)</span>
                 </div>
               </div>
             </motion.div>
@@ -443,7 +443,7 @@ const Pricing: React.FC = () => {
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
                   <p className="text-slate-800 font-semibold">
-                    Percentuais: 25% (Prime) • 50% (Elite) • 20% (Supreme)
+                    Percentuais: 25% (Prime) • 50% (Elite & Supreme)
                   </p>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">

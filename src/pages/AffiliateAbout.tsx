@@ -18,7 +18,7 @@ const AffiliateAbout: React.FC = () => {
             </p>
           </div>
           <p className="leading-relaxed">
-            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: 25% | Plano Elite: 50% | Plano Supreme: 20%</strong>
+            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: 25% | Plano Elite: 50% | Plano Supreme: 50%</strong>
           </p>
           <p className="leading-relaxed">
             Todos os detalhes estão disponíveis nos <a href="/afiliados/termos" className="text-[#3B82F6] hover:underline font-medium">Termos de Afiliados</a>.
@@ -126,7 +126,7 @@ const AffiliateAbout: React.FC = () => {
               </p>
               <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mb-3">
                 <p className="text-emerald-900 text-sm leading-relaxed">
-                  <strong>Planos (mensal) e domínios (anual)</strong> geram comissão recorrente — <strong>25% (Prime)</strong>, <strong>50% (Elite)</strong> ou <strong>20% (Supreme)</strong> — sempre sobre o valor líquido.
+                  <strong>Planos (mensal) e domínios (anual)</strong> geram comissão recorrente — <strong>25% (Prime)</strong> ou <strong>50% (Elite & Supreme)</strong> — sempre sobre o valor líquido.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -140,7 +140,7 @@ const AffiliateAbout: React.FC = () => {
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg">
                   <DollarSign className="w-4 h-4 text-amber-600" />
-                  <span className="text-sm font-semibold text-amber-900">Supreme: 20% recorrente</span>
+                  <span className="text-sm font-semibold text-amber-900">Supreme: 50% recorrente</span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg">
                   <Link2 className="w-4 h-4 text-slate-900" />

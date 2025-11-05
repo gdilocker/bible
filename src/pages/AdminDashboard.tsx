@@ -573,7 +573,7 @@ export default function AdminDashboard() {
                   </div>
                   <h4 className="font-bold text-black">Sistema de Afiliados</h4>
                 </div>
-                <p className="text-sm text-gray-600">Comissões de 25% (Prime), 50% (Elite) e 20% (Supreme) com rastreamento de cliques e conversões</p>
+                <p className="text-sm text-gray-600">Comissões de 25% (Prime) e 50% (Elite & Supreme) com rastreamento de cliques e conversões</p>
               </div>
 
               <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 border border-gray-200">
