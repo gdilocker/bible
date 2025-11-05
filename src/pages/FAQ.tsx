@@ -248,6 +248,133 @@ const FAQ: React.FC = () => {
       ]
     },
     {
+      id: 'trial',
+      title: 'Período de Teste e Direitos',
+      icon: <Clock className="w-5 h-5" />,
+      items: [
+        {
+          question: 'Como funciona o período de teste (trial) do Plano Prime?',
+          answer: (
+            <div className="space-y-3">
+              <p>O plano Prime oferece <strong>14 dias de teste gratuito</strong> para você conhecer a plataforma.</p>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-blue-900 mb-2">Durante o Trial:</p>
+                <ul className="list-disc list-inside space-y-1 text-blue-800 text-sm">
+                  <li>Você pode explorar o sistema e suas funcionalidades</li>
+                  <li>Pode convidar afiliados, mas os vínculos ficam <strong>pendentes</strong></li>
+                  <li>Nenhuma comissão é gerada durante o teste</li>
+                  <li>Domínio em modo "parked" (DNS limitado)</li>
+                  <li>Sem acesso completo a recursos premium</li>
+                </ul>
+              </div>
+
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-amber-900 mb-2">⚠️ Importante:</p>
+                <p className="text-amber-800 text-sm">
+                  <strong>Nenhum direito é garantido até que o pagamento seja confirmado.</strong> Todos os vínculos, comissões e benefícios só se tornam permanentes após o primeiro pagamento.
+                </p>
+              </div>
+            </div>
+          )
+        },
+        {
+          question: 'O que acontece se eu não pagar após o trial?',
+          answer: (
+            <div className="space-y-3">
+              <p>Se o pagamento não for confirmado após os 14 dias de teste:</p>
+
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-red-900 mb-2">❌ Perda Automática de Direitos:</p>
+                <ul className="list-disc list-inside space-y-1 text-red-800 text-sm">
+                  <li><strong>Afiliados vinculados:</strong> Liberados para se associar a outro patrocinador</li>
+                  <li><strong>Comissões ou pontos:</strong> Cancelados definitivamente</li>
+                  <li><strong>Posição na estrutura:</strong> Removida da rede</li>
+                  <li><strong>Domínio .com.rich:</strong> Entra em estado protegido</li>
+                  <li><strong>Acesso a áreas exclusivas:</strong> Bloqueado</li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-50 border-l-4 border-slate-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-slate-900 mb-2">Conta Status:</p>
+                <p className="text-slate-800 text-sm">
+                  Sua conta entra em status <strong>"unpaid_hold"</strong> (suspensa por falta de pagamento).
+                  Uma mensagem clara será exibida ao acessar o painel.
+                </p>
+              </div>
+            </div>
+          )
+        },
+        {
+          question: 'Posso recuperar minha conta após perder os direitos?',
+          answer: (
+            <div className="space-y-3">
+              <p>Sim, existe um <strong>prazo de proteção de 15 dias</strong> após o fim do trial para recuperar sua conta.</p>
+
+              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-green-900 mb-2">✅ Dentro do Prazo (15 dias):</p>
+                <ul className="list-disc list-inside space-y-1 text-green-800 text-sm">
+                  <li>Confirme o pagamento do plano Prime</li>
+                  <li>Sua conta e domínio são reativados</li>
+                  <li>Afiliados podem ser restaurados (se ainda não se reassociaram)</li>
+                  <li>Direitos são recuperados conforme disponibilidade</li>
+                </ul>
+              </div>
+
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-red-900 mb-2">❌ Após o Prazo:</p>
+                <p className="text-red-800 text-sm">
+                  Depois de 15 dias, a conta é <strong>encerrada definitivamente</strong>. Os afiliados já foram reassociados e o domínio segue o ciclo normal de liberação (grace → redemption → leilão → liberação).
+                </p>
+              </div>
+
+              <p className="text-sm mt-3">
+                <strong>💡 Dica:</strong> Recomendamos converter o trial em conta paga antes do prazo para evitar perda de direitos e vínculos importantes.
+              </p>
+            </div>
+          )
+        },
+        {
+          question: 'O que acontece se eu tentar criar múltiplas contas trial?',
+          answer: (
+            <div className="space-y-3">
+              <p>Nosso sistema detecta automaticamente tentativas de abuso do período de teste.</p>
+
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-red-900 mb-2">🚨 Detecção de Fraude:</p>
+                <ul className="list-disc list-inside space-y-1 text-red-800 text-sm">
+                  <li>Múltiplas contas com mesmo CPF/documento</li>
+                  <li>Mesmo e-mail ou método de pagamento</li>
+                  <li>Mesmo IP ou dispositivo</li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-50 border-l-4 border-slate-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-slate-900 mb-2">Consequências:</p>
+                <ul className="list-disc list-inside space-y-1 text-slate-800 text-sm">
+                  <li><strong>Todos os trials são bloqueados</strong></li>
+                  <li>Conta principal entra em status <strong>"fraud_hold"</strong></li>
+                  <li>Todos os afiliados são removidos</li>
+                  <li>Análise manual obrigatória</li>
+                </ul>
+              </div>
+
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-amber-900 mb-2">Mensagem Exibida:</p>
+                <p className="text-amber-800 text-sm italic">
+                  "Detectamos múltiplas tentativas de uso indevido do período de teste. Sua conta foi bloqueada para análise."
+                </p>
+              </div>
+
+              <p className="text-sm mt-3">
+                Esta política garante exclusividade, controle e transparência, evitando fraudes e uso indevido da plataforma.
+              </p>
+            </div>
+          )
+        }
+      ]
+    },
+    {
       id: 'payment',
       title: 'Pagamentos e Faturamento',
       icon: <CreditCard className="w-5 h-5" />,
