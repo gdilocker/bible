@@ -119,6 +119,27 @@ async function checkDomain(fqdn: string, userId?: string): Promise<DomainCheckRe
 
   console.log(`[DOMAIN CHECK] Checking: ${normalizedFqdn}`);
 
+  // Check for global protection (reserved keywords like "president" and translations)
+  const { data: protectionCheck, error: protectionError } = await supabase
+    .rpc('check_global_protection', { domain_name: normalizedFqdn });
+
+  if (!protectionError && protectionCheck && protectionCheck.length > 0) {
+    const protection = protectionCheck[0];
+    if (protection.is_protected) {
+      console.log(`[DOMAIN CHECK] BLOCKED: ${normalizedFqdn} - Global Protection`);
+      return {
+        status: "UNAVAILABLE",
+        fqdn: normalizedFqdn,
+        isAvailable: false,
+        isPremium: false,
+        planRequired: null,
+        price: null,
+        message: protection.message || "Este domínio faz parte de uma reserva global de segurança e não está disponível para registro público.",
+        suggestions: generateSuggestions(normalizedFqdn)
+      };
+    }
+  }
+
   const { data: catalogEntry, error: catalogError } = await supabase
     .from('domain_catalog')
     .select('fqdn, is_available, is_premium')
