@@ -10,8 +10,6 @@ import eventosImage from '../assets/eventos-richclub.jpg.png';
 import espacosImage from '../assets/espacos-richapproved.jpg.jpg';
 import designImage from '../assets/design-legado.jpg.jpeg';
 import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
-import domainImage from '../assets/1234567 copy.png';
-import affiliateImage from '../assets/Imagens do site (16)-min (1) (1) (1)_batcheditor_fotor copy.jpg';
 
 export default function RichClub() {
   return (
@@ -278,20 +276,10 @@ export default function RichClub() {
       </section>
 
       {/* Your Digital Identity */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${domainImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/40"></div>
-        </div>
+      <section className="relative py-32 bg-gradient-to-b from-black via-zinc-950 to-black">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
@@ -330,20 +318,10 @@ export default function RichClub() {
       </section>
 
       {/* Affiliate Program */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${affiliateImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center right',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30"></div>
-        </div>
+      <section className="relative py-32 bg-gradient-to-b from-black via-emerald-950/20 to-black overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 rounded-full px-6 py-2 mb-8">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
