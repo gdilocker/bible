@@ -24,7 +24,8 @@ export default function RichClub() {
             backgroundImage: `url(${heroImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            transform: 'scaleX(-1)'
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-black/40"></div>
