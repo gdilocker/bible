@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Globe, Plus, CheckCircle, AlertCircle, Clock, Settings, ArrowRight, MoreVertical, CreditCard as Edit, Trash2, RefreshCw, ChevronUp, ChevronDown } from 'lucide-react';
+import { Globe, Plus, CheckCircle, AlertCircle, Clock, Settings, ArrowRight, MoreVertical, CreditCard as Edit, Trash2, RefreshCw, ChevronUp, ChevronDown, XCircle } from 'lucide-react';
 import { PanelLayout } from '../components/PanelLayout';
 import { PageHeader } from '../components/PageHeader';
 import { useAuth } from '../contexts/AuthContext';
@@ -239,6 +239,25 @@ const DomainsPage: React.FC = () => {
     } catch (error) {
       console.error('Error activating domain:', error);
       alert('Erro ao ativar domínio. Por favor, tente novamente.');
+    }
+  };
+
+  const handleDeactivateDomain = async () => {
+    if (!customerId) return;
+
+    try {
+      const { error } = await supabase
+        .from('customers')
+        .update({ active_domain_id: null })
+        .eq('id', customerId);
+
+      if (error) throw error;
+
+      setActiveDomainId(null);
+      alert('Domínio desativado com sucesso! Nenhum domínio está ativo no Dashboard agora.');
+    } catch (error) {
+      console.error('Error deactivating domain:', error);
+      alert('Erro ao desativar domínio. Por favor, tente novamente.');
     }
   };
 
@@ -563,10 +582,21 @@ const DomainsPage: React.FC = () => {
 
                     <div className="flex flex-col gap-3">
                       {domain.id === activeDomainId ? (
-                        <div className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold">
-                          <CheckCircle className="w-5 h-5" />
-                          Domínio Ativo no Dashboard
-                        </div>
+                        <>
+                          <div className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold">
+                            <CheckCircle className="w-5 h-5" />
+                            Domínio Ativo no Dashboard
+                          </div>
+                          <motion.button
+                            whileHover={{ scale: 1.01 }}
+                            whileTap={{ scale: 0.99 }}
+                            onClick={handleDeactivateDomain}
+                            className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-orange-700 transition-all"
+                          >
+                            <XCircle className="w-5 h-5" />
+                            Desativar Domínio
+                          </motion.button>
+                        </>
                       ) : (
                         <motion.button
                           whileHover={{ scale: 1.01 }}
