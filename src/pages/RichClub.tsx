@@ -11,9 +11,7 @@ import espacosImage from '../assets/espacos-richapproved.jpg.jpg';
 import designImage from '../assets/design-legado.jpg.jpeg';
 import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
 import domainImage from '../assets/1234567 copy.png';
-
-// Affiliate section image URL
-const affiliateImage = 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920';
+import affiliateImage from '../assets/Imagens do site (16)-min (1) copy.jpg';
 
 export default function RichClub() {
   return (
