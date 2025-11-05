@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Crown, Sparkles, Award, Globe2, TrendingUp, Shield, ChevronRight } from 'lucide-react';
+import { Crown, Sparkles, Award, Globe as Globe2, TrendingUp, Shield, ChevronRight } from 'lucide-react';
 
 // Import images
 import heroImage from '../assets/hero-richclub.jpg copy copy.jpeg';
