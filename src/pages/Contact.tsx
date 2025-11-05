@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Send, CheckCircle, MessageSquare, MapPin, ChevronDown } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
 
 // Categorias organizadas de atendimento
 const CONTACT_SUBJECTS = [
@@ -94,7 +96,8 @@ const CONTACT_SUBJECTS = [
       'Solicitar reenvio de identidade',
       'Alterar endereço de entrega',
       'Personalização da identidade',
-      'Identidade danificada - solicitar nova'
+      'Identidade danificada - solicitar nova',
+      'Manifestar interesse em acessar lugares exclusivos'
     ]
   },
   {
@@ -160,9 +163,28 @@ const CONTACT_SUBJECTS = [
 ];
 
 const Contact: React.FC = () => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<'success' | 'error' | null>(null);
+  const [userPlan, setUserPlan] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserPlan = async () => {
+      if (!user) return;
+
+      const { data } = await supabase
+        .from('subscriptions')
+        .select('plan_type')
+        .eq('user_id', user.id)
+        .eq('status', 'active')
+        .maybeSingle();
+
+      setUserPlan(data?.plan_type || null);
+    };
+
+    fetchUserPlan();
+  }, [user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -221,11 +243,17 @@ const Contact: React.FC = () => {
                       <option value="">Selecione um assunto...</option>
                       {CONTACT_SUBJECTS.map((group) => (
                         <optgroup key={group.category} label={group.category}>
-                          {group.options.map((option) => (
-                            <option key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
+                          {group.options.map((option) => {
+                            // Ocultar opção de lugares exclusivos se não for Elite Member
+                            if (option === 'Manifestar interesse em acessar lugares exclusivos' && userPlan !== 'elite') {
+                              return null;
+                            }
+                            return (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            );
+                          })}
                         </optgroup>
                       ))}
                     </select>
