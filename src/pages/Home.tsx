@@ -293,7 +293,7 @@ const Home = () => {
           fqdn: domainToRegister,
           registrar_status: 'active',
           expires_at: new Date(Date.now() + 999 * 365 * 24 * 60 * 60 * 1000).toISOString(),
-          domain_type: 'prime',
+          domain_type: 'personal',
           is_transferable: false,
         };
 

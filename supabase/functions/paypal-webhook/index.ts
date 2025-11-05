@@ -1,7 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.75.0";
-import { corsMiddleware } from "../_shared/cors.middleware.ts";
-import { webhookSecurityMiddleware } from "../_shared/webhook.security.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -15,13 +13,10 @@ const PAYPAL_API_BASE = Deno.env.get("PAYPAL_MODE") === "live"
   ? "https://api-m.paypal.com"
   : "https://api-m.sandbox.paypal.com";
 
-// .com.rich é TLD próprio - não precisa de registro externo
-// Ativação instantânea após pagamento confirmado
 async function activateDomain(fqdn: string, domainId: string, supabase: any): Promise<void> {
   try {
     console.log(`[Activation] Activating domain ${fqdn} (ID: ${domainId})`);
 
-    // Calcular expiração (1 ano a partir de agora)
     const expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
 
     const { data: updateData, error: updateError } = await supabase
@@ -58,11 +53,6 @@ async function activateDomain(fqdn: string, domainId: string, supabase: any): Pr
       console.error(`[Activation] Failed to update database after exception:`, dbError);
     }
   }
-}
-
-async function verifyPayPalWebhook(headers: Headers, body: string): Promise<boolean> {
-  console.warn("PayPal webhook verification skipped - configure PAYPAL_WEBHOOK_ID for production");
-  return true;
 }
 
 async function handlePaymentCapture(event: any, supabase: any) {
@@ -133,6 +123,8 @@ async function handlePaymentCapture(event: any, supabase: any) {
 
     console.log(`[PayPal Webhook] Order created: ${order.id}`);
 
+    const domainType = pendingOrder.contact_info?.domain_type || 'personal';
+
     const { data: domain, error: domainError } = await supabase
       .from("domains")
       .insert({
@@ -140,6 +132,7 @@ async function handlePaymentCapture(event: any, supabase: any) {
         fqdn: pendingOrder.fqdn,
         registrar_status: "pending",
         expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+        domain_type: domainType,
       })
       .select()
       .single();
@@ -235,7 +228,6 @@ Deno.serve(async (req: Request) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
-    // IDEMPOTENCY CHECK: Verify if we already processed this event
     const eventId = event.id;
     if (eventId) {
       const { data: existingEvent } = await supabaseClient
@@ -275,7 +267,6 @@ Deno.serve(async (req: Request) => {
         result = { success: true, message: "Event received" };
     }
 
-    // Store event as processed if we have an event ID
     if (eventId && result.success !== false) {
       await supabaseClient
         .from("webhook_events")
@@ -287,7 +278,6 @@ Deno.serve(async (req: Request) => {
         })
         .catch((err) => {
           console.error("Failed to store webhook event:", err);
-          // Don't fail the request if storage fails
         });
     }
 

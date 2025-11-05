@@ -190,15 +190,9 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
         }
       }
 
-      const { error: domainError } = await supabase
-        .from('domains')
-        .insert({
-          user_id: user.id,
-          domain_name: `${domainName}.com.rich`,
-          status: 'active'
-        });
-
-      if (domainError) throw domainError;
+      // Domain registration should be done through the checkout flow
+      // The onboarding wizard only collects preferences, not registers domains
+      // User will be redirected to register their domain after onboarding
 
       setCurrentStep(5);
     } catch (error) {
