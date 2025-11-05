@@ -882,15 +882,24 @@ const Home = () => {
                           }`} style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                             {domain}
                           </span>
-                          <span className={`font-black bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent ${
-                            domain.length <= 8
-                              ? 'text-3xl sm:text-4xl md:text-5xl'
-                              : domain.length <= 12
-                              ? 'text-2xl sm:text-3xl md:text-4xl'
-                              : domain.length <= 16
-                              ? 'text-xl sm:text-2xl md:text-3xl'
-                              : 'text-lg sm:text-xl md:text-2xl'
-                          }`}>
+                          <span
+                            className={`font-black ${
+                              domain.length <= 8
+                                ? 'text-3xl sm:text-4xl md:text-5xl'
+                                : domain.length <= 12
+                                ? 'text-2xl sm:text-3xl md:text-4xl'
+                                : domain.length <= 16
+                                ? 'text-xl sm:text-2xl md:text-3xl'
+                                : 'text-lg sm:text-xl md:text-2xl'
+                            }`}
+                            style={{
+                              background: 'linear-gradient(135deg, #92703b 0%, #b8945f 25%, #d4af6a 50%, #b8945f 75%, #92703b 100%)',
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                              backgroundClip: 'text',
+                              filter: 'drop-shadow(0 1px 2px rgba(146, 112, 59, 0.4))'
+                            }}
+                          >
                             .com.rich
                           </span>
                         </div>
