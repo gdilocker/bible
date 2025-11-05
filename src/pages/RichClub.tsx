@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Crown, Sparkles, Award, Globe2, TrendingUp, Shield, ChevronRight } from 'lucide-react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 
 // Import images
 import heroImage from '../assets/hero-richclub.jpg copy copy.jpeg';
@@ -16,7 +14,6 @@ import affiliateImage from '../assets/Imagens do site (16)-min (1) copy.jpg';
 export default function RichClub() {
   return (
     <div className="min-h-screen bg-black">
-      <Header />
 
       {/* Hero Section - Ultra Premium */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -415,8 +412,6 @@ export default function RichClub() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }
