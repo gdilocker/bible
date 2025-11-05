@@ -60,7 +60,7 @@ export default function Header() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-sm"
+      className="fixed w-full top-0 z-50 bg-black border-b border-gray-800 shadow-2xl"
     >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 gap-2">
@@ -75,8 +75,8 @@ export default function Header() {
                   to="/"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/'
-                      ? 'text-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   Inicial
@@ -85,8 +85,8 @@ export default function Header() {
                   to="/valores"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/valores'
-                      ? 'text-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   Planos
@@ -95,8 +95,8 @@ export default function Header() {
                   to="/premium"
                   className={`px-3 py-2 font-medium transition-colors group relative ${
                     location.pathname === '/premium'
-                      ? 'text-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
                   }`}
                   title="Exclusivo para assinantes Supreme"
                 >
@@ -109,8 +109,8 @@ export default function Header() {
                   to="/faq"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/faq'
-                      ? 'text-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   FAQ
@@ -119,25 +119,25 @@ export default function Header() {
                   to="/afiliados/sobre"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/afiliados/sobre'
-                      ? 'text-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   Afiliados
                 </Link>
 
                 {/* Subtle divider */}
-                <div className="h-6 w-px bg-gray-300 mx-2"></div>
+                <div className="h-6 w-px bg-gray-700 mx-2"></div>
 
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                  className="px-4 py-2 text-gray-400 hover:text-white font-medium transition-colors"
                 >
                   Entrar
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-6 py-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors shadow-lg"
+                  className="px-6 py-2 bg-white hover:bg-gray-100 text-black font-semibold rounded-lg transition-colors shadow-lg"
                 >
                   Começar
                 </Link>
@@ -148,8 +148,8 @@ export default function Header() {
                   to="/panel/dashboard"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/panel/dashboard'
-                      ? 'text-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   Dashboard
@@ -157,10 +157,10 @@ export default function Header() {
                 <div className="relative">
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                    className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-300"
+                    className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-900 rounded-lg transition-colors border border-gray-700"
                   >
-                    <User className="w-4 h-4 text-gray-600" />
-                    <span className="text-gray-900 font-medium max-w-32 truncate text-sm">
+                    <User className="w-4 h-4 text-gray-400" />
+                    <span className="text-white font-medium max-w-32 truncate text-sm">
                       {user.name || user.email}
                     </span>
                   </button>
@@ -199,7 +199,7 @@ export default function Header() {
           <div className="relative md:hidden ml-auto">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-1.5 rounded text-gray-900 hover:bg-gray-100 transition-colors flex-shrink-0"
+              className="p-1.5 rounded text-white hover:bg-gray-900 transition-colors flex-shrink-0"
             >
               <Menu className="w-5 h-5" />
             </button>
