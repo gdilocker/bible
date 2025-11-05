@@ -8,6 +8,7 @@ import { dbQueries } from '../lib/db/queries';
 import { createCloudflare } from '../server/adapters/cloudflare';
 import { createEmailProvider } from '../server/adapters/emailProvider';
 import { supabase } from '../lib/supabase';
+import SuccessModal from '../components/SuccessModal';
 import backgroundImage from '../assets/Imagem Fundo Site copy copy copy copy.png';
 
 interface PricingPlan {
@@ -41,6 +42,9 @@ const Home = () => {
   const [loadingPlans, setLoadingPlans] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showDirectPurchase, setShowDirectPurchase] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [registeredDomain, setRegisteredDomain] = useState('');
 
   useEffect(() => {
     loadPricingPlans();
@@ -325,8 +329,9 @@ const Home = () => {
           });
 
         console.log('✅ Domínio registrado:', { order, domain: domainData });
-        alert('✅ Domínio registrado com sucesso!\n\nLicença vitalícia ativada.\n\nRedirecionando para o dashboard...');
-        setTimeout(() => navigate('/panel/dashboard'), 1500);
+        setRegisteredDomain(domainToRegister);
+        setSuccessMessage('Licença vitalícia ativada');
+        setShowSuccessModal(true);
         return;
       } catch (error) {
         console.error('Erro no registro admin:', error);
@@ -1214,6 +1219,19 @@ const Home = () => {
           </motion.div>
         </>
         )}
+
+        {/* Success Modal */}
+        <SuccessModal
+          isOpen={showSuccessModal}
+          onClose={() => {
+            setShowSuccessModal(false);
+            setTimeout(() => navigate('/panel/dashboard'), 300);
+          }}
+          title="Domínio Registrado!"
+          message={successMessage}
+          isAdmin={isAdmin}
+          domain={registeredDomain}
+        />
       </div>
     );
   };
