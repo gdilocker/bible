@@ -983,7 +983,7 @@ const Home = () => {
                 <span className="text-white">Valor e identidade</span>
               </h2>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-                Uma licença <strong className="text-amber-400">.com.rich</strong> não é apenas um endereço. É um símbolo de prestígio e uso exclusivo.
+                Mais do que um domínio, <strong className="text-amber-400">.com.rich</strong> é a chave para um mundo de oportunidades e reconhecimento global.
               </p>
               <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold">
                 <span className="text-white">Seu nome. Sua marca.</span>
