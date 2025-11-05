@@ -527,7 +527,7 @@ const Home = () => {
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               variants={item}
-              className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8"
+              className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5"
             >
               <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
               <span className="text-amber-400 text-[10px] sm:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">Premium Identity</span>
@@ -536,7 +536,7 @@ const Home = () => {
 
             <motion.h1
               variants={item}
-              className="font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 leading-[1.1] sm:leading-[0.95] tracking-tight px-2"
+              className="font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-5 leading-[1.1] sm:leading-[0.95] tracking-tight px-2"
             >
               <span className="text-white block">
                 Sua Identidade
@@ -548,7 +548,7 @@ const Home = () => {
 
             <motion.p
               variants={item}
-              className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-light px-4"
+              className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed font-light px-4"
             >
               Possua a identidade digital mais prestigiada e exclusiva do mundo.
             </motion.p>
@@ -556,7 +556,7 @@ const Home = () => {
             <motion.form
               variants={item}
               onSubmit={handleSearch}
-              className="w-full max-w-2xl mx-auto mb-8 sm:mb-12 px-2"
+              className="w-full max-w-2xl mx-auto mb-6 sm:mb-8 px-2"
             >
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
@@ -980,17 +980,17 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold px-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 leading-tight tracking-tight font-bold px-4">
                 <span className="text-white">Valor e identidade</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light px-4">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed font-light px-4">
                 Mais do que um domínio, <strong className="text-amber-400">.com.rich</strong> é a chave para um mundo de oportunidades e reconhecimento global.
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold px-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 leading-tight tracking-tight font-bold px-4">
                 <span className="text-white">Seu nome. Sua marca.</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-4 sm:mb-6 leading-relaxed font-light px-4">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-3 sm:mb-4 leading-relaxed font-light px-4">
                 Com um domínio único, sua presença online é exclusivamente sua. Haverá apenas uma <strong className="text-amber-400">olivia.com.rich</strong>, uma <strong className="text-amber-400">james.com.rich</strong>, uma <strong className="text-amber-400">isabella.com.rich</strong>.
               </p>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light px-4">
@@ -1008,8 +1008,8 @@ const Home = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold text-white px-4">
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 leading-tight tracking-tight font-bold text-white px-4">
                 Sua licença .com.rich em três etapas
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light px-4">
@@ -1052,7 +1052,7 @@ const Home = () => {
                         <step.icon className="w-8 h-8 sm:w-10 sm:h-10 text-black" />
                       </div>
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 px-2">{step.title}</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 px-2">{step.title}</h3>
                     <p className="text-sm sm:text-base text-gray-400 leading-relaxed px-2">{step.description}</p>
                   </div>
                   {index < 2 && (
@@ -1073,8 +1073,8 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold text-white px-4">
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 leading-tight tracking-tight font-bold text-white px-4">
                 O que é .com.rich?
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light px-4">
@@ -1114,7 +1114,7 @@ const Home = () => {
                     <div className="inline-flex p-3 sm:p-4 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl mb-4 sm:mb-6 shadow-2xl shadow-amber-500/50">
                       <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">{feature.title}</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">{feature.title}</h3>
                     <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{feature.description}</p>
                 </div>
               </motion.div>
@@ -1135,13 +1135,13 @@ const Home = () => {
               <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 text-center shadow-2xl border border-white/10 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-amber-600/5"></div>
                 <div className="relative">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight px-4">
                     Escolha com sabedoria. Destaque-se online.
                   </h2>
-                  <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-2 sm:mb-3 max-w-2xl mx-auto font-light leading-relaxed px-4">
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-2 max-w-2xl mx-auto font-light leading-relaxed px-4">
                     Sua licença exclusiva protegida:
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-amber-400/90 mb-8 sm:mb-10 max-w-2xl mx-auto font-medium px-4 break-all">
+                  <p className="text-sm sm:text-base md:text-lg text-amber-400/90 mb-6 sm:mb-8 max-w-2xl mx-auto font-medium px-4 break-all">
                     https://seunome.com.rich / https://com.rich/seunome
                   </p>
                   <button
