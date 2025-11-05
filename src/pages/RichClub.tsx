@@ -41,7 +41,10 @@ export default function RichClub() {
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
               <span className="block">Bem-vindo ao</span>
               <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
-                Clube dos Milionários
+                Clube dos
+              </span>
+              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+                Milionários
               </span>
             </h1>
 
