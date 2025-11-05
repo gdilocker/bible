@@ -265,7 +265,7 @@ export default function RichClub() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Reconhecimento oficial como membro do Rich Club
+              Reconhecimento<br className="hidden lg:block" /> <span className="lg:whitespace-nowrap">oficial como membro</span><br className="hidden lg:block" /> do Rich Club
             </h2>
 
             <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
