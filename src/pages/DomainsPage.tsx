@@ -581,33 +581,37 @@ const DomainsPage: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col gap-3">
-                      {domain.id === activeDomainId ? (
-                        <>
-                          <div className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold">
-                            <CheckCircle className="w-5 h-5" />
-                            Domínio Ativo no Dashboard
+                      <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-slate-50 to-slate-100/50 rounded-xl border border-slate-200/50">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-2 h-2 rounded-full ${domain.id === activeDomainId ? 'bg-emerald-500 animate-pulse' : 'bg-slate-300'}`} />
+                          <div>
+                            <p className="text-sm font-semibold text-slate-900">
+                              {domain.id === activeDomainId ? 'Domínio Ativo' : 'Domínio Inativo'}
+                            </p>
+                            <p className="text-xs text-slate-500">
+                              {domain.id === activeDomainId ? 'Visível no dashboard' : 'Clique para ativar'}
+                            </p>
                           </div>
-                          <motion.button
-                            whileHover={{ scale: 1.01 }}
-                            whileTap={{ scale: 0.99 }}
-                            onClick={handleDeactivateDomain}
-                            className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-orange-600 hover:to-orange-700 transition-all"
-                          >
-                            <XCircle className="w-5 h-5" />
-                            Desativar Domínio
-                          </motion.button>
-                        </>
-                      ) : (
+                        </div>
+
                         <motion.button
-                          whileHover={{ scale: 1.01 }}
-                          whileTap={{ scale: 0.99 }}
-                          onClick={() => handleActivateDomain(domain.id)}
-                          className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => domain.id === activeDomainId ? handleDeactivateDomain() : handleActivateDomain(domain.id)}
+                          className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                            domain.id === activeDomainId
+                              ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 focus:ring-emerald-500'
+                              : 'bg-slate-300 focus:ring-slate-400'
+                          }`}
                         >
-                          <CheckCircle className="w-5 h-5" />
-                          Ativar este Domínio
+                          <motion.span
+                            layout
+                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                            className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-lg transition-transform ${
+                              domain.id === activeDomainId ? 'translate-x-7' : 'translate-x-1'
+                            }`}
+                          />
                         </motion.button>
-                      )}
+                      </div>
 
                       <motion.button
                         whileHover={{ scale: 1.01 }}
