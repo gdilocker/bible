@@ -271,7 +271,7 @@ export default function RichClub() {
 
             <div className="space-y-3 mb-8">
               <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
-                Seu certificado digital e selo oficial não são apenas símbolos — são validações tangíveis do seu comprometimento com excelência, autenticidade e pertencimento a uma comunidade global de influência.
+                Seu certificado digital e selo oficial não são apenas símbolos, são validações tangíveis do seu comprometimento com excelência, autenticidade e pertencimento a uma comunidade global de influência.
               </p>
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
                 Membros Elite recebem também uma identidade física personalizada com QR Code dinâmico.
@@ -324,7 +324,7 @@ export default function RichClub() {
 
             <div className="space-y-3 mb-12">
               <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
-                Seu domínio personalizado .com.rich é mais que um endereço web — é uma declaração de identidade, prestígio e posicionamento no cenário digital global.
+                Seu domínio personalizado .com.rich é mais que um endereço web, é uma declaração de identidade, prestígio e posicionamento no cenário digital global.
               </p>
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
                 Uma URL que comunica sucesso instantaneamente.
