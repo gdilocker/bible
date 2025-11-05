@@ -280,7 +280,7 @@ const Pricing: React.FC = () => {
                             Promoção até 31/12/2024. Depois $100/mês
                           </p>
                         )}
-                        {plan.commission_rate && !isSupreme && (
+                        {plan.commission_rate && plan.commission_rate > 0 && !isSupreme && (
                           <p className="text-sm text-slate-600 font-medium mt-2 flex items-center gap-1">
                             <TrendingUp className="w-4 h-4 text-green-600" />
                             {plan.commission_rate * 100}% de comissão (${(typeof plan.price_usd === 'number' ? plan.price_usd : parseFloat(plan.price_usd as string || '0')) * plan.commission_rate} por venda)
