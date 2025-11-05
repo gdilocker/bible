@@ -519,7 +519,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
         </div>
         <motion.section
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20"
           initial="hidden"
           animate="show"
           variants={container}
@@ -971,7 +971,7 @@ const Home = () => {
         </motion.section>
       </section>
 
-        <section className="relative bg-gradient-to-b from-black to-zinc-950 py-16 sm:py-24 lg:py-32">
+        <section className="relative bg-gradient-to-b from-black to-zinc-950 py-10 sm:py-16 lg:py-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -1000,7 +1000,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        <section className="relative bg-zinc-950 py-16 sm:py-24 lg:py-32">
+        <section className="relative bg-zinc-950 py-10 sm:py-16 lg:py-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/5 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -1064,7 +1064,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        <section className="relative bg-gradient-to-b from-zinc-950 to-black py-16 sm:py-24 lg:py-32">
+        <section className="relative bg-gradient-to-b from-zinc-950 to-black py-10 sm:py-16 lg:py-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -1123,7 +1123,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        <section className="relative bg-black py-16 sm:py-24 lg:py-32">
+        <section className="relative bg-black py-10 sm:py-16 lg:py-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
