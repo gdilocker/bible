@@ -159,7 +159,7 @@ async function handlePaymentCapture(event: any, supabase: any) {
 async function handleSubscriptionActivated(event: any, supabase: any) {
   const subscription = event.resource;
   const customId = subscription.custom_id;
-  
+
   if (!customId) {
     console.error("Missing custom_id in subscription");
     return { success: false, error: "Missing custom_id" };
@@ -173,6 +173,9 @@ async function handleSubscriptionActivated(event: any, supabase: any) {
   }
 
   try {
+    const nextBillingTime = subscription.billing_info?.next_billing_time;
+    const now = new Date().toISOString();
+
     await supabase
       .from("subscriptions")
       .insert({
@@ -181,12 +184,71 @@ async function handleSubscriptionActivated(event: any, supabase: any) {
         plan: plan || "basic",
         status: subscription.status,
         current_period_start: subscription.start_time,
-        current_period_end: subscription.billing_info?.next_billing_time,
+        current_period_end: nextBillingTime,
+        last_payment_at: now,
+        next_plan_change_available_at: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(), // 60 days
+        payment_method: 'paypal',
+        balance_due: 0,
       });
 
+    console.log(`[Subscription] ✅ Subscription activated with 60-day lock period`);
     return { success: true };
   } catch (error) {
     console.error("Error handling subscription activated:", error);
+    return { success: false, error: String(error) };
+  }
+}
+
+async function handleSubscriptionPayment(event: any, supabase: any) {
+  const sale = event.resource;
+  const billingAgreementId = sale.billing_agreement_id;
+
+  if (!billingAgreementId) {
+    console.error("Missing billing_agreement_id");
+    return { success: false, error: "Missing billing_agreement_id" };
+  }
+
+  try {
+    const now = new Date().toISOString();
+    const nextChangeDate = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString();
+
+    await supabase
+      .from("subscriptions")
+      .update({
+        status: 'active',
+        last_payment_at: now,
+        next_plan_change_available_at: nextChangeDate,
+        balance_due: 0,
+        plan_change_blocked_reason: null,
+      })
+      .eq("paypal_subscription_id", billingAgreementId);
+
+    console.log(`[Payment] ✅ Subscription payment processed, 60-day lock activated`);
+    return { success: true };
+  } catch (error) {
+    console.error("Error handling subscription payment:", error);
+    return { success: false, error: String(error) };
+  }
+}
+
+async function handlePaymentFailed(event: any, supabase: any) {
+  const subscription = event.resource;
+  const amountDue = subscription.summary?.outstanding_balance?.value || 0;
+
+  try {
+    await supabase
+      .from("subscriptions")
+      .update({
+        status: 'past_due',
+        balance_due: amountDue,
+        plan_change_blocked_reason: 'Pagamento pendente',
+      })
+      .eq("paypal_subscription_id", subscription.id);
+
+    console.log(`[Payment] ⚠️ Payment failed, subscription blocked from plan changes`);
+    return { success: true };
+  } catch (error) {
+    console.error("Error handling payment failed:", error);
     return { success: false, error: String(error) };
   }
 }
@@ -255,6 +317,14 @@ Deno.serve(async (req: Request) => {
 
       case "BILLING.SUBSCRIPTION.ACTIVATED":
         result = await handleSubscriptionActivated(event, supabaseClient);
+        break;
+
+      case "PAYMENT.SALE.COMPLETED":
+        result = await handleSubscriptionPayment(event, supabaseClient);
+        break;
+
+      case "BILLING.SUBSCRIPTION.PAYMENT.FAILED":
+        result = await handlePaymentFailed(event, supabaseClient);
         break;
 
       case "BILLING.SUBSCRIPTION.CANCELLED":

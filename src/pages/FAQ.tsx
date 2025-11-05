@@ -227,6 +227,27 @@ const FAQ: React.FC = () => {
           answer: 'Sim. As assinaturas são renovadas automaticamente todos os meses através do PayPal. Você pode cancelar a assinatura a qualquer momento pelo painel, e o cancelamento entrará em vigor no final do período pago.'
         },
         {
+          question: 'Posso mudar de plano quando quiser?',
+          answer: (
+            <div className="space-y-3">
+              <p>As mudanças de plano estão sujeitas a uma <strong>política de estabilidade de assinatura</strong> que protege a exclusividade e consistência do clube.</p>
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-amber-900 mb-2">📅 Período de Bloqueio de 60 Dias</p>
+                <p className="text-amber-800">Após cada pagamento confirmado, você só poderá mudar de plano depois de <strong>60 dias</strong>. Este período vale para qualquer mudança (upgrade ou downgrade).</p>
+              </div>
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-red-900 mb-2">⚠️ Bloqueio por Pagamento Pendente</p>
+                <p className="text-red-800">Se você tiver alguma fatura vencida ou pagamento pendente, não será possível mudar de plano até regularizar a situação financeira.</p>
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-blue-900 mb-2">🎁 Período Trial do Prime</p>
+                <p className="text-blue-800">O plano Prime oferece <strong>14 dias de teste</strong>. Se não pagar após o trial, o sistema bloqueia automaticamente a assinatura e impede mudanças de plano até o pagamento.</p>
+              </div>
+              <p className="text-sm mt-3"><strong>Por que essas regras?</strong> Elas garantem estabilidade nas assinaturas, protegem contra abusos e reforçam a exclusividade da plataforma .com.rich.</p>
+            </div>
+          )
+        },
+        {
           question: 'Posso cancelar ou pedir reembolso?',
           answer: 'Por se tratar de serviço digital ativado automaticamente, o registro de domínio não é reembolsável após concluído. Assinaturas podem ser canceladas a qualquer momento, mas não há devolução proporcional do período já pago.'
         },

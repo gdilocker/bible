@@ -15,6 +15,7 @@ import {
 import { PanelLayout } from '../components/PanelLayout';
 import { PageHeader } from '../components/PageHeader';
 import { PlanDowngradeModal } from '../components/PlanDowngradeModal';
+import { PlanChangeValidator, PlanChangeBlockedMessage } from '../components/PlanChangeValidator';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 
@@ -60,6 +61,8 @@ const Billing: React.FC = () => {
   const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(null);
   const [premiumDomains, setPremiumDomains] = useState<any[]>([]);
   const [changingPlan, setChangingPlan] = useState(false);
+  const [validatingPlan, setValidatingPlan] = useState(false);
+  const [validationResult, setValidationResult] = useState<any>(null);
 
   const primaryDomain = domains[0];
 
@@ -286,41 +289,84 @@ const Billing: React.FC = () => {
   const handlePlanChange = async (newPlan: SubscriptionPlan) => {
     if (!user?.id || !activeSubscription) return;
 
-    const isDowngrade =
-      activeSubscription.plan_type === 'elite' && newPlan.plan_type === 'prime';
+    // Step 1: Validate plan change eligibility
+    setValidatingPlan(true);
+    setSelectedPlan(newPlan);
 
-    if (isDowngrade) {
-      // Check for premium domains first
-      try {
-        const { data: premiumDomainsData, error } = await supabase
-          .rpc('get_user_premium_domains', { p_user_id: user.id });
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        throw new Error('Sessão não encontrada');
+      }
 
-        if (error) {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/validate-plan-change`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            newPlanId: newPlan.id,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Falha ao validar mudança de plano');
+      }
+
+      const validation = await response.json();
+      setValidationResult(validation);
+      setValidatingPlan(false);
+
+      // If not eligible, show error message
+      if (!validation.eligible) {
+        return;
+      }
+
+      // Step 2: If eligible, check for downgrade scenarios
+      const isDowngrade =
+        activeSubscription.plan_type === 'elite' && newPlan.plan_type === 'prime';
+
+      if (isDowngrade) {
+        // Check for premium domains first
+        try {
+          const { data: premiumDomainsData, error } = await supabase
+            .rpc('get_user_premium_domains', { p_user_id: user.id });
+
+          if (error) {
+            console.error('Error checking premium domains:', error);
+            alert('Erro ao verificar domínios premium. Tente novamente.');
+            return;
+          }
+
+          const activePremium = premiumDomainsData?.filter(
+            (d: any) => d.current_status === 'active'
+          ) || [];
+
+          if (activePremium.length > 0) {
+            // Show confirmation modal
+            setPremiumDomains(activePremium);
+            setShowDowngradeModal(true);
+            return;
+          }
+        } catch (error) {
           console.error('Error checking premium domains:', error);
           alert('Erro ao verificar domínios premium. Tente novamente.');
           return;
         }
-
-        const activePremium = premiumDomainsData?.filter(
-          (d: any) => d.current_status === 'active'
-        ) || [];
-
-        if (activePremium.length > 0) {
-          // Show confirmation modal
-          setPremiumDomains(activePremium);
-          setSelectedPlan(newPlan);
-          setShowDowngradeModal(true);
-          return;
-        }
-      } catch (error) {
-        console.error('Error checking premium domains:', error);
-        alert('Erro ao verificar domínios premium. Tente novamente.');
-        return;
       }
-    }
 
-    // No premium domains or not a downgrade, proceed directly
-    await executePlanChange(newPlan);
+      // Step 3: All checks passed, proceed with plan change
+      await executePlanChange(newPlan);
+    } catch (error) {
+      console.error('Error validating plan change:', error);
+      alert('Erro ao validar mudança de plano. Tente novamente.');
+      setValidatingPlan(false);
+    }
   };
 
   const executePlanChange = async (newPlan: SubscriptionPlan) => {
@@ -479,6 +525,20 @@ const Billing: React.FC = () => {
             {user?.role !== 'admin' && availablePlans.length > 0 && (
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-slate-800 mb-4">Alterar Plano</h2>
+
+                {/* Validation Result Message */}
+                {validationResult && !validationResult.eligible && (
+                  <div className="mb-6">
+                    <PlanChangeBlockedMessage
+                      reason={validationResult.reason}
+                      message={validationResult.message}
+                      balance_due={validationResult.balance_due}
+                      days_remaining={validationResult.days_remaining}
+                      next_change_available={validationResult.next_change_available}
+                    />
+                  </div>
+                )}
+
                 <div className="grid md:grid-cols-2 gap-4">
                   {availablePlans
                     .filter((plan) => plan.id !== activeSubscription.plan_id)
@@ -518,14 +578,16 @@ const Billing: React.FC = () => {
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                               onClick={() => handlePlanChange(plan)}
-                              disabled={changingPlan}
+                              disabled={changingPlan || validatingPlan || (validationResult && !validationResult.eligible)}
                               className={`w-full px-6 py-3 rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
                                 isUpgrade
                                   ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:shadow-xl'
                                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                               }`}
                             >
-                              {isUpgrade ? (
+                              {validatingPlan ? (
+                                'Validando...'
+                              ) : isUpgrade ? (
                                 <>
                                   <ArrowUpCircle className="w-5 h-5" />
                                   Fazer Upgrade
