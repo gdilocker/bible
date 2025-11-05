@@ -882,7 +882,7 @@ const Home = () => {
                           }`} style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                             {domain}
                           </span>
-                          <span className={`font-black text-gray-400 ${
+                          <span className={`font-black bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent ${
                             domain.length <= 8
                               ? 'text-3xl sm:text-4xl md:text-5xl'
                               : domain.length <= 12
