@@ -180,15 +180,20 @@ const Contact: React.FC = () => {
       console.log('[Contact] Buscando dados para usuário:', user.id);
 
       // Verificar se é admin
-      const { data: customerData } = await supabase
+      const { data: customerData, error: customerError } = await supabase
         .from('customers')
         .select('role')
-        .eq('id', user.id)
+        .eq('user_id', user.id)
         .maybeSingle();
 
+      if (customerError) {
+        console.error('[Contact] Erro ao buscar dados do cliente:', customerError);
+      }
+
+      console.log('[Contact] Dados do cliente:', customerData);
       const userIsAdmin = customerData?.role === 'admin';
       setIsAdmin(userIsAdmin);
-      console.log('[Contact] É admin?', userIsAdmin);
+      console.log('[Contact] É admin?', userIsAdmin, '(role:', customerData?.role, ')');
 
       // Buscar plano de assinatura
       const { data: subscriptionData, error } = await supabase
