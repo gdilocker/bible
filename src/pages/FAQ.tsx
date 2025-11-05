@@ -169,6 +169,55 @@ const FAQ: React.FC = () => {
         {
           question: 'Posso usar minha licença para criar um site?',
           answer: 'Sim. Por padrão, sua licença .com.rich exibe seu perfil social personalizado dentro da nossa plataforma. No entanto, você tem total flexibilidade para configurar os registros DNS pelo painel e redirecionar para qualquer site externo, serviço de hospedagem ou aplicação web de sua escolha. Sua licença permanece sob seu controle exclusivo durante todo o período contratado.'
+        },
+        {
+          question: 'Quantos domínios posso ter no meu plano?',
+          answer: (
+            <div className="space-y-3">
+              <p>O número de domínios que você pode adquirir depende do seu plano de assinatura:</p>
+
+              <div className="space-y-3">
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-blue-900 mb-2">📦 Plano Prime (Trial e Pago)</p>
+                  <ul className="list-disc list-inside space-y-1 text-blue-800 text-sm">
+                    <li><strong>1 domínio apenas</strong> (incluído no plano)</li>
+                    <li>Ideal para identidade pessoal ou marca única</li>
+                    <li>Durante trial: domínio em modo limitado até pagamento</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-green-900 mb-2">🌟 Plano Elite</p>
+                  <ul className="list-disc list-inside space-y-1 text-green-800 text-sm">
+                    <li><strong>Domínios ilimitados</strong></li>
+                    <li>Primeiro domínio incluído com a ativação do plano</li>
+                    <li>Adquira quantos domínios adicionais quiser</li>
+                    <li>Perfeito para múltiplas marcas, projetos ou portfólio</li>
+                  </ul>
+                </div>
+
+                <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-purple-900 mb-2">👑 Plano Supreme</p>
+                  <ul className="list-disc list-inside space-y-1 text-purple-800 text-sm">
+                    <li><strong>Domínios ilimitados</strong></li>
+                    <li>Primeiro domínio incluído com a ativação</li>
+                    <li>Todos os benefícios Elite + acesso VIP</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                <p className="font-semibold text-amber-900 mb-2">⚠️ Importante:</p>
+                <p className="text-amber-800 text-sm">
+                  Se você tentar adquirir um segundo domínio no plano Prime, o sistema bloqueará automaticamente com uma mensagem clara. Para domínios ilimitados, faça upgrade para Elite.
+                </p>
+              </div>
+
+              <p className="text-sm mt-3">
+                <strong>💡 Dica:</strong> Avalie suas necessidades antes de escolher o plano. Se você planeja gerenciar múltiplas marcas ou projetos, o plano Elite é mais adequado desde o início.
+              </p>
+            </div>
+          )
         }
       ]
     },
