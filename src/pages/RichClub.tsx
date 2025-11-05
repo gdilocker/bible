@@ -267,7 +267,7 @@ export default function RichClub() {
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                Cada membro recebe credenciais digitais verificadas, perfil oficial na plataforma e acesso vitalício aos benefícios exclusivos da comunidade.
+                Cada membro recebe credenciais digitais verificadas, perfil oficial na plataforma e acesso aos benefícios exclusivos da comunidade.
               </p>
             </div>
           </div>
