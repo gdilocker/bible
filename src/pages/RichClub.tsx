@@ -10,6 +10,7 @@ import eventosImage from '../assets/eventos-richclub.jpg.png';
 import espacosImage from '../assets/espacos-richapproved.jpg.jpg';
 import designImage from '../assets/design-legado.jpg.jpeg';
 import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
+import domainImage from '../assets/1234567 copy.png';
 
 export default function RichClub() {
   return (
@@ -276,10 +277,20 @@ export default function RichClub() {
       </section>
 
       {/* Your Digital Identity */}
-      <section className="relative py-32 bg-gradient-to-b from-black via-zinc-950 to-black">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${domainImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/40"></div>
+        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
