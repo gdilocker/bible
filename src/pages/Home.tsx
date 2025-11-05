@@ -1123,7 +1123,7 @@ const Home = () => {
         </section>
 
         <section className="relative bg-black py-32">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             initial={{ opacity: 0 }}
@@ -1131,21 +1131,26 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <div className="relative">
-              <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-3xl p-12 md:p-16 text-center shadow-2xl shadow-amber-500/50">
-                <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
-                  Escolha com sabedoria. Destaque-se online.
-                </h2>
-                <p className="text-xl text-black/80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                  Sua licença exclusiva protegida:<br />
-                  <span className="font-semibold">https://seunome.com.rich</span> / <span className="font-semibold">https://com.rich/seunome</span>
-                </p>
-                <button
-                  onClick={() => navigate('/register')}
-                  className="inline-flex items-center gap-3 px-10 py-5 bg-black hover:bg-zinc-900 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-2xl hover:scale-105"
-                >
-                  Começar Agora
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+              <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 rounded-3xl p-12 md:p-16 text-center shadow-2xl border border-white/10 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-amber-600/5"></div>
+                <div className="relative">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    Escolha com sabedoria. Destaque-se online.
+                  </h2>
+                  <p className="text-xl text-gray-300 mb-3 max-w-2xl mx-auto font-light leading-relaxed">
+                    Sua licença exclusiva protegida:
+                  </p>
+                  <p className="text-lg text-amber-400/90 mb-10 max-w-2xl mx-auto font-medium">
+                    https://seunome.com.rich / https://com.rich/seunome
+                  </p>
+                  <button
+                    onClick={() => navigate('/register')}
+                    className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black text-lg font-bold rounded-full transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-amber-400/40 hover:scale-105"
+                  >
+                    Começar Agora
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
