@@ -16,7 +16,7 @@ export default function RichClub() {
     <div className="min-h-screen bg-black">
 
       {/* Hero Section - Ultra Premium */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -31,7 +31,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
@@ -85,7 +85,7 @@ export default function RichClub() {
       </section>
 
       {/* Global Experiences Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -98,7 +98,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 mb-8">
               <Sparkles className="w-4 h-4 text-amber-400" />
@@ -140,7 +140,7 @@ export default function RichClub() {
       </section>
 
       {/* Rich Approved Spaces */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -153,7 +153,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-amber-500/10 backdrop-blur-md border border-amber-500/30 rounded-full px-6 py-2 mb-8">
               <Award className="w-4 h-4 text-amber-400" />
@@ -195,7 +195,7 @@ export default function RichClub() {
       </section>
 
       {/* Design & Legacy */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -208,7 +208,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-2 mb-8">
               <Shield className="w-4 h-4 text-amber-400" />
@@ -246,7 +246,7 @@ export default function RichClub() {
       </section>
 
       {/* Official Recognition */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -259,7 +259,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500/20 to-amber-600/20 backdrop-blur-md border border-amber-500/40 rounded-full px-6 py-2 mb-8 shadow-lg shadow-amber-500/20">
               <Crown className="w-5 h-5 text-amber-400" />
@@ -304,7 +304,7 @@ export default function RichClub() {
       </section>
 
       {/* Your Digital Identity */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -317,7 +317,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/40"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
@@ -360,7 +360,7 @@ export default function RichClub() {
       </section>
 
       {/* Affiliate Program */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -373,7 +373,7 @@ export default function RichClub() {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/40"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 rounded-full px-6 py-2 mb-8">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -413,7 +413,7 @@ export default function RichClub() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-6 sm:py-10 lg:py-12 bg-gradient-to-b from-black to-zinc-950">
+      <section className="relative py-16 sm:py-24 bg-gradient-to-b from-black to-zinc-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
