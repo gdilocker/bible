@@ -60,7 +60,11 @@ export default function Header() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed w-full top-0 z-50 bg-black border-b border-gray-800 shadow-2xl"
+      className="fixed w-full top-0 z-50 bg-black shadow-2xl"
+      style={{
+        borderBottom: '1px solid transparent',
+        borderImage: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%) 1'
+      }}
     >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 gap-2">
