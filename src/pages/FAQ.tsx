@@ -209,6 +209,23 @@ const FAQ: React.FC = () => {
         {
           question: 'Quanto tempo leva para receber a identidade física Elite?',
           answer: 'Membros do plano Elite recebem uma identidade física personalizada com QR Code dinâmico. O prazo de produção e envio pode levar até 60 dias após a confirmação da assinatura. Você será notificado quando o envio for realizado e receberá informações de rastreamento.'
+        },
+        {
+          question: 'Como funciona o acesso aos lugares exclusivos do Elite Member?',
+          answer: (
+            <div className="space-y-3">
+              <p>Ser parte do <strong>Elite Member</strong> oferece acesso a lugares exclusivos e eventos premium. No entanto, o acesso a estes locais requer um processo de verificação rigoroso por questões de segurança e relacionamento.</p>
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-amber-900 mb-2">⏱️ Tempo de Processo:</p>
+                <p className="text-amber-800">O processo de verificação e aprovação pode levar um tempo considerável, com <strong>média entre 6 meses a até 2 anos</strong>, dependendo da disponibilidade e dos critérios de cada local exclusivo.</p>
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-blue-900 mb-2">🔒 Processo de Verificação:</p>
+                <p className="text-blue-800">Todos os membros Elite interessados em frequentar lugares exclusivos devem passar por um processo de verificação interno. Este processo garante a segurança de todos os membros e mantém o padrão de excelência da rede Elite.</p>
+              </div>
+              <p className="text-sm mt-3"><strong>Importante:</strong> O acesso aos lugares exclusivos não é automático com a assinatura Elite. É necessário manifestar interesse e aguardar aprovação conforme os critérios estabelecidos por cada local parceiro.</p>
+            </div>
+          )
         }
       ]
     },
