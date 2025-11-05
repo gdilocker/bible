@@ -488,52 +488,65 @@ const Home = () => {
   const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
 
   return (
-    <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
+    <div className="relative min-h-screen bg-black overflow-hidden">
       {isDevMode && (
-        <div className="fixed top-0 left-0 right-0 bg-[#FF6B35] text-white py-2.5 px-4 text-center font-semibold text-sm shadow-sm z-[100] border-b border-gray-200">
+        <div className="fixed top-0 left-0 right-0 bg-amber-600 text-black py-2.5 px-4 text-center font-semibold text-sm shadow-sm z-[100] border-b border-amber-700">
           🧪 MODO DESENVOLVIMENTO ATIVO - Pagamentos serão simulados (sem PayPal real)
         </div>
       )}
       {networkIssueDetected && (
-        <div className="fixed top-0 left-0 right-0 bg-red-500 text-white py-3 px-4 text-center font-semibold text-sm shadow-sm z-[99] border-b border-red-600" style={{ marginTop: isDevMode ? '41px' : '0' }}>
+        <div className="fixed top-0 left-0 right-0 bg-red-600 text-white py-3 px-4 text-center font-semibold text-sm shadow-sm z-[99] border-b border-red-700" style={{ marginTop: isDevMode ? '41px' : '0' }}>
           ⚠️ PROBLEMA DE REDE DETECTADO - Ambiente bolt.new com conectividade instável. Use o botão "Modo Teste" para simular ou faça deploy em produção.
         </div>
       )}
 
-      <div className="relative pt-24 pb-16">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 opacity-[0.15] pointer-events-none"></div>
-        <div className="absolute inset-x-0 top-0 h-[400px] bg-gradient-to-b from-black/90 via-black/50 to-transparent pointer-events-none"></div>
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        </div>
         <motion.section
-          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32"
           initial="hidden"
           animate="show"
           variants={container}
         >
           <div className="text-center max-w-4xl mx-auto">
+            <motion.div
+              variants={item}
+              className="flex items-center justify-center gap-3 mb-8"
+            >
+              <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
+              <span className="text-amber-400 text-xs font-semibold tracking-[0.3em] uppercase">Premium Identity</span>
+              <div className="h-px w-12 bg-gradient-to-l from-amber-400 to-transparent"></div>
+            </motion.div>
+
             <motion.h1
               variants={item}
-              className="font-black text-6xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 leading-tight tracking-tight px-4"
-              style={{
-                fontWeight: 900,
-                WebkitTextStroke: '0.5px rgba(0, 0, 0, 0.1)',
-                paintOrder: 'stroke fill'
-              }}
+              className="font-bold text-6xl sm:text-7xl lg:text-8xl mb-8 leading-[0.95] tracking-tight"
             >
-              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent">
+              <span className="text-white">
                 Sua Identidade
-              </span>{' '}
-              <span className="bg-gradient-to-r from-slate-700 via-[#D4AF37] to-slate-700 bg-clip-text text-transparent animate-shine bg-[length:200%_auto]">
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent animate-shine bg-[length:200%_auto]" style={{
+                textShadow: '0 0 30px rgba(251, 191, 36, 0.3), 0 0 60px rgba(251, 191, 36, 0.2)'
+              }}>
                 .com.rich
               </span>
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="text-xl sm:text-2xl text-slate-700 mb-8 max-w-3xl mx-auto leading-relaxed px-4 font-light"
+              className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
             >
               Possua a identidade digital mais prestigiada e exclusiva do mundo.
             </motion.p>
@@ -541,27 +554,28 @@ const Home = () => {
             <motion.form
               variants={item}
               onSubmit={handleSearch}
-              className="max-w-2xl mx-auto mb-8"
+              className="max-w-2xl mx-auto mb-12"
             >
               <div className="relative group">
-                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white border border-gray-200 rounded-xl p-2 shadow-sm">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
                   <div className="flex items-stretch flex-1 min-w-0">
                     <input
                       type="text"
                       value={domain}
                       onChange={(e) => setDomain(e.target.value.replace(/[^a-z0-9-]/gi, '').toLowerCase())}
                       placeholder="Pesquisar domínio"
-                      className="flex-1 bg-transparent text-black placeholder-gray-400 px-6 py-4 text-lg focus:outline-none min-w-0"
+                      className="flex-1 bg-transparent text-white placeholder-gray-400 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-amber-500/50 rounded-xl min-w-0"
                       disabled={provisioning}
                     />
-                    <div className="flex items-center pr-4 text-[#6B7280] text-lg font-medium select-none pointer-events-none">
+                    <div className="flex items-center pr-4 text-amber-400 text-lg font-semibold select-none pointer-events-none">
                       .com.rich
                     </div>
                   </div>
                   <button
                     type="submit"
                     disabled={isSearching || provisioning}
-                    className="px-6 sm:px-8 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap flex-shrink-0"
+                    className="px-6 sm:px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap flex-shrink-0 shadow-lg shadow-amber-500/50 hover:shadow-amber-400/60 hover:scale-105"
                   >
                     {isSearching ? (
                       <>
@@ -585,22 +599,22 @@ const Home = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="max-w-xl mx-auto mb-16 px-4"
               >
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-5 border border-gray-200/50 shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300">
+                <div className="bg-red-500/10 backdrop-blur-md rounded-xl p-5 border border-red-500/30 shadow-lg shadow-red-500/20">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-red-50/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
-                      <AlertCircle className="w-4 h-4 text-red-600" />
+                    <div className="w-8 h-8 rounded-lg bg-red-500/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                      <AlertCircle className="w-4 h-4 text-red-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-sm font-semibold text-black mb-1">
+                      <h3 className="text-sm font-semibold text-white mb-1">
                         Não foi possível verificar
                       </h3>
-                      <p className="text-xs text-[#6B7280] leading-relaxed">
+                      <p className="text-xs text-gray-300 leading-relaxed">
                         {domainError}
                       </p>
                       <div className="flex gap-2 mt-3">
                         <button
                           onClick={() => { setDomainError(null); handleSearch({ preventDefault: () => {} } as React.FormEvent); }}
-                          className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+                          className="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-black text-xs font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
                         >
                           Tentar novamente
                         </button>
@@ -612,7 +626,7 @@ const Home = () => {
                               setIsPremium(false);
                               console.log('🧪 MODO SIMULADO ATIVADO - Para fins de teste apenas');
                             }}
-                            className="px-3 py-1.5 bg-white/80 hover:bg-white text-black text-xs font-medium rounded-lg border border-gray-200/60 transition-all duration-200 backdrop-blur-sm"
+                            className="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-medium rounded-lg border border-white/20 transition-all duration-200 backdrop-blur-sm"
                           >
                             Modo teste
                           </button>
@@ -621,9 +635,9 @@ const Home = () => {
                     </div>
                     <button
                       onClick={handleReset}
-                      className="p-1 hover:bg-gray-100/80 rounded-lg transition-colors"
+                      className="p-1 hover:bg-white/10 rounded-lg transition-colors"
                     >
-                      <X className="w-4 h-4 text-[#6B7280]" />
+                      <X className="w-4 h-4 text-gray-400" />
                     </button>
                   </div>
                 </div>
@@ -934,206 +948,218 @@ const Home = () => {
               variants={item}
               className="flex flex-wrap justify-center gap-6 text-sm"
             >
-              <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-[#10B981]" />
-                <span className="text-black">Registro Seguro SSL</span>
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
+                <Lock className="w-4 h-4 text-amber-400" />
+                <span className="text-white/90">Registro Seguro SSL</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#10B981]" />
-                <span className="text-black">Verificação Instantânea</span>
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
+                <CheckCircle className="w-4 h-4 text-amber-400" />
+                <span className="text-white/90">Verificação Instantânea</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-[#10B981]" />
-                <span className="text-black">Reconhecimento Global</span>
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
+                <Globe className="w-4 h-4 text-amber-400" />
+                <span className="text-white/90">Reconhecimento Global</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#10B981]" />
-                <span className="text-black">Ativação Imediata</span>
+              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
+                <Zap className="w-4 h-4 text-amber-400" />
+                <span className="text-white/90">Ativação Imediata</span>
               </div>
             </motion.div>
           </div>
         </motion.section>
+      </section>
 
-        <motion.section
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight" style={{ fontWeight: 900 }}>
-              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent">Valor e identidade</span>
-            </h2>
-            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto mb-8">
-              Uma licença <strong>.com.rich</strong> não é apenas um endereço. É um símbolo de prestígio e uso exclusivo.
-            </p>
-            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight" style={{ fontWeight: 900 }}>
-              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent">Seu nome. Sua marca.</span>
-            </h2>
-            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto mb-4">
-              Com um domínio único, sua presença online é exclusivamente sua.<br />
-              Haverá apenas uma <strong>olivia.com.rich</strong>, uma <strong>james.com.rich</strong>, uma <strong>isabella.com.rich</strong>.
-            </p>
-            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
-              Essa exclusividade representa uma oportunidade real para fortalecer sua marca pessoal e ser reconhecido de forma autêntica no cenário digital global.
-            </p>
-          </div>
-        </motion.section>
-
-        <motion.section
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent" style={{ fontWeight: 900 }}>
-              Sua licença .com.rich em três etapas
-            </h2>
-            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
-              Três passos simples separam você de uma identidade digital incomparável. Cada detalhe foi pensado para oferecer exclusividade, segurança e presença imediata.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                step: '01',
-                icon: Search,
-                title: 'Busque sua licença',
-                description: 'Encontre o nome perfeito dentro do universo .com.rich e garanta sua licença exclusiva de uso.'
-              },
-              {
-                step: '02',
-                icon: Lock,
-                title: 'Adquira sua licença',
-                description: 'Finalize sua contratação com segurança. Sua licença exclusiva .com.rich será ativada instantaneamente e vinculada ao seu perfil.'
-              },
-              {
-                step: '03',
-                icon: Link2,
-                title: 'Tudo em um só lugar',
-                description: 'Sua licença .com.rich inclui uma página moderna e personalizável, onde você conecta redes, negócios e oportunidades, tudo em um\u00A0só\u00A0link.'
-              }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="relative"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="relative mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl flex items-center justify-center shadow-lg">
-                      <step.icon className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-900 bg-clip-text text-transparent mb-3">{step.title}</h3>
-                  <p className="text-[#6B7280] leading-relaxed text-sm">{step.description}</p>
-                </div>
-                {index < 2 && (
-                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-[#D4AF37]/50 to-transparent" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl mb-4 leading-tight tracking-tight bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 bg-clip-text text-transparent" style={{ fontWeight: 900 }}>
-              O que é .com.rich?
-            </h2>
-            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
-              O domínio .com.rich representa uma nova forma de presença digital feita para quem quer unir valor, propósito e exclusividade.
-              Mais do que um endereço na web, ele é uma declaração de identidade: cada nome em .com.rich reflete quem você é e o que deseja transmitir ao mundo.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: 'Máxima segurança',
-                description: 'Cada licença .com.rich é protegida com tecnologia avançada e protocolos de segurança global, garantindo total proteção para sua identidade digital.'
-              },
-              {
-                icon: Zap,
-                title: 'Ativação instantânea',
-                description: 'Tudo é preparado automaticamente. Em poucos instantes, sua licença .com.rich estará ativa e conectada à sua página personalizada.'
-              },
-              {
-                icon: Globe,
-                title: 'Identidade profissional',
-                description: 'Uma licença .com.rich transforma sua presença online em algo memorável, distinto e visualmente sofisticado.'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="group relative"
-              >
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 h-full hover:shadow-lg transition-shadow">
-                  <div className="inline-flex p-4 bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl mb-6 shadow-lg">
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-900 bg-clip-text text-transparent mb-3">{feature.title}</h3>
-                  <p className="text-[#6B7280] leading-relaxed">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <div className="relative">
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-12 md:p-16 text-center shadow-2xl">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Escolha com sabedoria. Destaque-se online.
+        <section className="relative bg-gradient-to-b from-black to-zinc-950 py-32">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
+          <motion.div
+            className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold">
+                <span className="text-white">Valor e identidade</span>
               </h2>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                Sua licença exclusiva protegida:<br />
-                https://seunome.com.rich / https://com.rich/seunome
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                Uma licença <strong className="text-amber-400">.com.rich</strong> não é apenas um endereço. É um símbolo de prestígio e uso exclusivo.
               </p>
-              <button
-                onClick={() => navigate('/register')}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-gray-100 text-slate-900 text-lg font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                Começar Agora
-                <ArrowRight className="w-5 h-5" />
-              </button>
+              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold">
+                <span className="text-white">Seu nome. Sua marca.</span>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-6 leading-relaxed font-light">
+                Com um domínio único, sua presença online é exclusivamente sua.<br />
+                Haverá apenas uma <strong className="text-amber-400">olivia.com.rich</strong>, uma <strong className="text-amber-400">james.com.rich</strong>, uma <strong className="text-amber-400">isabella.com.rich</strong>.
+              </p>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                Essa exclusividade representa uma oportunidade real para fortalecer sua marca pessoal e ser reconhecido de forma autêntica no cenário digital global.
+              </p>
             </div>
-          </div>
-        </motion.section>
-      </div>
+          </motion.div>
+        </section>
 
-      {/* Login Modal */}
-      {showLoginModal && (
+        <section className="relative bg-zinc-950 py-32">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/5 via-transparent to-transparent"></div>
+          <motion.div
+            className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold text-white">
+                Sua licença .com.rich em três etapas
+              </h2>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                Três passos simples separam você de uma identidade digital incomparável. Cada detalhe foi pensado para oferecer exclusividade, segurança e presença imediata.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                {
+                  step: '01',
+                  icon: Search,
+                  title: 'Busque sua licença',
+                  description: 'Encontre o nome perfeito dentro do universo .com.rich e garanta sua licença exclusiva de uso.'
+                },
+                {
+                  step: '02',
+                  icon: Lock,
+                  title: 'Adquira sua licença',
+                  description: 'Finalize sua contratação com segurança. Sua licença exclusiva .com.rich será ativada instantaneamente e vinculada ao seu perfil.'
+                },
+                {
+                  step: '03',
+                  icon: Link2,
+                  title: 'Tudo em um só lugar',
+                  description: 'Sua licença .com.rich inclui uma página moderna e personalizável, onde você conecta redes, negócios e oportunidades, tudo em um\u00A0só\u00A0link.'
+                }
+              ].map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  className="relative"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="relative mb-6">
+                      <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-amber-500/50">
+                        <step.icon className="w-10 h-10 text-black" />
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{step.description}</p>
+                  </div>
+                  {index < 2 && (
+                    <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-amber-500/30 to-transparent" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </section>
+
+        <section className="relative bg-gradient-to-b from-zinc-950 to-black py-32">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
+          <motion.div
+            className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold text-white">
+                O que é .com.rich?
+              </h2>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                O domínio .com.rich representa uma nova forma de presença digital feita para quem quer unir valor, propósito e exclusividade.
+                Mais do que um endereço na web, ele é uma declaração de identidade: cada nome em .com.rich reflete quem você é e o que deseja transmitir ao mundo.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: Shield,
+                  title: 'Máxima segurança',
+                  description: 'Cada licença .com.rich é protegida com tecnologia avançada e protocolos de segurança global, garantindo total proteção para sua identidade digital.'
+                },
+                {
+                  icon: Zap,
+                  title: 'Ativação instantânea',
+                  description: 'Tudo é preparado automaticamente. Em poucos instantes, sua licença .com.rich estará ativa e conectada à sua página personalizada.'
+                },
+                {
+                  icon: Globe,
+                  title: 'Identidade profissional',
+                  description: 'Uma licença .com.rich transforma sua presença online em algo memorável, distinto e visualmente sofisticado.'
+                }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                  className="group relative"
+                >
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 h-full hover:bg-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-lg hover:shadow-amber-500/20">
+                    <div className="inline-flex p-4 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl mb-6 shadow-2xl shadow-amber-500/50">
+                      <feature.icon className="w-8 h-8 text-black" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          </motion.div>
+        </section>
+
+        <section className="relative bg-black py-32">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
+          <motion.div
+            className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative">
+              <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-3xl p-12 md:p-16 text-center shadow-2xl shadow-amber-500/50">
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+                  Escolha com sabedoria. Destaque-se online.
+                </h2>
+                <p className="text-xl text-black/80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                  Sua licença exclusiva protegida:<br />
+                  <span className="font-semibold">https://seunome.com.rich</span> / <span className="font-semibold">https://com.rich/seunome</span>
+                </p>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="inline-flex items-center gap-3 px-10 py-5 bg-black hover:bg-zinc-900 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-2xl hover:scale-105"
+                >
+                  Começar Agora
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Login Modal */}
+        {showLoginModal && (
         <>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setShowLoginModal(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -1142,23 +1168,23 @@ const Home = () => {
             transition={{ type: "spring", duration: 0.5 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
-            <div className="bg-gradient-to-br from-slate-900 via-[#8B7355] to-slate-900 rounded-3xl shadow-2xl w-full max-w-md pointer-events-auto border border-white/10">
+            <div className="bg-zinc-900 rounded-3xl shadow-2xl shadow-amber-500/20 w-full max-w-md pointer-events-auto border border-white/10">
               <div className="relative p-8">
                 <button
                   onClick={() => setShowLoginModal(false)}
                   className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-xl transition-colors group"
                 >
-                  <X className="w-5 h-5 text-[#F4D03F] group-hover:text-white transition-colors" />
+                  <X className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
                 </button>
 
                 <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl mb-4 shadow-lg">
-                    <LogIn className="w-8 h-8 text-white" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl mb-4 shadow-2xl shadow-amber-500/50">
+                    <LogIn className="w-8 h-8 text-black" />
                   </div>
                   <h2 className="text-3xl font-bold text-white mb-2">
                     Login Necessário
                   </h2>
-                  <p className="text-[#F4D03F]/70 text-lg">
+                  <p className="text-gray-400 text-lg">
                     Por favor, faça login para continuar com a compra
                   </p>
                 </div>
@@ -1168,7 +1194,7 @@ const Home = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => navigate('/login')}
-                    className="w-full px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black rounded-xl font-bold text-lg transition-all duration-300 shadow-lg shadow-amber-500/50 flex items-center justify-center gap-2"
                   >
                     <LogIn className="w-5 h-5" />
                     Fazer Login
@@ -1184,9 +1210,9 @@ const Home = () => {
             </div>
           </motion.div>
         </>
-      )}
-    </div>
-  );
-};
+        )}
+      </div>
+    );
+  };
 
 export default Home;
