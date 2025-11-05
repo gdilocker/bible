@@ -1,6 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.75.0";
-import { rateLimitMiddleware } from "../_shared/rateLimit.middleware.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -13,6 +12,8 @@ const PAYPAL_CLIENT_SECRET = Deno.env.get("PAYPAL_CLIENT_SECRET") || "";
 const PAYPAL_API_BASE = Deno.env.get("PAYPAL_MODE") === "live"
   ? "https://api-m.paypal.com"
   : "https://api-m.sandbox.paypal.com";
+
+const IS_DEV = true;
 
 async function getPayPalAccessToken(): Promise<string> {
   const auth = btoa(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`);
@@ -59,10 +60,6 @@ Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers: corsHeaders });
   }
-
-  // Apply rate limiting
-  const rateLimitResponse = await rateLimitMiddleware(req, 'POST:/paypal-capture');
-  if (rateLimitResponse) return rateLimitResponse;
 
   if (req.method !== "POST") {
     return new Response(
@@ -174,7 +171,6 @@ Deno.serve(async (req: Request) => {
 });
 
 async function registerDomainWithDynadot(fqdn: string, contactInfo: any, years: number = 1): Promise<{ success: boolean; orderId?: string; expirationDate?: number; error?: string }> {
-  // Always use MOCK mode (proxy not needed)
   if (IS_DEV) {
     console.log("[MOCK] Registering domain:", fqdn, "for", years, "year(s)");
   }
@@ -183,71 +179,12 @@ async function registerDomainWithDynadot(fqdn: string, contactInfo: any, years: 
     orderId: `mock-order-${Date.now()}`,
     expirationDate: Date.now() + (years * 365 * 24 * 60 * 60 * 1000)
   };
-
-  /* Proxy code removed - not needed
-  try {
-    const response = await fetch(PROXY_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        command: "register",
-        params: {
-          domain: fqdn,
-          duration: years
-        }
-      })
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`[Dynadot Proxy] HTTP error (${response.status}):`, errorText);
-      return {
-        success: false,
-        error: `Proxy error: ${response.status}`,
-      };
-    }
-
-    const data = await response.json();
-    if (IS_DEV) {
-      console.log(`[Dynadot Proxy] Response:`, JSON.stringify(data));
-    }
-
-    if (data.RegisterResponse?.Status === 0 || data.Status === 0) {
-      if (IS_DEV) {
-        console.log(`[Dynadot Proxy] Successfully registered ${fqdn}`);
-      }
-
-      const orderIdValue = data.RegisterResponse?.OrderId || data.OrderId || fqdn;
-      const expirationValue = data.RegisterResponse?.Expiration || data.Expiration;
-      const expirationTimestamp = expirationValue
-        ? parseInt(expirationValue) * 1000
-        : Date.now() + (years * 365 * 24 * 60 * 60 * 1000);
-
-      return {
-        success: true,
-        orderId: orderIdValue,
-        expirationDate: expirationTimestamp,
-      };
-    }
-
-    const errorMessage = data.RegisterResponse?.Error || data.Error || "Registration failed";
-    console.error(`[Dynadot Proxy] Registration failed:`, errorMessage);
-    return {
-      success: false,
-      error: errorMessage,
-    };
-  } catch (error) {
-    console.error("[Dynadot Proxy] Registration error:", error);
-    return { success: false, error: String(error) };
-  }
-  */
 }
 
 async function processOrder(supabase: any, customerId: string, pendingOrder: any) {
   const planId = pendingOrder.contact_info?.plan_id || null;
   const planCode = pendingOrder.contact_info?.plan_code || "basic";
+  const domainType = pendingOrder.contact_info?.domain_type || 'personal';
 
   const { data: order } = await supabase
     .from("orders")
@@ -264,7 +201,6 @@ async function processOrder(supabase: any, customerId: string, pendingOrder: any
     .select()
     .single();
 
-  // Get the next display_order for this customer
   const { data: existingDomains } = await supabase
     .from("domains")
     .select("display_order")
@@ -284,6 +220,7 @@ async function processOrder(supabase: any, customerId: string, pendingOrder: any
       registrar_status: "pending_provisioning",
       expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
       display_order: nextDisplayOrder,
+      domain_type: domainType,
     })
     .select()
     .single();
