@@ -140,6 +140,29 @@ async function checkDomain(fqdn: string, userId?: string): Promise<DomainCheckRe
     }
   }
 
+  // Check for club/clube protection (all language variants)
+  const { data: clubValidation, error: clubError } = await supabase
+    .rpc('validate_club_domain_registration', {
+      p_domain_name: normalizedFqdn,
+      p_password: null
+    });
+
+  if (!clubError && clubValidation) {
+    if (!clubValidation.allowed && clubValidation.protected) {
+      console.log(`[DOMAIN CHECK] BLOCKED: ${normalizedFqdn} - Club Protection (${clubValidation.message})`);
+      return {
+        status: "UNAVAILABLE",
+        fqdn: normalizedFqdn,
+        isAvailable: false,
+        isPremium: false,
+        planRequired: null,
+        price: null,
+        message: `🔒 ${clubValidation.message} Este domínio é protegido globalmente e reservado para The Rich Club em todos os idiomas.`,
+        suggestions: generateSuggestions(normalizedFqdn)
+      };
+    }
+  }
+
   const { data: catalogEntry, error: catalogError } = await supabase
     .from('domain_catalog')
     .select('fqdn, is_available, is_premium')
