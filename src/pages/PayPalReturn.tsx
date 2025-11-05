@@ -17,8 +17,9 @@ const PayPalReturn: React.FC = () => {
 
   const orderId = query.get('token') || query.get('orderId');
   const payerId = query.get('PayerID');
+  const isMock = query.get('mock') === 'true';
 
-  console.log('🔍 PayPalReturn - URL params:', { orderId, payerId, fullUrl: window.location.href });
+  console.log('🔍 PayPalReturn - URL params:', { orderId, payerId, isMock, fullUrl: window.location.href });
   console.log('🔍 Estado atual:', { isProcessing, result, error });
 
   useEffect(() => {
@@ -31,7 +32,8 @@ const PayPalReturn: React.FC = () => {
       }
 
       try {
-        console.log('🔄 Processando captura PayPal:', orderId);
+        const paymentMode = isMock ? 'MOCK' : 'PayPal';
+        console.log(`🔄 Processando captura ${paymentMode}:`, orderId);
 
         const { data: { session }, error: sessionError } = await supabase.auth.getSession();
 
@@ -39,8 +41,11 @@ const PayPalReturn: React.FC = () => {
           throw new Error('Sessão expirada. Faça login novamente.');
         }
 
+        // Use mock endpoint if in mock mode
+        const captureEndpoint = isMock ? 'mock-payment-capture' : 'paypal-capture';
+
         const response = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/paypal-capture`,
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${captureEndpoint}`,
           {
             method: 'POST',
             headers: {
@@ -57,7 +62,18 @@ const PayPalReturn: React.FC = () => {
         }
 
         const data = await response.json();
-        console.log('✅ Captura PayPal resultado:', data);
+        console.log(`✅ Captura ${paymentMode} resultado:`, data);
+
+        // Log mock payment details if in mock mode
+        if (isMock && data.data) {
+          console.log('🧪 Mock Payment Details:', {
+            order_id: data.data.order_id,
+            domain_id: data.data.domain_id,
+            subscription_id: data.data.subscription_id,
+            total_cents: data.data.total_cents,
+            processing_time: data.processing_time_ms + 'ms'
+          });
+        }
 
         if (data.success) {
           setResult('success');
@@ -117,9 +133,10 @@ const PayPalReturn: React.FC = () => {
             <CheckCircle className="w-16 h-16 text-green-400" />
           </div>
           <h2 className="text-3xl font-bold text-white mb-3">
-            Pagamento Confirmado!
+            {isMock ? '🧪 Pagamento Mock Confirmado!' : 'Pagamento Confirmado!'}
           </h2>
           <p className="text-blue-200/80 text-lg mb-6">
+            {isMock && <span className="block text-sm mb-2 text-yellow-300">⚠️ MODO TESTE - Nenhum pagamento real foi processado</span>}
             {window.opener ? 'Esta janela será fechada automaticamente...' : 'Redirecionando para o dashboard...'}
           </p>
           <div className="flex items-center justify-center gap-2">

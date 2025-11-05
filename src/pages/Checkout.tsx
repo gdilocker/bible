@@ -290,7 +290,15 @@ const Checkout: React.FC = () => {
         return;
       }
 
-      const response = await fetch(`${supabaseUrl}/functions/v1/paypal-create-order`, {
+      // Check if mock payment mode is enabled
+      const useMockPayment = import.meta.env.VITE_USE_PAYMENT_MOCK === 'true';
+      const paymentEndpoint = useMockPayment
+        ? 'mock-payment-create'
+        : 'paypal-create-order';
+
+      console.log(`[Checkout] Using ${useMockPayment ? 'MOCK' : 'REAL'} payment mode`);
+
+      const response = await fetch(`${supabaseUrl}/functions/v1/${paymentEndpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
