@@ -416,16 +416,6 @@ export default function RichClub() {
         </div>
       </section>
 
-      {/* Legal Notice */}
-      <section className="relative py-16 bg-black/50 border-t border-white/5">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-sm text-gray-500 leading-relaxed text-center">
-            O Rich Club é uma página institucional operada pela <strong className="text-gray-400">Global Digital Identity LTD</strong>, parte integrante do ecossistema <strong className="text-amber-400">com.rich</strong>.
-            Ao utilizar nossos serviços, você concorda com os <Link to="/termos" className="text-amber-400 hover:text-amber-300 underline transition-colors">Termos de Uso</Link> e <Link to="/politica" className="text-amber-400 hover:text-amber-300 underline transition-colors">Políticas de Privacidade</Link>.
-          </p>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
