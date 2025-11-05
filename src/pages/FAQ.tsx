@@ -205,6 +205,10 @@ const FAQ: React.FC = () => {
         {
           question: 'O que acontece se eu cancelar minha assinatura?',
           answer: 'Ao cancelar, você mantém acesso ao seu domínio e perfil até o final do período pago. Após isso, o perfil social será desativado, mas você ainda terá o domínio registrado até o vencimento anual.'
+        },
+        {
+          question: 'Quanto tempo leva para receber a identidade física Elite?',
+          answer: 'Membros do plano Elite recebem uma identidade física personalizada com QR Code dinâmico. O prazo de produção e envio pode levar até 60 dias após a confirmação da assinatura. Você será notificado quando o envio for realizado e receberá informações de rastreamento.'
         }
       ]
     },

@@ -253,7 +253,7 @@ export default function RichClub() {
 
             <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
               Seu certificado digital e selo oficial não são apenas símbolos — são validações tangíveis do seu comprometimento com excelência,
-              autenticidade e pertencimento a uma comunidade global de influência.
+              autenticidade e pertencimento a uma comunidade global de influência. Membros Elite recebem também uma identidade física personalizada com QR Code dinâmico.
             </p>
 
             <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-8 shadow-2xl shadow-amber-500/10">
