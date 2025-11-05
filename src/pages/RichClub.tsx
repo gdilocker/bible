@@ -360,8 +360,8 @@ export default function RichClub() {
             </div>
 
             <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              Transforme sua rede de contatos em uma fonte de receita sustentável.
-              Membros do Rich Club que indicam novos associados recebem comissões generosas e recorrentes.
+              Compartilhe a excelência do Rich Club com sua rede profissional.
+              Ao recomendar nossos serviços, você é recompensado com comissões competitivas por cada novo membro.
             </p>
 
             <Link
