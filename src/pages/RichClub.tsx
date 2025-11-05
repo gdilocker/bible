@@ -412,9 +412,9 @@ export default function RichClub() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight pb-4">
-              <span className="block">Pronto para elevar sua</span>
-              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent pb-2">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-12 leading-[1.3] tracking-tight">
+              <span className="block mb-2">Pronto para elevar sua</span>
+              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent pb-6">
                 presença digital?
               </span>
             </h2>
