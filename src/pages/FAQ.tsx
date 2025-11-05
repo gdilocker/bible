@@ -126,7 +126,45 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'O que acontece se eu não renovar minha licença?',
-          answer: 'Após o vencimento do plano, sua licença entra em período de carência (30 dias), durante o qual você ainda pode renová-la. Após esse prazo, a licença expira e o domínio volta ao pool da .com.rich Global Network, podendo ser licenciado para outro usuário.'
+          answer: (
+            <div className="space-y-4">
+              <p>Quando uma licença não é renovada, o domínio passa por um ciclo profissional de recuperação com múltiplos períodos de proteção:</p>
+
+              <div className="space-y-3">
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-green-900 mb-1">📅 Dias 1-15: Período de Graça</p>
+                  <p className="text-green-800 text-sm">Seus serviços continuam ativos e você pode regularizar sem taxas adicionais. Notificações são enviadas D-14, D-7, D-3 e D-1 antes do vencimento.</p>
+                </div>
+
+                <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-amber-900 mb-1">⚠️ Dias 16-45: Período de Resgate</p>
+                  <p className="text-amber-800 text-sm">Domínio suspenso. Para recuperar, é necessário pagar a mensalidade + taxa de resgate (USD $50). Seu painel mostra contador regressivo e custo total.</p>
+                </div>
+
+                <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-orange-900 mb-1">🛡️ Dias 46-60: Proteção do Registro</p>
+                  <p className="text-orange-800 text-sm">Período de proteção antes do leilão. O domínio não está disponível para terceiros. Recuperação possível mediante contato com suporte.</p>
+                </div>
+
+                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-red-900 mb-1">🔨 Dias 61-75: Leilão Interno</p>
+                  <p className="text-red-800 text-sm">O domínio entra em leilão/lista de interesse. O dono original tem prioridade até o Dia 65 para reclamar pagando todas as taxas pendentes.</p>
+                </div>
+
+                <div className="bg-slate-50 border-l-4 border-slate-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-slate-900 mb-1">🗑️ Dias 76-80: Exclusão Pendente</p>
+                  <p className="text-slate-800 text-sm">Janela técnica final sem possibilidade de recuperação pelo titular anterior.</p>
+                </div>
+
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                  <p className="font-semibold text-blue-900 mb-1">✨ Dia 81+: Liberado</p>
+                  <p className="text-blue-800 text-sm">Domínio volta ao inventário geral e pode ser registrado por qualquer usuário (pode se tornar Premium a critério do registro).</p>
+                </div>
+              </div>
+
+              <p className="text-sm mt-4"><strong>💡 Importante:</strong> Este sistema profissional garante que você tenha tempo suficiente para recuperar seu domínio, evita "drop catching" imediato e protege sua identidade digital.</p>
+            </div>
+          )
         },
         {
           question: 'Posso usar minha licença para criar um site?',
