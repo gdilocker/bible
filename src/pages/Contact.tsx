@@ -171,15 +171,24 @@ const Contact: React.FC = () => {
 
   useEffect(() => {
     const fetchUserPlan = async () => {
-      if (!user) return;
+      if (!user) {
+        console.log('[Contact] Usuário não logado');
+        return;
+      }
 
-      const { data } = await supabase
+      console.log('[Contact] Buscando plano para usuário:', user.id);
+      const { data, error } = await supabase
         .from('subscriptions')
         .select('plan_type')
         .eq('user_id', user.id)
         .eq('status', 'active')
         .maybeSingle();
 
+      if (error) {
+        console.error('[Contact] Erro ao buscar plano:', error);
+      }
+
+      console.log('[Contact] Plano encontrado:', data?.plan_type || 'nenhum');
       setUserPlan(data?.plan_type || null);
     };
 
@@ -245,8 +254,11 @@ const Contact: React.FC = () => {
                         <optgroup key={group.category} label={group.category}>
                           {group.options.map((option) => {
                             // Ocultar opção de lugares exclusivos se não for Elite Member
-                            if (option === 'Manifestar interesse em acessar lugares exclusivos' && userPlan !== 'elite') {
-                              return null;
+                            if (option === 'Manifestar interesse em acessar lugares exclusivos') {
+                              console.log('[Contact] Verificando acesso Elite - userPlan:', userPlan, 'isElite:', userPlan === 'elite');
+                              if (userPlan !== 'elite') {
+                                return null;
+                              }
                             }
                             return (
                               <option key={option} value={option}>
