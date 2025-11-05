@@ -238,7 +238,7 @@ Informações oficiais sobre os planos:
 - 50% de comissão para afiliados ($35.00 por venda)
 - Acesso Exclusivo 14 Dias
 - Tudo do plano Prime, mais:
-- Cartão físico com QR Code dinâmico
+- Identidade física personalizada com QR Code dinâmico
 - Design Black & Gold Edition exclusivo
 - Selo Elite Member
 - Destaque nas listagens internas
@@ -285,7 +285,7 @@ Official plan information:
 - 50% affiliate commission ($35.00 per sale)
 - 14 Days Exclusive Access
 - Everything in Prime, plus:
-- Physical card with dynamic QR Code
+- Personalized physical identity with dynamic QR Code
 - Exclusive Black & Gold Edition design
 - Elite Member badge
 - Featured in internal listings

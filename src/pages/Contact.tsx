@@ -86,15 +86,15 @@ const CONTACT_SUBJECTS = [
     ]
   },
   {
-    category: 'Cartão Elite',
+    category: 'Identidade Elite',
     options: [
-      'Solicitar cartão físico Elite',
-      'Rastrear envio do cartão',
-      'Problemas com QR Code do cartão',
-      'Solicitar reenvio de cartão',
+      'Solicitar identidade física Elite',
+      'Rastrear envio da identidade',
+      'Problemas com QR Code da identidade',
+      'Solicitar reenvio de identidade',
       'Alterar endereço de entrega',
-      'Personalização do cartão',
-      'Cartão danificado - solicitar novo'
+      'Personalização da identidade',
+      'Identidade danificada - solicitar nova'
     ]
   },
   {
