@@ -158,7 +158,10 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
                 className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 <PlusCircle className="w-5 h-5" />
-                <span className="font-semibold">Registrar Domínio</span>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Registrar Domínio</span>
+                  <span className="text-xs text-slate-400">Inicial</span>
+                </div>
               </Link>
               <button
                 onClick={handleLogoutClick}
@@ -263,7 +266,10 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
                 className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 <PlusCircle className="w-5 h-5" />
-                <span className="font-semibold">Registrar Domínio</span>
+                <div className="flex flex-col">
+                  <span className="font-semibold">Registrar Domínio</span>
+                  <span className="text-xs text-slate-400">Inicial</span>
+                </div>
               </Link>
               <button
                 onClick={handleLogoutClick}
