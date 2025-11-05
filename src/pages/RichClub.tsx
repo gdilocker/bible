@@ -12,6 +12,9 @@ import designImage from '../assets/design-legado.jpg.jpeg';
 import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
 import domainImage from '../assets/1234567 copy.png';
 
+// Affiliate section image URL
+const affiliateImage = 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920';
+
 export default function RichClub() {
   return (
     <div className="min-h-screen bg-black">
@@ -329,10 +332,20 @@ export default function RichClub() {
       </section>
 
       {/* Affiliate Program */}
-      <section className="relative py-32 bg-gradient-to-b from-black via-emerald-950/20 to-black overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent"></div>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${affiliateImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/40"></div>
+        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 rounded-full px-6 py-2 mb-8">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
