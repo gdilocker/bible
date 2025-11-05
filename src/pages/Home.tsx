@@ -519,7 +519,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         </div>
         <motion.section
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32"
           initial="hidden"
           animate="show"
           variants={container}
@@ -527,29 +527,28 @@ const Home = () => {
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               variants={item}
-              className="flex items-center justify-center gap-3 mb-8"
+              className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8"
             >
-              <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
-              <span className="text-amber-400 text-xs font-semibold tracking-[0.3em] uppercase">Premium Identity</span>
-              <div className="h-px w-12 bg-gradient-to-l from-amber-400 to-transparent"></div>
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
+              <span className="text-amber-400 text-[10px] sm:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">Premium Identity</span>
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-amber-400 to-transparent"></div>
             </motion.div>
 
             <motion.h1
               variants={item}
-              className="font-bold text-6xl sm:text-7xl lg:text-8xl mb-8 leading-[0.95] tracking-tight"
+              className="font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 leading-[1.1] sm:leading-[0.95] tracking-tight px-2"
             >
-              <span className="text-white">
+              <span className="text-white block">
                 Sua Identidade
               </span>
-              <br />
-              <span className="text-amber-400">
+              <span className="text-amber-400 block">
                 .com.rich
               </span>
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+              className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-light px-4"
             >
               Possua a identidade digital mais prestigiada e exclusiva do mundo.
             </motion.p>
@@ -557,38 +556,38 @@ const Home = () => {
             <motion.form
               variants={item}
               onSubmit={handleSearch}
-              className="max-w-2xl mx-auto mb-12"
+              className="w-full max-w-2xl mx-auto mb-8 sm:mb-12 px-2"
             >
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
-                  <div className="flex items-stretch flex-1 min-w-0">
+                <div className="relative flex flex-col gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
+                  <div className="flex items-center flex-1 min-w-0 bg-black/20 rounded-xl">
                     <input
                       type="text"
                       value={domain}
                       onChange={(e) => setDomain(e.target.value.replace(/[^a-z0-9-]/gi, '').toLowerCase())}
                       placeholder="Pesquisar domínio"
-                      className="flex-1 bg-transparent text-white placeholder-gray-400 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-amber-500/50 rounded-xl min-w-0"
+                      className="flex-1 bg-transparent text-white placeholder-gray-400 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-amber-500/50 rounded-xl min-w-0"
                       disabled={provisioning}
                     />
-                    <div className="flex items-center pr-4 text-amber-400 text-lg font-semibold select-none pointer-events-none">
+                    <div className="flex items-center px-3 sm:px-4 text-amber-400 text-sm sm:text-lg font-semibold select-none pointer-events-none whitespace-nowrap">
                       .com.rich
                     </div>
                   </div>
                   <button
                     type="submit"
                     disabled={isSearching || provisioning}
-                    className="px-6 sm:px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap flex-shrink-0 shadow-lg shadow-amber-500/50 hover:shadow-amber-400/60 hover:scale-105"
+                    className="w-full px-6 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg shadow-amber-500/50 hover:shadow-amber-400/60 active:scale-95"
                   >
                     {isSearching ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin" />
-                        Buscando...
+                        <span>Buscando...</span>
                       </>
                     ) : (
                       <>
                         <Search className="w-5 h-5" />
-                        Buscar
+                        <span>Buscar</span>
                       </>
                     )}
                   </button>
@@ -949,30 +948,30 @@ const Home = () => {
 
             <motion.div
               variants={item}
-              className="flex flex-wrap justify-center gap-6 text-sm"
+              className="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm px-2"
             >
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
-                <Lock className="w-4 h-4 text-amber-400" />
-                <span className="text-white/90">Registro Seguro SSL</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <Lock className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Registro Seguro SSL</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
-                <CheckCircle className="w-4 h-4 text-amber-400" />
-                <span className="text-white/90">Verificação Instantânea</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Verificação Instantânea</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
-                <Globe className="w-4 h-4 text-amber-400" />
-                <span className="text-white/90">Reconhecimento Global</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Reconhecimento Global</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2">
-                <Zap className="w-4 h-4 text-amber-400" />
-                <span className="text-white/90">Ativação Imediata</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Ativação Imediata</span>
               </div>
             </motion.div>
           </div>
         </motion.section>
       </section>
 
-        <section className="relative bg-gradient-to-b from-black to-zinc-950 py-32">
+        <section className="relative bg-gradient-to-b from-black to-zinc-950 py-16 sm:py-24 lg:py-32">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -981,28 +980,27 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold px-4">
                 <span className="text-white">Valor e identidade</span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light px-4">
                 Mais do que um domínio, <strong className="text-amber-400">.com.rich</strong> é a chave para um mundo de oportunidades e reconhecimento global.
               </p>
-              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold px-4">
                 <span className="text-white">Seu nome. Sua marca.</span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-6 leading-relaxed font-light">
-                Com um domínio único, sua presença online é exclusivamente sua.<br />
-                Haverá apenas uma <strong className="text-amber-400">olivia.com.rich</strong>, uma <strong className="text-amber-400">james.com.rich</strong>, uma <strong className="text-amber-400">isabella.com.rich</strong>.
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-4 sm:mb-6 leading-relaxed font-light px-4">
+                Com um domínio único, sua presença online é exclusivamente sua. Haverá apenas uma <strong className="text-amber-400">olivia.com.rich</strong>, uma <strong className="text-amber-400">james.com.rich</strong>, uma <strong className="text-amber-400">isabella.com.rich</strong>.
               </p>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light px-4">
                 Essa exclusividade representa uma oportunidade real para fortalecer sua marca pessoal e ser reconhecido de forma autêntica no cenário digital global.
               </p>
             </div>
           </motion.div>
         </section>
 
-        <section className="relative bg-zinc-950 py-32">
+        <section className="relative bg-zinc-950 py-16 sm:py-24 lg:py-32">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/5 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -1010,16 +1008,16 @@ const Home = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold text-white">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold text-white px-4">
                 Sua licença .com.rich em três etapas
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light px-4">
                 Três passos simples separam você de uma identidade digital incomparável. Cada detalhe foi pensado para oferecer exclusividade, segurança e presença imediata.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
               {[
                 {
                   step: '01',
@@ -1049,13 +1047,13 @@ const Home = () => {
                   className="relative"
                 >
                   <div className="flex flex-col items-center text-center">
-                    <div className="relative mb-6">
-                      <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-amber-500/50">
-                        <step.icon className="w-10 h-10 text-black" />
+                    <div className="relative mb-4 sm:mb-6">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-amber-500/50">
+                        <step.icon className="w-8 h-8 sm:w-10 sm:h-10 text-black" />
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{step.description}</p>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 px-2">{step.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-400 leading-relaxed px-2">{step.description}</p>
                   </div>
                   {index < 2 && (
                     <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-amber-500/30 to-transparent" />
@@ -1066,7 +1064,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        <section className="relative bg-gradient-to-b from-zinc-950 to-black py-32">
+        <section className="relative bg-gradient-to-b from-zinc-950 to-black py-16 sm:py-24 lg:py-32">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -1075,17 +1073,17 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl mb-6 leading-tight tracking-tight font-bold text-white">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 leading-tight tracking-tight font-bold text-white px-4">
                 O que é .com.rich?
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light px-4">
                 O domínio .com.rich representa uma nova forma de presença digital feita para quem quer unir valor, propósito e exclusividade.
                 Mais do que um endereço na web, ele é uma declaração de identidade: cada nome em .com.rich reflete quem você é e o que deseja transmitir ao mundo.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   icon: Shield,
@@ -1112,12 +1110,12 @@ const Home = () => {
                   whileHover={{ y: -8, transition: { duration: 0.2 } }}
                   className="group relative"
                 >
-                  <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 h-full hover:bg-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-lg hover:shadow-amber-500/20">
-                    <div className="inline-flex p-4 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl mb-6 shadow-2xl shadow-amber-500/50">
-                      <feature.icon className="w-8 h-8 text-black" />
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 h-full hover:bg-white/10 hover:border-amber-500/30 transition-all duration-300 shadow-lg hover:shadow-amber-500/20">
+                    <div className="inline-flex p-3 sm:p-4 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl mb-4 sm:mb-6 shadow-2xl shadow-amber-500/50">
+                      <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">{feature.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -1125,7 +1123,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        <section className="relative bg-black py-32">
+        <section className="relative bg-black py-16 sm:py-24 lg:py-32">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
           <motion.div
             className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -1134,16 +1132,16 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <div className="relative">
-              <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 rounded-3xl p-12 md:p-16 text-center shadow-2xl border border-white/10 overflow-hidden">
+              <div className="relative bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 text-center shadow-2xl border border-white/10 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-amber-600/5"></div>
                 <div className="relative">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
                     Escolha com sabedoria. Destaque-se online.
                   </h2>
-                  <p className="text-xl text-gray-300 mb-3 max-w-2xl mx-auto font-light leading-relaxed">
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-2 sm:mb-3 max-w-2xl mx-auto font-light leading-relaxed px-4">
                     Sua licença exclusiva protegida:
                   </p>
-                  <p className="text-lg text-amber-400/90 mb-10 max-w-2xl mx-auto font-medium">
+                  <p className="text-sm sm:text-base md:text-lg text-amber-400/90 mb-8 sm:mb-10 max-w-2xl mx-auto font-medium px-4 break-all">
                     https://seunome.com.rich / https://com.rich/seunome
                   </p>
                   <button
