@@ -205,7 +205,7 @@ const Pricing: React.FC = () => {
                     transition={{ delay: index * 0.1 }}
                     className="relative"
                   >
-                    {(plan.plan_type === 'prime' || plan.plan_type === 'elite') && (
+                    {plan.plan_type === 'prime' && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                         <div className="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-black px-6 py-2 rounded-full text-xs font-bold shadow-xl flex items-center gap-2 border-2 border-amber-400 whitespace-nowrap">
                           <Sparkles className="w-4 h-4" />
