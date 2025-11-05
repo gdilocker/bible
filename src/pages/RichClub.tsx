@@ -38,17 +38,21 @@ export default function RichClub() {
               <span className="text-amber-400 text-xs font-semibold tracking-[0.3em] uppercase">Exclusive Community</span>
             </div>
 
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[0.95] tracking-tight">
-              Bem-vindo ao<br />
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
+              <span className="block">Bem-vindo ao</span>
+              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
                 Clube dos Milionários
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl text-gray-300 leading-relaxed mb-12 font-light">
-              Uma identidade digital que transcende o virtual.<br />
-              Conexões autênticas. Oportunidades globais. Resultados extraordinários.
-            </p>
+            <div className="space-y-3 mb-12">
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed font-light">
+                Uma identidade digital que transcende o virtual.
+              </p>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed font-light">
+                Conexões autênticas. Oportunidades globais. Resultados extraordinários.
+              </p>
+            </div>
 
             <Link
               to="/valores"
