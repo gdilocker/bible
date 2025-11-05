@@ -104,16 +104,20 @@ export default function RichClub() {
               <span className="text-white/90 text-xs font-semibold tracking-widest uppercase">Private Events</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               Experiências globais e encontros estratégicos
             </h2>
 
-            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-8"></div>
+            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              Conecte-se com líderes, empreendedores e visionários em eventos exclusivos ao redor do mundo.
-              Cada encontro é cuidadosamente curado para criar valor, fortalecer relações e gerar oportunidades únicas.
-            </p>
+            <div className="space-y-3 mb-8">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                Conecte-se com líderes, empreendedores e visionários em eventos exclusivos ao redor do mundo.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Cada encontro é cuidadosamente curado para criar valor, fortalecer relações e gerar oportunidades únicas.
+              </p>
+            </div>
 
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 text-amber-400">
@@ -154,16 +158,20 @@ export default function RichClub() {
               <span className="text-amber-300 text-xs font-semibold tracking-widest uppercase">Rich Approved</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               Espaços, experiências e estabelecimentos aprovados
             </h2>
 
-            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-8"></div>
+            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              O selo <span className="text-amber-400 font-semibold">Rich Approved</span> identifica locais de excelência incomparável.
-              Restaurantes sofisticados, hotéis boutique, lounges exclusivos e destinos que definem o padrão de luxo e autenticidade.
-            </p>
+            <div className="space-y-3 mb-8">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                O selo <span className="text-amber-400 font-semibold">Rich Approved</span> identifica locais de excelência incomparável.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Restaurantes sofisticados, hotéis boutique, lounges exclusivos e destinos que definem o padrão de luxo e autenticidade.
+              </p>
+            </div>
 
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6">
               <div className="flex items-start gap-4">
@@ -205,16 +213,20 @@ export default function RichClub() {
               <span className="text-white/90 text-xs font-semibold tracking-widest uppercase">Heritage & Innovation</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               Design aprovado, legado e autenticidade
             </h2>
 
-            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-8"></div>
+            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-12 font-light">
-              Celebramos marcas e projetos que honram tradição enquanto abraçam inovação.
-              Cada item reconhecido pelo Rich Club representa o ápice da qualidade, estética refinada e narrativa autêntica.
-            </p>
+            <div className="space-y-3 mb-12">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                Celebramos marcas e projetos que honram tradição enquanto abraçam inovação.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Cada item reconhecido pelo Rich Club representa o ápice da qualidade, estética refinada e narrativa autêntica.
+              </p>
+            </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4">
@@ -251,16 +263,20 @@ export default function RichClub() {
               <span className="text-amber-300 text-xs font-bold tracking-widest uppercase">Official Certification</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               Reconhecimento oficial como membro do Rich Club
             </h2>
 
-            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-8"></div>
+            <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              Seu certificado digital e selo oficial não são apenas símbolos — são validações tangíveis do seu comprometimento com excelência,
-              autenticidade e pertencimento a uma comunidade global de influência. Membros Elite recebem também uma identidade física personalizada com QR Code dinâmico.
-            </p>
+            <div className="space-y-3 mb-8">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                Seu certificado digital e selo oficial não são apenas símbolos — são validações tangíveis do seu comprometimento com excelência, autenticidade e pertencimento a uma comunidade global de influência.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Membros Elite recebem também uma identidade física personalizada com QR Code dinâmico.
+              </p>
+            </div>
 
             <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 backdrop-blur-md border border-amber-500/30 rounded-2xl p-8 shadow-2xl shadow-amber-500/10">
               <div className="flex items-center gap-4 mb-6">
@@ -301,15 +317,19 @@ export default function RichClub() {
               <span className="text-amber-400 text-xs font-semibold tracking-[0.3em] uppercase">Your Domain</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               <span className="text-gray-400">yourname</span>
               <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">.com.rich</span>
             </h2>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-12 font-light">
-              Seu domínio personalizado .com.rich é mais que um endereço web — é uma declaração de identidade,
-              prestígio e posicionamento no cenário digital global. Uma URL que comunica sucesso instantaneamente.
-            </p>
+            <div className="space-y-3 mb-12">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                Seu domínio personalizado .com.rich é mais que um endereço web — é uma declaração de identidade, prestígio e posicionamento no cenário digital global.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Uma URL que comunica sucesso instantaneamente.
+              </p>
+            </div>
 
             <div className="grid sm:grid-cols-3 gap-6">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
@@ -353,7 +373,7 @@ export default function RichClub() {
               <span className="text-emerald-300 text-xs font-semibold tracking-widest uppercase">Earn Commission</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               Programa de Afiliados
             </h2>
 
@@ -365,10 +385,14 @@ export default function RichClub() {
               </div>
             </div>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-8 font-light">
-              Compartilhe a excelência do Rich Club com sua rede profissional.
-              Ao recomendar nossos serviços, você é recompensado com comissões competitivas por cada novo membro.
-            </p>
+            <div className="space-y-3 mb-8">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                Compartilhe a excelência do Rich Club com sua rede profissional.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Ao recomendar nossos serviços, você é recompensado com comissões competitivas por cada novo membro.
+              </p>
+            </div>
 
             <Link
               to="/afiliados/termos"
@@ -387,17 +411,21 @@ export default function RichClub() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-              Pronto para elevar sua<br />
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight">
+              <span className="block">Pronto para elevar sua</span>
+              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
                 presença digital?
               </span>
             </h2>
 
-            <p className="text-xl text-gray-300 leading-relaxed mb-12 font-light max-w-2xl mx-auto">
-              Junte-se a uma comunidade global de líderes, empreendedores e visionários.
-              Sua jornada no Rich Club começa agora.
-            </p>
+            <div className="space-y-3 mb-12 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
+                Junte-se a uma comunidade global de líderes, empreendedores e visionários.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
+                Sua jornada no Rich Club começa agora.
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
