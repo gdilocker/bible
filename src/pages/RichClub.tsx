@@ -55,6 +55,22 @@ export default function RichClub() {
               </p>
             </div>
 
+            {/* Features badges - now in normal flow */}
+            <div className="flex flex-wrap items-center justify-start gap-4 sm:gap-6 mb-8">
+              <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                <Crown className="w-5 h-5 text-amber-400" />
+                <span>Certificação Oficial</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                <Globe2 className="w-5 h-5 text-amber-400" />
+                <span>Presença Global</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                <Shield className="w-5 h-5 text-amber-400" />
+                <span>Exclusividade Garantida</span>
+              </div>
+            </div>
+
             <Link
               to="/valores"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-2xl shadow-amber-500/50 hover:shadow-amber-400/60 hover:scale-105 group"
@@ -62,24 +78,6 @@ export default function RichClub() {
               Explore os Planos
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-          </div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute bottom-12 left-0 right-0 z-10 flex justify-center">
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
-              <Crown className="w-5 h-5 text-amber-400" />
-              <span>Certificação Oficial</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
-              <Globe2 className="w-5 h-5 text-amber-400" />
-              <span>Presença Global</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
-              <Shield className="w-5 h-5 text-amber-400" />
-              <span>Exclusividade Garantida</span>
-            </div>
           </div>
         </div>
       </section>
