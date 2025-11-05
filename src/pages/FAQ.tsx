@@ -470,7 +470,7 @@ const FAQ: React.FC = () => {
                 <div className="bg-black p-6">
                   <div className="flex items-center gap-3 text-white">
                     {section.icon}
-                    <h2 className="text-2xl font-bold">{section.title}</h2>
+                    <h2 className="text-2xl font-bold text-white">{section.title}</h2>
                   </div>
                 </div>
 
