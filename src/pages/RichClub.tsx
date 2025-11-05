@@ -62,16 +62,16 @@ export default function RichClub() {
 
         {/* Floating Elements */}
         <div className="absolute bottom-12 left-0 right-0 z-10 flex justify-center">
-          <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center gap-3 text-white/80 text-sm font-medium">
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
               <Crown className="w-5 h-5 text-amber-400" />
               <span>Certificação Oficial</span>
             </div>
-            <div className="flex items-center gap-3 text-white/80 text-sm font-medium">
+            <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
               <Globe2 className="w-5 h-5 text-amber-400" />
               <span>Presença Global</span>
             </div>
-            <div className="flex items-center gap-3 text-white/80 text-sm font-medium">
+            <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
               <Shield className="w-5 h-5 text-amber-400" />
               <span>Exclusividade Garantida</span>
             </div>
