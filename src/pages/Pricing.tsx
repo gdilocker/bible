@@ -46,7 +46,7 @@ const FALLBACK_PLANS: SubscriptionPlan[] = [
     description: 'Identidade digital e física de alto padrão. Voltado para quem deseja ir além da imagem online e fazer parte de um clube exclusivo.',
     features: [
       'Tudo do plano Prime',
-      'Cartão físico personalizado com QR Code dinâmico',
+      'Identidade física personalizada com QR Code dinâmico',
       'Design Black & Gold Edition exclusivo',
       'Selo Elite Member no painel e na página pública',
       'Destaque premium nas listagens e buscas',
@@ -215,19 +215,19 @@ const Pricing: React.FC = () => {
                     )}
 
                     {isElite && (
-                      <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-10">
-                        <div className="bg-gradient-to-r from-slate-500 to-teal-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg flex items-center gap-1">
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                        <div className="bg-gradient-to-r from-slate-500 to-teal-600 text-white px-6 py-2 rounded-full text-xs font-bold shadow-xl flex items-center gap-2 border-2 border-slate-400 whitespace-nowrap">
                           <Sparkles className="w-4 h-4" />
-                          Recomendado
+                          <span>Recomendado</span>
                         </div>
                       </div>
                     )}
 
                     {isSupreme && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                        <div className="bg-gradient-to-r from-yellow-500 to-amber-600 text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg flex items-center gap-1 border-2 border-amber-400">
+                        <div className="bg-gradient-to-r from-yellow-500 to-amber-600 text-black px-6 py-2 rounded-full text-xs font-bold shadow-xl flex items-center gap-2 border-2 border-amber-400 whitespace-nowrap">
                           <Sparkles className="w-4 h-4" />
-                          Premium
+                          <span>Premium</span>
                         </div>
                       </div>
                     )}
