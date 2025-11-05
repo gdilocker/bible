@@ -164,17 +164,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-6">
-              <h3 className="text-sm font-semibold text-black mb-4">Contato</h3>
-              <a
-                href="mailto:contact@com.rich"
-                className="text-black hover:text-[#3B82F6] transition-colors text-sm inline-flex items-center gap-2"
-              >
-                <Mail className="w-4 h-4" />
-                contact@com.rich
-              </a>
-            </div>
           </div>
         </div>
 
