@@ -291,7 +291,7 @@ export default function RichClub() {
       <section className="relative py-32 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
