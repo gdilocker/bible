@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { Mail, Lock, User, Eye, EyeOff, AlertCircle, Loader2, CheckCircle, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, Eye, EyeOff, AlertCircle, Loader2, CheckCircle, ArrowRight, Gift } from 'lucide-react';
 import PhoneInput from '../components/PhoneInput';
 import { RegisterForm } from '../types';
 import * as yup from 'yup';
@@ -233,8 +233,9 @@ const Register: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-bold text-emerald-900 mb-1">
-                      🎁 Você foi convidado por um Parceiro Elite
+                    <h3 className="text-sm font-bold text-emerald-900 mb-1 flex items-center gap-1">
+                      <Gift className="w-4 h-4" />
+                      Você foi convidado por um Parceiro Elite
                     </h3>
                     <p className="text-xs text-slate-700 leading-relaxed">
                       Você terá suporte prioritário na ativação e onboarding guiado.

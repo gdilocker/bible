@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Shield, CheckCircle, AlertCircle, Loader2, Users } from 'lucide-react';
+import { ArrowLeft, Shield, CheckCircle, AlertCircle, Loader2, Users, UserCheck, Info } from 'lucide-react';
 import { ContactInfo } from '../types';
 import { supabase } from '../lib/supabase';
 import * as yup from 'yup';
@@ -693,8 +693,9 @@ const Checkout: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-slate-900 font-bold text-base mb-1">
-                      👤 Parceiro Comercial Vinculado
+                    <h3 className="text-slate-900 font-bold text-base mb-1 flex items-center gap-2">
+                      <UserCheck className="w-5 h-5" />
+                      Parceiro Comercial Vinculado
                     </h3>
                     <p className="text-slate-700 text-sm mb-2">
                       <strong>{affiliateInfo.name}</strong>
@@ -704,7 +705,7 @@ const Checkout: React.FC = () => {
                     </p>
                     <div className="bg-white/70 rounded-lg p-3 text-xs text-slate-600 leading-relaxed border border-slate-200">
                       <p className="mb-1">
-                        ℹ️ <strong>Transparência total:</strong> Este parceiro receberá comissões recorrentes pela sua assinatura.
+                        <strong className="flex items-center gap-1"><Info className="w-3 h-3" />Transparência total:</strong> Este parceiro receberá comissões recorrentes pela sua assinatura.
                       </p>
                       <p className="text-slate-500">
                         • Plano Prime: USD $12.50/venda (25%)<br />

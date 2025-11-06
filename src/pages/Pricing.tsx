@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, Star, Crown, CreditCard, Users, TrendingUp, Sparkles, AlertCircle, Award } from 'lucide-react';
+import { Check, Star, Crown, CreditCard, Users, TrendingUp, Sparkles, AlertCircle, Award, DollarSign, Lightbulb } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface SubscriptionPlan {
@@ -304,8 +304,9 @@ const Pricing: React.FC = () => {
                         </div>
                         {isPrime && (
                           <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-2">
-                            <p className="text-sm text-emerald-800 font-semibold">
-                              🎉 Experimente por 14 dias
+                            <p className="text-sm text-emerald-800 font-semibold flex items-center gap-1">
+                              <Sparkles className="w-4 h-4" />
+                              Experimente por 14 dias
                             </p>
                           </div>
                         )}
@@ -376,8 +377,9 @@ const Pricing: React.FC = () => {
                             <div className="flex items-start gap-3">
                               <TrendingUp className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                               <div className="flex-1">
-                                <p className="text-sm font-bold text-emerald-900 mb-1">
-                                  💰 Programa de Parceria
+                                <p className="text-sm font-bold text-emerald-900 mb-1 flex items-center gap-1">
+                                  <DollarSign className="w-4 h-4" />
+                                  Programa de Parceria
                                 </p>
                                 <p className="text-xs text-slate-700 mb-2">
                                   Ganhe <strong>USD ${isPrime ? '$12.50/venda' : '$35/mês'}</strong> por cliente ativo
@@ -416,8 +418,9 @@ const Pricing: React.FC = () => {
                 </div>
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  💡 Importante: Escolha o plano ideal desde o início
+                <h3 className="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                  <Lightbulb className="w-5 h-5" />
+                  Importante: Escolha o plano ideal desde o início
                 </h3>
                 <p className="text-slate-700 text-sm leading-relaxed mb-3">
                   Por política de estabilidade de assinatura, <strong>mudanças de plano só são liberadas 60 dias após cada pagamento confirmado</strong>.
@@ -531,13 +534,15 @@ const Pricing: React.FC = () => {
               </p>
               <div className="space-y-2 text-xs text-center">
                 <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
-                  <p className="text-emerald-900 font-semibold">
-                    ✓ Planos: comissão em cada mensalidade paga
+                  <p className="text-emerald-900 font-semibold flex items-center justify-center gap-1">
+                    <Check className="w-4 h-4" />
+                    Planos: comissão em cada mensalidade paga
                   </p>
                 </div>
                 <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
-                  <p className="text-emerald-900 font-semibold">
-                    ✓ Domínios regulares e Premium: comissão em cada anuidade/renovação
+                  <p className="text-emerald-900 font-semibold flex items-center justify-center gap-1">
+                    <Check className="w-4 h-4" />
+                    Domínios regulares e Premium: comissão em cada anuidade/renovação
                   </p>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
@@ -557,8 +562,9 @@ const Pricing: React.FC = () => {
           {/* Earnings Examples */}
           <div className="mt-12 bg-gradient-to-br from-slate-900 to-black rounded-3xl p-8 shadow-2xl">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                💰 Potencial de Ganhos
+              <h3 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+                <TrendingUp className="w-6 h-6" />
+                Potencial de Ganhos
               </h3>
               <p className="text-slate-300 text-sm">
                 Veja quanto você pode ganhar compartilhando com.rich com sua rede
