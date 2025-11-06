@@ -760,7 +760,7 @@ const Home = () => {
                                 Domínio Premium - disponível apenas com plano Elite
                               </p>
                               <Link
-                                to="/valores"
+                                to="/pricing"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                               >
                                 <Crown className="w-5 h-5" />
@@ -865,7 +865,7 @@ const Home = () => {
                                 Para registrar este domínio, escolha um dos nossos planos de licenciamento
                               </p>
                               <Link
-                                to="/valores"
+                                to="/pricing"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                               >
                                 <Sparkles className="w-5 h-5" />

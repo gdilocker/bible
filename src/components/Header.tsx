@@ -140,7 +140,7 @@ export default function Header() {
                   Entrar
                 </Link>
                 <Link
-                  to="/signup"
+                  to="/register"
                   className="px-6 py-2 bg-white hover:bg-gray-100 text-black font-semibold rounded-lg transition-colors shadow-lg"
                 >
                   Começar
@@ -331,7 +331,7 @@ export default function Header() {
                           <button
                             onClick={() => {
                               setIsMenuOpen(false);
-                              navigate('/signup');
+                              navigate('/register');
                             }}
                             className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-colors rounded-lg"
                           >
