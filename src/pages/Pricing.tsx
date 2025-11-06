@@ -621,7 +621,7 @@ const Pricing: React.FC = () => {
                 <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <p className="text-red-900 font-semibold flex items-center justify-center gap-1">
                     <X className="w-4 h-4" />
-                    Domínios Premium: SEM comissão (receita exclusiva)
+                    Domínios Premium: SEM comissão (receita exclusiva da empresa)
                   </p>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
