@@ -166,9 +166,53 @@ const Pricing: React.FC = () => {
                 Assinatura
               </span>
             </h1>
-            <p className="text-xl text-[#6B7280] leading-relaxed mb-6">
+            <p className="text-xl text-[#6B7280] leading-relaxed mb-8">
               Escolha o plano ideal para sua licença exclusiva .com.rich
             </p>
+
+            {/* Important Notice - Positioned BEFORE trial */}
+            <div className="relative max-w-4xl mx-auto mb-8">
+              {/* Outer glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-indigo-400/20 to-blue-400/20 rounded-3xl blur-xl"></div>
+
+              {/* Main card */}
+              <div className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl border-2 border-blue-200/50 shadow-2xl overflow-hidden">
+                {/* Decorative top accent */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400"></div>
+
+                {/* Content */}
+                <div className="relative p-8">
+                  {/* Icon and Title */}
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg">
+                      <Lightbulb className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                      Importante: Escolha o plano ideal desde o início
+                    </h2>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-center text-slate-700 text-lg leading-relaxed mb-3">
+                    Por política de estabilidade de assinatura,{' '}
+                    <span className="text-slate-900 font-semibold">mudanças de plano só são liberadas 60 dias após cada pagamento confirmado</span>.
+                  </p>
+
+                  {/* Example Box */}
+                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-blue-100 shadow-sm max-w-2xl mx-auto mb-4">
+                    <p className="text-sm text-slate-700 mb-3">
+                      <span className="font-bold text-slate-900">Exemplo:</span> Se você começar no Prime e depois de 2 semanas quiser o Elite, terá que esperar ~58 dias.
+                    </p>
+                    <div className="flex items-start gap-2 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-3 border border-emerald-200">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-emerald-900 font-semibold">
+                        Recomendação: Se planeja usar recursos Elite (domínios ilimitados, comissão 50%, etc.), assine Elite diretamente!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Trial Banner - Redesigned Modern Luxury */}
             <div className="relative max-w-3xl mx-auto">
@@ -434,41 +478,6 @@ const Pricing: React.FC = () => {
             </div>
           </motion.section>
         )}
-
-        {/* Plan Change Policy Warning */}
-        <motion.section
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <div className="bg-gradient-to-r from-blue-50 to-slate-50 border-2 border-blue-200 rounded-2xl p-6 shadow-lg">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-slate-600 rounded-xl flex items-center justify-center">
-                  <AlertCircle className="w-7 h-7 text-white" />
-                </div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5" />
-                  Importante: Escolha o plano ideal desde o início
-                </h3>
-                <p className="text-slate-700 text-sm leading-relaxed mb-3">
-                  Por política de estabilidade de assinatura, <strong>mudanças de plano só são liberadas 60 dias após cada pagamento confirmado</strong>.
-                </p>
-                <div className="bg-white/70 rounded-lg p-3 border border-blue-200">
-                  <p className="text-xs text-slate-600 leading-relaxed mb-2">
-                    <strong className="text-slate-900">Exemplo:</strong> Se você começar no Prime e depois de 2 semanas quiser o Elite, terá que esperar ~58 dias.
-                  </p>
-                  <p className="text-xs text-blue-700 font-semibold">
-                    ✅ Recomendação: Se planeja usar recursos Elite (domínios ilimitados, comissão 50%, etc.), assine Elite diretamente!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
 
         <motion.section
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20"
