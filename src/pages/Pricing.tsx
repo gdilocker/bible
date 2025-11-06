@@ -675,12 +675,32 @@ const Pricing: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-center mt-8">
-            <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl border border-slate-200">
-              <Award className="w-5 h-5 text-slate-600" />
-              <p className="text-black text-sm font-medium">
-                Cada membro recebe um link de parceria exclusivo e pode acompanhar suas comissões no painel de afiliados
-              </p>
+          <div className="mt-8 max-w-2xl mx-auto">
+            <div className="relative group">
+              {/* Glow effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-400 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
+
+              {/* Main card */}
+              <div className="relative bg-gradient-to-br from-white via-slate-50 to-emerald-50 rounded-2xl border-2 border-emerald-200/60 shadow-xl p-6">
+                <div className="flex items-start gap-4">
+                  {/* Icon */}
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                      <Award className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 pt-1">
+                    <p className="text-slate-800 font-semibold text-base leading-relaxed">
+                      Cada membro recebe um link de parceria exclusivo e pode acompanhar suas comissões no painel de afiliados
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom accent */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-400 rounded-b-2xl"></div>
+              </div>
             </div>
           </div>
         </motion.section>
