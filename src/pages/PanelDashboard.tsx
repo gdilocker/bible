@@ -147,27 +147,47 @@ const PanelDashboard: React.FC = () => {
   const totalSpent = orders.reduce((sum, order) => sum + ((order.total_cents || 0) / 100), 0);
 
   const handleSwitchDomain = async (domainId: string) => {
-    if (!customerId) return;
+    if (!customerId) {
+      console.error('No customer ID found');
+      return;
+    }
+
+    // Previne múltiplos cliques no mesmo domínio
+    if (domainId === activeDomainId) {
+      return;
+    }
+
+    console.log('Switching domain to:', domainId);
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('customers')
         .update({ active_domain_id: domainId })
-        .eq('id', customerId);
+        .eq('id', customerId)
+        .select();
 
-      if (error) throw error;
+      if (error) {
+        console.error('Error updating active domain:', error);
+        throw error;
+      }
 
+      console.log('Domain updated successfully:', data);
       setActiveDomainId(domainId);
 
       // Primeiro tenta buscar pelo domain_id
-      let { data: newProfileData } = await supabase
+      let { data: newProfileData, error: profileError } = await supabase
         .from('user_profiles')
         .select('id, subdomain, store_enabled, social_enabled, domain_id')
         .eq('domain_id', domainId)
         .maybeSingle();
 
+      if (profileError) {
+        console.error('Error fetching profile by domain_id:', profileError);
+      }
+
       // Se não encontrar, busca o perfil do usuário (compatibilidade com perfis antigos)
       if (!newProfileData && user?.id) {
+        console.log('Profile not found by domain_id, trying user_id fallback');
         const { data: fallbackProfileData } = await supabase
           .from('user_profiles')
           .select('id, subdomain, store_enabled, social_enabled, domain_id')
@@ -179,13 +199,17 @@ const PanelDashboard: React.FC = () => {
         newProfileData = fallbackProfileData;
       }
 
+      console.log('Profile data loaded:', newProfileData);
+
       if (newProfileData) {
         setProfileData(newProfileData);
       } else {
         setProfileData(null);
+        console.log('No profile found for this domain');
       }
     } catch (error) {
       console.error('Error switching domain:', error);
+      alert('Erro ao trocar domínio. Por favor, tente novamente.');
     }
   };
 
