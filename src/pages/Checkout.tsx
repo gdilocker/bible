@@ -622,6 +622,34 @@ const Checkout: React.FC = () => {
               </div>
             </div>
 
+            {/* Trial Banner */}
+            <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-5 mb-6 shadow-lg">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="bg-white/20 rounded-full p-2">
+                  <CheckCircle className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-lg mb-1">
+                    🎉 Teste GRÁTIS por 14 Dias
+                  </h3>
+                  <p className="text-emerald-50 text-sm leading-relaxed">
+                    Experimente todos os recursos do plano Prime sem compromisso.
+                    <br />
+                    <strong className="text-white">Você só será cobrado após o período de teste.</strong>
+                  </p>
+                </div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-3 text-emerald-50 text-xs">
+                <p className="mb-2 font-semibold text-white">Como funciona:</p>
+                <ul className="space-y-1 ml-4">
+                  <li>• Cadastre-se e crie seu perfil</li>
+                  <li>• Explore todos os recursos por 14 dias</li>
+                  <li>• No dia 12, você receberá um lembrete</li>
+                  <li>• Cancele quando quiser, sem cobranças</li>
+                </ul>
+              </div>
+            </div>
+
             <div className="bg-green-50 rounded-lg p-4 mb-6">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-5 h-5 text-green-600" />
