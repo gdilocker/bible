@@ -211,7 +211,7 @@ const Pricing: React.FC = () => {
                     <div className="flex items-start gap-2 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-3 border border-emerald-200">
                       <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                       <p className="text-sm text-emerald-900 font-semibold">
-                        Recomendação: Se planeja usar recursos Elite (domínios ilimitados, comissão 50%, etc.), assine Elite diretamente!
+                        Recomendação: Se planeja usar recursos Elite (comissão 50%, mais domínios, etc.), assine Elite diretamente!
                       </p>
                     </div>
                   </div>
