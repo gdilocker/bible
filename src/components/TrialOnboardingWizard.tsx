@@ -18,8 +18,8 @@ interface Step {
 const STEPS: Step[] = [
   {
     id: 'welcome',
-    title: 'Bem-vindo ao seu Trial de 14 Dias! 🎉',
-    description: 'Você tem acesso completo a todos os recursos do plano Prime por 14 dias, sem nenhum custo. Explore à vontade!',
+    title: 'Bem-vindo ao seu Período de Avaliação! 🎉',
+    description: 'Você tem acesso completo a todos os recursos do plano Prime por 14 dias, sem compromisso. Explore à vontade!',
     icon: <Sparkles className="w-8 h-8" />,
   },
   {
@@ -185,11 +185,11 @@ export function TrialOnboardingWizard() {
                   </li>
                   <li className="flex items-start gap-2 text-emerald-800">
                     <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>14 dias para explorar sem compromisso</span>
+                    <span>14 dias de avaliação sem compromisso</span>
                   </li>
                   <li className="flex items-start gap-2 text-emerald-800">
                     <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Cancele quando quiser, sem cobranças</span>
+                    <span>Cancele quando quiser sem cobranças</span>
                   </li>
                 </ul>
               </div>

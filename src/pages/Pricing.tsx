@@ -174,17 +174,17 @@ const Pricing: React.FC = () => {
             <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl p-6 shadow-xl max-w-2xl mx-auto">
               <div className="flex items-center justify-center gap-3 mb-3">
                 <Sparkles className="w-6 h-6" />
-                <h2 className="text-2xl font-bold">Teste GRÁTIS por 14 Dias</h2>
+                <h2 className="text-2xl font-bold">Experimente por 14 Dias</h2>
               </div>
               <p className="text-emerald-50 text-lg leading-relaxed">
-                Experimente todos os recursos do plano Prime sem compromisso. Sem cartão de crédito necessário.
+                Acesso completo aos recursos do plano Prime sem compromisso. Sem cartão de crédito necessário.
                 <br />
-                <strong className="text-white">Você só será cobrado se decidir continuar após o trial.</strong>
+                <strong className="text-white">Você só será cobrado se decidir continuar após o período de avaliação.</strong>
               </p>
               <div className="flex items-center justify-center gap-6 mt-4 text-sm text-emerald-100">
                 <div className="flex items-center gap-2">
                   <Check className="w-5 h-5" />
-                  <span>14 dias grátis</span>
+                  <span>14 dias de teste</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-5 h-5" />
@@ -305,7 +305,7 @@ const Pricing: React.FC = () => {
                         {isPrime && (
                           <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-2">
                             <p className="text-sm text-emerald-800 font-semibold">
-                              🎉 Primeiros 14 dias GRÁTIS
+                              🎉 Experimente por 14 dias
                             </p>
                           </div>
                         )}

@@ -630,12 +630,12 @@ const Checkout: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-lg mb-1">
-                    🎉 Teste GRÁTIS por 14 Dias
+                    🎉 Experimente por 14 Dias
                   </h3>
                   <p className="text-emerald-50 text-sm leading-relaxed">
-                    Experimente todos os recursos do plano Prime sem compromisso.
+                    Acesso completo aos recursos do plano Prime sem compromisso.
                     <br />
-                    <strong className="text-white">Você só será cobrado após o período de teste.</strong>
+                    <strong className="text-white">Você só será cobrado após o período de avaliação.</strong>
                   </p>
                 </div>
               </div>
