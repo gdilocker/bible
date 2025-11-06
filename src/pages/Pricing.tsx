@@ -183,13 +183,18 @@ const Pricing: React.FC = () => {
                 {/* Content */}
                 <div className="relative p-8">
                   {/* Icon and Title */}
-                  <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="flex flex-col items-center justify-center gap-3 mb-4">
                     <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg">
                       <Lightbulb className="w-6 h-6 text-white" />
                     </div>
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
-                      Importante: Escolha o plano ideal desde o início
-                    </h2>
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-1">
+                        Importante
+                      </p>
+                      <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                        Escolha o plano ideal desde o início
+                      </h2>
+                    </div>
                   </div>
 
                   {/* Description */}
