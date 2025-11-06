@@ -71,7 +71,6 @@ const FALLBACK_PLANS: SubscriptionPlan[] = [
       'Plataforma digital independente com identidade própria',
       'Exclusive License Fee (taxa única de licenciamento)',
       'Taxa operacional mensal (varia por domínio premium)',
-      'Mensalidade base (plano Elite) - 50% comissionável',
       'Gerente de conta dedicado 24/7',
       'Suporte corporativo white-glove',
       'Garantias contratuais de SLA',
