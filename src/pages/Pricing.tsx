@@ -170,29 +170,61 @@ const Pricing: React.FC = () => {
               Escolha o plano ideal para sua licença exclusiva .com.rich
             </p>
 
-            {/* Trial Banner */}
-            <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl p-6 shadow-xl max-w-2xl mx-auto">
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <Sparkles className="w-6 h-6" />
-                <h2 className="text-2xl font-bold">Experimente por 14 Dias</h2>
-              </div>
-              <p className="text-emerald-50 text-lg leading-relaxed">
-                Acesso completo aos recursos do plano Prime sem compromisso. Sem cartão de crédito necessário.
-                <br />
-                <strong className="text-white">Você só será cobrado se decidir continuar após o período de avaliação.</strong>
-              </p>
-              <div className="flex items-center justify-center gap-6 mt-4 text-sm text-emerald-100">
-                <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5" />
-                  <span>14 dias de teste</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5" />
-                  <span>Sem cartão</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5" />
-                  <span>Cancele quando quiser</span>
+            {/* Trial Banner - Redesigned Modern Luxury */}
+            <div className="relative max-w-3xl mx-auto">
+              {/* Outer glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 via-teal-400/20 to-emerald-400/20 rounded-3xl blur-xl"></div>
+
+              {/* Main card */}
+              <div className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 rounded-3xl border-2 border-emerald-200/50 shadow-2xl overflow-hidden">
+                {/* Decorative top accent */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-400"></div>
+
+                {/* Content */}
+                <div className="relative p-8">
+                  {/* Icon and Title */}
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl shadow-lg">
+                      <Sparkles className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
+                      Experimente por 14 Dias
+                    </h2>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-center text-slate-700 text-lg leading-relaxed mb-3">
+                    Acesso completo aos recursos do plano Prime sem compromisso.<br />
+                    <span className="text-slate-600">Sem cartão de crédito necessário.</span>
+                  </p>
+
+                  <p className="text-center text-emerald-800 font-semibold text-base mb-6">
+                    Você só será cobrado se decidir continuar após o período de avaliação.
+                  </p>
+
+                  {/* Benefits Grid */}
+                  <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    <div className="flex flex-col items-center gap-2 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-emerald-100 shadow-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full flex items-center justify-center">
+                        <Check className="w-5 h-5 text-emerald-600" />
+                      </div>
+                      <span className="text-sm font-semibold text-slate-800">14 dias de teste</span>
+                    </div>
+
+                    <div className="flex flex-col items-center gap-2 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-emerald-100 shadow-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full flex items-center justify-center">
+                        <Check className="w-5 h-5 text-emerald-600" />
+                      </div>
+                      <span className="text-sm font-semibold text-slate-800">Sem cartão</span>
+                    </div>
+
+                    <div className="flex flex-col items-center gap-2 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-emerald-100 shadow-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full flex items-center justify-center">
+                        <Check className="w-5 h-5 text-emerald-600" />
+                      </div>
+                      <span className="text-sm font-semibold text-slate-800">Cancele quando quiser</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
