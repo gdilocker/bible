@@ -384,31 +384,51 @@ const Pricing: React.FC = () => {
                           )}
                         </div>
                         {isPrime && (
-                          <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-2">
-                            <p className="text-sm text-emerald-800 font-semibold flex items-center gap-1">
-                              <Sparkles className="w-4 h-4" />
-                              Experimente por 14 dias
-                            </p>
-                          </div>
+                          <>
+                            <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-2">
+                              <p className="text-sm text-emerald-800 font-semibold flex items-center gap-1">
+                                <Sparkles className="w-4 h-4" />
+                                Experimente por 14 dias
+                              </p>
+                            </div>
+                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-lg p-4 mt-3">
+                              <p className="text-sm text-blue-900 font-bold mb-2">
+                                Ao se tornar Membro Prime, você recebe 25% de comissão em todas as vendas realizadas pelos seus convidados, tanto no plano Prime quanto no Elite.
+                              </p>
+                              <div className="space-y-1 mt-2">
+                                <p className="text-sm text-blue-800 font-semibold flex items-center gap-1">
+                                  <TrendingUp className="w-4 h-4 text-blue-600" />
+                                  $12,50 por venda do Plano Prime
+                                </p>
+                                <p className="text-sm text-blue-800 font-semibold flex items-center gap-1">
+                                  <TrendingUp className="w-4 h-4 text-blue-600" />
+                                  $17,50 por venda do Plano Elite
+                                </p>
+                              </div>
+                            </div>
+                          </>
                         )}
                         {isElite && (
                           <>
                             <p className="text-sm text-teal-700 font-semibold mt-1">
                               Promoção até 31/12/2024. Depois $100/mês
                             </p>
-                            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-lg p-3 mt-3">
-                              <p className="text-sm text-green-800 font-bold flex items-center gap-1">
-                                <TrendingUp className="w-4 h-4 text-green-600" />
-                                50% de comissão ($35 por venda)
+                            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-lg p-4 mt-3">
+                              <p className="text-sm text-green-900 font-bold mb-2">
+                                Ao se tornar Membro Elite, você recebe 50% de comissão em todas as vendas realizadas pelos seus convidados, tanto no plano Prime quanto no Elite.
                               </p>
+                              <div className="space-y-1 mt-2">
+                                <p className="text-sm text-green-800 font-semibold flex items-center gap-1">
+                                  <TrendingUp className="w-4 h-4 text-green-600" />
+                                  $25 por venda do Plano Prime
+                                </p>
+                                <p className="text-sm text-green-800 font-semibold flex items-center gap-1">
+                                  <TrendingUp className="w-4 h-4 text-green-600" />
+                                  $35 por venda do Plano Elite
+                                </p>
+                              </div>
                             </div>
                           </>
-                        )}
-                        {!isElite && plan.commission_rate && plan.commission_rate > 0 && !isSupreme && (
-                          <p className="text-sm text-slate-600 font-medium mt-2 flex items-center gap-1">
-                            <TrendingUp className="w-4 h-4 text-green-600" />
-                            {plan.commission_rate * 100}% de comissão (${(typeof plan.price_usd === 'number' ? plan.price_usd : parseFloat(plan.price_usd as string || '0')) * plan.commission_rate} por venda)
-                          </p>
                         )}
                       </div>
                       {isElite && (
