@@ -292,7 +292,7 @@ const Pricing: React.FC = () => {
           </div>
         ) : (
           <motion.section
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 mt-16"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
