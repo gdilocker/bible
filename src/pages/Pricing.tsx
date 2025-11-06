@@ -395,6 +395,40 @@ const Pricing: React.FC = () => {
           </motion.section>
         )}
 
+        {/* Plan Change Policy Warning */}
+        <motion.section
+          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="bg-gradient-to-r from-blue-50 to-slate-50 border-2 border-blue-200 rounded-2xl p-6 shadow-lg">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-slate-600 rounded-xl flex items-center justify-center">
+                  <AlertCircle className="w-7 h-7 text-white" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  💡 Importante: Escolha o plano ideal desde o início
+                </h3>
+                <p className="text-slate-700 text-sm leading-relaxed mb-3">
+                  Por política de estabilidade de assinatura, <strong>mudanças de plano só são liberadas 60 dias após cada pagamento confirmado</strong>.
+                </p>
+                <div className="bg-white/70 rounded-lg p-3 border border-blue-200">
+                  <p className="text-xs text-slate-600 leading-relaxed mb-2">
+                    <strong className="text-slate-900">Exemplo:</strong> Se você começar no Prime e depois de 2 semanas quiser o Elite, terá que esperar ~58 dias.
+                  </p>
+                  <p className="text-xs text-blue-700 font-semibold">
+                    ✅ Recomendação: Se planeja usar recursos Elite (domínios ilimitados, comissão 50%, etc.), assine Elite diretamente!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         <motion.section
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20"
           initial={{ opacity: 0, y: 40 }}
