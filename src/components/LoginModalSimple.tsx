@@ -89,7 +89,7 @@ export function LoginModalSimple({ isOpen, onClose, affiliateCode }: LoginModalS
                   className="w-full bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold py-4 rounded-xl transition-all flex items-center justify-center gap-2 border border-white/10 group"
                 >
                   <UserPlus className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  <span>Criar minha conta grátis</span>
+                  <span>Criar minha conta</span>
                 </button>
 
                 <button

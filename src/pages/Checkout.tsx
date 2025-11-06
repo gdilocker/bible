@@ -672,7 +672,7 @@ const Checkout: React.FC = () => {
 
               <div className="flex justify-between items-center text-green-600">
                 <p>Proteção WHOIS</p>
-                <p className="font-medium">Grátis</p>
+                <p className="font-medium">Incluído</p>
               </div>
 
               <div className="border-t pt-4">

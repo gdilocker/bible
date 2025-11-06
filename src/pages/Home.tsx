@@ -559,7 +559,7 @@ const Home = () => {
             >
               <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg shadow-emerald-500/30">
                 <Sparkles className="w-4 h-4" />
-                <span>Plano Prime: 14 dias grátis</span>
+                <span>Plano Prime: 14 dias de teste</span>
               </div>
               <div className="text-gray-400 text-sm">
                 • Sem compromisso
@@ -726,7 +726,7 @@ const Home = () => {
                                 ) : (
                                   <>
                                     <CheckCircle className="w-5 h-5" />
-                                    <span>Registrar Premium (Grátis)</span>
+                                    <span>Registrar Premium (Admin)</span>
                                   </>
                                 )}
                               </button>
@@ -831,7 +831,7 @@ const Home = () => {
                                 ) : (
                                   <>
                                     <CheckCircle className="w-5 h-5" />
-                                    <span>Registrar Agora (Grátis)</span>
+                                    <span>Registrar Agora (Admin)</span>
                                   </>
                                 )}
                               </button>

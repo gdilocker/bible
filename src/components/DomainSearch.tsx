@@ -297,7 +297,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
               {searchResult.isAdmin && searchResult.price?.yearly === 0 ? (
                 <>
                   <p className="text-2xl font-bold text-green-600">
-                    GRÁTIS
+                    INCLUÍDO
                   </p>
                   <p className="text-sm text-gray-500">Vitalício</p>
                   <p className="text-xs text-gray-500 mt-1 flex items-center justify-end gap-1">

@@ -517,7 +517,7 @@ export default function SocialFeed() {
                   onClick={() => navigate('/cadastro')}
                   className="w-full py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 transition-all"
                 >
-                  Criar Conta Grátis
+                  Criar Conta
                 </button>
 
                 <button

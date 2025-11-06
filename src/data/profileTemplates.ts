@@ -109,7 +109,7 @@ export const profileTemplates: ProfileTemplate[] = [
     category: 'Vendas',
     description: 'Para quem vende produtos físicos ou digitais',
     avatar: '🛍️',
-    bio: 'Loja Online | Produtos de qualidade com entrega rápida | Frete grátis acima de R$99',
+    bio: 'Loja Online | Produtos de qualidade com entrega rápida | Frete incluso acima de R$99',
     links: [
       { title: 'Ver Catálogo Completo', url: 'https://loja.com/catalogo', icon: 'ShoppingCart' },
       { title: 'Ofertas da Semana', url: 'https://loja.com/ofertas', icon: 'Tag' },

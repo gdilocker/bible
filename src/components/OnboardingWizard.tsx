@@ -350,7 +350,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     Escolha seu plano
                   </h3>
                   <p className="text-gray-600">
-                    Plano Prime: Experimente grátis por 14 dias. Cancele quando quiser.
+                    Plano Prime: Experimente por 14 dias sem compromisso. Cancele quando quiser.
                   </p>
                 </div>
 
@@ -404,7 +404,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     <h4 className="text-xl font-bold mb-2">Prime</h4>
                     <div className="text-3xl font-bold mb-4">$50<span className="text-sm text-gray-500">/mês</span></div>
                     <div className="text-xs text-teal-600 font-medium mb-4">
-                      🎁 14 dias grátis
+                      🎁 14 dias de teste
                     </div>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
