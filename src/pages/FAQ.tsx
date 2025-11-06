@@ -281,16 +281,28 @@ const FAQ: React.FC = () => {
           question: 'Como funciona o acesso aos lugares exclusivos do Elite Member?',
           answer: (
             <div className="space-y-3">
-              <p>Ser parte do <strong>Elite Member</strong> oferece acesso a lugares exclusivos e eventos premium. No entanto, o acesso a estes locais requer um processo de verificação rigoroso por questões de segurança e relacionamento.</p>
+              <p>Ser parte do <strong>Elite Member</strong> oferece acesso a lugares exclusivos e eventos premium. No entanto, o acesso a determinados locais e encontros especiais requer um processo de verificação rigoroso por questões de segurança e relacionamento.</p>
+
               <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
-                <p className="font-semibold text-amber-900 mb-2">⏱️ Tempo de Processo:</p>
-                <p className="text-amber-800">O processo de verificação e aprovação pode levar um tempo considerável, com <strong>média entre 6 meses a até 2 anos</strong>, dependendo da disponibilidade e dos critérios de cada local exclusivo.</p>
+                <p className="font-semibold text-amber-900 mb-2">🔶 Tempo de Processo:</p>
+                <p className="text-amber-800">O processo de verificação e aprovação pode levar um tempo considerável, com <strong>média entre 6 meses e até 2 anos</strong>, dependendo da disponibilidade e dos critérios de cada local exclusivo.</p>
               </div>
+
               <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                 <p className="font-semibold text-blue-900 mb-2">🔒 Processo de Verificação:</p>
-                <p className="text-blue-800">Todos os membros Elite interessados em frequentar lugares exclusivos devem passar por um processo de verificação interno. Este processo garante a segurança de todos os membros e mantém o padrão de excelência da rede Elite.</p>
+                <p className="text-blue-800">Todos os membros Elite interessados em frequentar <strong>lugares exclusivos</strong> devem passar por um processo de verificação interna. Este processo garante a segurança de todos os membros e mantém o padrão de excelência da rede Elite.</p>
               </div>
-              <p className="text-sm mt-3"><strong>Importante:</strong> O acesso aos lugares exclusivos não é automático com a assinatura Elite. É necessário manifestar interesse e aguardar aprovação conforme os critérios estabelecidos por cada local parceiro.</p>
+
+              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-green-900 mb-2">💠 Acesso e Participação em Eventos:</p>
+                <p className="text-green-800 text-sm mb-2">Existem <strong>eventos e lugares aos quais os membros poderão ter acesso imediato</strong>, conforme sua categoria e disponibilidade de convites.</p>
+                <p className="text-green-800 text-sm">Contudo, <strong>para eventos de maior prestígio, reuniões restritas ou locais de alta exigência</strong>, aplicam-se as regras mencionadas acima — com aprovação e convite sob critério da administração ou parceiros locais.</p>
+              </div>
+
+              <div className="bg-slate-50 border-l-4 border-slate-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-slate-900 mb-2">📌 Importante:</p>
+                <p className="text-slate-800 text-sm">O acesso aos lugares exclusivos <strong>não é automático</strong> com a assinatura Elite. É necessário manifestar interesse e aguardar aprovação conforme os critérios estabelecidos por cada local parceiro.</p>
+              </div>
             </div>
           )
         }

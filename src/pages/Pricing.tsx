@@ -51,7 +51,7 @@ const FALLBACK_PLANS: SubscriptionPlan[] = [
       'Selo Elite Member no painel e na página pública',
       'Destaque premium nas listagens e buscas',
       'Acesso antecipado à coleção de nomes premium',
-      'Convites e benefícios exclusivos de membro',
+      'Acesso a eventos e lugares exclusivos (sujeito a verificação)',
       'Programa de afiliados: 50% de comissão recorrente em cada pagamento do cliente',
       'Suporte prioritário dedicado'
     ],

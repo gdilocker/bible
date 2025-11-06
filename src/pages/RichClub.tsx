@@ -117,6 +117,11 @@ export default function RichClub() {
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
                 Cada encontro é cuidadosamente curado para criar valor, fortalecer relações e gerar oportunidades únicas.
               </p>
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mt-4">
+                <p className="text-sm text-amber-300 leading-relaxed">
+                  <strong className="text-amber-400">Nota:</strong> Acesso a eventos de alto prestígio e locais exclusivos requer processo de verificação. Alguns eventos têm acesso imediato, outros podem levar de 6 meses a 2 anos para aprovação.
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
