@@ -388,7 +388,7 @@ export default function RichClub() {
             </h2>
 
             <div className="inline-flex items-center gap-4 bg-gradient-to-r from-emerald-500/20 to-emerald-600/10 backdrop-blur-md border border-emerald-500/30 rounded-full px-8 py-4 mb-8 shadow-lg shadow-emerald-500/20">
-              <span className="text-5xl font-bold text-emerald-400">50%</span>
+              <span className="text-5xl font-bold text-emerald-400">Até 50%</span>
               <div className="text-left">
                 <div className="text-white font-semibold">de Comissão</div>
                 <div className="text-emerald-300 text-sm">sobre vendas confirmadas</div>
