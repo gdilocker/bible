@@ -18,7 +18,7 @@ const AffiliateAbout: React.FC = () => {
             </p>
           </div>
           <p className="leading-relaxed">
-            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: USD $12.50/venda (25%) | Plano Elite: USD $35/mês (50%) | Plano Supreme: 50%</strong>
+            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: USD $12.50/venda (25%) | Plano Elite: USD $35/mês (50%) | Plano Supreme: 50% sobre mensalidade base (Elite)</strong>
           </p>
           <p className="leading-relaxed">
             Todos os detalhes estão disponíveis nos <a href="/afiliados/termos" className="text-[#3B82F6] hover:underline font-medium">Termos de Afiliados</a>.

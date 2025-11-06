@@ -64,19 +64,23 @@ const FALLBACK_PLANS: SubscriptionPlan[] = [
     plan_type: 'supreme',
     price_usd: 'By Request',
     billing_cycle: 'monthly',
-    description: 'Licenciamento exclusivo de domínios premium com termos personalizados e suporte corporativo dedicado.',
+    description: 'Estrutura completa e personalizada: licenciamento exclusivo de domínios premium com infraestrutura dedicada, suporte corporativo e termos sob medida.',
     features: [
+      'Licenciamento exclusivo global de domínio premium',
+      'Infraestrutura técnica completa e personalizada',
+      'Plataforma digital independente com identidade própria',
       'Exclusive License Fee (taxa única de licenciamento)',
-      'Mensalidade personalizada sob consulta',
-      'Portfólio de domínios premium globais',
-      'Gerente de conta dedicado',
-      'Suporte corporativo prioritário',
-      'Garantias de SLA',
-      'Termos contratuais customizados',
-      'Onboarding white-glove',
-      'Consultoria estratégica inclusa'
+      'Taxa operacional mensal (varia por domínio premium)',
+      'Mensalidade base (plano Elite) - 50% comissionável',
+      'Gerente de conta dedicado 24/7',
+      'Suporte corporativo white-glove',
+      'Garantias contratuais de SLA',
+      'Onboarding personalizado e consultoria estratégica',
+      'Acesso VIP a eventos e networking exclusivo',
+      'Programa de afiliados: 50% sobre mensalidade base'
     ],
-    is_active: true
+    is_active: true,
+    commission_rate: 0.50
   }
 ];
 
