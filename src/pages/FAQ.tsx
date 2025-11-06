@@ -479,7 +479,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'O que acontece se eu cancelar minha assinatura?',
-          answer: 'Ao cancelar, você mantém acesso ao seu domínio e perfil até o final do período pago. Após isso, o perfil social será desativado, mas você ainda terá o domínio registrado até o vencimento anual.'
+          answer: 'Ao cancelar, você mantém acesso ao seu domínio e perfil até o final do período mensal pago. Após isso, o domínio entra em período de graça (15 dias) onde você ainda pode reativar sem custos extras. Se não houver reativação, o domínio passa por estados de suspensão progressiva até eventual liberação após 80 dias. Consulte a documentação completa do ciclo de vida de domínios para mais detalhes.'
         }
       ]
     },
