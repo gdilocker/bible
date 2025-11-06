@@ -637,10 +637,10 @@ const Pricing: React.FC = () => {
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
                 <TrendingUp className="w-6 h-6" />
-                Potencial de Ganhos
+                Exemplos de Comissão
               </h3>
               <p className="text-slate-300 text-sm">
-                Veja quanto você pode ganhar compartilhando com.rich com sua rede
+                Simulações baseadas nas comissões do programa de parceria
               </p>
             </div>
 
@@ -659,7 +659,7 @@ const Pricing: React.FC = () => {
 
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
                 <p className="text-slate-300 text-sm mb-2">Mix 15 Prime + 10 Elite:</p>
-                <p className="text-3xl font-bold text-amber-400 mb-1">USD $537</p>
+                <p className="text-3xl font-bold text-amber-400 mb-1">USD $537.50</p>
                 <p className="text-slate-400 text-xs">por mês recorrente</p>
               </div>
             </div>
@@ -670,7 +670,7 @@ const Pricing: React.FC = () => {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-lg font-semibold transition-all duration-200 shadow-lg"
               >
                 <TrendingUp className="w-5 h-5" />
-                Calcular Meus Ganhos
+                Ver Detalhes do Programa
               </Link>
             </div>
           </div>
