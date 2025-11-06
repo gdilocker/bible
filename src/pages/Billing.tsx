@@ -444,7 +444,7 @@ const Billing: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => navigate('/pricing')}
+              onClick={() => navigate('/valores')}
               className="btn-fluid inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white rounded-xl font-semibold shadow-lg shadow-slate-500/30 hover:shadow-slate-500/50 transition-all"
             >
               <ArrowUpCircle className="w-5 h-5" />

@@ -97,7 +97,7 @@ export function TrialStatusBanner() {
       message: 'Durante o trial, você pode explorar o sistema, mas seus direitos e afiliados só se tornam permanentes após o pagamento confirmado.',
       action: (
         <a
-          href="/pricing"
+          href="/valores"
           className="bg-white text-slate-900 px-6 py-2 rounded-lg font-semibold hover:bg-slate-100 transition-colors"
         >
           Ativar Agora

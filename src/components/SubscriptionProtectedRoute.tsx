@@ -27,7 +27,7 @@ export const SubscriptionProtectedRoute: React.FC<SubscriptionProtectedRouteProp
 
   // Check if user has active subscription
   if (!user.hasActiveSubscription) {
-    return <Navigate to="/pricing" replace />;
+    return <Navigate to="/valores" replace />;
   }
 
   return <>{children}</>;

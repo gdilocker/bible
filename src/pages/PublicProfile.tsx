@@ -681,7 +681,7 @@ export default function PublicProfile({ subdomain: subdomainProp }: PublicProfil
               <button
                 onClick={() => {
                   setShowUpgradeModal(false);
-                  navigate('/pricing');
+                  navigate('/valores');
                 }}
                 className="flex-1 bg-gradient-to-r from-[#F4D03F] via-[#D4AF37] to-[#C6941E] text-black font-bold py-3 rounded-lg"
               >

@@ -158,7 +158,7 @@ export default function ResellerProtectedRoute({ children }: ResellerProtectedRo
               Escolha um plano adequado às suas necessidades e comece a revender hoje mesmo!
             </p>
             <motion.a
-              href="/pricing"
+              href="/valores"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all shadow-md hover:shadow-lg"
