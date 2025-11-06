@@ -644,23 +644,29 @@ const Pricing: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                <p className="text-slate-300 text-sm mb-2">10 Clientes Prime:</p>
-                <p className="text-3xl font-bold text-emerald-400 mb-1">USD $125</p>
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-emerald-400/50 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                  <p className="text-slate-300 text-sm font-medium">10 Clientes Prime</p>
+                </div>
+                <p className="text-4xl font-bold text-emerald-400 mb-2">USD $125</p>
                 <p className="text-slate-400 text-xs">por mês recorrente</p>
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <p className="text-slate-400 text-xs">Comissão: 10 × $12.50</p>
+                </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                <p className="text-slate-300 text-sm mb-2">20 Clientes Elite:</p>
-                <p className="text-3xl font-bold text-yellow-400 mb-1">USD $700</p>
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-yellow-400/50 transition-all duration-300">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <p className="text-slate-300 text-sm font-medium">20 Clientes Elite</p>
+                </div>
+                <p className="text-4xl font-bold text-yellow-400 mb-2">USD $700</p>
                 <p className="text-slate-400 text-xs">por mês recorrente</p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                <p className="text-slate-300 text-sm mb-2">Mix 15 Prime + 10 Elite:</p>
-                <p className="text-3xl font-bold text-amber-400 mb-1">USD $537.50</p>
-                <p className="text-slate-400 text-xs">por mês recorrente</p>
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <p className="text-slate-400 text-xs">Comissão: 20 × $35</p>
+                </div>
               </div>
             </div>
 
