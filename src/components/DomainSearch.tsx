@@ -405,7 +405,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
             {/* ESTADO 2D: User DOES NOT have subscription - show plans */}
             {searchResult.status === "AVAILABLE" && !searchResult.userHasSubscription && (
               <button
-                onClick={() => navigate('/valores')}
+                onClick={() => navigate('/pricing')}
                 className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition-colors flex items-center justify-center gap-2"
               >
                 {searchResult.isPremium ? (
@@ -482,7 +482,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
                 )}
                 {suggestion.planRequired === "ELITE" && (
                   <button
-                    onClick={() => navigate('/valores')}
+                    onClick={() => navigate('/pricing')}
                     className="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
                   >
                     Ver Plano Elite

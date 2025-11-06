@@ -177,7 +177,7 @@ export default function BillingDashboard() {
         subtitle="Gerencie renovações, recuperações e faturas de domínios"
         action={
           <button
-            onClick={() => navigate('/valores')}
+            onClick={() => navigate('/pricing')}
             className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all"
           >
             Ver Planos

@@ -235,7 +235,7 @@ export default function SocialFeed() {
                     <button
                       onClick={() => {
                         setShowHamburgerMenu(false);
-                        navigate('/valores');
+                        navigate('/pricing');
                       }}
                       className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                     >
@@ -550,7 +550,7 @@ export default function SocialFeed() {
 
               <div className="w-full space-y-3 pt-4">
                 <button
-                  onClick={() => navigate('/valores')}
+                  onClick={() => navigate('/pricing')}
                   className="w-full py-3.5 bg-gradient-to-r from-[#F4D03F] via-[#D4AF37] to-[#C6941E] hover:from-[#D4AF37] hover:to-[#B8941E] text-black font-bold rounded-xl transition-all transform hover:scale-105 shadow-lg"
                 >
                   Ver Planos

@@ -134,7 +134,7 @@ export function DomainLimitIndicator() {
         {/* Upgrade Button */}
         {!limits.is_unlimited && !limits.can_purchase_more && (
           <a
-            href="/valores"
+            href="/pricing"
             className="flex-shrink-0 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all flex items-center gap-2"
           >
             <TrendingUp className="w-4 h-4" />

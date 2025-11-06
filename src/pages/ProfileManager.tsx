@@ -607,7 +607,7 @@ export default function ProfileManager() {
               Para criar um perfil, você precisa ter uma assinatura ativa.
             </p>
             <button
-              onClick={() => navigate('/valores')}
+              onClick={() => navigate('/pricing')}
               className="px-6 py-3 bg-[#D4AF37] text-black font-semibold rounded-lg hover:bg-[#B8941F] transition-colors"
             >
               Ver Planos
