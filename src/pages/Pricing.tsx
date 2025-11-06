@@ -516,6 +516,13 @@ const Pricing: React.FC = () => {
                           </div>
                         </div>
                       )}
+
+                      {/* Observação sobre comissões */}
+                      <div className="mt-6 pt-4 border-t border-gray-200">
+                        <p className="text-xs text-gray-500 text-center leading-relaxed">
+                          As comissões são calculadas sobre o valor líquido efetivamente recebido, após deduções e taxas aplicáveis. Não há repasse de comissão em casos de estorno, cancelamento ou inadimplência.
+                        </p>
+                      </div>
                     </div>
                   </motion.div>
                 );
