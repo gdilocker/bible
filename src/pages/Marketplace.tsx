@@ -178,8 +178,8 @@ export default function Marketplace() {
         .single();
 
       if (error || !subscription) {
-        // Sem assinatura - redirecionar para pricing
-        navigate('/pricing', {
+        // Sem assinatura - redirecionar para valores
+        navigate('/valores', {
           state: {
             message: 'Você precisa de um plano Elite ativo para adquirir domínios premium.',
             returnTo: `/premium?domain=${fqdn}`
@@ -192,7 +192,7 @@ export default function Marketplace() {
 
       if (planType !== 'elite') {
         // Tem plano, mas não é Elite - redirecionar para upgrade
-        navigate('/pricing', {
+        navigate('/valores', {
           state: {
             message: 'Domínios premium requerem o plano Elite. Faça upgrade agora!',
             returnTo: `/premium?domain=${fqdn}`

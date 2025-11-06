@@ -399,7 +399,7 @@ const DomainSlugPage: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => navigate('/pricing')}
+                onClick={() => navigate('/valores')}
                 className="px-8 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold rounded-lg transition-colors"
               >
                 Ver Planos
