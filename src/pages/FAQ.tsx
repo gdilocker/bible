@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle, Building2, Globe, Mail, CreditCard, Shield, Scale, Headphones, Users } from 'lucide-react';
+import { ChevronDown, HelpCircle, Building2, Globe, Mail, CreditCard, Shield, Scale, Headphones, Users, Clock } from 'lucide-react';
 
 interface FAQItem {
   question: string;
