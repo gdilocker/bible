@@ -322,11 +322,17 @@ const Pricing: React.FC = () => {
                         )}
                       </div>
                       {isElite && (
-                        <div className="mb-3">
-                          <p className="text-xs text-gray-600">
-                            A partir de 1º de janeiro de 2025, o valor será $100/mês
-                          </p>
-                        </div>
+                        <>
+                          <div className="bg-gradient-to-r from-teal-50 to-slate-50 border-2 border-teal-300 rounded-xl p-4 mb-4">
+                            <p className="text-sm font-bold text-teal-900 mb-2 flex items-center gap-2">
+                              <Check className="w-5 h-5 text-teal-600" />
+                              Comece direto no Elite e economize!
+                            </p>
+                            <p className="text-xs text-slate-700 leading-relaxed">
+                              Ao escolher Elite desde o início, você evita o período de 60 dias de permanência obrigatória do Prime e já aproveita todos os benefícios premium imediatamente.
+                            </p>
+                          </div>
+                        </>
                       )}
 
                       {isSupreme ? (
