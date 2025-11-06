@@ -454,25 +454,52 @@ const Pricing: React.FC = () => {
                       {/* Affiliate CTA */}
                       {(isElite || isPrime) && plan.commission_rate && plan.commission_rate > 0 && (
                         <div className="mt-6 pt-6 border-t border-gray-200">
-                          <div className="bg-gradient-to-r from-emerald-50 to-slate-50 rounded-lg p-4 border border-emerald-200">
-                            <div className="flex items-start gap-3">
-                              <TrendingUp className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                              <div className="flex-1">
-                                <p className="text-sm font-bold text-emerald-900 mb-1 flex items-center gap-1">
-                                  <DollarSign className="w-4 h-4" />
+                          <div className="relative overflow-hidden bg-gradient-to-br from-emerald-500 via-teal-500 to-green-600 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                            {/* Decorative Elements */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
+
+                            {/* Icon Badge */}
+                            <div className="relative flex items-center gap-3 mb-4">
+                              <div className="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl shadow-lg">
+                                <TrendingUp className="w-6 h-6 text-white" />
+                              </div>
+                              <div>
+                                <p className="text-white/90 text-xs font-semibold uppercase tracking-wider mb-0.5">
                                   Programa de Parceria
                                 </p>
-                                <p className="text-xs text-slate-700 mb-2">
-                                  Ganhe <strong>USD ${isPrime ? '$12.50/venda' : '$35/mês'}</strong> por cliente ativo
+                                <p className="text-white text-lg font-bold">
+                                  {isPrime ? 'Ganhe por venda' : 'Renda recorrente'}
                                 </p>
-                                <Link
-                                  to="/afiliados/sobre"
-                                  className="text-xs text-blue-600 hover:text-blue-700 font-semibold underline"
-                                >
-                                  Saiba como funciona →
-                                </Link>
                               </div>
                             </div>
+
+                            {/* Earnings Display */}
+                            <div className="relative bg-white/10 backdrop-blur-md rounded-xl p-4 mb-4 border border-white/20">
+                              <div className="flex items-baseline gap-2 mb-1">
+                                <DollarSign className="w-5 h-5 text-yellow-300" />
+                                <span className="text-3xl font-black text-white">
+                                  USD ${isPrime ? '12.50' : '35'}
+                                </span>
+                                <span className="text-white/80 text-sm font-medium">
+                                  {isPrime ? '/venda' : '/mês'}
+                                </span>
+                              </div>
+                              <p className="text-white/90 text-xs">
+                                por cliente ativo
+                              </p>
+                            </div>
+
+                            {/* CTA Button */}
+                            <Link
+                              to="/afiliados/sobre"
+                              className="relative flex items-center justify-center gap-2 w-full bg-white hover:bg-white/95 text-emerald-700 font-bold text-sm py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group-hover:scale-[1.02]"
+                            >
+                              <span>Saiba como funciona</span>
+                              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                              </svg>
+                            </Link>
                           </div>
                         </div>
                       )}
