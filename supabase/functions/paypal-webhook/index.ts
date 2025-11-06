@@ -160,41 +160,162 @@ async function handleSubscriptionActivated(event: any, supabase: any) {
   const subscription = event.resource;
   const customId = subscription.custom_id;
 
+  console.log(`[Subscription Activated] Processing subscription: ${subscription.id}`);
+  console.log(`[Subscription Activated] Custom ID: ${customId}`);
+
   if (!customId) {
-    console.error("Missing custom_id in subscription");
+    console.error("[Subscription Activated] ❌ Missing custom_id in subscription");
     return { success: false, error: "Missing custom_id" };
   }
 
-  const [userId, plan] = customId.split("|");
+  const [userId, domain] = customId.split("|");
 
-  if (!userId) {
-    console.error("Invalid custom_id format");
+  if (!userId || !domain) {
+    console.error("[Subscription Activated] ❌ Invalid custom_id format");
     return { success: false, error: "Invalid custom_id" };
   }
 
   try {
+    // Find pending order
+    const { data: pendingOrder, error: pendingError } = await supabase
+      .from("pending_orders")
+      .select("*")
+      .eq("paypal_order_id", subscription.id)
+      .maybeSingle();
+
+    if (pendingError) throw pendingError;
+
+    if (!pendingOrder) {
+      console.error(`[Subscription Activated] ❌ Pending order not found for subscription: ${subscription.id}`);
+      return { success: false, error: "Pending order not found" };
+    }
+
+    console.log(`[Subscription Activated] Found pending order for domain: ${pendingOrder.fqdn}`);
+
+    // Mark pending order as completed
+    await supabase
+      .from("pending_orders")
+      .update({ status: "completed" })
+      .eq("id", pendingOrder.id);
+
+    // Get or create customer
+    const { data: customer } = await supabase
+      .from("customers")
+      .select("id")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    let customerId = customer?.id;
+
+    if (!customerId) {
+      const { data: userData } = await supabase.auth.admin.getUserById(userId);
+      const { data: newCustomer } = await supabase
+        .from("customers")
+        .insert({
+          user_id: userId,
+          email: userData?.user?.email || "",
+        })
+        .select()
+        .single();
+
+      customerId = newCustomer?.id;
+    }
+
+    if (!customerId) {
+      console.error(`[Subscription Activated] ❌ Could not create/find customer for user: ${userId}`);
+      return { success: false, error: "Customer not found" };
+    }
+
+    // Create order record
+    const planId = pendingOrder.contact_info?.plan_id;
+    const planCode = pendingOrder.contact_info?.plan_code || "prime";
+    const domainType = pendingOrder.contact_info?.domain_type || 'personal';
+
+    const { data: order, error: orderError } = await supabase
+      .from("orders")
+      .insert({
+        customer_id: customerId,
+        fqdn: pendingOrder.fqdn,
+        years: 1,
+        plan: planCode,
+        plan_id: planId,
+        total_cents: Math.round(pendingOrder.amount * 100),
+        status: "completed",
+        paypal_order_id: subscription.id,
+      })
+      .select()
+      .single();
+
+    if (orderError) {
+      console.error(`[Subscription Activated] ❌ Failed to create order:`, orderError);
+      throw orderError;
+    }
+
+    console.log(`[Subscription Activated] Order created: ${order.id}`);
+
+    // Get display order for new domain
+    const { data: existingDomains } = await supabase
+      .from("domains")
+      .select("display_order")
+      .eq("customer_id", customerId)
+      .order("display_order", { ascending: false })
+      .limit(1);
+
+    const nextDisplayOrder = existingDomains && existingDomains.length > 0
+      ? (existingDomains[0].display_order || 0) + 1
+      : 1;
+
+    // Create domain
+    const { data: domainRecord, error: domainError } = await supabase
+      .from("domains")
+      .insert({
+        customer_id: customerId,
+        fqdn: pendingOrder.fqdn,
+        registrar_status: "active",
+        expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+        display_order: nextDisplayOrder,
+        domain_type: domainType,
+      })
+      .select()
+      .single();
+
+    if (domainError) {
+      console.error(`[Subscription Activated] ❌ Failed to create domain:`, domainError);
+      throw domainError;
+    }
+
+    console.log(`[Subscription Activated] Domain created: ${domainRecord.id} (${pendingOrder.fqdn})`);
+
+    // Create subscription record
     const nextBillingTime = subscription.billing_info?.next_billing_time;
     const now = new Date().toISOString();
 
-    await supabase
+    const { data: subscriptionRecord, error: subscriptionError } = await supabase
       .from("subscriptions")
       .insert({
         user_id: userId,
+        plan_id: planId,
         paypal_subscription_id: subscription.id,
-        plan: plan || "basic",
-        status: subscription.status,
-        current_period_start: subscription.start_time,
-        current_period_end: nextBillingTime,
-        last_payment_at: now,
-        next_plan_change_available_at: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(), // 60 days
-        payment_method: 'paypal',
-        balance_due: 0,
-      });
+        status: 'active',
+        started_at: subscription.start_time || now,
+        next_billing_date: nextBillingTime,
+        created_at: now,
+        updated_at: now,
+      })
+      .select()
+      .single();
 
-    console.log(`[Subscription] ✅ Subscription activated with 60-day lock period`);
-    return { success: true };
+    if (subscriptionError) {
+      console.error(`[Subscription Activated] ⚠️ Failed to create subscription record:`, subscriptionError);
+      // Don't fail the whole process if subscription record creation fails
+    } else {
+      console.log(`[Subscription Activated] Subscription record created: ${subscriptionRecord.id}`);
+    }
+
+    console.log(`[Subscription Activated] ✅ Complete! Order: ${order.id}, Domain: ${domainRecord.id}, Subscription: ${subscriptionRecord?.id}`);
+    return { success: true, order_id: order.id, domain_id: domainRecord.id, subscription_id: subscriptionRecord?.id };
   } catch (error) {
-    console.error("Error handling subscription activated:", error);
+    console.error("[Subscription Activated] ❌ Error handling subscription activation:", error);
     return { success: false, error: String(error) };
   }
 }
@@ -203,52 +324,66 @@ async function handleSubscriptionPayment(event: any, supabase: any) {
   const sale = event.resource;
   const billingAgreementId = sale.billing_agreement_id;
 
+  console.log(`[Subscription Payment] Processing payment for subscription: ${billingAgreementId}`);
+
   if (!billingAgreementId) {
-    console.error("Missing billing_agreement_id");
+    console.error("[Subscription Payment] ❌ Missing billing_agreement_id");
     return { success: false, error: "Missing billing_agreement_id" };
   }
 
   try {
     const now = new Date().toISOString();
-    const nextChangeDate = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString();
 
+    const { data: subscription, error: fetchError } = await supabase
+      .from("subscriptions")
+      .select("*")
+      .eq("paypal_subscription_id", billingAgreementId)
+      .maybeSingle();
+
+    if (fetchError) throw fetchError;
+
+    if (!subscription) {
+      console.error(`[Subscription Payment] ⚠️ Subscription not found: ${billingAgreementId}`);
+      return { success: false, error: "Subscription not found" };
+    }
+
+    // Update subscription with successful payment
     await supabase
       .from("subscriptions")
       .update({
         status: 'active',
-        last_payment_at: now,
-        next_plan_change_available_at: nextChangeDate,
-        balance_due: 0,
-        plan_change_blocked_reason: null,
+        updated_at: now,
       })
       .eq("paypal_subscription_id", billingAgreementId);
 
-    console.log(`[Payment] ✅ Subscription payment processed, 60-day lock activated`);
+    console.log(`[Subscription Payment] ✅ Subscription payment processed successfully`);
     return { success: true };
   } catch (error) {
-    console.error("Error handling subscription payment:", error);
+    console.error("[Subscription Payment] ❌ Error handling subscription payment:", error);
     return { success: false, error: String(error) };
   }
 }
 
 async function handlePaymentFailed(event: any, supabase: any) {
   const subscription = event.resource;
-  const amountDue = subscription.summary?.outstanding_balance?.value || 0;
+
+  console.log(`[Payment Failed] Processing failed payment for subscription: ${subscription.id}`);
 
   try {
+    const now = new Date().toISOString();
+
     await supabase
       .from("subscriptions")
       .update({
         status: 'past_due',
-        balance_due: amountDue,
-        plan_change_blocked_reason: 'Pagamento pendente',
+        updated_at: now,
       })
       .eq("paypal_subscription_id", subscription.id);
 
-    console.log(`[Payment] ⚠️ Payment failed, subscription blocked from plan changes`);
+    console.log(`[Payment Failed] ⚠️ Subscription marked as past_due`);
     return { success: true };
   } catch (error) {
-    console.error("Error handling payment failed:", error);
+    console.error("[Payment Failed] ❌ Error handling payment failed:", error);
     return { success: false, error: String(error) };
   }
 }
@@ -256,15 +391,24 @@ async function handlePaymentFailed(event: any, supabase: any) {
 async function handleSubscriptionCancelled(event: any, supabase: any) {
   const subscription = event.resource;
 
+  console.log(`[Subscription Cancelled] Processing cancellation for subscription: ${subscription.id}`);
+
   try {
+    const now = new Date().toISOString();
+
     await supabase
       .from("subscriptions")
-      .update({ status: "cancelled" })
+      .update({
+        status: "cancelled",
+        cancelled_at: now,
+        updated_at: now,
+      })
       .eq("paypal_subscription_id", subscription.id);
 
+    console.log(`[Subscription Cancelled] ✅ Subscription marked as cancelled`);
     return { success: true };
   } catch (error) {
-    console.error("Error handling subscription cancelled:", error);
+    console.error("[Subscription Cancelled] ❌ Error handling subscription cancelled:", error);
     return { success: false, error: String(error) };
   }
 }

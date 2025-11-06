@@ -290,13 +290,26 @@ const Checkout: React.FC = () => {
         return;
       }
 
+      // Fetch plan details to get PayPal Plan ID
+      const { data: planData } = await supabase
+        .from('subscription_plans')
+        .select('paypal_plan_id_sandbox, paypal_plan_id_live')
+        .eq('id', selectedPlanId)
+        .maybeSingle();
+
+      const isLiveMode = import.meta.env.VITE_PAYPAL_MODE === 'live';
+      const paypalPlanId = isLiveMode ? planData?.paypal_plan_id_live : planData?.paypal_plan_id_sandbox;
+
       // Check if mock payment mode is enabled
       const useMockPayment = import.meta.env.VITE_USE_PAYMENT_MOCK === 'true';
+
+      // Use subscription endpoint (works with or without PayPal credentials)
       const paymentEndpoint = useMockPayment
         ? 'mock-payment-create'
-        : 'paypal-create-order';
+        : 'paypal-create-subscription';
 
-      console.log(`[Checkout] Using ${useMockPayment ? 'MOCK' : 'REAL'} payment mode`);
+      console.log(`[Checkout] Using ${useMockPayment ? 'MOCK' : 'SUBSCRIPTION'} payment mode`);
+      console.log(`[Checkout] PayPal Plan ID: ${paypalPlanId || 'Not configured (will use dev mode)'}`);
 
       const response = await fetch(`${supabaseUrl}/functions/v1/${paymentEndpoint}`, {
         method: 'POST',
@@ -307,11 +320,12 @@ const Checkout: React.FC = () => {
         },
         body: JSON.stringify({
           domain,
-          price: planPrice,
           planId: selectedPlanId,
           planCode: selectedPlanCode,
+          paypalPlanId: paypalPlanId || 'MOCK_PLAN_ID', // Fallback for dev mode
           contactInfo,
           domainType,
+          domainPrice, // Domain one-time cost
           return_url: `${window.location.origin}/paypal/return`,
           cancel_url: `${window.location.origin}/paypal/cancel`
         })
