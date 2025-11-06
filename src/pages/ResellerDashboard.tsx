@@ -504,8 +504,8 @@ const ResellerDashboard: React.FC = () => {
                   <span><span className="font-bold">Planos de assinatura</span>: comissão RECORRENTE a cada mensalidade paga pelo cliente</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-300 font-bold mt-0.5">✓</span>
-                  <span><span className="font-bold">Domínios (regulares e Premium)</span>: comissão RECORRENTE a cada anuidade/renovação paga</span>
+                  <span className="text-red-300 font-bold mt-0.5">✗</span>
+                  <span><span className="font-bold">Domínios Premium</span>: <strong className="text-red-200">SEM comissão</strong> (receita exclusiva da empresa)</span>
                 </li>
               </ul>
               <p className="text-slate-200 text-xs mt-3">

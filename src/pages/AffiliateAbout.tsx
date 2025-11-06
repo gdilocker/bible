@@ -68,8 +68,13 @@ const AffiliateAbout: React.FC = () => {
               Acompanhe suas vendas
             </h3>
             <p className="leading-relaxed pl-9">
-              Sempre que um cliente adquirir um plano ou domínio através do seu link, você receberá comissão recorrente a cada pagamento realizado.
+              Sempre que um cliente adquirir um <strong className="text-black">plano de assinatura</strong> através do seu link, você receberá comissão recorrente a cada pagamento realizado.
             </p>
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 ml-9 mt-2">
+              <p className="text-sm text-amber-900">
+                <strong>Importante:</strong> Comissões aplicam-se <strong>exclusivamente</strong> a vendas de planos de assinatura (Prime, Elite, Supreme). Domínios premium são receita exclusiva da empresa.
+              </p>
+            </div>
           </div>
 
           <div className="space-y-3">

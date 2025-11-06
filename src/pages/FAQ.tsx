@@ -527,7 +527,12 @@ const FAQ: React.FC = () => {
           question: 'Como funciona o Programa de Afiliados?',
           answer: (
             <div className="space-y-3">
-              <p>O Programa de Afiliados permite que você ganhe comissões recorrentes promovendo planos de assinatura e domínios da plataforma .com.rich.</p>
+              <p>O Programa de Afiliados permite que você ganhe comissões recorrentes promovendo <strong className="text-black">exclusivamente planos de assinatura</strong> da plataforma .com.rich.</p>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-2">
+                <p className="text-sm text-amber-900">
+                  <strong>⚠️ Importante:</strong> Comissões aplicam-se apenas a vendas de planos de assinatura. Domínios premium são receita exclusiva da empresa e não geram comissão.
+                </p>
+              </div>
               <div className="bg-gradient-to-r from-slate-50 to-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
                 <p className="font-semibold text-black mb-2">📊 Estrutura de Comissões Recorrentes:</p>
                 <p className="mb-2">O percentual depende do seu plano de afiliado:</p>
@@ -572,7 +577,17 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Existe comissão sobre domínios Premium?',
-          answer: 'Sim. Domínios Premium (Galeria) também geram comissão recorrente nas anualidades/renovações, com os mesmos percentuais e condições (25% Prime / 50% Elite).'
+          answer: (
+            <div className="space-y-3">
+              <p className="font-semibold text-red-900">❌ Não. Domínios premium são receita exclusiva da empresa.
+              </p>
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <p className="text-red-800 text-sm">
+                  O programa de afiliados aplica comissões <strong>exclusivamente</strong> a vendas de planos de assinatura (Prime, Elite, Supreme). Vendas de domínios premium da galeria não geram comissão para afiliados, conforme política comercial da plataforma.
+                </p>
+              </div>
+            </div>
+          )
         },
         {
           question: 'Quando eu não recebo comissão?',

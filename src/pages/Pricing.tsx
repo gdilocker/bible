@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, Star, Crown, CreditCard, Users, TrendingUp, Sparkles, AlertCircle, Award, DollarSign, Lightbulb } from 'lucide-react';
+import { Check, Star, Crown, CreditCard, Users, TrendingUp, Sparkles, AlertCircle, Award, DollarSign, Lightbulb, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface SubscriptionPlan {
@@ -618,10 +618,10 @@ const Pricing: React.FC = () => {
                     Planos: comissão em cada mensalidade paga
                   </p>
                 </div>
-                <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
-                  <p className="text-emerald-900 font-semibold flex items-center justify-center gap-1">
-                    <Check className="w-4 h-4" />
-                    Domínios regulares e Premium: comissão em cada anuidade/renovação
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                  <p className="text-red-900 font-semibold flex items-center justify-center gap-1">
+                    <X className="w-4 h-4" />
+                    Domínios Premium: SEM comissão (receita exclusiva)
                   </p>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">

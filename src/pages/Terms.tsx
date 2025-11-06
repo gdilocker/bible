@@ -151,8 +151,8 @@ const Terms: React.FC = () => {
                       Existem dois planos principais:
                     </p>
                     <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside ml-4">
-                      <li><strong className="text-black">Prime ($50/mês):</strong> Inclui 1 domínio .com.rich, sistema completo de links personalizados, analytics, QR codes e participação no programa de afiliados com comissão de 25%.</li>
-                      <li><strong className="text-black">Elite ($70/mês, aumentando para $100/mês em 1º jan/2026):</strong> Inclui todos os recursos do Prime, acesso exclusivo à Galeria Premium, suporte prioritário, comissão de afiliado de 50% e benefícios exclusivos.</li>
+                      <li><strong className="text-black">Prime ($50/mês):</strong> Inclui 1 domínio .com.rich, sistema completo de links personalizados, analytics, QR codes e participação no programa de afiliados com comissão de 25% sobre vendas de planos de assinatura.</li>
+                      <li><strong className="text-black">Elite ($70/mês, aumentando para $100/mês em 1º jan/2026):</strong> Inclui todos os recursos do Prime, acesso exclusivo à Galeria Premium, suporte prioritário, comissão de afiliado de 50% sobre vendas de planos de assinatura e benefícios exclusivos.</li>
                     </ul>
 
                     <h3 className="text-lg font-semibold text-black mt-4">5.2 Domínios Adicionais</h3>
