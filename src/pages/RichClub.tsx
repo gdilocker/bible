@@ -8,8 +8,8 @@ import eventosImage from '../assets/eventos-richclub.jpg.png';
 import espacosImage from '../assets/espacos-richapproved.jpg.jpg';
 import designImage from '../assets/design-legado.jpg.jpeg';
 import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
-import domainImage from '../assets/1234567 copy.png';
-import affiliateImage from '../assets/Imagens do site (16)-min (1) copy.jpg';
+import domainImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
+import affiliateImage from '../assets/pessoas-que-participam-de-um-evento-de-alto-protocolo.jpg';
 
 export default function RichClub() {
   return (
