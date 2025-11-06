@@ -26,7 +26,9 @@ export default function Footer() {
               />
             </div>
             <p className="text-[#6B7280] text-sm leading-relaxed max-w-md mb-4">
-              Global Digital Identity detém a prestigiada extensão .com.rich, um dos domínios mais exclusivos do mundo. Oferecemos registro, proteção e gestão profissional com infraestrutura segura, suporte internacional 24/7 e tecnologia avançada. Eleve sua identidade digital com um domínio .com.rich que transmite sucesso e sofisticação.
+              A Global Digital Identity é detentora da mais prestigiada extensão digital do mundo, o domínio .com.rich.
+              Oferecemos registro, proteção e gestão profissional com infraestrutura de alta performance, suporte internacional 24/7 e tecnologia de ponta.
+              Eleve sua presença online com um domínio .com.rich que reflete sucesso, credibilidade e sofisticação.
             </p>
           </div>
 
