@@ -18,7 +18,7 @@ const AffiliateAbout: React.FC = () => {
             </p>
           </div>
           <p className="leading-relaxed">
-            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: 25% | Plano Elite: 50% | Plano Supreme: 50%</strong>
+            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: USD $12.50/venda (25%) | Plano Elite: USD $35/mês (50%) | Plano Supreme: 50%</strong>
           </p>
           <p className="leading-relaxed">
             Todos os detalhes estão disponíveis nos <a href="/afiliados/termos" className="text-[#3B82F6] hover:underline font-medium">Termos de Afiliados</a>.
@@ -126,17 +126,17 @@ const AffiliateAbout: React.FC = () => {
               </p>
               <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mb-3">
                 <p className="text-emerald-900 text-sm leading-relaxed">
-                  <strong>Planos (mensal) e domínios (anual)</strong> geram comissão recorrente — <strong>25% (Prime)</strong> ou <strong>50% (Elite & Supreme)</strong> — sempre sobre o valor líquido.
+                  <strong>Prime:</strong> USD $12.50 por venda (25%) • <strong>Elite:</strong> USD $35/mês recorrente (50%) • <strong>Supreme:</strong> 50% recorrente
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-lg">
                   <DollarSign className="w-4 h-4 text-emerald-600" />
-                  <span className="text-sm font-semibold text-emerald-900">Prime: 25% recorrente</span>
+                  <span className="text-sm font-semibold text-emerald-900">Prime: USD $12.50/venda</span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <DollarSign className="w-4 h-4 text-yellow-600" />
-                  <span className="text-sm font-semibold text-yellow-900">Elite: 50% recorrente</span>
+                  <span className="text-sm font-semibold text-yellow-900">Elite: USD $35/mês</span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg">
                   <DollarSign className="w-4 h-4 text-amber-600" />

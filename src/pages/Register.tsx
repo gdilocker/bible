@@ -217,6 +217,34 @@ const Register: React.FC = () => {
           <p className="mt-2 text-center text-lg text-[#6B7280]">
             Comece sua jornada com .com.rich
           </p>
+
+          {getAffiliateCode() && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="mt-6 max-w-md mx-auto"
+            >
+              <div className="bg-gradient-to-r from-emerald-50 to-slate-50 border-2 border-emerald-200 rounded-2xl p-4 shadow-lg">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-slate-600 rounded-xl flex items-center justify-center">
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-sm font-bold text-emerald-900 mb-1">
+                      🎁 Você foi convidado por um Parceiro Elite
+                    </h3>
+                    <p className="text-xs text-slate-700 leading-relaxed">
+                      Você terá suporte prioritário na ativação e onboarding guiado.
+                      Seu parceiro receberá comissões recorrentes pelas vendas efetivadas.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
 
         <motion.div

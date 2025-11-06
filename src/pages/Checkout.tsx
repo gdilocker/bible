@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Shield, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, Shield, CheckCircle, AlertCircle, Loader2, Users } from 'lucide-react';
 import { ContactInfo } from '../types';
 import { supabase } from '../lib/supabase';
 import * as yup from 'yup';
@@ -94,6 +94,7 @@ const Checkout: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [affiliateInfo, setAffiliateInfo] = useState<{name: string; plan: string} | null>(null);
 
   useEffect(() => {
     if (!domain) {
@@ -180,6 +181,66 @@ const Checkout: React.FC = () => {
 
     fetchUserDomains();
   }, []);
+
+  useEffect(() => {
+    const fetchAffiliateInfo = async () => {
+      try {
+        // Get affiliate code from URL or cookie
+        const params = new URLSearchParams(location.search);
+        const urlRef = params.get('ref');
+        let affiliateCode = urlRef;
+
+        if (!affiliateCode) {
+          const cookies = document.cookie.split(';');
+          for (const cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'ref') {
+              affiliateCode = value;
+              break;
+            }
+          }
+        }
+
+        if (affiliateCode) {
+          // Fetch affiliate details
+          const { data: affiliateData } = await supabase
+            .from('affiliates')
+            .select(`
+              user_id,
+              users:user_id (
+                customers (
+                  first_name,
+                  last_name
+                ),
+                subscriptions (
+                  plan:plan_id (
+                    plan_name
+                  )
+                )
+              )
+            `)
+            .eq('affiliate_code', affiliateCode)
+            .maybeSingle();
+
+          if (affiliateData && affiliateData.users) {
+            const customer = affiliateData.users.customers?.[0];
+            const subscription = affiliateData.users.subscriptions?.[0];
+
+            if (customer) {
+              setAffiliateInfo({
+                name: `${customer.first_name} ${customer.last_name}`,
+                plan: subscription?.plan?.plan_name || 'Elite'
+              });
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching affiliate info:', error);
+      }
+    };
+
+    fetchAffiliateInfo();
+  }, [location.search]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -621,6 +682,39 @@ const Checkout: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Affiliate Partner Box */}
+            {affiliateInfo && (
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 border-2 border-slate-300 rounded-xl p-5 mb-6 shadow-md">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-blue-600 rounded-xl flex items-center justify-center">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-slate-900 font-bold text-base mb-1">
+                      👤 Parceiro Comercial Vinculado
+                    </h3>
+                    <p className="text-slate-700 text-sm mb-2">
+                      <strong>{affiliateInfo.name}</strong>
+                      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+                        {affiliateInfo.plan} Member
+                      </span>
+                    </p>
+                    <div className="bg-white/70 rounded-lg p-3 text-xs text-slate-600 leading-relaxed border border-slate-200">
+                      <p className="mb-1">
+                        ℹ️ <strong>Transparência total:</strong> Este parceiro receberá comissões recorrentes pela sua assinatura.
+                      </p>
+                      <p className="text-slate-500">
+                        • Plano Prime: USD $12.50/venda (25%)<br />
+                        • Plano Elite/Supreme: USD $35/mês (50%)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Trial Banner */}
             <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-5 mb-6 shadow-lg">
