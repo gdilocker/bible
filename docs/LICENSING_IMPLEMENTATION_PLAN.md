@@ -57,7 +57,7 @@ ANTES:
 DEPOIS:
 "5.1 Modelo de Licenciamento"
 "O usuário recebe uma LICENÇA EXCLUSIVA DE USO do domínio .com.rich. A titularidade
-permanece com .com.rich Global Network. O licenciado tem direitos exclusivos de uso,
+permanece com Global Digital Identity LTD. O licenciado tem direitos exclusivos de uso,
 configuração e personalização durante a vigência da licença."
 
 "5.2 Direitos do Licenciado"
@@ -69,7 +69,7 @@ configuração e personalização durante a vigência da licença."
 "5.3 Limitações e Revogação"
 - Licença pode ser revogada por violação de termos
 - Não pagamento resulta em suspensão/cancelamento
-- Titularidade permanece com .com.rich Global Network
+- Titularidade permanece com Global Digital Identity LTD
 - Uso ilícito resulta em revogação imediata
 ```
 
@@ -158,7 +158,7 @@ DEPOIS:
   </summary>
   <p className="mt-2 text-sm text-gray-600">
     Você tem direitos totais de uso, mas a titularidade permanece com
-    .com.rich Global Network. Sua licença é protegida enquanto você mantiver
+    Global Digital Identity LTD. Sua licença é protegida enquanto você mantiver
     os pagamentos em dia e seguir nossos termos.
   </p>
 </details>
@@ -333,7 +333,7 @@ DEPOIS:
   questions: [
     {
       q: 'O que é o modelo de licenciamento exclusivo?',
-      a: 'Ao adquirir um domínio .com.rich, você recebe uma licença exclusiva de uso. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com .com.rich Global Network. É similar a alugar um imóvel premium: você tem uso exclusivo e total controle, mas não é o proprietário legal do registro.'
+      a: 'Ao adquirir um domínio .com.rich, você recebe uma licença exclusiva de uso. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com Global Digital Identity LTD. É similar a alugar um imóvel premium: você tem uso exclusivo e total controle, mas não é o proprietário legal do registro.'
     },
     {
       q: 'Ainda tenho controle total sobre meu domínio?',
@@ -349,7 +349,7 @@ DEPOIS:
     },
     {
       q: 'O que acontece se eu cancelar minha assinatura?',
-      a: 'Sua licença expira ao final do período pago. Após o período de carência (30 dias), o domínio volta ao pool da .com.rich Global Network e pode ser licenciado para outro usuário.'
+      a: 'Sua licença expira ao final do período pago. Após o período de carência (30 dias), o domínio volta ao pool da Global Digital Identity LTD e pode ser licenciado para outro usuário.'
     },
     {
       q: 'Por que vocês usam modelo de licenciamento?',
@@ -459,7 +459,7 @@ export function LicenseInfoCard() {
           <p className="text-sm text-blue-800">
             Você recebe uma licença exclusiva de uso com direitos totais de
             personalização e controle. A titularidade permanece com .com.rich
-            Global Network, garantindo qualidade e segurança do ecossistema.
+            Global Digital Identity LTD, garantindo qualidade e segurança do ecossistema.
           </p>
           <a href="/faq#licenciamento" className="text-sm text-blue-600 hover:underline mt-2 inline-block">
             Saiba mais sobre licenciamento →
@@ -521,7 +521,7 @@ todos os direitos de uso, configuração e personalização.
 Dúvidas? Acesse nossa FAQ ou contacte support@com.rich
 
 Atenciosamente,
-Equipe .com.rich Global Network
+Equipe Global Digital Identity LTD
 ```
 
 ---

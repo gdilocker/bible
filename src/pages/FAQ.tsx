@@ -68,7 +68,7 @@ const FAQ: React.FC = () => {
           question: 'O que é o modelo de licenciamento exclusivo?',
           answer: (
             <div className="space-y-2">
-              <p>Ao adquirir um domínio .com.rich, você recebe uma <strong>licença exclusiva de uso</strong>. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com .com.rich Global Network.</p>
+              <p>Ao adquirir um domínio .com.rich, você recebe uma <strong>licença exclusiva de uso</strong>. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com Global Digital Identity LTD.</p>
               <p>É similar a alugar um imóvel premium: você tem uso exclusivo e total controle, mas não é o proprietário legal do registro.</p>
             </div>
           )
@@ -87,7 +87,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'O que acontece se eu cancelar minha assinatura?',
-          answer: 'Sua licença expira ao final do período pago. Após o período de carência (30 dias), o domínio volta ao pool da .com.rich Global Network e pode ser licenciado para outro usuário.'
+          answer: 'Sua licença expira ao final do período pago. Após o período de carência (30 dias), o domínio volta ao pool da Global Digital Identity LTD e pode ser licenciado para outro usuário.'
         },
         {
           question: 'Por que vocês usam modelo de licenciamento?',

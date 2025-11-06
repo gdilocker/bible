@@ -3,7 +3,7 @@
 
   **Objetivo:**
   Reestruturar o sistema de "venda de domínios" para "licenciamento exclusivo de uso".
-  Todos os domínios permanecem como propriedade da .com.rich Global Network.
+  Todos os domínios permanecem como propriedade da Global Digital Identity LTD.
   Clientes recebem apenas licenças exclusivas de uso, revogáveis conforme contrato.
 
   ## Mudanças
@@ -32,7 +32,7 @@
      - Esta é uma mudança de modelo de negócio fundamental
      - Não afeta domínios já ativos (grandfathering)
      - Todos os novos domínios seguem o modelo de licenciamento
-     - .com.rich Global Network mantém titularidade de todos os domínios
+     - Global Digital Identity LTD mantém titularidade de todos os domínios
 */
 
 -- =====================================================
@@ -390,7 +390,7 @@ COMMENT ON COLUMN domains.license_status IS 'Status da licença: active, suspend
 COMMENT ON COLUMN domains.license_type IS 'Tipo de licença: exclusive_personal, exclusive_business, trial, promotional';
 COMMENT ON COLUMN domains.license_start_date IS 'Data de início da licença exclusiva';
 COMMENT ON COLUMN domains.license_end_date IS 'Data de término da licença (NULL = permanente enquanto ativa)';
-COMMENT ON COLUMN domains.is_revocable IS 'Se a licença pode ser revogada pela .com.rich Global Network';
+COMMENT ON COLUMN domains.is_revocable IS 'Se a licença pode ser revogada pela Global Digital Identity LTD';
 COMMENT ON COLUMN domains.revocation_reason IS 'Motivo da revogação ou suspensão';
 COMMENT ON COLUMN domains.revoked_at IS 'Data/hora da revogação';
 COMMENT ON COLUMN domains.revoked_by IS 'ID do admin que revogou a licença';

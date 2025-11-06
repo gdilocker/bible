@@ -10,12 +10,12 @@
 A partir desta data, **todos os domínios .com.rich** operam sob o **modelo de licenciamento exclusivo de uso**, e não mais sob venda direta de propriedade.
 
 ### **Controladora Global:**
-**.com.rich Global Network** (operada pela Global Digital Identity LTD)
+**Global Digital Identity LTD**
 
 ### **Modelo Jurídico:**
 - ❌ **Não é venda** de domínio
 - ✅ **É licença exclusiva** de uso
-- ✅ Titularidade permanece com .com.rich Global Network
+- ✅ Titularidade permanece com Global Digital Identity LTD
 - ✅ Cliente recebe direitos exclusivos de uso mediante contrato
 
 ---
@@ -28,7 +28,7 @@ ANTES: Cliente "compra" e é "proprietário" do domínio
 AGORA: Cliente recebe licença exclusiva de uso do domínio
 ```
 
-- .com.rich Global Network mantém titularidade de TODOS os domínios
+- Global Digital Identity LTD mantém titularidade de TODOS os domínios
 - Cliente não é proprietário, é **licenciado exclusivo**
 - Licença pode ser revogada conforme termos contratuais
 
@@ -72,7 +72,7 @@ AGORA: Cliente recebe licença exclusiva de uso do domínio
 - ❌ NÃO é proprietário do domínio
 - ❌ NÃO pode vender ou transferir sem autorização
 - ❌ Licença pode ser revogada por violação de termos
-- ❌ Titular final é sempre .com.rich Global Network
+- ❌ Titular final é sempre Global Digital Identity LTD
 
 ### **Causas de Revogação:**
 1. Não pagamento de mensalidades/anuidades
@@ -124,7 +124,7 @@ AGORA: Cliente recebe licença exclusiva de uso do domínio
 ### **FAQ Essencial:**
 
 **Q: Ainda sou "dono" do meu domínio?**
-A: Você é o licenciado exclusivo. Tem todos os direitos de uso, mas a titularidade permanece com .com.rich Global Network.
+A: Você é o licenciado exclusivo. Tem todos os direitos de uso, mas a titularidade permanece com Global Digital Identity LTD.
 
 **Q: Posso perder meu domínio?**
 A: Sua licença é garantida enquanto você mantiver os pagamentos em dia e seguir os Termos de Uso.
@@ -133,7 +133,7 @@ A: Sua licença é garantida enquanto você mantiver os pagamentos em dia e segu
 A: Sim, você pode transferir sua licença para outro usuário, sujeito à aprovação.
 
 **Q: O que acontece se eu cancelar?**
-A: Sua licença expira e o domínio volta ao pool da .com.rich Global Network após período de carência.
+A: Sua licença expira e o domínio volta ao pool da Global Digital Identity LTD após período de carência.
 
 ---
 

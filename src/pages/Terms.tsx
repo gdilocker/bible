@@ -19,7 +19,7 @@ const Terms: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Termos de Uso
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.rich Global Network</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">Global Digital Identity LTD</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 01 de novembro de 2025</span>
@@ -220,7 +220,7 @@ const Terms: React.FC = () => {
                     <h3 className="text-lg font-semibold text-black mt-4">5.6 Titularidade dos Domínios</h3>
                     <p>
                       <strong className="text-black">IMPORTANTE:</strong> Todos os domínios .com.rich são propriedade exclusiva da
-                      <strong className="text-black"> .com.rich Global Network</strong>.
+                      <strong className="text-black"> Global Digital Identity LTD</strong>.
                       Os usuários recebem apenas <strong className="text-black">licenças exclusivas de uso</strong>, que são:
                     </p>
                     <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside ml-4">
