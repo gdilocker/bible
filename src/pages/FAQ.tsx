@@ -446,7 +446,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Os planos são mensais ou anuais?',
-          answer: 'Os planos de assinatura (Prime e Elite) são cobrados mensalmente em dólares americanos (USD). O registro inicial do domínio é feito por 1 ano, e a renovação anual é incluída no plano de assinatura escolhido. Todos os planos incluem uma Experiência de Acesso Exclusivo de 14 dias.'
+          answer: 'Os planos de assinatura (Prime e Elite) são cobrados mensalmente em dólares americanos (USD). O registro inicial do domínio é feito por 1 ano, e a renovação anual é incluída no plano de assinatura escolhido. O plano Prime inclui uma Experiência de Acesso Exclusivo de 14 dias.'
         },
         {
           question: 'O pagamento é automático?',
