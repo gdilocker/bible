@@ -121,14 +121,9 @@ const AffiliateAbout: React.FC = () => {
             <Users className="w-8 h-8 text-emerald-600 flex-shrink-0 mt-1" />
             <div>
               <h2 className="text-xl font-semibold text-black mb-2">Você ganha enquanto o seu cliente paga</h2>
-              <p className="text-[#6B7280] leading-relaxed mb-3">
+              <p className="text-[#6B7280] leading-relaxed mb-4">
                 Compartilhe seu link exclusivo e receba comissão recorrente a cada venda realizada através do seu link de parceria.
               </p>
-              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mb-3">
-                <p className="text-emerald-900 text-sm leading-relaxed">
-                  <strong>Prime:</strong> USD $12.50 por venda (25%) • <strong>Elite:</strong> USD $35/mês recorrente (50%) • <strong>Supreme:</strong> 50% recorrente
-                </p>
-              </div>
               <div className="flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-lg">
                   <DollarSign className="w-4 h-4 text-emerald-600" />
