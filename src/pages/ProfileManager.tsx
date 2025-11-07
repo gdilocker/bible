@@ -22,6 +22,8 @@ import { CONTENT_LIMITS, validateBio, validateDisplayName, validateUsername } fr
 import LinkEditor from '../components/LinkEditor';
 import { profileLinksService, ProfileLink } from '../lib/services/profileLinks';
 import FeatureControls from '../components/FeatureControls';
+import GuidedTour from '../components/GuidedTour';
+import { useTour } from '../hooks/useTour';
 
 interface UserProfile {
   id: string;
@@ -72,6 +74,12 @@ export default function ProfileManager() {
   const [linksRefresh, setLinksRefresh] = useState(0);
   const [whatsappCountryCode, setWhatsappCountryCode] = useState('BR');
   const [previewRefreshKey, setPreviewRefreshKey] = useState(0);
+
+  // Tour Guiado (Tour B - Dominar Página)
+  const tour = useTour({
+    tourType: 'page_mastery',
+    autoStart: false, // Será iniciado após carregar perfil pela primeira vez
+  });
 
   useEffect(() => {
     if (user?.id && !hasLoadedProfile) {
@@ -631,6 +639,7 @@ export default function ProfileManager() {
                 <button
                   onClick={() => setShowPreview(!showPreview)}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl"
+                  data-tour="preview-button"
                 >
                   <Monitor className="w-4 h-4" />
                   <span className="text-sm sm:text-base">{showPreview ? 'Fechar Preview' : 'Preview Responsivo'}</span>
@@ -762,17 +771,17 @@ export default function ProfileManager() {
           </AnimatePresence>
 
           {/* Tabs Navigation */}
-          <div className="bg-white border border-slate-200 rounded-xl p-2 shadow-sm mb-6">
+          <div className="bg-white border border-slate-200 rounded-xl p-2 shadow-sm mb-6" data-tour="profile-tabs">
           <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
             {[
               { id: 'profile', label: 'Perfil', icon: Settings },
-              { id: 'background', label: 'Background', icon: Palette },
+              { id: 'background', label: 'Background', icon: Palette, dataTour: 'background-tab' },
               { id: 'links', label: 'Links', icon: LinkIcon },
               { id: 'social', label: 'Redes Sociais', icon: Share2 },
               { id: 'features', label: 'Funcionalidades', icon: ToggleLeft },
               ...(storeEnabled ? [{ id: 'store', label: 'Loja', icon: Store, active: true }] : []),
               ...(socialEnabled ? [{ id: 'community', label: 'Meu Feed Social', icon: MessageCircle, active: true }] : []),
-              { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+              { id: 'analytics', label: 'Analytics', icon: BarChart3, dataTour: 'analytics-tab' },
             ].map((tab: any) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -787,6 +796,7 @@ export default function ProfileManager() {
                       ? 'bg-gradient-to-r from-slate-700 via-slate-800 to-slate-900 text-white shadow-lg scale-105'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 hover:shadow-md'
                   }`}
+                  data-tour={tab.dataTour || undefined}
                 >
                   <Icon className="w-4 h-4 flex-shrink-0" />
                   <span className="hidden sm:inline">{tab.label}</span>
@@ -804,7 +814,7 @@ export default function ProfileManager() {
 
           {/* Tab Content */}
           {activeTab === 'profile' && (
-            <div className="grid grid-cols-1 lg:grid-cols-[300px,1fr] gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[300px,1fr] gap-4 sm:gap-6" data-tour="profile-form">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -878,7 +888,7 @@ export default function ProfileManager() {
               </div>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 shadow-sm space-y-5">
+            <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 shadow-sm space-y-5" data-tour="visibility-toggle">
               <div>
                 <div className="flex items-start gap-3 mb-2">
                   <input
@@ -1165,6 +1175,7 @@ export default function ProfileManager() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm"
+              data-tour="links-section"
             >
               <LinkEditor
                 profileId={profile.id}
@@ -1389,6 +1400,18 @@ export default function ProfileManager() {
         confirmText="Sim, Remover"
         cancelText="Cancelar"
         variant="danger"
+      />
+
+      {/* Tour Guiado - Dominar Página */}
+      <GuidedTour
+        steps={tour.steps}
+        currentStep={tour.currentStep}
+        isActive={tour.isActive}
+        onNext={tour.next}
+        onPrevious={tour.previous}
+        onSkip={tour.skip}
+        onComplete={tour.complete}
+        tourType="page_mastery"
       />
 
     </PanelLayout>

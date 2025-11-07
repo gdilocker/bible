@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, Star, Crown, CreditCard, Users, TrendingUp, Sparkles, AlertCircle, Award, DollarSign, Lightbulb, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import GuidedTour from '../components/GuidedTour';
+import { useTour } from '../hooks/useTour';
 
 interface SubscriptionPlan {
   id: string;
@@ -89,6 +91,12 @@ const Pricing: React.FC = () => {
   const location = useLocation();
   const stateMessage = location.state?.message;
   const returnTo = location.state?.returnTo;
+
+  // Tour Guiado
+  const tour = useTour({
+    tourType: 'purchase',
+    autoStart: false, // Não auto-iniciar aqui, continua da Home
+  });
 
   useEffect(() => {
     loadPlans();
@@ -300,7 +308,7 @@ const Pricing: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto" data-tour="plans-grid">
               {plans.map((plan, index) => {
                 const Icon = getPlanIcon(plan.plan_type);
                 const isPrime = plan.plan_type === 'prime';
@@ -429,6 +437,7 @@ const Pricing: React.FC = () => {
                               ? 'bg-gradient-to-r from-slate-500 to-teal-600 hover:from-slate-600 hover:to-teal-700 text-white shadow-md'
                               : 'bg-gradient-to-r from-slate-400 to-slate-900 hover:from-slate-500 hover:to-slate-600 text-white shadow-md'
                           }`}
+                          data-tour="plan-cta"
                         >
                           Começar
                         </Link>
@@ -759,6 +768,18 @@ const Pricing: React.FC = () => {
           </div>
         </motion.section>
       </div>
+
+      {/* Tour Guiado */}
+      <GuidedTour
+        steps={tour.steps}
+        currentStep={tour.currentStep}
+        isActive={tour.isActive}
+        onNext={tour.next}
+        onPrevious={tour.previous}
+        onSkip={tour.skip}
+        onComplete={tour.complete}
+        tourType="purchase"
+      />
     </div>
   );
 };

@@ -10,6 +10,8 @@ import { createEmailProvider } from '../server/adapters/emailProvider';
 import { supabase } from '../lib/supabase';
 import SuccessModal from '../components/SuccessModal';
 import backgroundImage from '../assets/2222 copy.jpg';
+import GuidedTour from '../components/GuidedTour';
+import { useTour, useShouldShowPurchaseTour } from '../hooks/useTour';
 
 interface PricingPlan {
   id: string;
@@ -45,6 +47,14 @@ const Home = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [registeredDomain, setRegisteredDomain] = useState('');
+
+  // Tour Guiado
+  const shouldShowTour = useShouldShowPurchaseTour();
+  const tour = useTour({
+    tourType: 'purchase',
+    autoStart: shouldShowTour && !user, // Auto-iniciar para visitantes
+    startCondition: () => !provisioning && !available,
+  });
 
   useEffect(() => {
     loadPricingPlans();
@@ -571,6 +581,7 @@ const Home = () => {
               variants={item}
               onSubmit={handleSearch}
               className="w-full max-w-2xl mx-auto mb-4 sm:mb-6 px-2"
+              data-tour="domain-search"
             >
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
@@ -868,6 +879,7 @@ const Home = () => {
                               <Link
                                 to="/valores"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                                data-tour="view-plans"
                               >
                                 <Sparkles className="w-5 h-5" />
                                 <span>Ver Planos</span>
@@ -1243,6 +1255,18 @@ const Home = () => {
           message={successMessage}
           isAdmin={isAdmin}
           domain={registeredDomain}
+        />
+
+        {/* Tour Guiado */}
+        <GuidedTour
+          steps={tour.steps}
+          currentStep={tour.currentStep}
+          isActive={tour.isActive}
+          onNext={tour.next}
+          onPrevious={tour.previous}
+          onSkip={tour.skip}
+          onComplete={tour.complete}
+          tourType="purchase"
         />
       </div>
     );

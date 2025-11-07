@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { DrawerProvider } from './contexts/DrawerContext';
+import { TourProvider } from './contexts/TourContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import { SubscriptionProtectedRoute } from './components/SubscriptionProtectedRoute';
 import ResellerProtectedRoute from './components/ResellerProtectedRoute';
@@ -87,11 +88,13 @@ import AdminEmail from './pages/AdminEmail';
 function App() {
   return (
     <AuthProvider>
-      <DrawerProvider>
-        <Router>
-          <AppRoutes />
-        </Router>
-      </DrawerProvider>
+      <TourProvider>
+        <DrawerProvider>
+          <Router>
+            <AppRoutes />
+          </Router>
+        </DrawerProvider>
+      </TourProvider>
     </AuthProvider>
   );
 }
