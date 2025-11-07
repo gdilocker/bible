@@ -42,8 +42,43 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+// Cache keys
+const USER_CACHE_KEY = 'auth_user_cache';
+const SESSION_CHECK_KEY = 'auth_session_valid';
+
+// Helper to get cached user synchronously
+const getCachedUser = (): User | null => {
+  try {
+    const cached = localStorage.getItem(USER_CACHE_KEY);
+    const sessionValid = localStorage.getItem(SESSION_CHECK_KEY);
+
+    if (cached && sessionValid === 'true') {
+      return JSON.parse(cached);
+    }
+  } catch (e) {
+    console.warn('Failed to read user cache:', e);
+  }
+  return null;
+};
+
+// Helper to cache user
+const cacheUser = (user: User | null) => {
+  try {
+    if (user) {
+      localStorage.setItem(USER_CACHE_KEY, JSON.stringify(user));
+      localStorage.setItem(SESSION_CHECK_KEY, 'true');
+    } else {
+      localStorage.removeItem(USER_CACHE_KEY);
+      localStorage.removeItem(SESSION_CHECK_KEY);
+    }
+  } catch (e) {
+    console.warn('Failed to cache user:', e);
+  }
+};
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  // Initialize with cached user to prevent flash
+  const [user, setUser] = useState<User | null>(getCachedUser());
   const [loading, setLoading] = useState(true);
   const isInitializing = useRef(true);
   const isProcessingAuth = useRef(false);
@@ -66,7 +101,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       if (!rpcError && rpcData && Array.isArray(rpcData) && rpcData.length > 0) {
         const info = rpcData[0];
-        return {
+        const userData = {
           id: authUser.id,
           email: authUser.email!,
           name: authUser.user_metadata?.name,
@@ -74,19 +109,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           hasActiveSubscription: info.has_active_subscription || false,
           subscriptionPlan: info.subscription_plan
         };
+        // Cache the user data
+        cacheUser(userData);
+        return userData;
       }
     } catch (err) {
       console.warn('RPC failed or timed out, using default role:', err);
     }
 
     // Fallback to default user
-    return {
+    const userData = {
       id: authUser.id,
       email: authUser.email!,
       name: authUser.user_metadata?.name,
       role: 'user',
       hasActiveSubscription: false
     };
+    cacheUser(userData);
+    return userData;
   }, []);
 
   const ensureCustomerExists = useCallback(async (authUser: SupabaseUser) => {
@@ -133,14 +173,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             }
           } catch (error) {
             if (mounted) {
-              setUser({
+              const fallbackUser = {
                 id: session.user.id,
                 email: session.user.email!,
                 name: session.user.user_metadata?.name,
                 role: 'user'
-              });
+              };
+              setUser(fallbackUser);
+              cacheUser(fallbackUser);
             }
           }
+        } else if (mounted && !session) {
+          // No session - clear cache
+          cacheUser(null);
+          setUser(null);
         }
       } catch (error) {
         console.error('Auth initialization error:', error);
@@ -178,6 +224,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
       } else if (event === 'SIGNED_OUT') {
         if (mounted) {
+          cacheUser(null);
           setUser(null);
         }
       }

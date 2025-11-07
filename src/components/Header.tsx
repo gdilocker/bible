@@ -11,9 +11,16 @@ export default function Header() {
   const [isProgramsMenuOpen, setIsProgramsMenuOpen] = useState(false);
   const [isPoliciesMenuOpen, setIsPoliciesMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Use memo to prevent unnecessary re-renders
+  const showMenu = React.useMemo(() => {
+    // Always show menu if user is cached (from localStorage)
+    // This prevents the flash of logged-out state
+    return !loading || user !== null;
+  }, [loading, user]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +80,12 @@ export default function Header() {
 
           {/* Right side - All navigation + auth */}
           <div className="hidden md:flex items-center gap-1">
-            {!user ? (
+            {!showMenu ? (
+              <div className="flex items-center gap-1 opacity-0 pointer-events-none">
+                {/* Invisible placeholder to prevent layout shift */}
+                <div className="w-20 h-8"></div>
+              </div>
+            ) : !user ? (
               <>
                 <Link
                   to="/"
@@ -219,7 +231,7 @@ export default function Header() {
             </button>
 
             {/* Mobile Dropdown Menu */}
-            {isMenuOpen && (
+            {isMenuOpen && showMenu && (
               <>
                 <div
                   className="fixed inset-0 z-40"
