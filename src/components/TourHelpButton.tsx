@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, RotateCcw, Lightbulb, MessageCircle, X, Sparkles, Zap, Target, Crown } from 'lucide-react';
 import { useTourContext } from '../contexts/TourContext';
@@ -10,6 +10,35 @@ export default function TourHelpButton() {
   const { startTour, progress } = useTourContext();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Prevenir scroll quando modal está aberto
+  useEffect(() => {
+    if (showQuickTips) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showQuickTips]);
+
+  // Fechar modal com tecla ESC
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (showQuickTips) {
+          setShowQuickTips(false);
+        } else if (isMenuOpen) {
+          setIsMenuOpen(false);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [showQuickTips, isMenuOpen]);
 
   // Determinar qual tour mostrar baseado na página atual
   const getCurrentTourType = (): 'purchase' | 'page_mastery' => {
@@ -260,7 +289,7 @@ export default function TourHelpButton() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[10000]"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99998]"
               onClick={() => setShowQuickTips(false)}
             />
 
@@ -270,28 +299,28 @@ export default function TourHelpButton() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10001] w-full max-w-2xl mx-4"
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99999] w-full max-w-2xl mx-4"
             >
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
                 {/* Header */}
-                <div className="px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
+                <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white flex-shrink-0">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-2.5 rounded-xl shadow-md">
-                        <Lightbulb className="w-5 h-5 text-white" />
+                      <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-2 sm:p-2.5 rounded-xl shadow-md">
+                        <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                       <div>
-                        <h2 className="text-xl font-bold text-slate-900">Dicas Rápidas</h2>
-                        <p className="text-sm text-slate-600 mt-0.5">
+                        <h2 className="text-lg sm:text-xl font-bold text-slate-900">Dicas Rápidas</h2>
+                        <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
                           {getCurrentTourType() === 'purchase'
-                            ? 'Maximize sua experiência de compra'
-                            : 'Otimize sua página em minutos'}
+                            ? 'Maximize sua experiência'
+                            : 'Otimize sua página'}
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => setShowQuickTips(false)}
-                      className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-2 rounded-lg transition-all"
+                      className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-1.5 sm:p-2 rounded-lg transition-all flex-shrink-0"
                       aria-label="Fechar dicas"
                     >
                       <X className="w-5 h-5" />
@@ -300,7 +329,7 @@ export default function TourHelpButton() {
                 </div>
 
                 {/* Dicas */}
-                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto">
+                <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 max-h-[60vh] overflow-y-auto">
                   {getContextualTips().map((tip, index) => {
                     const Icon = tip.icon;
                     return (
@@ -308,15 +337,15 @@ export default function TourHelpButton() {
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="group bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-xl p-4 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
+                        transition={{ delay: index * 0.08 }}
+                        className="group bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-xl p-3 sm:p-4 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
                       >
                         <div className="flex items-start gap-3">
-                          <div className={`bg-gradient-to-br ${tip.color} p-2.5 rounded-lg shadow-sm group-hover:shadow-md transition-all flex-shrink-0`}>
+                          <div className={`bg-gradient-to-br ${tip.color} p-2 sm:p-2.5 rounded-lg shadow-sm group-hover:shadow-md transition-all flex-shrink-0`}>
                             <Icon className="w-4 h-4 text-white" />
                           </div>
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-slate-900 mb-1.5 text-sm">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-slate-900 mb-1 sm:mb-1.5 text-sm">
                               {tip.title}
                             </h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
@@ -330,12 +359,12 @@ export default function TourHelpButton() {
                 </div>
 
                 {/* Footer */}
-                <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                <div className="px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-2 text-xs text-slate-600">
                     <Sparkles className="w-4 h-4 text-amber-500" />
-                    <span>Precisa de mais ajuda?</span>
+                    <span className="hidden sm:inline">Precisa de mais ajuda?</span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
                     <button
                       onClick={() => {
                         setShowQuickTips(false);
@@ -344,18 +373,18 @@ export default function TourHelpButton() {
                           startTour(tourType);
                         }, 300);
                       }}
-                      className="px-4 py-2 text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-slate-200"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-slate-200"
                     >
-                      Ver Tour Completo
+                      Ver Tour
                     </button>
                     <button
                       onClick={() => {
                         setShowQuickTips(false);
                         setTimeout(() => navigate('/contact'), 300);
                       }}
-                      className="px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all shadow-sm"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all shadow-sm"
                     >
-                      Falar com Suporte
+                      Suporte
                     </button>
                   </div>
                 </div>
