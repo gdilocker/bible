@@ -106,8 +106,8 @@ export default function GuidedTour({
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    // Padding ao redor do elemento destacado
-    const padding = 12;
+    // Padding ao redor do elemento destacado (0 para usar o tamanho exato)
+    const padding = 0;
 
     setHighlightPosition({
       top: rect.top + scrollTop - padding,
