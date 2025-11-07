@@ -3,18 +3,16 @@ import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { AdminPageHeader } from '../components/AdminPageHeader';
-import { Mail, Plus, Search, Edit2, Trash2, Lock, Unlock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Mail, Plus, Search, Edit2, Trash2, CheckCircle, XCircle, X, AlertTriangle } from 'lucide-react';
 
 interface EmailAccount {
   id: string;
-  user_id: string;
   email_address: string;
   display_name: string;
-  quota_mb: number;
-  used_mb: number;
+  purpose: string;
   status: string;
   created_at: string;
-  user_email?: string;
+  smtp_config?: any;
 }
 
 export default function AdminEmail() {
@@ -24,7 +22,11 @@ export default function AdminEmail() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [selectedAccount, setSelectedAccount] = useState<EmailAccount | null>(null);
+  const [newAccount, setNewAccount] = useState({
+    email_address: '',
+    display_name: '',
+    purpose: ''
+  });
 
   useEffect(() => {
     if (!user) {
@@ -38,13 +40,9 @@ export default function AdminEmail() {
     try {
       setLoading(true);
 
-      // Get all email accounts with user info
       const { data, error } = await supabase
         .from('email_accounts')
-        .select(`
-          *,
-          user_email:auth.users(email)
-        `)
+        .select('*')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -57,25 +55,60 @@ export default function AdminEmail() {
     }
   };
 
-  const handleSuspendAccount = async (accountId: string, suspend: boolean) => {
+  const handleCreateAccount = async () => {
+    if (!newAccount.email_address || !newAccount.display_name) {
+      alert('Preencha todos os campos obrigatórios');
+      return;
+    }
+
+    if (!newAccount.email_address.endsWith('@com.rich')) {
+      alert('O e-mail deve terminar com @com.rich');
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('email_accounts')
-        .update({ status: suspend ? 'suspended' : 'active' })
+        .insert({
+          user_id: user!.id,
+          email_address: newAccount.email_address,
+          display_name: newAccount.display_name,
+          purpose: newAccount.purpose,
+          status: 'active'
+        });
+
+      if (error) throw error;
+
+      alert('Conta institucional criada com sucesso!');
+      setShowCreateModal(false);
+      setNewAccount({ email_address: '', display_name: '', purpose: '' });
+      loadAccounts();
+    } catch (error: any) {
+      console.error('Error creating account:', error);
+      alert(`Erro ao criar conta: ${error.message}`);
+    }
+  };
+
+  const handleToggleStatus = async (accountId: string, currentStatus: string) => {
+    try {
+      const newStatus = currentStatus === 'active' ? 'suspended' : 'active';
+      const { error } = await supabase
+        .from('email_accounts')
+        .update({ status: newStatus })
         .eq('id', accountId);
 
       if (error) throw error;
 
-      alert(suspend ? 'Conta suspensa com sucesso' : 'Conta reativada com sucesso');
+      alert(newStatus === 'suspended' ? 'Conta suspensa' : 'Conta reativada');
       loadAccounts();
     } catch (error) {
-      console.error('Error updating account:', error);
-      alert('Erro ao atualizar conta');
+      console.error('Error updating status:', error);
+      alert('Erro ao atualizar status');
     }
   };
 
   const handleDeleteAccount = async (accountId: string) => {
-    if (!confirm('Tem certeza que deseja excluir esta conta? Todos os e-mails serão perdidos!')) {
+    if (!confirm('Tem certeza que deseja excluir esta conta institucional?')) {
       return;
     }
 
@@ -111,13 +144,6 @@ export default function AdminEmail() {
             Suspensa
           </span>
         );
-      case 'deleted':
-        return (
-          <span className="flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
-            <AlertCircle className="w-3 h-3" />
-            Deletada
-          </span>
-        );
       default:
         return null;
     }
@@ -125,21 +151,34 @@ export default function AdminEmail() {
 
   const filteredAccounts = accounts.filter(account =>
     account.email_address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    account.display_name?.toLowerCase().includes(searchQuery.toLowerCase())
+    account.display_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    account.purpose?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-200 px-6 py-6">
         <AdminPageHeader
-          title="Gestão de E-mails"
-          description="Gerencie contas de e-mail @com.rich"
+          title="E-mails Institucionais"
+          description="Gerencie contas de envio de e-mail @com.rich (uso interno)"
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Alert Info */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <h3 className="font-semibold text-blue-900 mb-1">Sistema de E-mail Institucional</h3>
+            <p className="text-sm text-blue-700">
+              Estas contas são exclusivas para <strong>envio automático</strong> de e-mails transacionais
+              (confirmações, notificações, avisos). Não são webmail de uso pessoal.
+            </p>
+          </div>
+        </div>
+
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-xl p-6 border border-gray-200">
             <div className="text-gray-600 text-sm mb-1">Total de Contas</div>
             <div className="text-3xl font-bold text-black">{accounts.length}</div>
@@ -156,12 +195,6 @@ export default function AdminEmail() {
               {accounts.filter(a => a.status === 'suspended').length}
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
-            <div className="text-gray-600 text-sm mb-1">Espaço Total Usado</div>
-            <div className="text-3xl font-bold text-blue-600">
-              {(accounts.reduce((sum, a) => sum + a.used_mb, 0) / 1024).toFixed(1)} GB
-            </div>
-          </div>
         </div>
 
         {/* Actions Bar */}
@@ -173,7 +206,7 @@ export default function AdminEmail() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar contas de e-mail..."
+                placeholder="Buscar contas institucionais..."
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-black"
               />
             </div>
@@ -199,7 +232,7 @@ export default function AdminEmail() {
               <Mail className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-600 font-medium mb-1">Nenhuma conta encontrada</p>
               <p className="text-gray-500 text-sm">
-                {searchQuery ? 'Tente uma busca diferente' : 'Crie a primeira conta de e-mail'}
+                {searchQuery ? 'Tente uma busca diferente' : 'Crie a primeira conta institucional'}
               </p>
             </div>
           ) : (
@@ -211,13 +244,13 @@ export default function AdminEmail() {
                       E-mail
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Nome
+                      Nome de Exibição
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Propósito
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Armazenamento
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Criado em
@@ -234,21 +267,13 @@ export default function AdminEmail() {
                         <div className="text-sm font-medium text-black">{account.email_address}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{account.display_name || '-'}</div>
+                        <div className="text-sm text-gray-900">{account.display_name}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-600">{account.purpose || '-'}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {getStatusBadge(account.status)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
-                          {account.used_mb} MB / {account.quota_mb} MB
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
-                          <div
-                            className="bg-black h-1.5 rounded-full"
-                            style={{ width: `${(account.used_mb / account.quota_mb) * 100}%` }}
-                          ></div>
-                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {new Date(account.created_at).toLocaleDateString('pt-BR')}
@@ -256,22 +281,14 @@ export default function AdminEmail() {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex items-center justify-end gap-2">
                           <button
-                            onClick={() => handleSuspendAccount(account.id, account.status === 'active')}
-                            className="p-2 hover:bg-gray-100 rounded transition-colors"
-                            title={account.status === 'active' ? 'Suspender' : 'Reativar'}
+                            onClick={() => handleToggleStatus(account.id, account.status)}
+                            className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                              account.status === 'active'
+                                ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                                : 'bg-green-100 text-green-700 hover:bg-green-200'
+                            }`}
                           >
-                            {account.status === 'active' ? (
-                              <Lock className="w-4 h-4 text-gray-600" />
-                            ) : (
-                              <Unlock className="w-4 h-4 text-green-600" />
-                            )}
-                          </button>
-                          <button
-                            onClick={() => setSelectedAccount(account)}
-                            className="p-2 hover:bg-gray-100 rounded transition-colors"
-                            title="Editar"
-                          >
-                            <Edit2 className="w-4 h-4 text-gray-600" />
+                            {account.status === 'active' ? 'Suspender' : 'Reativar'}
                           </button>
                           <button
                             onClick={() => handleDeleteAccount(account.id)}
@@ -290,6 +307,80 @@ export default function AdminEmail() {
           )}
         </div>
       </div>
+
+      {/* Create Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-black">Nova Conta Institucional</h2>
+              <button
+                onClick={() => setShowCreateModal(false)}
+                className="p-2 hover:bg-gray-100 rounded transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  E-mail @com.rich *
+                </label>
+                <input
+                  type="text"
+                  value={newAccount.email_address}
+                  onChange={(e) => setNewAccount({ ...newAccount, email_address: e.target.value })}
+                  placeholder="noreply@com.rich"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                />
+                <p className="text-xs text-gray-500 mt-1">Ex: noreply@com.rich, contact@com.rich</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nome de Exibição *
+                </label>
+                <input
+                  type="text"
+                  value={newAccount.display_name}
+                  onChange={(e) => setNewAccount({ ...newAccount, display_name: e.target.value })}
+                  placeholder="com.rich"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Propósito
+                </label>
+                <textarea
+                  value={newAccount.purpose}
+                  onChange={(e) => setNewAccount({ ...newAccount, purpose: e.target.value })}
+                  placeholder="Ex: Envio de confirmações de cadastro"
+                  rows={3}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black resize-none"
+                />
+              </div>
+
+              <div className="flex items-center gap-3 pt-4">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleCreateAccount}
+                  className="flex-1 px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-900 transition-colors"
+                >
+                  Criar Conta
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

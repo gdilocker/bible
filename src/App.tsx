@@ -82,7 +82,6 @@ import RefRedirect from './pages/RefRedirect';
 import StoreTerms from './pages/StoreTerms';
 import SocialTerms from './pages/SocialTerms';
 import RichClub from './pages/RichClub';
-import Webmail from './pages/Webmail';
 import AdminEmail from './pages/AdminEmail';
 
 function App() {
@@ -135,7 +134,6 @@ function AppRoutes() {
                      pathname === '/salvos' ||
                      pathname.startsWith('/social') ||
                      pathname.includes('/loja') ||
-                     pathname === '/webmail' ||
                      isDynamicRoute;
 
   return (
@@ -415,13 +413,6 @@ function AppRoutes() {
           <Route path="/admin/email" element={
             <ProtectedRoute adminOnly>
               <AdminEmail />
-            </ProtectedRoute>
-          } />
-
-          {/* Email Routes */}
-          <Route path="/webmail" element={
-            <ProtectedRoute>
-              <Webmail />
             </ProtectedRoute>
           } />
 
