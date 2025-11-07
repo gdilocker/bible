@@ -653,28 +653,72 @@ const Pricing: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-emerald-400/50 transition-all duration-300">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                  <p className="text-slate-300 text-sm font-medium">10 Clientes Prime</p>
+            <div className="space-y-8">
+              {/* Prime Member Examples */}
+              <div>
+                <div className="text-center mb-4">
+                  <span className="inline-block px-4 py-1.5 bg-emerald-500/20 text-emerald-300 rounded-lg text-sm font-semibold">
+                    Como Membro Prime (25% de comissão)
+                  </span>
                 </div>
-                <p className="text-4xl font-bold text-emerald-400 mb-2">USD $125</p>
-                <p className="text-slate-400 text-xs">por mês recorrente</p>
-                <div className="mt-4 pt-4 border-t border-white/10">
-                  <p className="text-slate-400 text-xs">Comissão: 10 × $12.50</p>
+                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-emerald-400/50 transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                      <p className="text-slate-300 text-sm font-medium">10 Clientes Prime</p>
+                    </div>
+                    <p className="text-4xl font-bold text-emerald-400 mb-2">USD $125</p>
+                    <p className="text-slate-400 text-xs">por mês recorrente</p>
+                    <div className="mt-4 pt-4 border-t border-white/10">
+                      <p className="text-slate-400 text-xs">Comissão: 10 × $12.50</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-yellow-400/50 transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                      <p className="text-slate-300 text-sm font-medium">10 Clientes Elite</p>
+                    </div>
+                    <p className="text-4xl font-bold text-yellow-400 mb-2">USD $175</p>
+                    <p className="text-slate-400 text-xs">por mês recorrente</p>
+                    <div className="mt-4 pt-4 border-t border-white/10">
+                      <p className="text-slate-400 text-xs">Comissão: 10 × $17.50</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-yellow-400/50 transition-all duration-300">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <p className="text-slate-300 text-sm font-medium">20 Clientes Elite</p>
+              {/* Elite Member Examples */}
+              <div>
+                <div className="text-center mb-4">
+                  <span className="inline-block px-4 py-1.5 bg-yellow-500/20 text-yellow-300 rounded-lg text-sm font-semibold">
+                    Como Membro Elite (50% de comissão)
+                  </span>
                 </div>
-                <p className="text-4xl font-bold text-yellow-400 mb-2">USD $700</p>
-                <p className="text-slate-400 text-xs">por mês recorrente</p>
-                <div className="mt-4 pt-4 border-t border-white/10">
-                  <p className="text-slate-400 text-xs">Comissão: 20 × $35</p>
+                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-emerald-400/50 transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                      <p className="text-slate-300 text-sm font-medium">10 Clientes Prime</p>
+                    </div>
+                    <p className="text-4xl font-bold text-emerald-400 mb-2">USD $250</p>
+                    <p className="text-slate-400 text-xs">por mês recorrente</p>
+                    <div className="mt-4 pt-4 border-t border-white/10">
+                      <p className="text-slate-400 text-xs">Comissão: 10 × $25.00</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 hover:border-yellow-400/50 transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                      <p className="text-slate-300 text-sm font-medium">10 Clientes Elite</p>
+                    </div>
+                    <p className="text-4xl font-bold text-yellow-400 mb-2">USD $350</p>
+                    <p className="text-slate-400 text-xs">por mês recorrente</p>
+                    <div className="mt-4 pt-4 border-t border-white/10">
+                      <p className="text-slate-400 text-xs">Comissão: 10 × $35.00</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

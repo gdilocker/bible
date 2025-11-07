@@ -17,9 +17,26 @@ const AffiliateAbout: React.FC = () => {
               Você recebe comissões mensais recorrentes em cada venda realizada através do seu link de parceria, conforme validação e confirmação dos pagamentos.
             </p>
           </div>
-          <p className="leading-relaxed">
-            As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento. <strong className="text-black">Plano Prime: USD $12.50/venda (25%) | Plano Elite: USD $35/mês (50%) | Plano Supreme: 50% sobre mensalidade base (Elite)</strong>
-          </p>
+          <div className="space-y-3">
+            <p className="leading-relaxed">
+              As comissões são vinculadas a transações efetivamente pagas e podem ser solicitadas após 30 dias da confirmação do pagamento.
+            </p>
+            <div className="bg-white/80 rounded-lg p-4 space-y-3">
+              <div className="space-y-2">
+                <p className="font-semibold text-emerald-700 text-sm">Plano Prime (25% de comissão):</p>
+                <p className="text-black pl-4"><strong>USD $12.50</strong> por venda realizada</p>
+              </div>
+              <div className="space-y-2">
+                <p className="font-semibold text-yellow-700 text-sm">Plano Elite (50% de comissão):</p>
+                <p className="text-black pl-4"><strong>USD $17.50</strong> por venda realizada (Membros Prime)</p>
+                <p className="text-black pl-4"><strong>USD $35.00</strong> por venda realizada (Membros Elite)</p>
+              </div>
+              <div className="space-y-2">
+                <p className="font-semibold text-amber-700 text-sm">Plano Supreme (50% de comissão):</p>
+                <p className="text-black pl-4">50% sobre mensalidade base (equivalente ao Elite)</p>
+              </div>
+            </div>
+          </div>
           <p className="leading-relaxed">
             Todos os detalhes estão disponíveis nos <a href="/afiliados/termos" className="text-[#3B82F6] hover:underline font-medium">Termos de Afiliados</a>.
           </p>
@@ -125,26 +142,28 @@ const AffiliateAbout: React.FC = () => {
           <div className="flex items-start gap-4">
             <Users className="w-8 h-8 text-emerald-600 flex-shrink-0 mt-1" />
             <div>
-              <h2 className="text-xl font-semibold text-black mb-2">Você ganha enquanto o seu cliente paga</h2>
+              <h2 className="text-xl font-semibold text-black mb-2">Programa de Parceria</h2>
               <p className="text-[#6B7280] leading-relaxed mb-4">
-                Compartilhe seu link exclusivo e receba comissão recorrente a cada venda realizada através do seu link de parceria.
+                Ao se tornar Membro Prime ou Elite, você recebe comissões em todas as vendas realizadas pelos seus convidados.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-lg">
-                  <DollarSign className="w-4 h-4 text-emerald-600" />
-                  <span className="text-sm font-semibold text-emerald-900">Prime: USD $12.50/venda</span>
+              <div className="space-y-4">
+                <div className="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                  <p className="font-bold text-emerald-900 mb-2">Membro Prime - 25% de Comissão</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-emerald-800"><strong>$12.50</strong> por venda do Plano Prime</p>
+                    <p className="text-emerald-800"><strong>$17.50</strong> por venda do Plano Elite</p>
+                  </div>
                 </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <DollarSign className="w-4 h-4 text-yellow-600" />
-                  <span className="text-sm font-semibold text-yellow-900">Elite: USD $35/mês</span>
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+                  <p className="font-bold text-yellow-900 mb-2">Membro Elite - 50% de Comissão</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-yellow-800"><strong>$25.00</strong> por venda do Plano Prime</p>
+                    <p className="text-yellow-800"><strong>$35.00</strong> por venda do Plano Elite</p>
+                  </div>
                 </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg">
-                  <DollarSign className="w-4 h-4 text-amber-600" />
-                  <span className="text-sm font-semibold text-amber-900">Supreme: 50% recorrente</span>
-                </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-                  <Link2 className="w-4 h-4 text-slate-900" />
-                  <span className="text-sm font-semibold text-blue-900">Link exclusivo</span>
+                <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                  <p className="font-bold text-amber-900 mb-2">Membro Supreme - 50% de Comissão</p>
+                  <p className="text-amber-800 text-sm">50% recorrente sobre mensalidade base (equivalente ao Elite)</p>
                 </div>
               </div>
             </div>

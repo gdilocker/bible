@@ -601,14 +601,29 @@ const FAQ: React.FC = () => {
                   <strong>⚠️ Importante:</strong> Comissões aplicam-se apenas a vendas de planos de assinatura. Domínios premium são receita exclusiva da empresa e não geram comissão.
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-slate-50 to-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
-                <p className="font-semibold text-black mb-2">📊 Estrutura de Comissões Recorrentes:</p>
-                <p className="mb-2">O percentual depende do seu plano de afiliado:</p>
-                <ul className="space-y-2 ml-4">
-                  <li><strong className="text-emerald-700">• Afiliado Prime: 25%</strong> recorrente em cada pagamento</li>
-                  <li><strong className="text-yellow-700">• Afiliado Elite: 50%</strong> recorrente em cada pagamento</li>
-                </ul>
-                <p className="text-sm mt-2 text-emerald-900 bg-emerald-50 p-2 rounded"><strong>✓</strong> Aplica-se a planos (mensal) e domínios regulares e Premium (anual).</p>
+              <div className="space-y-3">
+                <p className="font-semibold text-black mb-2">📊 Estrutura de Comissões:</p>
+
+                <div className="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                  <p className="font-bold text-emerald-900 mb-2">Membro Prime - 25% de Comissão</p>
+                  <ul className="space-y-1 text-sm">
+                    <li className="text-emerald-800"><strong>$12.50</strong> por venda do Plano Prime</li>
+                    <li className="text-emerald-800"><strong>$17.50</strong> por venda do Plano Elite</li>
+                  </ul>
+                </div>
+
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+                  <p className="font-bold text-yellow-900 mb-2">Membro Elite - 50% de Comissão</p>
+                  <ul className="space-y-1 text-sm">
+                    <li className="text-yellow-800"><strong>$25.00</strong> por venda do Plano Prime</li>
+                    <li className="text-yellow-800"><strong>$35.00</strong> por venda do Plano Elite</li>
+                  </ul>
+                </div>
+
+                <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                  <p className="font-bold text-amber-900 mb-2">Membro Supreme</p>
+                  <p className="text-amber-800 text-sm">50% de comissão recorrente (equivalente ao Elite)</p>
+                </div>
               </div>
             </div>
           )
@@ -617,12 +632,24 @@ const FAQ: React.FC = () => {
           question: 'As comissões são recorrentes?',
           answer: (
             <div className="space-y-2">
-              <p><strong>Sim!</strong> Você recebe comissão a cada venda realizada através do seu link de parceria:</p>
-              <ul className="list-disc list-inside ml-2 space-y-1">
-                <li>Mensalidades de planos</li>
-                <li>Anualidades/renovações de domínios (regulares e Premium)</li>
-              </ul>
-              <p className="text-sm">Conforme seu plano de afiliado (25% Prime / 50% Elite) e sempre sobre o valor líquido.</p>
+              <p><strong>Sim!</strong> Você recebe comissão recorrente em todas as vendas realizadas através do seu link de parceria.</p>
+              <p className="font-semibold text-black mt-3">Valores por Venda:</p>
+              <div className="ml-4 space-y-2 mt-2">
+                <div>
+                  <p className="font-medium text-emerald-700">Como Membro Prime (25%):</p>
+                  <ul className="list-disc list-inside ml-2 text-sm space-y-1">
+                    <li>$12.50 por venda do Plano Prime</li>
+                    <li>$17.50 por venda do Plano Elite</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-yellow-700">Como Membro Elite (50%):</p>
+                  <ul className="list-disc list-inside ml-2 text-sm space-y-1">
+                    <li>$25.00 por venda do Plano Prime</li>
+                    <li>$35.00 por venda do Plano Elite</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           )
         },
