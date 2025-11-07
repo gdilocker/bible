@@ -79,21 +79,32 @@ export default function GuidedTour({
   useEffect(() => {
     if (!isActive) return;
 
+    let rafId: number;
+    let lastCalcTime = 0;
+
+    // Throttled calculate para performance otimizada
+    const throttledCalculate = () => {
+      const now = Date.now();
+      if (now - lastCalcTime >= 16) { // ~60fps
+        lastCalcTime = now;
+        calculatePosition();
+      }
+      rafId = requestAnimationFrame(throttledCalculate);
+    };
+
     const handleResize = () => calculatePosition();
     const handleScroll = () => calculatePosition();
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll, true);
 
-    // Recalcular posição a cada 100ms para garantir sincronia perfeita
-    const syncInterval = setInterval(() => {
-      calculatePosition();
-    }, 100);
+    // Sync contínuo usando RAF para 60fps suave
+    rafId = requestAnimationFrame(throttledCalculate);
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll, true);
-      clearInterval(syncInterval);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [isActive, step]);
 
@@ -113,20 +124,35 @@ export default function GuidedTour({
     const scrollTop = window.scrollY;
     const scrollLeft = window.scrollX;
 
-    // Padding visual de 8px para dar respiro e destacar o elemento
-    const padding = 8;
+    // Padding MÍNIMO de 4px para borda dourada respirar sem desalinhar
+    // Valor calibrado para encaixe milimétrico em todos os dispositivos
+    const padding = 4;
 
     // Posição ABSOLUTA no documento (scroll + viewport)
     const absoluteTop = rect.top + scrollTop;
     const absoluteLeft = rect.left + scrollLeft;
 
-    // Log para debug do alinhamento
-    console.log('📍 Spotlight Position:', {
+    // Log para debug do alinhamento MILIMÉTRICO
+    console.log('📍 Spotlight CALIBRADO:', {
       element: step.target,
-      viewport: { top: Math.round(rect.top), left: Math.round(rect.left) },
+      viewport: {
+        top: `${Math.round(rect.top)}px`,
+        left: `${Math.round(rect.left)}px`,
+        width: `${Math.round(rect.width)}px`,
+        height: `${Math.round(rect.height)}px`
+      },
       scroll: { top: Math.round(scrollTop), left: Math.round(scrollLeft) },
-      absolute: { top: Math.round(absoluteTop), left: Math.round(absoluteLeft) },
-      size: { width: Math.round(rect.width), height: Math.round(rect.height) }
+      absolute: {
+        top: `${Math.round(absoluteTop)}px`,
+        left: `${Math.round(absoluteLeft)}px`
+      },
+      spotlight: {
+        top: `${Math.round(absoluteTop - padding)}px`,
+        left: `${Math.round(absoluteLeft - padding)}px`,
+        width: `${Math.round(rect.width + padding * 2)}px`,
+        height: `${Math.round(rect.height + padding * 2)}px`
+      },
+      padding: `${padding}px`
     });
 
     setHighlightPosition({
@@ -343,13 +369,13 @@ export default function GuidedTour({
               }}
               className="absolute pointer-events-none"
             >
-              {/* Borda externa com gradiente dourado premium */}
+              {/* Borda externa com gradiente dourado premium - CALIBRADA */}
               <div className="absolute inset-0 rounded-xl">
-                {/* Glow externo */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-400/50 via-yellow-300/50 to-amber-400/50 blur-md" />
+                {/* Glow externo sutil */}
+                <div className="absolute -inset-[2px] rounded-xl bg-gradient-to-r from-amber-400/40 via-yellow-300/40 to-amber-400/40 blur-sm" />
 
-                {/* Borda sólida principal */}
-                <div className="absolute inset-0 rounded-xl border-[3px] border-amber-400/80 shadow-[0_0_40px_rgba(251,191,36,0.4)]" />
+                {/* Borda sólida principal 2px para precisão milimétrica */}
+                <div className="absolute inset-0 rounded-xl border-[2px] border-amber-400/90 shadow-[0_0_30px_rgba(251,191,36,0.35)]" />
               </div>
 
               {/* Animação de pulso sutil */}
