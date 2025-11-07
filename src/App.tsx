@@ -9,6 +9,7 @@ import ResellerProtectedRoute from './components/ResellerProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import TourHelpButton from './components/TourHelpButton';
 import Home from './pages/Home';
 import Pricing from './pages/Pricing';
 import Transfer from './pages/Transfer';
@@ -433,6 +434,9 @@ function AppRoutes() {
       </main>
       {!hideLayout && <Footer />}
       {(pathname === '/suporte' || pathname.startsWith('/suporte/')) && <ChatWidget />}
+
+      {/* Botão Flutuante de Ajuda - Tour Guiado */}
+      {!hideLayout && <TourHelpButton />}
     </>
   );
 }
