@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, RotateCcw, Lightbulb, MessageCircle, X } from 'lucide-react';
+import { Compass, RotateCcw, Lightbulb, MessageCircle, X, Sparkles, Zap, Target, Crown } from 'lucide-react';
 import { useTourContext } from '../contexts/TourContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function TourHelpButton() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showQuickTips, setShowQuickTips] = useState(false);
   const { startTour, progress } = useTourContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,8 +41,68 @@ export default function TourHelpButton() {
 
   const handleQuickTips = () => {
     setIsMenuOpen(false);
-    // TODO: Implementar sistema de dicas rápidas no futuro
-    alert('Dicas rápidas em breve! Por enquanto, explore o tour guiado completo.');
+    setShowQuickTips(true);
+  };
+
+  // Dicas contextuais baseadas na página
+  const getContextualTips = () => {
+    const tourType = getCurrentTourType();
+
+    if (tourType === 'purchase') {
+      return [
+        {
+          icon: Sparkles,
+          color: 'from-amber-500 to-amber-600',
+          title: 'Teste Grátis Prime',
+          tip: '14 dias de acesso completo sem compromisso. Cancele quando quiser.'
+        },
+        {
+          icon: Crown,
+          color: 'from-slate-600 to-teal-600',
+          title: 'Plano Elite Recomendado',
+          tip: '50% de comissão em afiliados + acesso a eventos exclusivos e networking premium.'
+        },
+        {
+          icon: Target,
+          color: 'from-blue-500 to-blue-600',
+          title: 'Domínio Exclusivo',
+          tip: 'Seu nome.com.rich é único e exclusivo. Ninguém mais pode registrar o mesmo.'
+        },
+        {
+          icon: Zap,
+          color: 'from-emerald-500 to-emerald-600',
+          title: 'Ativação Instantânea',
+          tip: 'Seu domínio e página ficam ativos imediatamente após o pagamento.'
+        }
+      ];
+    } else {
+      return [
+        {
+          icon: Sparkles,
+          color: 'from-purple-500 to-purple-600',
+          title: 'Templates Prontos',
+          tip: 'Use templates profissionais pré-configurados para começar rapidamente.'
+        },
+        {
+          icon: Target,
+          color: 'from-blue-500 to-blue-600',
+          title: 'Preview Responsivo',
+          tip: 'Teste em desktop, tablet e mobile antes de publicar. Sempre perfeito!'
+        },
+        {
+          icon: Zap,
+          color: 'from-amber-500 to-amber-600',
+          title: 'Links Ilimitados',
+          tip: 'Adicione quantos links quiser com cores, ícones e animações personalizadas.'
+        },
+        {
+          icon: Crown,
+          color: 'from-slate-600 to-teal-600',
+          title: 'Analytics em Tempo Real',
+          tip: 'Veja visualizações e cliques ao vivo. Saiba exatamente o que funciona.'
+        }
+      ];
+    }
   };
 
   const handleContact = () => {
@@ -189,6 +250,120 @@ export default function TourHelpButton() {
           </div>
         </div>
       )}
+
+      {/* Modal de Dicas Rápidas */}
+      <AnimatePresence>
+        {showQuickTips && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[10000]"
+              onClick={() => setShowQuickTips(false)}
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10001] w-full max-w-2xl mx-4"
+            >
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                {/* Header */}
+                <div className="px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-2.5 rounded-xl shadow-md">
+                        <Lightbulb className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold text-slate-900">Dicas Rápidas</h2>
+                        <p className="text-sm text-slate-600 mt-0.5">
+                          {getCurrentTourType() === 'purchase'
+                            ? 'Maximize sua experiência de compra'
+                            : 'Otimize sua página em minutos'}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setShowQuickTips(false)}
+                      className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-2 rounded-lg transition-all"
+                      aria-label="Fechar dicas"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Dicas */}
+                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto">
+                  {getContextualTips().map((tip, index) => {
+                    const Icon = tip.icon;
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-xl p-4 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`bg-gradient-to-br ${tip.color} p-2.5 rounded-lg shadow-sm group-hover:shadow-md transition-all flex-shrink-0`}>
+                            <Icon className="w-4 h-4 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-slate-900 mb-1.5 text-sm">
+                              {tip.title}
+                            </h3>
+                            <p className="text-xs text-slate-600 leading-relaxed">
+                              {tip.tip}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Footer */}
+                <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs text-slate-600">
+                    <Sparkles className="w-4 h-4 text-amber-500" />
+                    <span>Precisa de mais ajuda?</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => {
+                        setShowQuickTips(false);
+                        setTimeout(() => {
+                          const tourType = getCurrentTourType();
+                          startTour(tourType);
+                        }, 300);
+                      }}
+                      className="px-4 py-2 text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-slate-200"
+                    >
+                      Ver Tour Completo
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowQuickTips(false);
+                        setTimeout(() => navigate('/contact'), 300);
+                      }}
+                      className="px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all shadow-sm"
+                    >
+                      Falar com Suporte
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
