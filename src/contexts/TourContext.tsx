@@ -167,7 +167,16 @@ export function TourProvider({ children }: { children: ReactNode }) {
           title: 'Sua identidade digital premium',
           content: 'Comece aqui. Digite o nome desejado e descubra se está disponível. Seu domínio .com.rich é único e exclusivo.',
           position: 'bottom',
-          highlight: true
+          highlight: true,
+          action: () => {
+            // Focar no campo de busca quando o step abrir
+            setTimeout(() => {
+              const input = document.getElementById('domain-search-input') as HTMLInputElement;
+              if (input) {
+                input.focus();
+              }
+            }, 300);
+          }
         },
         {
           id: 'view-plans',

@@ -61,6 +61,16 @@ export default function GuidedTour({
     const timer = setTimeout(() => {
       calculatePosition();
       setIsVisible(true);
+
+      // Focar no input se for o step de busca
+      if (step.id === 'home-search') {
+        setTimeout(() => {
+          const input = document.getElementById('domain-search-input') as HTMLInputElement;
+          if (input && !input.disabled) {
+            input.focus();
+          }
+        }, 500);
+      }
     }, 100);
 
     return () => clearTimeout(timer);

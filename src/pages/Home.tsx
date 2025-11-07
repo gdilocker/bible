@@ -581,13 +581,13 @@ const Home = () => {
               variants={item}
               onSubmit={handleSearch}
               className="w-full max-w-2xl mx-auto mb-4 sm:mb-6 px-2"
-              data-tour="domain-search"
             >
-              <div className="relative group">
+              <div className="relative group" data-tour="domain-search">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
                 <div className="relative flex flex-col gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
                   <div className="flex items-center flex-1 min-w-0 bg-black/20 rounded-xl">
                     <input
+                      id="domain-search-input"
                       type="text"
                       value={domain}
                       onChange={(e) => setDomain(e.target.value.replace(/[^a-z0-9-]/gi, '').toLowerCase())}
