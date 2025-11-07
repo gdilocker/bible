@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/panel/dashboard';
+  const from = location.state?.from?.pathname;
   const returnTo = location.state?.returnTo;
   const redirectTo = location.state?.redirectTo;
   const prefilledDomain = location.state?.prefilledDomain;
@@ -43,12 +43,22 @@ const Login: React.FC = () => {
   // Auto-redirect if user is already logged in
   React.useEffect(() => {
     if (user && !hasNavigated) {
-      let destination = returnTo || redirectTo || from;
+      // Determine destination with correct priority
+      let destination = '/'; // Default: home page
 
-      // Admin users should go to admin dashboard (unless there's a specific return path)
-      if (user.role === 'admin' && !returnTo && !redirectTo) {
+      // Priority 1: Explicit redirect paths
+      if (returnTo) {
+        destination = returnTo;
+      } else if (redirectTo) {
+        destination = redirectTo;
+      } else if (from && from !== '/login') {
+        // Priority 2: Return to where they came from (but not /login itself)
+        destination = from;
+      } else if (user.role === 'admin') {
+        // Priority 3: Admin users go to admin dashboard
         destination = '/admin';
       }
+      // Otherwise: stay with default home page '/'
 
       console.log('Login: User detected, role:', user.role, 'navigating to:', destination);
       setHasNavigated(true);
