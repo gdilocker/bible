@@ -85,9 +85,15 @@ export default function GuidedTour({
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll, true);
 
+    // Recalcular posição a cada 100ms para garantir sincronia perfeita
+    const syncInterval = setInterval(() => {
+      calculatePosition();
+    }, 100);
+
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll, true);
+      clearInterval(syncInterval);
     };
   }, [isActive, step]);
 
@@ -102,16 +108,30 @@ export default function GuidedTour({
 
     setTargetElement(element);
 
+    // Obter posição PRECISA do elemento
     const rect = element.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.scrollY;
+    const scrollLeft = window.scrollX;
 
-    // Padding ao redor do elemento destacado (0 para usar o tamanho exato)
-    const padding = 0;
+    // Padding visual de 8px para dar respiro e destacar o elemento
+    const padding = 8;
+
+    // Posição ABSOLUTA no documento (scroll + viewport)
+    const absoluteTop = rect.top + scrollTop;
+    const absoluteLeft = rect.left + scrollLeft;
+
+    // Log para debug do alinhamento
+    console.log('📍 Spotlight Position:', {
+      element: step.target,
+      viewport: { top: Math.round(rect.top), left: Math.round(rect.left) },
+      scroll: { top: Math.round(scrollTop), left: Math.round(scrollLeft) },
+      absolute: { top: Math.round(absoluteTop), left: Math.round(absoluteLeft) },
+      size: { width: Math.round(rect.width), height: Math.round(rect.height) }
+    });
 
     setHighlightPosition({
-      top: rect.top + scrollTop - padding,
-      left: rect.left + scrollLeft - padding,
+      top: absoluteTop - padding,
+      left: absoluteLeft - padding,
       width: rect.width + (padding * 2),
       height: rect.height + (padding * 2)
     });
@@ -256,12 +276,9 @@ export default function GuidedTour({
 
                 {/* Recorte com bordas arredondadas = transparente */}
                 <motion.rect
+                  key={`mask-${currentStep}`}
                   initial={{
                     opacity: 0,
-                    x: highlightPosition.left,
-                    y: highlightPosition.top,
-                    width: highlightPosition.width,
-                    height: highlightPosition.height,
                   }}
                   animate={{
                     opacity: 1,
@@ -271,8 +288,10 @@ export default function GuidedTour({
                     height: highlightPosition.height,
                   }}
                   transition={{
-                    duration: 0.5,
-                    ease: [0.25, 0.1, 0.25, 1] // Custom easing para suavidade
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30,
+                    mass: 0.8,
                   }}
                   fill="black"
                   rx="12"
@@ -303,43 +322,45 @@ export default function GuidedTour({
           {/* Borda animada ao redor do elemento destacado */}
           {step.highlight && (
             <motion.div
+              key={`border-${currentStep}`}
               initial={{
                 opacity: 0,
-                scale: 0.98,
-                x: highlightPosition.left,
-                y: highlightPosition.top,
+                scale: 0.95,
               }}
               animate={{
                 opacity: 1,
                 scale: 1,
                 x: highlightPosition.left,
                 y: highlightPosition.top,
-              }}
-              transition={{
-                duration: 0.5,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
-              className="absolute pointer-events-none"
-              style={{
                 width: highlightPosition.width,
                 height: highlightPosition.height,
               }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 30,
+                mass: 0.8,
+              }}
+              className="absolute pointer-events-none"
             >
               {/* Borda externa com gradiente dourado premium */}
               <div className="absolute inset-0 rounded-xl">
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-400/40 via-yellow-300/40 to-amber-400/40 blur-sm" />
-                <div className="absolute inset-0 rounded-xl border-2 border-amber-400/60 shadow-[0_0_30px_rgba(251,191,36,0.3)]" />
+                {/* Glow externo */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-400/50 via-yellow-300/50 to-amber-400/50 blur-md" />
+
+                {/* Borda sólida principal */}
+                <div className="absolute inset-0 rounded-xl border-[3px] border-amber-400/80 shadow-[0_0_40px_rgba(251,191,36,0.4)]" />
               </div>
 
               {/* Animação de pulso sutil */}
               <motion.div
-                className="absolute inset-0 rounded-xl border-2 border-amber-300/40"
+                className="absolute inset-0 rounded-xl border-2 border-amber-300/50"
                 animate={{
-                  scale: [1, 1.02, 1],
-                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.015, 1],
+                  opacity: [0.4, 0.7, 0.4],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
