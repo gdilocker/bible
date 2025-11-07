@@ -17,6 +17,11 @@
     @apply bg-[#FAFAFA] text-black font-sans antialiased;
   }
 
+  /* Previne palavras órfãs no fim das linhas */
+  p, h1, h2, h3, h4, h5, h6, span, li, a {
+    text-wrap: balance;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold text-black;
   }
