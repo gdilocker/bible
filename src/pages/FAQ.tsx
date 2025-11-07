@@ -493,6 +493,74 @@ const FAQ: React.FC = () => {
           answer: 'Sim. Todas as conexões usam HTTPS e criptografia TLS. Os dados de pagamento são processados diretamente pelo PayPal, e não são armazenados em nossos servidores. A Global Digital Identity LTD segue práticas compatíveis com o UK Data Protection Act 2018 e o GDPR europeu.'
         },
         {
+          question: 'Como funciona a verificação de segurança dos meus links?',
+          answer: (
+            <div className="space-y-3">
+              <p>Todos os links adicionados ao seu perfil passam por <strong>verificação automática de segurança</strong> usando a tecnologia Google Safe Browsing API.</p>
+              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-green-900 mb-2">✅ Proteção Automática</p>
+                <ul className="list-disc list-inside space-y-1 text-green-800 text-sm">
+                  <li>Verificação imediata ao adicionar ou editar link</li>
+                  <li>Verificação periódica diária de todos os links ativos</li>
+                  <li>Bloqueio automático de links maliciosos</li>
+                  <li>Proteção contra phishing, malware e sites comprometidos</li>
+                </ul>
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p className="font-semibold text-blue-900 mb-2">📊 Status Transparente</p>
+                <p className="text-blue-800 text-sm">Você pode ver o status de segurança de cada link no seu painel: Seguro (✅), Sob Revisão (⚠️), Bloqueado (🔒) ou Pendente (🔄).</p>
+              </div>
+              <p className="text-sm mt-3">
+                <strong>💡 Saiba mais:</strong> Acesse nossos artigos de suporte sobre <a href="/suporte/como-funciona-verificacao-seguranca" className="text-[#3B82F6] hover:underline">Como funciona a verificação</a> e <a href="/suporte/meu-link-foi-bloqueado" className="text-[#3B82F6] hover:underline">O que fazer se seu link for bloqueado</a>.
+              </p>
+            </div>
+          )
+        },
+        {
+          question: 'Por que meu link foi bloqueado?',
+          answer: (
+            <div className="space-y-3">
+              <p>Um link pode ser bloqueado por diversos motivos de segurança:</p>
+              <div className="space-y-2">
+                <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded-r-lg">
+                  <p className="font-semibold text-red-900 text-sm mb-1">🦠 Malware ou Vírus</p>
+                  <p className="text-red-800 text-sm">Site distribui software malicioso</p>
+                </div>
+                <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-lg">
+                  <p className="font-semibold text-orange-900 text-sm mb-1">🎣 Phishing</p>
+                  <p className="text-orange-800 text-sm">Tentativa de roubar informações pessoais</p>
+                </div>
+                <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg">
+                  <p className="font-semibold text-amber-900 text-sm mb-1">🔓 Site Comprometido</p>
+                  <p className="text-amber-800 text-sm">Site legítimo que foi hackeado</p>
+                </div>
+                <div className="bg-slate-50 border-l-4 border-slate-500 p-3 rounded-r-lg">
+                  <p className="font-semibold text-slate-900 text-sm mb-1">⚠️ Falso Positivo</p>
+                  <p className="text-slate-800 text-sm">Site seguro identificado incorretamente</p>
+                </div>
+              </div>
+              <p className="text-sm mt-3">
+                <strong>📝 Solução:</strong> Se você acredita que é um erro, pode solicitar revisão manual através do painel. Nossa equipe analisará em até 24-48 horas. <a href="/suporte/meu-link-foi-bloqueado" className="text-[#3B82F6] hover:underline">Ver guia completo</a>.
+              </p>
+            </div>
+          )
+        },
+        {
+          question: 'Com que frequência os links são verificados?',
+          answer: (
+            <div className="space-y-2">
+              <p>A verificação de segurança acontece em dois momentos:</p>
+              <ul className="list-disc list-inside space-y-2 ml-2">
+                <li><strong>Imediata:</strong> Quando você adiciona ou edita um link (menos de 5 segundos)</li>
+                <li><strong>Periódica:</strong> Todos os links são reverificados diariamente às 2h da manhã</li>
+              </ul>
+              <p className="mt-3 text-sm bg-blue-50 p-3 rounded">
+                <strong>Por que reverificar?</strong> Sites seguros podem ser comprometidos após serem adicionados. A verificação contínua garante que seus visitantes estejam sempre protegidos.
+              </p>
+            </div>
+          )
+        },
+        {
           question: 'Quais dados são coletados?',
           answer: (
             <div className="space-y-2">
