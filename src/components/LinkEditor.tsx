@@ -3,6 +3,7 @@ import { X, Check, AlertTriangle, ExternalLink, Copy, GripVertical, Trash2, Plus
 import { ProfileLink, LinkStyle, profileLinksService } from '../lib/services/profileLinks';
 import { hasGoodContrast, suggestTextColor } from '../lib/utils/contrastChecker';
 import * as LucideIcons from 'lucide-react';
+import LinkSecurityStatus from './LinkSecurityStatus';
 
 interface LinkEditorProps {
   profileId: string;
@@ -239,6 +240,8 @@ export default function LinkEditor({ profileId, links, onLinksChange }: LinkEdit
 
     try {
       setSaveStatus('saving');
+      let savedLinkId: string | undefined;
+
       if (editingLink) {
         await profileLinksService.updateLink(editingLink.id, {
           title: formData.title,
@@ -247,10 +250,11 @@ export default function LinkEditor({ profileId, links, onLinksChange }: LinkEdit
           style: formData.style,
           is_active: formData.is_active,
         });
+        savedLinkId = editingLink.id;
         showToast('Link atualizado com sucesso!', 'success');
         setEditingLink(null);
       } else if (isCreating) {
-        await profileLinksService.createLink({
+        const newLink = await profileLinksService.createLink({
           profile_id: profileId,
           title: formData.title,
           url: normalizedUrl,
@@ -258,12 +262,19 @@ export default function LinkEditor({ profileId, links, onLinksChange }: LinkEdit
           style: formData.style,
           is_active: formData.is_active,
         });
+        savedLinkId = newLink.id;
         setLastStyleUsed(formData.style);
         showToast('Link criado com sucesso!', 'success');
         setIsCreating(false);
       }
+
+      if (savedLinkId) {
+        profileLinksService.verifyLinkSecurity(savedLinkId, normalizedUrl).catch(err => {
+          console.error('Falha na verificação de segurança:', err);
+        });
+      }
+
       setSaveStatus('saved');
-      // Fecha o modal automaticamente após salvar
       setTimeout(() => {
         setSaveStatus('idle');
         setEditingLink(null);
@@ -272,7 +283,6 @@ export default function LinkEditor({ profileId, links, onLinksChange }: LinkEdit
       onLinksChange();
     } catch (error: any) {
       console.error('Failed to save link:', error);
-      // Verifica se é erro de limite do backend
       if (error?.message?.includes('limit') || error?.code === '409') {
         showToast('Limite de 10 links atingido.', 'error');
       } else {
@@ -474,8 +484,20 @@ export default function LinkEditor({ profileId, links, onLinksChange }: LinkEdit
                         <GripVertical className="w-5 h-5 text-slate-400" />
                         <Icon className="w-5 h-5 text-slate-600" />
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-slate-900 truncate">{link.title}</p>
+                          <div className="flex items-center gap-2 mb-1">
+                            <p className="font-medium text-slate-900 truncate">{link.title}</p>
+                            {link.security_status && (
+                              <LinkSecurityStatus
+                                linkId={link.id}
+                                status={link.security_status}
+                                isBlocked={link.is_blocked}
+                              />
+                            )}
+                          </div>
                           <p className="text-xs text-slate-500 truncate">{link.url}</p>
+                          {link.is_blocked && link.block_reason && (
+                            <p className="text-xs text-red-600 mt-1">{link.block_reason}</p>
+                          )}
                         </div>
                         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button

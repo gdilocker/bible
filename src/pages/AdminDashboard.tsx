@@ -300,7 +300,8 @@ export default function AdminDashboard() {
     { label: 'Afiliados', icon: Award, link: '/admin/revendedores' },
     { label: 'Domínios Premium', icon: Tag, link: '/admin/sugestoes' },
     { label: 'Palavras Reservadas', icon: Lock, link: '/admin/reserved-keywords' },
-    { label: 'Marcas Protegidas', icon: Shield, link: '/admin/protected-brands' }
+    { label: 'Marcas Protegidas', icon: Shield, link: '/admin/protected-brands' },
+    { label: 'Moderação de Links', icon: Shield, link: '/admin/link-moderation' }
   ];
 
   const quickActionsSistema = [

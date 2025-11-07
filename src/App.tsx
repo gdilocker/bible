@@ -60,6 +60,7 @@ import Marketplace from './pages/Marketplace';
 import AdminSuggestions from './pages/AdminSuggestions';
 import AdminReservedKeywords from './pages/AdminReservedKeywords';
 import AdminProtectedBrands from './pages/AdminProtectedBrands';
+import AdminLinkModeration from './pages/AdminLinkModeration';
 import DiagnosticTest from './pages/DiagnosticTest';
 import PublicProfile from './pages/PublicProfile';
 import ProfileManager from './pages/ProfileManager';
@@ -381,6 +382,11 @@ function AppRoutes() {
           <Route path="/admin/protected-brands" element={
             <ProtectedRoute adminOnly>
               <AdminProtectedBrands />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/link-moderation" element={
+            <ProtectedRoute adminOnly>
+              <AdminLinkModeration />
             </ProtectedRoute>
           } />
           <Route path="/admin/social-moderation" element={

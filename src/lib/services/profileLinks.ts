@@ -22,6 +22,10 @@ export interface ProfileLink {
   clicks: number;
   created_at: string;
   updated_at: string;
+  security_status?: 'safe' | 'suspicious' | 'malicious' | 'pending' | 'under_review';
+  is_blocked?: boolean;
+  block_reason?: string;
+  last_security_check?: string;
 }
 
 export interface CreateLinkInput {
@@ -70,6 +74,7 @@ export const profileLinksService = {
       .select('*')
       .eq('profile_id', profileId)
       .eq('is_active', true)
+      .eq('is_blocked', false)
       .order('sort_order', { ascending: true });
 
     if (error) throw error;
@@ -208,5 +213,39 @@ export const profileLinksService = {
 
     if (error) throw error;
     return data?.sort_order ?? -1;
+  },
+
+  async verifyLinkSecurity(linkId: string, url: string): Promise<void> {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) throw new Error('Not authenticated');
+
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const apiUrl = `${supabaseUrl}/functions/v1/verify-link-security`;
+
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${session.access_token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ linkId, url, checkType: 'automatic' })
+    });
+
+    if (!response.ok) {
+      console.error('Failed to verify link security:', await response.text());
+    }
+  },
+
+  async requestManualReview(linkId: string, message?: string): Promise<{ success: boolean; error?: string }> {
+    const { data, error } = await supabase.rpc('request_link_review', {
+      p_link_id: linkId,
+      p_user_message: message
+    });
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    return data as { success: boolean; error?: string };
   },
 };
