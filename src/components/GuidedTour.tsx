@@ -119,47 +119,68 @@ export default function GuidedTour({
 
     setTargetElement(element);
 
-    // Obter posição PRECISA do elemento
-    const rect = element.getBoundingClientRect();
+    // ESTRATÉGIA: Calcular bounding box combinado dos FILHOS (campo + botão)
+    // ignorando padding/margin do wrapper pai
+    const children = Array.from(element.children) as HTMLElement[];
+
+    if (children.length === 0) {
+      console.warn('No children found in tour target');
+      return;
+    }
+
+    // Calcular bounding box que envolve TODOS os filhos
+    let minTop = Infinity;
+    let minLeft = Infinity;
+    let maxBottom = -Infinity;
+    let maxRight = -Infinity;
+
+    children.forEach(child => {
+      const childRect = child.getBoundingClientRect();
+      minTop = Math.min(minTop, childRect.top);
+      minLeft = Math.min(minLeft, childRect.left);
+      maxBottom = Math.max(maxBottom, childRect.bottom);
+      maxRight = Math.max(maxRight, childRect.right);
+    });
+
+    // Criar rect virtual com o bounding box combinado
+    const combinedWidth = maxRight - minLeft;
+    const combinedHeight = maxBottom - minTop;
+
     const scrollTop = window.scrollY;
     const scrollLeft = window.scrollX;
 
-    // Padding MÍNIMO de 4px para borda dourada respirar sem desalinhar
-    // Valor calibrado para encaixe milimétrico em todos os dispositivos
-    const padding = 4;
+    // Padding super fino de 2px para borda respirar
+    const padding = 2;
 
-    // Posição ABSOLUTA no documento (scroll + viewport)
-    const absoluteTop = rect.top + scrollTop;
-    const absoluteLeft = rect.left + scrollLeft;
+    // Posição ABSOLUTA no documento
+    const absoluteTop = minTop + scrollTop;
+    const absoluteLeft = minLeft + scrollLeft;
 
-    // Log para debug do alinhamento MILIMÉTRICO
-    console.log('📍 Spotlight CALIBRADO:', {
-      element: step.target,
-      viewport: {
-        top: `${Math.round(rect.top)}px`,
-        left: `${Math.round(rect.left)}px`,
-        width: `${Math.round(rect.width)}px`,
-        height: `${Math.round(rect.height)}px`
-      },
-      scroll: { top: Math.round(scrollTop), left: Math.round(scrollLeft) },
-      absolute: {
-        top: `${Math.round(absoluteTop)}px`,
-        left: `${Math.round(absoluteLeft)}px`
+    // Log detalhado para debug
+    console.log('📍 Spotlight BOUNDING BOX:', {
+      target: step.target,
+      childrenCount: children.length,
+      boundingBox: {
+        top: `${Math.round(minTop)}px`,
+        left: `${Math.round(minLeft)}px`,
+        width: `${Math.round(combinedWidth)}px`,
+        height: `${Math.round(combinedHeight)}px`
       },
       spotlight: {
         top: `${Math.round(absoluteTop - padding)}px`,
         left: `${Math.round(absoluteLeft - padding)}px`,
-        width: `${Math.round(rect.width + padding * 2)}px`,
-        height: `${Math.round(rect.height + padding * 2)}px`
+        width: `${Math.round(combinedWidth + padding * 2)}px`,
+        height: `${Math.round(combinedHeight + padding * 2)}px`
       },
-      padding: `${padding}px`
+      padding: `${padding}px`,
+      scroll: { top: Math.round(scrollTop), left: Math.round(scrollLeft) }
     });
 
     setHighlightPosition({
       top: absoluteTop - padding,
       left: absoluteLeft - padding,
-      width: rect.width + (padding * 2),
-      height: rect.height + (padding * 2)
+      width: combinedWidth + (padding * 2),
+      height: combinedHeight + (padding * 2)
     });
 
     // Dimensões do tooltip
@@ -172,30 +193,30 @@ export default function GuidedTour({
 
     const position = step.position || 'auto';
 
-    // Posicionamento automático inteligente
+    // Posicionamento automático inteligente usando o bounding box combinado
     if (position === 'auto') {
-      const spaceAbove = rect.top;
-      const spaceBelow = window.innerHeight - rect.bottom;
-      const spaceLeft = rect.left;
-      const spaceRight = window.innerWidth - rect.right;
+      const spaceAbove = minTop;
+      const spaceBelow = window.innerHeight - maxBottom;
+      const spaceLeft = minLeft;
+      const spaceRight = window.innerWidth - maxRight;
 
       // Prioridade: abaixo > acima > direita > esquerda
       if (spaceBelow >= tooltipHeight + gap) {
         // Abaixo
-        top = rect.top + scrollTop + rect.height + gap;
-        left = rect.left + scrollLeft + (rect.width / 2) - (tooltipWidth / 2);
+        top = maxBottom + scrollTop + gap;
+        left = minLeft + scrollLeft + (combinedWidth / 2) - (tooltipWidth / 2);
       } else if (spaceAbove >= tooltipHeight + gap) {
         // Acima
-        top = rect.top + scrollTop - tooltipHeight - gap;
-        left = rect.left + scrollLeft + (rect.width / 2) - (tooltipWidth / 2);
+        top = minTop + scrollTop - tooltipHeight - gap;
+        left = minLeft + scrollLeft + (combinedWidth / 2) - (tooltipWidth / 2);
       } else if (spaceRight >= tooltipWidth + gap) {
         // Direita
-        top = rect.top + scrollTop + (rect.height / 2) - (tooltipHeight / 2);
-        left = rect.left + scrollLeft + rect.width + gap;
+        top = minTop + scrollTop + (combinedHeight / 2) - (tooltipHeight / 2);
+        left = maxRight + scrollLeft + gap;
       } else if (spaceLeft >= tooltipWidth + gap) {
         // Esquerda
-        top = rect.top + scrollTop + (rect.height / 2) - (tooltipHeight / 2);
-        left = rect.left + scrollLeft - tooltipWidth - gap;
+        top = minTop + scrollTop + (combinedHeight / 2) - (tooltipHeight / 2);
+        left = minLeft + scrollLeft - tooltipWidth - gap;
       } else {
         // Centro como fallback
         top = window.innerHeight / 2 - tooltipHeight / 2 + scrollTop;
@@ -205,20 +226,20 @@ export default function GuidedTour({
       // Posicionamento manual
       switch (position) {
         case 'top':
-          top = rect.top + scrollTop - tooltipHeight - gap;
-          left = rect.left + scrollLeft + (rect.width / 2) - (tooltipWidth / 2);
+          top = minTop + scrollTop - tooltipHeight - gap;
+          left = minLeft + scrollLeft + (combinedWidth / 2) - (tooltipWidth / 2);
           break;
         case 'bottom':
-          top = rect.top + scrollTop + rect.height + gap;
-          left = rect.left + scrollLeft + (rect.width / 2) - (tooltipWidth / 2);
+          top = maxBottom + scrollTop + gap;
+          left = minLeft + scrollLeft + (combinedWidth / 2) - (tooltipWidth / 2);
           break;
         case 'left':
-          top = rect.top + scrollTop + (rect.height / 2) - (tooltipHeight / 2);
-          left = rect.left + scrollLeft - tooltipWidth - gap;
+          top = minTop + scrollTop + (combinedHeight / 2) - (tooltipHeight / 2);
+          left = minLeft + scrollLeft - tooltipWidth - gap;
           break;
         case 'right':
-          top = rect.top + scrollTop + (rect.height / 2) - (tooltipHeight / 2);
-          left = rect.left + scrollLeft + rect.width + gap;
+          top = minTop + scrollTop + (combinedHeight / 2) - (tooltipHeight / 2);
+          left = maxRight + scrollLeft + gap;
           break;
         case 'center':
           top = window.innerHeight / 2 - tooltipHeight / 2 + scrollTop;
