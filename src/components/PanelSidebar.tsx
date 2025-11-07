@@ -123,6 +123,7 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => setIsOpen(false)}
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 relative
                     ${isActive
@@ -155,6 +156,7 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
             <div className="pt-4 mt-4 border-t border-slate-200 space-y-3">
               <Link
                 to="/"
+                onClick={() => setIsOpen(false)}
                 className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 <PlusCircle className="w-5 h-5" />
