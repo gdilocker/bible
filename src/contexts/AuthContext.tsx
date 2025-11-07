@@ -50,9 +50,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const getUserWithRole = useCallback(async (authUser: SupabaseUser): Promise<User> => {
     try {
-      const { data: rpcData, error: rpcError } = await supabase.rpc('get_user_role_and_subscription', {
+      // Add timeout to RPC call - fail fast if it takes too long
+      const timeoutPromise = new Promise<null>((_, reject) => {
+        setTimeout(() => reject(new Error('RPC timeout')), 5000);
+      });
+
+      const rpcPromise = supabase.rpc('get_user_role_and_subscription', {
         user_uuid: authUser.id
       });
+
+      const { data: rpcData, error: rpcError } = await Promise.race([
+        rpcPromise,
+        timeoutPromise
+      ]) as any;
 
       if (!rpcError && rpcData && Array.isArray(rpcData) && rpcData.length > 0) {
         const info = rpcData[0];
@@ -66,9 +76,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         };
       }
     } catch (err) {
-      console.warn('RPC failed, using default role:', err);
+      console.warn('RPC failed or timed out, using default role:', err);
     }
 
+    // Fallback to default user
     return {
       id: authUser.id,
       email: authUser.email!,
@@ -190,9 +201,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (error) throw error;
 
       if (data.user) {
-        const userWithRole = await getUserWithRole(data.user);
-        setUser(userWithRole);
+        // Set user immediately with basic info for fast login
+        setUser({
+          id: data.user.id,
+          email: data.user.email!,
+          name: data.user.user_metadata?.name,
+          role: 'user', // Will be updated in background
+          hasActiveSubscription: false
+        });
 
+        // Fetch full role info in background (non-blocking)
+        getUserWithRole(data.user).then(userWithRole => {
+          setUser(userWithRole);
+        }).catch(err => {
+          console.warn('Failed to fetch user role in background:', err);
+        });
+
+        // Ensure customer exists in background (non-blocking)
         ensureCustomerExists(data.user).catch(console.error);
       }
     } finally {
