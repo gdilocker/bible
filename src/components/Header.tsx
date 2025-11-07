@@ -171,9 +171,11 @@ export default function Header() {
                   Inicial
                 </Link>
                 <Link
-                  to="/panel/dashboard"
+                  to="/dashboard"
                   className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/panel/dashboard'
+                    location.pathname === '/dashboard' ||
+                    location.pathname === '/panel/dashboard' ||
+                    location.pathname === '/app/dashboard'
                       ? 'text-white'
                       : 'text-gray-400 hover:text-white'
                   }`}
@@ -253,7 +255,7 @@ export default function Header() {
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          navigate('/panel/dashboard');
+                          navigate('/dashboard');
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
