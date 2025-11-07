@@ -211,13 +211,21 @@ export default function GuidedTour({
   };
 
   const handleNext = () => {
+    console.log('🎯 GuidedTour handleNext clicked', {
+      currentStep,
+      isLastStep,
+      stepId: step.id
+    });
+
     if (step.action) {
       step.action();
     }
 
     if (isLastStep) {
+      console.log('✅ Completing tour');
       onComplete();
     } else {
+      console.log('➡️ Going to next step');
       onNext();
     }
   };
@@ -357,6 +365,7 @@ export default function GuidedTour({
             top: tooltipPosition.top,
             left: tooltipPosition.left,
             pointerEvents: 'auto',
+            zIndex: 100000,
           }}
         >
           <div className="relative">

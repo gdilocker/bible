@@ -584,38 +584,41 @@ const Home = () => {
             >
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-                <div className="relative flex flex-col gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl" data-tour="domain-search">
-                  <div className="flex items-center flex-1 min-w-0 bg-black/20 rounded-xl">
-                    <input
-                      id="domain-search-input"
-                      type="text"
-                      value={domain}
-                      onChange={(e) => setDomain(e.target.value.replace(/[^a-z0-9-]/gi, '').toLowerCase())}
-                      placeholder="Pesquisar domínio"
-                      className="flex-1 bg-transparent text-white placeholder-gray-400 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-amber-500/50 rounded-xl min-w-0"
-                      disabled={provisioning}
-                    />
-                    <div className="flex items-center px-3 sm:px-4 text-amber-400 text-sm sm:text-lg font-semibold select-none pointer-events-none whitespace-nowrap">
-                      .com.rich
+                <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
+                  {/* Wrapper invisível para spotlight - APENAS campo + botão */}
+                  <div data-tour="domain-search" className="flex flex-col gap-2">
+                    <div className="flex items-center flex-1 min-w-0 bg-black/20 rounded-xl">
+                      <input
+                        id="domain-search-input"
+                        type="text"
+                        value={domain}
+                        onChange={(e) => setDomain(e.target.value.replace(/[^a-z0-9-]/gi, '').toLowerCase())}
+                        placeholder="Pesquisar domínio"
+                        className="flex-1 bg-transparent text-white placeholder-gray-400 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-amber-500/50 rounded-xl min-w-0"
+                        disabled={provisioning}
+                      />
+                      <div className="flex items-center px-3 sm:px-4 text-amber-400 text-sm sm:text-lg font-semibold select-none pointer-events-none whitespace-nowrap">
+                        .com.rich
+                      </div>
                     </div>
+                    <button
+                      type="submit"
+                      disabled={isSearching || provisioning}
+                      className="w-full px-6 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg shadow-amber-500/50 hover:shadow-amber-400/60 active:scale-95"
+                    >
+                      {isSearching ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Buscando...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Search className="w-5 h-5" />
+                          <span>Buscar</span>
+                        </>
+                      )}
+                    </button>
                   </div>
-                  <button
-                    type="submit"
-                    disabled={isSearching || provisioning}
-                    className="w-full px-6 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg shadow-amber-500/50 hover:shadow-amber-400/60 active:scale-95"
-                  >
-                    {isSearching ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        <span>Buscando...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Search className="w-5 h-5" />
-                        <span>Buscar</span>
-                      </>
-                    )}
-                  </button>
                 </div>
               </div>
             </motion.form>
