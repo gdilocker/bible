@@ -10,8 +10,6 @@ import { createEmailProvider } from '../server/adapters/emailProvider';
 import { supabase } from '../lib/supabase';
 import SuccessModal from '../components/SuccessModal';
 import backgroundImage from '../assets/2222 copy.jpg';
-import GuidedTour from '../components/GuidedTour';
-import { useTour, useShouldShowPurchaseTour } from '../hooks/useTour';
 
 interface PricingPlan {
   id: string;
@@ -49,13 +47,6 @@ const Home = () => {
   const [registeredDomain, setRegisteredDomain] = useState('');
 
   // Tour Guiado
-  const shouldShowTour = useShouldShowPurchaseTour();
-  const tour = useTour({
-    tourType: 'purchase',
-    autoStart: shouldShowTour && !user, // Auto-iniciar para visitantes
-    startCondition: () => !provisioning && !available,
-  });
-
   useEffect(() => {
     loadPricingPlans();
   }, []);
@@ -586,7 +577,7 @@ const Home = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 to-amber-600/50 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
                 <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
                   {/* Wrapper invisível para spotlight - APENAS campo + botão */}
-                  <div data-tour="domain-search" className="flex flex-col gap-2">
+                  <div  className="flex flex-col gap-2">
                     <div className="flex items-center flex-1 min-w-0 bg-black/20 rounded-xl">
                       <input
                         id="domain-search-input"
@@ -882,7 +873,7 @@ const Home = () => {
                               <Link
                                 to="/valores"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
-                                data-tour="view-plans"
+                                
                               >
                                 <Sparkles className="w-5 h-5" />
                                 <span>Ver Planos</span>
@@ -977,7 +968,7 @@ const Home = () => {
 
             <motion.div
               variants={item}
-              data-tour="benefits"
+              
               className="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm px-2"
             >
               <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
@@ -1010,7 +1001,7 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-6 sm:mb-8" data-tour="features">
+            <div className="text-center mb-6 sm:mb-8" >
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 leading-tight tracking-tight font-bold px-4">
                 <span className="text-white">Valor e identidade</span>
               </h2>
@@ -1261,17 +1252,6 @@ const Home = () => {
           domain={registeredDomain}
         />
 
-        {/* Tour Guiado */}
-        <GuidedTour
-          steps={tour.steps}
-          currentStep={tour.currentStep}
-          isActive={tour.isActive}
-          onNext={tour.next}
-          onPrevious={tour.previous}
-          onSkip={tour.skip}
-          onComplete={tour.complete}
-          tourType="purchase"
-        />
       </div>
     );
   };

@@ -217,7 +217,7 @@ const UserDashboard: React.FC = () => {
   return (
     <PanelLayout>
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8" data-tour="dashboard-welcome">
+        <div className="mb-8" >
           <h1 className="text-3xl font-bold text-slate-800 mb-2">
             Bem-vindo, {user?.user_metadata?.name || user?.email?.split('@')[0] || 'Usuário'}!
           </h1>
