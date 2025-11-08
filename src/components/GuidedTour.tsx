@@ -113,27 +113,49 @@ export default function GuidedTour({
 
     const element = document.querySelector(step.target);
     if (!element) {
-      // Retry mechanism: tentar até 5 vezes com delay de 100ms
-      if (retryCount < 5) {
-        console.log(`⏳ Retry ${retryCount + 1}/5: Waiting for ${step.target}...`);
-        setTimeout(() => calculatePosition(retryCount + 1), 100);
+      // Retry mechanism: tentar até 10 vezes com delay de 150ms (total: 1.5s)
+      if (retryCount < 10) {
+        console.log(`⏳ Retry ${retryCount + 1}/10: Waiting for ${step.target}...`);
+        setTimeout(() => calculatePosition(retryCount + 1), 150);
         return;
       }
-      console.warn(`❌ Tour target not found after 5 retries: ${step.target}`);
+      console.warn(`❌ Tour target not found after 10 retries: ${step.target}`);
       return;
     }
-
-    console.log(`✅ Tour target found: ${step.target} (attempt ${retryCount + 1})`);
-    setTargetElement(element);
 
     // ESTRATÉGIA: Calcular bounding box combinado dos FILHOS (campo + botão)
     // ignorando padding/margin do wrapper pai
     const children = Array.from(element.children) as HTMLElement[];
 
+    // VALIDAÇÃO CRÍTICA: Verificar se os filhos estão RENDERIZADOS
     if (children.length === 0) {
-      console.warn('No children found in tour target');
+      if (retryCount < 10) {
+        console.log(`⏳ Retry ${retryCount + 1}/10: Wrapper found but children not ready...`);
+        setTimeout(() => calculatePosition(retryCount + 1), 150);
+        return;
+      }
+      console.warn('❌ No children found after 10 retries');
       return;
     }
+
+    // VALIDAÇÃO: Verificar se os filhos têm dimensões válidas (renderizados)
+    const hasValidDimensions = children.some(child => {
+      const rect = child.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    });
+
+    if (!hasValidDimensions) {
+      if (retryCount < 10) {
+        console.log(`⏳ Retry ${retryCount + 1}/10: Children exist but not rendered yet (0x0)...`);
+        setTimeout(() => calculatePosition(retryCount + 1), 150);
+        return;
+      }
+      console.warn('❌ Children not properly rendered after 10 retries');
+      return;
+    }
+
+    console.log(`✅ Tour target ready: ${step.target} (${children.length} children, attempt ${retryCount + 1})`);
+    setTargetElement(element);
 
     // Calcular bounding box que envolve TODOS os filhos
     let minTop = Infinity;

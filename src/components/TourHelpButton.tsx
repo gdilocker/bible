@@ -66,15 +66,15 @@ export default function TourHelpButton() {
     // Se for tour de compra e não estiver na Home, navegar primeiro
     if (tourType === 'purchase' && location.pathname !== '/') {
       navigate('/');
-      // Delay maior para aguardar navegação + renderização completa
+      // Delay de 1200ms para navegação + renderização + estabilização DOM
       setTimeout(() => {
         startTour(tourType);
-      }, 800);
+      }, 1200);
     } else {
-      // Delay para animação de fechamento do menu
+      // Mesmo na Home, dar tempo para animação fechar
       setTimeout(() => {
         startTour(tourType);
-      }, 300);
+      }, 500);
     }
   };
 
@@ -383,9 +383,9 @@ export default function TourHelpButton() {
                         // Se for tour de compra e não estiver na Home, navegar primeiro
                         if (tourType === 'purchase' && location.pathname !== '/') {
                           navigate('/');
-                          setTimeout(() => startTour(tourType), 800);
+                          setTimeout(() => startTour(tourType), 1200);
                         } else {
-                          setTimeout(() => startTour(tourType), 300);
+                          setTimeout(() => startTour(tourType), 500);
                         }
                       }}
                       className="flex-1 sm:flex-none px-3 sm:px-4 py-2 text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-slate-200"
