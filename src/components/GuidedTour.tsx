@@ -108,15 +108,22 @@ export default function GuidedTour({
     };
   }, [isActive, step]);
 
-  const calculatePosition = () => {
+  const calculatePosition = (retryCount = 0) => {
     if (!step?.target) return;
 
     const element = document.querySelector(step.target);
     if (!element) {
-      console.warn(`Tour target not found: ${step.target}`);
+      // Retry mechanism: tentar até 5 vezes com delay de 100ms
+      if (retryCount < 5) {
+        console.log(`⏳ Retry ${retryCount + 1}/5: Waiting for ${step.target}...`);
+        setTimeout(() => calculatePosition(retryCount + 1), 100);
+        return;
+      }
+      console.warn(`❌ Tour target not found after 5 retries: ${step.target}`);
       return;
     }
 
+    console.log(`✅ Tour target found: ${step.target} (attempt ${retryCount + 1})`);
     setTargetElement(element);
 
     // ESTRATÉGIA: Calcular bounding box combinado dos FILHOS (campo + botão)
@@ -274,6 +281,17 @@ export default function GuidedTour({
         block: 'center',
         inline: 'center'
       });
+    }
+
+    // Foco automático no campo de pesquisa (Passo 1)
+    if (step.target === '[data-tour="domain-search"]') {
+      setTimeout(() => {
+        const input = document.querySelector('#domain-search-input') as HTMLInputElement;
+        if (input) {
+          input.focus();
+          console.log('✅ Auto-focus on domain search input');
+        }
+      }, 500); // Aguardar scroll suave completar
     }
   };
 

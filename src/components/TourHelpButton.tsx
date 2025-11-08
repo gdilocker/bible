@@ -63,10 +63,19 @@ export default function TourHelpButton() {
     const tourType = getCurrentTourType();
     setIsMenuOpen(false);
 
-    // Pequeno delay para animação de fechamento do menu
-    setTimeout(() => {
-      startTour(tourType);
-    }, 300);
+    // Se for tour de compra e não estiver na Home, navegar primeiro
+    if (tourType === 'purchase' && location.pathname !== '/') {
+      navigate('/');
+      // Delay maior para aguardar navegação + renderização completa
+      setTimeout(() => {
+        startTour(tourType);
+      }, 800);
+    } else {
+      // Delay para animação de fechamento do menu
+      setTimeout(() => {
+        startTour(tourType);
+      }, 300);
+    }
   };
 
   const handleQuickTips = () => {
@@ -369,10 +378,15 @@ export default function TourHelpButton() {
                     <button
                       onClick={() => {
                         setShowQuickTips(false);
-                        setTimeout(() => {
-                          const tourType = getCurrentTourType();
-                          startTour(tourType);
-                        }, 300);
+                        const tourType = getCurrentTourType();
+
+                        // Se for tour de compra e não estiver na Home, navegar primeiro
+                        if (tourType === 'purchase' && location.pathname !== '/') {
+                          navigate('/');
+                          setTimeout(() => startTour(tourType), 800);
+                        } else {
+                          setTimeout(() => startTour(tourType), 300);
+                        }
                       }}
                       className="flex-1 sm:flex-none px-3 sm:px-4 py-2 text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-slate-200"
                     >

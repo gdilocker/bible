@@ -96,19 +96,33 @@ export function TourProvider({ children }: { children: ReactNode }) {
           onConflict: 'user_id,tour_type'
         });
 
-      if (error) throw error;
+      if (error) {
+        // Fallback gracioso: Se a tabela não existir, continuar sem persistir
+        if (error.code === '42P01' || error.message.includes('does not exist')) {
+          console.warn('Tour progress table not available, continuing without persistence');
+          return;
+        }
+        throw error;
+      }
 
       await loadTourProgress();
     } catch (error) {
-      console.error('Error saving tour progress:', error);
+      console.warn('Tour progress not saved (continuing):', error);
     }
   };
 
   const startTour = (tourType: 'purchase' | 'page_mastery') => {
-    setActiveTour(tourType);
-    setCurrentStep(1);
-    setIsActive(true);
-    saveTourProgress(tourType, 1);
+    console.log('🎯 Starting tour:', tourType);
+
+    // Delay estratégico de 300ms para garantir que DOM está estável
+    setTimeout(() => {
+      setActiveTour(tourType);
+      setCurrentStep(1);
+      setIsActive(true);
+      saveTourProgress(tourType, 1);
+
+      console.log('✅ Tour activated with 300ms delay for DOM stability');
+    }, 300);
   };
 
   const nextStep = () => {
