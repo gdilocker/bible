@@ -126,13 +126,25 @@ export function TourProvider({ children }: { children: ReactNode }) {
   };
 
   const nextStep = () => {
-    if (!activeTour) return;
+    if (!activeTour) {
+      console.warn('❌ nextStep called but no active tour');
+      return;
+    }
 
     const steps = getTourSteps(activeTour);
     const nextStepNum = Math.min(currentStep + 1, steps.length);
 
+    console.log('🔄 TourContext.nextStep()', {
+      currentStep,
+      nextStepNum,
+      totalSteps: steps.length,
+      activeTour
+    });
+
     setCurrentStep(nextStepNum);
     saveTourProgress(activeTour, nextStepNum);
+
+    console.log('✅ Current step updated to:', nextStepNum);
   };
 
   const previousStep = () => {

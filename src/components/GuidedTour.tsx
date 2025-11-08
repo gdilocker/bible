@@ -52,6 +52,13 @@ export default function GuidedTour({
   const progress = (currentStep / steps.length) * 100;
 
   useEffect(() => {
+    console.log('🔄 GuidedTour useEffect triggered', {
+      isActive,
+      currentStep,
+      stepId: step?.id,
+      stepTarget: step?.target
+    });
+
     if (!isActive || !step) {
       setIsVisible(false);
       setTargetElement(null);
@@ -59,6 +66,7 @@ export default function GuidedTour({
     }
 
     const timer = setTimeout(() => {
+      console.log('📍 Recalculating position for step:', currentStep);
       calculatePosition();
       setIsVisible(true);
 
