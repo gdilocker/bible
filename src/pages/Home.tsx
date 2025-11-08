@@ -368,7 +368,7 @@ const Home = () => {
 
         console.log('✅ Pedido simulado criado:', order);
         alert('✅ Pagamento simulado com sucesso! (Modo DEV)\n\nRedirecionando para dashboard...');
-        setTimeout(() => navigate('/dashboard'), 1500);
+        setTimeout(() => navigate('/panel/dashboard'), 1500);
         return;
       } catch (error) {
         console.error('Erro na simulação:', error);
@@ -454,7 +454,7 @@ const Home = () => {
 
             if (orders && orders.length > 0) {
               alert('Pagamento confirmado! Redirecionando...');
-              navigate('/dashboard');
+              navigate('/panel/dashboard');
             }
           }
         }, 1000);

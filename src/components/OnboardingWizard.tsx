@@ -609,7 +609,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     Ver Meu Perfil
                   </button>
                   <button
-                    onClick={() => navigate('/dashboard')}
+                    onClick={() => navigate('/panel/dashboard')}
                     className="px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 font-medium rounded-xl hover:border-gray-400 transition-colors"
                   >
                     Ir para Dashboard

@@ -71,7 +71,6 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
 
   const menuItems = [
     { path: '/panel/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { path: '/dashboard', icon: BarChart3, label: 'Visão Geral' },
     { path: '/panel/domains', icon: Globe, label: 'Gerenciar', subtitle: 'Domínios / Páginas', badge: !userStatus.hasProfile ? 'Criar Página' : undefined },
     { path: '/panel/revendedor', icon: Store, label: 'Afiliado', badge: !userStatus.isAffiliate && !userStatus.hasAcceptedAffiliateTerms ? 'Participe' : undefined },
     { path: '/panel/billing', icon: CreditCard, label: 'Faturamento' },

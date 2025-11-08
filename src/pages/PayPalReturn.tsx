@@ -85,7 +85,7 @@ const PayPalReturn: React.FC = () => {
             }, 2000);
           } else {
             setTimeout(() => {
-              navigate('/dashboard');
+              navigate('/panel/dashboard');
             }, 2000);
           }
         } else {
