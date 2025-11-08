@@ -75,8 +75,14 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 gap-2">
-          {/* Spacer for logo */}
-          <div className="flex-1"></div>
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img
+              src={logoUrl}
+              alt="The Rich Club"
+              className="h-10 w-auto"
+            />
+          </Link>
 
           {/* Right side - All navigation + auth */}
           <div className="hidden md:flex items-center gap-1">
