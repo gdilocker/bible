@@ -127,6 +127,18 @@ export default function GuidedTour({
       return;
     }
 
+    // SCROLL suave para centralizar elemento na tela (apenas se necessário)
+    const rect = element.getBoundingClientRect();
+    const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+    if (!isInViewport && retryCount === 0) {
+      console.log('📜 Scrolling element into view:', step.target);
+      element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+      // Aguardar scroll finalizar antes de calcular posição
+      setTimeout(() => calculatePosition(retryCount + 1), 500);
+      return;
+    }
+
     // ESTRATÉGIA: Calcular bounding box combinado dos FILHOS (campo + botão)
     // ignorando padding/margin do wrapper pai
     const children = Array.from(element.children) as HTMLElement[];
@@ -460,7 +472,7 @@ export default function GuidedTour({
           )}
         </motion.div>
 
-        {/* Tooltip Premium do Tour */}
+        {/* Tooltip Premium do Tour - FIXO NO CENTRO */}
         <motion.div
           key={`step-${currentStep}`}
           initial={{ opacity: 0, scale: 0.92, y: 10 }}
@@ -472,10 +484,11 @@ export default function GuidedTour({
             stiffness: 400,
             duration: 0.4
           }}
-          className="absolute w-[380px]"
+          className="fixed w-[380px]"
           style={{
-            top: tooltipPosition.top,
-            left: tooltipPosition.left,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
             pointerEvents: 'auto',
             zIndex: 100000,
           }}
