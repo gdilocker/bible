@@ -977,6 +977,7 @@ const Home = () => {
 
             <motion.div
               variants={item}
+              data-tour="benefits"
               className="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm px-2"
             >
               <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
@@ -1009,7 +1010,7 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-6 sm:mb-8">
+            <div className="text-center mb-6 sm:mb-8" data-tour="features">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 leading-tight tracking-tight font-bold px-4">
                 <span className="text-white">Valor e identidade</span>
               </h2>

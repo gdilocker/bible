@@ -205,44 +205,28 @@ export function TourProvider({ children }: { children: ReactNode }) {
           }
         },
         {
+          id: 'home-features',
+          target: '[data-tour="features"]',
+          title: 'Valor e identidade',
+          content: 'Mais do que um domínio, .com.rich é a chave para um ecossistema exclusivo de oportunidades e reconhecimento global.',
+          position: 'top',
+          highlight: true
+        },
+        {
+          id: 'home-benefits',
+          target: '[data-tour="benefits"]',
+          title: 'Diferenciais premium',
+          content: 'Registro seguro SSL, verificação instantânea, reconhecimento global e ativação imediata. Tudo pensado para você.',
+          position: 'top',
+          highlight: true
+        },
+        {
           id: 'view-plans',
           target: '[data-tour="view-plans"]',
-          title: 'Explore os planos',
-          content: 'Cada plano oferece benefícios exclusivos. Do Prime ao Supreme, escolha o nível de presença digital ideal para você.',
+          title: 'Próximo passo',
+          content: 'Pronto para começar? Clique aqui para explorar os planos e garantir sua identidade digital premium agora mesmo!',
           position: 'bottom',
           highlight: true
-        },
-        {
-          id: 'plans-comparison',
-          target: '[data-tour="plans-grid"]',
-          title: 'Compare recursos',
-          content: 'Prime: 25% comissão. Elite: 50% comissão + eventos exclusivos. Supreme: infraestrutura dedicada e suporte white-glove.',
-          position: 'top',
-          highlight: false
-        },
-        {
-          id: 'select-plan',
-          target: '[data-tour="plan-cta"]',
-          title: 'Escolha seu plano',
-          content: 'Selecione o plano desejado e avance para garantir seu domínio exclusivo.',
-          position: 'top',
-          highlight: true
-        },
-        {
-          id: 'secure-checkout',
-          target: '[data-tour="checkout-form"]',
-          title: 'Pagamento seguro',
-          content: 'Finalize com proteção total. Seus dados são criptografados e sua compra é 100% segura.',
-          position: 'right',
-          highlight: false
-        },
-        {
-          id: 'welcome-dashboard',
-          target: '[data-tour="dashboard-welcome"]',
-          title: 'Bem-vindo ao seu painel',
-          content: 'Compra concluída! Agora você pode criar e gerenciar sua página premium. Vamos começar?',
-          position: 'center',
-          highlight: false
         }
       ];
     } else {
