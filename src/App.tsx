@@ -250,9 +250,7 @@ function AppRoutes() {
           {/* New Panel Routes */}
           <Route path="/panel/dashboard" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <PanelDashboard />
-              </SubscriptionProtectedRoute>
+              <PanelDashboard />
             </ProtectedRoute>
           } />
           <Route path="/panel/billing" element={
