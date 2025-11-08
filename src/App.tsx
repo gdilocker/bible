@@ -274,30 +274,22 @@ function AppRoutes() {
           } />
           <Route path="/panel/domains" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <DomainsPageNew />
-              </SubscriptionProtectedRoute>
+              <DomainsPageNew />
             </ProtectedRoute>
           } />
           <Route path="/panel/domains/:id" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <DomainDetails />
-              </SubscriptionProtectedRoute>
+              <DomainDetails />
             </ProtectedRoute>
           } />
           <Route path="/panel/domains/:id/transfer" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <DomainTransfer />
-              </SubscriptionProtectedRoute>
+              <DomainTransfer />
             </ProtectedRoute>
           } />
           <Route path="/panel/dns" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <DNSManagement />
-              </SubscriptionProtectedRoute>
+              <DNSManagement />
             </ProtectedRoute>
           } />
           <Route path="/panel/revendedor" element={
@@ -314,16 +306,12 @@ function AppRoutes() {
           } />
           <Route path="/panel/profile" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <ProfileManager />
-              </SubscriptionProtectedRoute>
+              <ProfileManager />
             </ProtectedRoute>
           } />
           <Route path="/panel/profile/:domainId" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <ProfileManager />
-              </SubscriptionProtectedRoute>
+              <ProfileManager />
             </ProtectedRoute>
           } />
 
