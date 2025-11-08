@@ -61,3 +61,20 @@
   Cache-Control: public, max-age=31536000, immutable
 /background-gala.png
   Cache-Control: public, max-age=31536000, immutable
+
+# PWA files
+/manifest.json
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=3600
+
+/service-worker.js
+  Content-Type: application/javascript
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/offline.html
+  Content-Type: text/html
+  Cache-Control: public, max-age=3600
+
+/icon-*.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=31536000, immutable
