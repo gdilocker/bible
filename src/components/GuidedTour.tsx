@@ -85,39 +85,35 @@ export default function GuidedTour({
   }, [isActive, step, currentStep]);
 
   useEffect(() => {
-    if (!isActive) return;
+    if (!isActive || !targetElement) return;
 
-    let rafId: number;
-    let lastCalcTime = 0;
-
-    // Throttled calculate para performance otimizada
-    const throttledCalculate = () => {
-      const now = Date.now();
-      if (now - lastCalcTime >= 16) { // ~60fps
-        lastCalcTime = now;
-        calculatePosition();
-      }
-      rafId = requestAnimationFrame(throttledCalculate);
+    // APENAS recalcular em eventos específicos (sem RAF loop)
+    const handleResize = () => {
+      console.log('🔄 Recalculating on resize');
+      calculatePosition();
     };
 
-    const handleResize = () => calculatePosition();
-    const handleScroll = () => calculatePosition();
+    const handleScroll = () => {
+      console.log('🔄 Recalculating on scroll');
+      calculatePosition();
+    };
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll, true);
 
-    // Sync contínuo usando RAF para 60fps suave
-    rafId = requestAnimationFrame(throttledCalculate);
-
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll, true);
-      if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [isActive, step]);
+  }, [isActive, targetElement]);
 
   const calculatePosition = (retryCount = 0) => {
-    if (!step?.target) return;
+    if (!step?.target) {
+      console.warn('⚠️ calculatePosition called but no step.target');
+      return;
+    }
+
+    console.log(`🎯 calculatePosition() called for target: ${step.target} (attempt ${retryCount + 1})`);
 
     const element = document.querySelector(step.target);
     if (!element) {
