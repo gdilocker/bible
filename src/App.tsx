@@ -299,9 +299,7 @@ function AppRoutes() {
           } />
           <Route path="/panel/support" element={
             <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <Support />
-              </SubscriptionProtectedRoute>
+              <Support />
             </ProtectedRoute>
           } />
           <Route path="/panel/profile" element={
