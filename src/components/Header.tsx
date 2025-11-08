@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, User, LogOut, ChevronDown, Home, Store, Bookmark, Radio, DollarSign, Crown, HelpCircle, Users, LogIn, UserPlus, UserCircle } from 'lucide-react';
+import { Menu, X, User, LogOut, ChevronDown, Home, Store, Bookmark, Radio, DollarSign, Users, LogIn, UserPlus, UserCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import logoUrl from '../assets/Logo copy copy.png';
@@ -106,30 +106,6 @@ export default function Header() {
                   }`}
                 >
                   Planos
-                </Link>
-                <Link
-                  to="/premium"
-                  className={`px-3 py-2 font-medium transition-colors group relative ${
-                    location.pathname === '/premium'
-                      ? 'text-white'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                  title="Exclusivo para assinantes Supreme"
-                >
-                  <span className="flex items-center gap-1.5">
-                    Premium
-                    <span className="text-[10px] px-1.5 py-0.5 bg-yellow-500 text-white rounded-full font-bold tracking-tight">Supreme</span>
-                  </span>
-                </Link>
-                <Link
-                  to="/faq"
-                  className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/faq'
-                      ? 'text-white'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  FAQ
                 </Link>
                 <Link
                   to="/afiliados/sobre"
@@ -298,35 +274,12 @@ export default function Header() {
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          navigate('/faq');
-                        }}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
-                      >
-                        <HelpCircle className="w-5 h-5" />
-                        <span className="text-sm font-medium">FAQ</span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsMenuOpen(false);
                           navigate('/afiliados/sobre');
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
                         <Users className="w-5 h-5" />
                         <span className="text-sm font-medium">Afiliados</span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          navigate('/premium');
-                        }}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
-                      >
-                        <Crown className="w-5 h-5" />
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-sm font-medium">Premium</span>
-                          <span className="text-[10px] px-1.5 py-0.5 bg-yellow-500 text-white rounded-full font-bold tracking-tight">Supreme</span>
-                        </div>
                       </button>
 
                       {/* Auth buttons for logged out users */}
