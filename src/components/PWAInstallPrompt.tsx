@@ -56,6 +56,7 @@ const PWAInstallPrompt: React.FC = () => {
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) {
+      showManualInstallInstructions();
       return;
     }
 
@@ -76,6 +77,23 @@ const PWAInstallPrompt: React.FC = () => {
     } finally {
       setIsInstalling(false);
     }
+  };
+
+  const showManualInstallInstructions = () => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    let instructions = '';
+
+    if (isIOS) {
+      instructions = 'Para instalar no iPhone/iPad:\n\n1. Toque no ícone de compartilhar (□↗)\n2. Role para baixo e toque em "Adicionar à Tela de Início"\n3. Toque em "Adicionar"';
+    } else if (isAndroid) {
+      instructions = 'Para instalar no Android:\n\n1. Toque no menu (⋮) do navegador\n2. Toque em "Adicionar à tela inicial"\n3. Confirme';
+    } else {
+      instructions = 'Para instalar no computador:\n\n1. Clique no ícone na barra de endereços\n2. Ou menu > "Instalar aplicativo"\n3. Confirme a instalação';
+    }
+
+    alert(instructions);
   };
 
   const handleDismiss = () => {
@@ -129,24 +147,12 @@ const PWAInstallPrompt: React.FC = () => {
             <div className="flex flex-col gap-2.5">
               <button
                 onClick={handleInstallClick}
-                disabled={isInstalling || !deferredPrompt}
+                disabled={isInstalling}
                 className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-[length:200%_100%] text-black font-bold py-3.5 px-6 rounded-xl hover:bg-[position:100%_0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2.5 shadow-lg hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Download size={18} className={isInstalling ? 'animate-spin' : 'animate-bounce'} />
+                <Download size={18} className="animate-bounce" />
                 <span>{isInstalling ? 'Instalando...' : 'Instalar App'}</span>
               </button>
-
-              {!deferredPrompt && (
-                <div className="text-xs text-gray-400 text-center mt-1 px-2 leading-relaxed">
-                  {/iPad|iPhone|iPod/.test(navigator.userAgent) ? (
-                    <>Toque em <span className="text-[#D4AF37]">□↗</span> e depois em "Adicionar à Tela de Início"</>
-                  ) : /Android/.test(navigator.userAgent) ? (
-                    <>Toque no menu <span className="text-[#D4AF37]">⋮</span> e depois em "Adicionar à tela inicial"</>
-                  ) : (
-                    <>Clique no ícone de instalação na barra de endereços</>
-                  )}
-                </div>
-              )}
 
               <button
                 onClick={handleDismiss}
