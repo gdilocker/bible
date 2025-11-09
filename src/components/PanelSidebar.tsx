@@ -210,7 +210,7 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
           ) : (
             <Link to="/" className="flex flex-col gap-2 group">
               <img
-                src="/icons/icon-192x192.png"
+                src="/logo.png"
                 alt="com.rich"
                 className="h-16 w-auto object-contain"
               />

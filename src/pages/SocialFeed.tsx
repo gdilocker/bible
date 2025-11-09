@@ -145,7 +145,7 @@ export default function SocialFeed() {
               className="flex items-center"
             >
               <img
-                src="/icons/icon-192x192.png"
+                src="/logo.png"
                 alt="com.rich"
                 className="h-8 w-auto object-contain"
               />
@@ -300,7 +300,7 @@ export default function SocialFeed() {
                 className="flex items-center"
               >
                 <img
-                  src="/icons/icon-192x192.png"
+                  src="/logo.png"
                   alt="com.rich"
                   className="h-12 w-auto object-contain"
                 />

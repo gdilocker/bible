@@ -77,7 +77,7 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
-              src="/icons/icon-192x192.png"
+              src="/logo.png"
               alt="The Rich Club"
               className="h-10 w-10 object-contain"
             />

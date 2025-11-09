@@ -346,7 +346,7 @@ const ResellerDashboard: React.FC = () => {
               <p className="text-slate-500">Receba comissões promovendo planos de assinatura</p>
             </div>
             <img
-              src="/icons/icon-192x192.png"
+              src="/logo.png"
               alt="Com.rich Logo"
               className="h-16 object-contain"
             />
@@ -360,7 +360,7 @@ const ResellerDashboard: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-slate-500/80 to-slate-900/80"></div>
             <div className="relative z-10">
               <img
-                src="/icons/icon-192x192.png"
+                src="/logo.png"
                 alt="Com.rich"
                 className="h-20 mx-auto mb-6 drop-shadow-lg"
               />
