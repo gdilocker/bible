@@ -13,29 +13,49 @@ const PWAInstallPrompt: React.FC = () => {
   const [installing, setInstalling] = useState(false);
 
   useEffect(() => {
+    // Verifica se já está instalado
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                         (window.navigator as any).standalone === true;
+
+    if (isStandalone) {
+      console.log('[PWA] App já instalado, não mostra prompt');
+      return;
+    }
+
     const onBIP = (e: Event) => {
       e.preventDefault();
       setBip(e as BeforeInstallPromptEvent);
       setVisible(true);
-      console.log('[PWA] beforeinstallprompt pronto');
+      console.log('[PWA] beforeinstallprompt disparou - Mostrando modal');
     };
 
     const onInstalled = () => {
-      console.log('[PWA] app instalado');
+      console.log('[PWA] App instalado com sucesso!');
       setVisible(false);
       setBip(null);
+      localStorage.setItem('pwa_installed', 'true');
     };
 
     window.addEventListener('beforeinstallprompt', onBIP);
     window.addEventListener('appinstalled', onInstalled);
 
-    // iOS: mostra banner após delay (não tem beforeinstallprompt)
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (isIOS && !localStorage.getItem('pwa_dismissed')) {
-      setTimeout(() => {
-        setVisible(true);
-      }, 5000);
-    }
+    // SEMPRE mostra o modal após 3 segundos (sem cooldown)
+    // TODO: Adicionar regras personalizadas futuras baseadas em:
+    // - stats.views (quantas vezes viu)
+    // - stats.dismissCount (quantas vezes dispensou)
+    // - stats.lastDismissed (quando dispensou pela última vez)
+    // - Tipo de usuário (guest, free, premium)
+    // - Comportamento (tempo no site, páginas visitadas)
+    const showTimer = setTimeout(() => {
+      // Registra estatísticas para futuras regras
+      const stats = JSON.parse(localStorage.getItem('pwa_stats') || '{}');
+      stats.views = (stats.views || 0) + 1;
+      stats.lastSeen = Date.now();
+      localStorage.setItem('pwa_stats', JSON.stringify(stats));
+
+      console.log('[PWA] Mostrando modal automaticamente (3s)', stats);
+      setVisible(true);
+    }, 3000);
 
     // MODO PREVIEW: Adiciona listener global para testar modal
     (window as any).__showPWAModal = () => {
@@ -44,6 +64,7 @@ const PWAInstallPrompt: React.FC = () => {
     };
 
     return () => {
+      clearTimeout(showTimer);
       window.removeEventListener('beforeinstallprompt', onBIP);
       window.removeEventListener('appinstalled', onInstalled);
       delete (window as any).__showPWAModal;
@@ -66,7 +87,15 @@ const PWAInstallPrompt: React.FC = () => {
 
   const handleDismiss = () => {
     setVisible(false);
-    localStorage.setItem('pwa_dismissed', Date.now().toString());
+
+    // Registra estatísticas (mas não bloqueia futuras exibições)
+    const stats = JSON.parse(localStorage.getItem('pwa_stats') || '{}');
+    stats.dismissCount = (stats.dismissCount || 0) + 1;
+    stats.lastDismissed = Date.now();
+    localStorage.setItem('pwa_stats', JSON.stringify(stats));
+
+    console.log('[PWA] Modal dispensado', stats);
+    // Nota: Modal voltará a aparecer na próxima visita (3s)
   };
 
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
