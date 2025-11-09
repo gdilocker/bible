@@ -15,6 +15,40 @@ Fornecer um guia completo e acionável para:
 
 ---
 
+## ⚠️ DOCUMENTOS ESSENCIAIS (LEIA PRIMEIRO!)
+
+### 0. 🏗️ ARQUITETURA DEFINITIVA ⭐⭐⭐
+
+**Arquivo:** [`ARQUITETURA_DEFINITIVA.md`](./ARQUITETURA_DEFINITIVA.md) - **DOCUMENTO MAIS IMPORTANTE!**
+
+**O que você encontrará:**
+- ✅ Explicação EXATA de como o sistema funciona
+- ✅ URLs reais vs Display marketing (.com.rich)
+- ✅ Por que NÃO há DNS wildcard
+- ✅ Fluxo completo do usuário (6 passos)
+- ✅ Componentes da UI com código
+- ✅ Tabelas do banco explicadas
+- ✅ Diagramas visuais: [`DIAGRAMA_ARQUITETURA.md`](./DIAGRAMA_ARQUITETURA.md)
+
+**Leia OBRIGATORIAMENTE antes de qualquer coisa!**
+
+---
+
+### 📋 DOCUMENTOS OPERACIONAIS ESSENCIAIS
+
+**Arquivos:**
+- [`TROUBLESHOOTING_GUIDE.md`](./TROUBLESHOOTING_GUIDE.md) - Resolução de 50+ problemas comuns
+- [`POST_DEPLOY_CHECKLIST.md`](./POST_DEPLOY_CHECKLIST.md) - 250+ checks pós-deploy
+
+**O que você encontrará:**
+- ✅ Soluções para erros comuns (Home, Login, Dashboard, Perfil, etc)
+- ✅ Comandos SQL de diagnóstico
+- ✅ Checklist completo de validação
+- ✅ Testes de segurança
+- ✅ Verificações de performance
+
+---
+
 ## 📖 DOCUMENTOS PRINCIPAIS
 
 ### 1. 🔍 ANÁLISE COMPLETA DO SISTEMA
