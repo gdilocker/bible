@@ -260,17 +260,6 @@ const PWAInstallPrompt: React.FC = () => {
           </div>
         </div>
 
-        {/* Debug info (remover em produção) */}
-        {process.env.NODE_ENV === 'development' && debugInfo.length > 0 && (
-          <details className="mt-4 text-xs text-gray-500">
-            <summary className="cursor-pointer hover:text-gray-300">Debug Info ({debugInfo.length} logs)</summary>
-            <div className="mt-2 max-h-40 overflow-y-auto bg-black/50 p-2 rounded">
-              {debugInfo.map((log, i) => (
-                <div key={i} className="font-mono">{log}</div>
-              ))}
-            </div>
-          </details>
-        )}
       </div>
     </div>
   );
