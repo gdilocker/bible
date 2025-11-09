@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import logoUrl from '../assets/logo-therichclub.png';
+
 import {
   Store,
   DollarSign,
@@ -346,7 +346,7 @@ const ResellerDashboard: React.FC = () => {
               <p className="text-slate-500">Receba comissões promovendo planos de assinatura</p>
             </div>
             <img
-              src={logoUrl}
+              src="/logo.png"
               alt="Com.rich Logo"
               className="h-16 object-contain"
             />
@@ -360,7 +360,7 @@ const ResellerDashboard: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-slate-500/80 to-slate-900/80"></div>
             <div className="relative z-10">
               <img
-                src={logoUrl}
+                src="/logo.png"
                 alt="Com.rich"
                 className="h-20 mx-auto mb-6 drop-shadow-lg"
               />

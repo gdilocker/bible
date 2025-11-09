@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ExternalLink, Mail, Twitter, Instagram, Linkedin, Github, Youtube, Facebook, Globe, MessageCircle, Link2, ShoppingBag, Eye, Heart, UserPlus } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { EliteBadge } from './EliteBadge';
-import Logo from '../assets/logo-therichclub.png';
+
 import BackgroundImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
 
 interface ProfileLink {
@@ -172,7 +172,7 @@ export function PublicProfileView({
 
             <div className="inline-block mb-8 p-4 bg-gradient-to-br from-[#1F1F1F] via-[#252525] to-[#1F1F1F] border-2 border-[#D4AF37] rounded-2xl shadow-2xl shadow-[#D4AF37]/30">
               <img
-                src={Logo}
+                src="/logo.png"
                 alt="com.rich"
                 className="h-24 w-24"
               />
@@ -257,7 +257,7 @@ export function PublicProfileView({
             ) : (
               <div className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#D4AF37] bg-[#1F1F1F] flex items-center justify-center shadow-2xl">
                 <img
-                  src={Logo}
+                  src="/logo.png"
                   alt="com.rich"
                   className="w-20 h-20 object-contain"
                 />

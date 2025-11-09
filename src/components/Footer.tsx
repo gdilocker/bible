@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Shield, Clock, Lock } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import logoUrl from '../assets/logo-therichclub.png';
+
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="mb-4">
               <img
-                src={logoUrl}
+                src="/logo.png"
                 alt="com.rich"
                 className="h-14 w-auto object-contain"
               />

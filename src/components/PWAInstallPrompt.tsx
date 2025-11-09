@@ -131,11 +131,11 @@ const PWAInstallPrompt: React.FC = () => {
         </button>
 
         <div className="flex items-start gap-4 relative z-10">
-          <div className="flex-shrink-0 bg-gradient-to-br from-[#D4AF37] to-[#B8941F] p-1 rounded-2xl shadow-lg">
+          <div className="flex-shrink-0 bg-black p-3 rounded-2xl shadow-lg border-2 border-[#D4AF37]">
             <img
-              src="/icons/icon-192x192.png"
+              src="/logo.png"
               alt="The Rich Club"
-              className="w-14 h-14 rounded-xl"
+              className="w-14 h-14 object-contain"
             />
           </div>
 

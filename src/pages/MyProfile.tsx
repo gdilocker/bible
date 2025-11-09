@@ -4,7 +4,7 @@ import { ArrowLeft, Plus, Settings, Home, Users, Globe, MessageCircle, User, Sto
 import { useAuth } from '../contexts/AuthContext';
 import { VerticalFeed } from '../components/social/VerticalFeed';
 import { CreatePostModal } from '../components/social/CreatePostModal';
-import Logo from '../assets/logo-therichclub.png';
+
 
 type FeedMode = 'all' | 'following';
 
@@ -65,7 +65,7 @@ export default function MyProfile() {
               className="flex items-center"
             >
               <img
-                src={Logo}
+                src="/logo.png"
                 alt="com.rich"
                 className="h-12 w-auto object-contain"
               />
