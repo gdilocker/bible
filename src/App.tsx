@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
+import { InstallAppButton } from './components/InstallAppButton';
 import Home from './pages/Home';
 import Pricing from './pages/Pricing';
 import Transfer from './pages/Transfer';
@@ -416,6 +417,7 @@ function AppRoutes() {
       {!hideLayout && <Footer />}
       {(pathname === '/suporte' || pathname.startsWith('/suporte/')) && <ChatWidget />}
       <PWAInstallPrompt />
+      <InstallAppButton />
     </>
   );
 }

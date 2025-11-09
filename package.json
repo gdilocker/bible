@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "vite build && cp -r public/* dist/",
+    "build": "vite build",
     "dev": "vite",
     "lint": "echo \"skip\"",
     "typecheck": "echo \"skip\""
