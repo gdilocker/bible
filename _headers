@@ -70,14 +70,14 @@
   Content-Type: application/manifest+json
   Cache-Control: public, max-age=3600
 
-/service-worker.js
+/sw.js
   Content-Type: application/javascript
   Cache-Control: no-cache, no-store, must-revalidate
 
-/offline.html
-  Content-Type: text/html
-  Cache-Control: public, max-age=3600
+/apple-touch-icon.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=31536000, immutable
 
-/icon-*.png
+/icons/*
   Content-Type: image/png
   Cache-Control: public, max-age=31536000, immutable

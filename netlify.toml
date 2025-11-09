@@ -14,23 +14,18 @@
   status = 200
 
 [[redirects]]
-  from = "/service-worker.js"
-  to = "/service-worker.js"
+  from = "/sw.js"
+  to = "/sw.js"
   status = 200
 
 [[redirects]]
-  from = "/offline.html"
-  to = "/offline.html"
+  from = "/apple-touch-icon.png"
+  to = "/apple-touch-icon.png"
   status = 200
 
 [[redirects]]
-  from = "/icon-192x192.png"
-  to = "/icon-192x192.png"
-  status = 200
-
-[[redirects]]
-  from = "/icon-512x512.png"
-  to = "/icon-512x512.png"
+  from = "/icons/*"
+  to = "/icons/:splat"
   status = 200
 
 [[redirects]]
