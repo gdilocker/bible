@@ -10,17 +10,10 @@ interface BeforeInstallPromptEvent extends Event {
 const PWAInstallPrompt: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
-  const [isInstalled, setIsInstalled] = useState(false);
-  const [isInstalling, setIsInstalling] = useState(false);
 
   useEffect(() => {
+    // Se já está instalado, não mostrar
     if (window.matchMedia('(display-mode: standalone)').matches) {
-      setIsInstalled(true);
-      return;
-    }
-
-    if ((window.navigator as any).standalone === true) {
-      setIsInstalled(true);
       return;
     }
 
@@ -28,92 +21,42 @@ const PWAInstallPrompt: React.FC = () => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setShowInstallPrompt(true);
-      console.log('PWA: Install prompt disponível');
     };
 
     const handleAppInstalled = () => {
-      setIsInstalled(true);
       setShowInstallPrompt(false);
       setDeferredPrompt(null);
-      console.log('PWA: App instalado!');
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('appinstalled', handleAppInstalled);
 
-    const timer = setTimeout(() => {
-      if (!isInstalled && !deferredPrompt && !localStorage.getItem('pwa_dismissed')) {
-        setShowInstallPrompt(true);
-      }
-    }, 5000);
-
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('appinstalled', handleAppInstalled);
-      clearTimeout(timer);
     };
-  }, [deferredPrompt, isInstalled]);
+  }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) {
-      showManualInstallInstructions();
-      return;
-    }
-
-    setIsInstalling(true);
+    if (!deferredPrompt) return; // Não fazer nada se não houver prompt nativo
 
     try {
       await deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-
-      if (outcome === 'accepted') {
-        setIsInstalled(true);
-        setShowInstallPrompt(false);
-      }
-
+      await deferredPrompt.userChoice;
+      setShowInstallPrompt(false);
       setDeferredPrompt(null);
     } catch (error) {
       console.error('Erro na instalação:', error);
-    } finally {
-      setIsInstalling(false);
     }
-  };
-
-  const showManualInstallInstructions = () => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const isAndroid = /Android/.test(navigator.userAgent);
-
-    let instructions = '';
-
-    if (isIOS) {
-      instructions = 'Para instalar no iPhone/iPad:\n\n1. Toque no ícone de compartilhar (□↗)\n2. Role para baixo e toque em "Adicionar à Tela de Início"\n3. Toque em "Adicionar"';
-    } else if (isAndroid) {
-      instructions = 'Para instalar no Android:\n\n1. Toque no menu (⋮) do navegador\n2. Toque em "Adicionar à tela inicial"\n3. Confirme';
-    } else {
-      instructions = 'Para instalar no computador:\n\n1. Clique no ícone na barra de endereços\n2. Ou menu > "Instalar aplicativo"\n3. Confirme a instalação';
-    }
-
-    alert(instructions);
   };
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
-    localStorage.setItem('pwa_dismissed', Date.now().toString());
+    setDeferredPrompt(null);
   };
 
-  if (isInstalled) {
-    return null;
-  }
-
-  const dismissedTime = localStorage.getItem('pwa_dismissed');
-  if (dismissedTime) {
-    const daysSinceDismissed = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);
-    if (daysSinceDismissed < 7) {
-      return null;
-    }
-  }
-
-  if (!showInstallPrompt) {
+  // Não exibir em iOS ou se não houver prompt disponível
+  if (!showInstallPrompt || /iPhone|iPad|iPod/.test(navigator.userAgent)) {
     return null;
   }
 
@@ -147,11 +90,10 @@ const PWAInstallPrompt: React.FC = () => {
             <div className="flex flex-col gap-2.5">
               <button
                 onClick={handleInstallClick}
-                disabled={isInstalling}
-                className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-[length:200%_100%] text-black font-bold py-3.5 px-6 rounded-xl hover:bg-[position:100%_0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2.5 shadow-lg hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-[length:200%_100%] text-black font-bold py-3.5 px-6 rounded-xl hover:bg-[position:100%_0] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Download size={18} className="animate-bounce" />
-                <span>{isInstalling ? 'Instalando...' : 'Instalar App'}</span>
+                <span>Instalar App</span>
               </button>
 
               <button
