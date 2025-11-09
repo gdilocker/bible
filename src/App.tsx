@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { DrawerProvider } from './contexts/DrawerContext';
@@ -8,81 +8,95 @@ import ResellerProtectedRoute from './components/ResellerProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+
+// Immediate load - Critical pages
 import Home from './pages/Home';
-import Pricing from './pages/Pricing';
-import Transfer from './pages/Transfer';
-import Contact from './pages/Contact';
-import Terms from './pages/Terms';
-import Privacy from './pages/Privacy';
-import Cookies from './pages/Cookies';
-import RefundPolicy from './pages/RefundPolicy';
-import SuspensionPolicy from './pages/SuspensionPolicy';
-import AcceptableUsePolicy from './pages/AcceptableUsePolicy';
-import CommunityStandards from './pages/CommunityStandards';
-import SecurityPolicy from './pages/SecurityPolicy';
-import DomainTransferPolicy from './pages/DomainTransferPolicy';
-import UserContentPolicy from './pages/UserContentPolicy';
-import CopyrightNotice from './pages/CopyrightNotice';
-import LegalCompliance from './pages/LegalCompliance';
-import DataProcessingAddendum from './pages/DataProcessingAddendum';
-import AccessibilityPolicy from './pages/AccessibilityPolicy';
-import DeletionPolicy from './pages/DeletionPolicy';
-import DataRequestPolicy from './pages/DataRequestPolicy';
-import FAQ from './pages/FAQ';
-import Checkout from './pages/Checkout';
-import Success from './pages/Success';
-import Failure from './pages/Failure';
-import Orders from './pages/Orders';
-import PayPalReturn from './pages/PayPalReturn';
-import PayPalCancel from './pages/PayPalCancel';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import UserDashboard from './pages/UserDashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import AdminResellers from './pages/AdminResellers';
-import AdminUsers from './pages/AdminUsers';
-import AdminOrders from './pages/AdminOrders';
-import AdminSettings from './pages/AdminSettings';
-import AdminLogs from './pages/AdminLogs';
-import AdminChatbot from './pages/AdminChatbot';
-import DomainDetails from './pages/DomainDetails';
-import PanelDashboard from './pages/PanelDashboard';
-import Billing from './pages/Billing';
-import AccountSettings from './pages/AccountSettings';
-import DomainsPageNew from './pages/DomainsPage';
-import Support from './pages/Support';
-import SupportNew from './pages/SupportNew';
-import SupportArticle from './pages/SupportArticle';
-import OpenTicket from './pages/OpenTicket';
-import DNSManagement from './pages/DNSManagement';
-import ResellerDashboard from './pages/ResellerDashboard';
-import Marketplace from './pages/Marketplace';
-import AdminSuggestions from './pages/AdminSuggestions';
-import AdminReservedKeywords from './pages/AdminReservedKeywords';
-import AdminProtectedBrands from './pages/AdminProtectedBrands';
-import AdminLinkModeration from './pages/AdminLinkModeration';
-import DiagnosticTest from './pages/DiagnosticTest';
-import PublicProfile from './pages/PublicProfile';
-import ProfileManager from './pages/ProfileManager';
-import AdminProfiles from './pages/AdminProfiles';
-import AffiliateTerms from './pages/AffiliateTerms';
-import AffiliateAbout from './pages/AffiliateAbout';
-import AffiliateDashboard from './pages/AffiliateDashboard';
-import TwoFactorSetup from './pages/TwoFactorSetup';
-import DomainSlugPage from './pages/DomainSlugPage';
-import DomainTransfer from './pages/DomainTransfer';
-import SocialFeed from './pages/SocialFeed';
-import MyProfile from './pages/MyProfile';
-import ProfilePreview from './pages/ProfilePreview';
-import SavedPosts from './pages/SavedPosts';
-import AdminSocialModeration from './pages/AdminSocialModeration';
-import PublicStore from './pages/PublicStore';
-import StoreManager from './pages/StoreManager';
-import RefRedirect from './pages/RefRedirect';
-import StoreTerms from './pages/StoreTerms';
-import SocialTerms from './pages/SocialTerms';
-import RichClub from './pages/RichClub';
-import AdminEmail from './pages/AdminEmail';
+
+// Lazy load - Secondary pages
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Transfer = lazy(() => import('./pages/Transfer'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Cookies = lazy(() => import('./pages/Cookies'));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
+const SuspensionPolicy = lazy(() => import('./pages/SuspensionPolicy'));
+const AcceptableUsePolicy = lazy(() => import('./pages/AcceptableUsePolicy'));
+const CommunityStandards = lazy(() => import('./pages/CommunityStandards'));
+const SecurityPolicy = lazy(() => import('./pages/SecurityPolicy'));
+const DomainTransferPolicy = lazy(() => import('./pages/DomainTransferPolicy'));
+const UserContentPolicy = lazy(() => import('./pages/UserContentPolicy'));
+const CopyrightNotice = lazy(() => import('./pages/CopyrightNotice'));
+const LegalCompliance = lazy(() => import('./pages/LegalCompliance'));
+const DataProcessingAddendum = lazy(() => import('./pages/DataProcessingAddendum'));
+const AccessibilityPolicy = lazy(() => import('./pages/AccessibilityPolicy'));
+const DeletionPolicy = lazy(() => import('./pages/DeletionPolicy'));
+const DataRequestPolicy = lazy(() => import('./pages/DataRequestPolicy'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const Success = lazy(() => import('./pages/Success'));
+const Failure = lazy(() => import('./pages/Failure'));
+const Orders = lazy(() => import('./pages/Orders'));
+const PayPalReturn = lazy(() => import('./pages/PayPalReturn'));
+const PayPalCancel = lazy(() => import('./pages/PayPalCancel'));
+const UserDashboard = lazy(() => import('./pages/UserDashboard'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const AdminResellers = lazy(() => import('./pages/AdminResellers'));
+const AdminUsers = lazy(() => import('./pages/AdminUsers'));
+const AdminOrders = lazy(() => import('./pages/AdminOrders'));
+const AdminSettings = lazy(() => import('./pages/AdminSettings'));
+const AdminLogs = lazy(() => import('./pages/AdminLogs'));
+const AdminChatbot = lazy(() => import('./pages/AdminChatbot'));
+const DomainDetails = lazy(() => import('./pages/DomainDetails'));
+const PanelDashboard = lazy(() => import('./pages/PanelDashboard'));
+const Billing = lazy(() => import('./pages/Billing'));
+const AccountSettings = lazy(() => import('./pages/AccountSettings'));
+const DomainsPageNew = lazy(() => import('./pages/DomainsPage'));
+const Support = lazy(() => import('./pages/Support'));
+const SupportNew = lazy(() => import('./pages/SupportNew'));
+const SupportArticle = lazy(() => import('./pages/SupportArticle'));
+const OpenTicket = lazy(() => import('./pages/OpenTicket'));
+const DNSManagement = lazy(() => import('./pages/DNSManagement'));
+const ResellerDashboard = lazy(() => import('./pages/ResellerDashboard'));
+const Marketplace = lazy(() => import('./pages/Marketplace'));
+const AdminSuggestions = lazy(() => import('./pages/AdminSuggestions'));
+const AdminReservedKeywords = lazy(() => import('./pages/AdminReservedKeywords'));
+const AdminProtectedBrands = lazy(() => import('./pages/AdminProtectedBrands'));
+const AdminLinkModeration = lazy(() => import('./pages/AdminLinkModeration'));
+const DiagnosticTest = lazy(() => import('./pages/DiagnosticTest'));
+const PublicProfile = lazy(() => import('./pages/PublicProfile'));
+const ProfileManager = lazy(() => import('./pages/ProfileManager'));
+const AdminProfiles = lazy(() => import('./pages/AdminProfiles'));
+const AffiliateTerms = lazy(() => import('./pages/AffiliateTerms'));
+const AffiliateAbout = lazy(() => import('./pages/AffiliateAbout'));
+const AffiliateDashboard = lazy(() => import('./pages/AffiliateDashboard'));
+const TwoFactorSetup = lazy(() => import('./pages/TwoFactorSetup'));
+const DomainSlugPage = lazy(() => import('./pages/DomainSlugPage'));
+const DomainTransfer = lazy(() => import('./pages/DomainTransfer'));
+const SocialFeed = lazy(() => import('./pages/SocialFeed'));
+const MyProfile = lazy(() => import('./pages/MyProfile'));
+const ProfilePreview = lazy(() => import('./pages/ProfilePreview'));
+const SavedPosts = lazy(() => import('./pages/SavedPosts'));
+const AdminSocialModeration = lazy(() => import('./pages/AdminSocialModeration'));
+const PublicStore = lazy(() => import('./pages/PublicStore'));
+const StoreManager = lazy(() => import('./pages/StoreManager'));
+const RefRedirect = lazy(() => import('./pages/RefRedirect'));
+const StoreTerms = lazy(() => import('./pages/StoreTerms'));
+const SocialTerms = lazy(() => import('./pages/SocialTerms'));
+const RichClub = lazy(() => import('./pages/RichClub'));
+const AdminEmail = lazy(() => import('./pages/AdminEmail'));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white mx-auto"></div>
+      <p className="mt-4 text-white font-semibold">Carregando...</p>
+    </div>
+  </div>
+);
 
 function App() {
   return (

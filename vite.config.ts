@@ -11,7 +11,28 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     publicDir: 'public',
     build: {
-      assetsDir: 'assets'
+      assetsDir: 'assets',
+      // Code splitting configuration
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Vendor chunks
+            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+            'supabase-vendor': ['@supabase/supabase-js'],
+            'form-vendor': ['react-hook-form', '@hookform/resolvers', 'yup'],
+            // UI chunks
+            'ui-vendor': ['framer-motion', 'lucide-react'],
+            // Utility chunks
+            'utils-vendor': ['date-fns', 'dompurify', 'qrcode', 'otplib'],
+          }
+        }
+      },
+      // Chunk size warnings
+      chunkSizeWarningLimit: 1000,
+      // Minification (esbuild is faster and doesn't need extra deps)
+      minify: 'esbuild',
+      // Source maps for debugging (disable in production)
+      sourcemap: mode !== 'production'
     },
     resolve: {
       alias: {
