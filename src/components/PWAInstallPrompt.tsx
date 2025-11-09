@@ -37,9 +37,16 @@ const PWAInstallPrompt: React.FC = () => {
       }, 5000);
     }
 
+    // MODO PREVIEW: Adiciona listener global para testar modal
+    (window as any).__showPWAModal = () => {
+      console.log('[PWA] Modo preview ativado');
+      setVisible(true);
+    };
+
     return () => {
       window.removeEventListener('beforeinstallprompt', onBIP);
       window.removeEventListener('appinstalled', onInstalled);
+      delete (window as any).__showPWAModal;
     };
   }, []);
 
@@ -75,13 +82,25 @@ const PWAInstallPrompt: React.FC = () => {
         </div>
 
         {!isIOS ? (
-          <button
-            onClick={handleInstall}
-            disabled={!bip || installing}
-            className="mt-4 w-full rounded-xl bg-[#D4AF37] px-4 py-3 font-bold text-black disabled:opacity-50"
-          >
-            {installing ? 'Instalando...' : 'Instalar App'}
-          </button>
+          <>
+            <button
+              onClick={handleInstall}
+              disabled={!bip || installing}
+              className="mt-4 w-full rounded-xl bg-[#D4AF37] px-4 py-3 font-bold text-black disabled:opacity-50"
+            >
+              {installing ? 'Instalando...' : 'Instalar App'}
+            </button>
+            {!bip && (
+              <div className="mt-3 p-3 bg-white/5 rounded-lg text-xs text-gray-300 leading-relaxed">
+                <p className="mb-2">
+                  <strong className="text-[#D4AF37]">Em produção (HTTPS):</strong> Este botão abrirá o instalador nativo do Chrome.
+                </p>
+                <p className="text-gray-400">
+                  <strong>Agora (desenvolvimento):</strong> Use o menu <span className="text-[#D4AF37]">⋮</span> → "Adicionar à tela inicial"
+                </p>
+              </div>
+            )}
+          </>
         ) : (
           <p className="mt-3 text-sm text-gray-200">
             No iPhone: Compartilhar → "Adicionar à Tela de Início".
