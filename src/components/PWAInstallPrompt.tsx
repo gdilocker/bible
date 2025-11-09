@@ -42,6 +42,13 @@ const PWAInstallPrompt: React.FC = () => {
       return;
     }
 
+    // Verificar se usuário já dispensou
+    const dismissed = localStorage.getItem('pwa-install-dismissed');
+    if (dismissed === 'true') {
+      addDebug('❌ Usuário já dispensou o banner anteriormente');
+      return;
+    }
+
     addDebug('✅ App não está instalado (modo navegador)');
 
     // Detectar plataforma
@@ -184,8 +191,10 @@ const PWAInstallPrompt: React.FC = () => {
 
       if (outcome === 'accepted') {
         addDebug('✅ Usuário ACEITOU instalação');
+        localStorage.setItem('pwa-install-dismissed', 'true');
       } else {
         addDebug('❌ Usuário RECUSOU instalação');
+        localStorage.setItem('pwa-install-dismissed', 'true');
       }
 
       setShowInstallPrompt(false);
@@ -197,6 +206,7 @@ const PWAInstallPrompt: React.FC = () => {
 
   const handleDismiss = () => {
     addDebug('❌ Banner dispensado pelo usuário');
+    localStorage.setItem('pwa-install-dismissed', 'true');
     setShowInstallPrompt(false);
     setDeferredPrompt(null);
   };
