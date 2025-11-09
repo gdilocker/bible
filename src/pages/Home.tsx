@@ -1252,21 +1252,6 @@ const Home = () => {
           domain={registeredDomain}
         />
 
-        {/* Botão de Teste PWA - Apenas em desenvolvimento */}
-        {!window.location.hostname.includes('com.rich') && (
-          <button
-            onClick={() => {
-              if ((window as any).__showPWAModal) {
-                (window as any).__showPWAModal();
-              }
-            }}
-            className="fixed bottom-4 right-4 z-[9998] px-4 py-2 bg-[#D4AF37] hover:bg-[#FFD700] text-black font-bold rounded-lg shadow-lg transition-all hover:scale-105 text-sm"
-            title="Testar Modal PWA"
-          >
-            📱 Ver Modal PWA
-          </button>
-        )}
-
       </div>
     );
   };

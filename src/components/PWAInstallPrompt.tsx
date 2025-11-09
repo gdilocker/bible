@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Download, X } from 'lucide-react';
 import Logo from './Logo';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -8,140 +8,161 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const PWAInstallPrompt: React.FC = () => {
-  const [bip, setBip] = useState<BeforeInstallPromptEvent | null>(null);
-  const [visible, setVisible] = useState(false);
-  const [installing, setInstalling] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isInstalled, setIsInstalled] = useState(false);
+  const [isInstalling, setIsInstalling] = useState(false);
 
   useEffect(() => {
-    // Verifica se já está instalado
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
-                         (window.navigator as any).standalone === true;
-
-    if (isStandalone) {
-      console.log('[PWA] App já instalado, não mostra prompt');
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setIsInstalled(true);
       return;
     }
 
-    const onBIP = (e: Event) => {
+    if ((window.navigator as any).standalone === true) {
+      setIsInstalled(true);
+      return;
+    }
+
+    const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      setBip(e as BeforeInstallPromptEvent);
-      setVisible(true);
-      console.log('[PWA] beforeinstallprompt disparou - Mostrando modal');
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setShowInstallPrompt(true);
+      console.log('PWA: Install prompt disponível');
     };
 
-    const onInstalled = () => {
-      console.log('[PWA] App instalado com sucesso!');
-      setVisible(false);
-      setBip(null);
-      localStorage.setItem('pwa_installed', 'true');
+    const handleAppInstalled = () => {
+      setIsInstalled(true);
+      setShowInstallPrompt(false);
+      setDeferredPrompt(null);
+      console.log('PWA: App instalado!');
     };
 
-    window.addEventListener('beforeinstallprompt', onBIP);
-    window.addEventListener('appinstalled', onInstalled);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
 
-    // SEMPRE mostra o modal após 3 segundos (sem cooldown)
-    // TODO: Adicionar regras personalizadas futuras baseadas em:
-    // - stats.views (quantas vezes viu)
-    // - stats.dismissCount (quantas vezes dispensou)
-    // - stats.lastDismissed (quando dispensou pela última vez)
-    // - Tipo de usuário (guest, free, premium)
-    // - Comportamento (tempo no site, páginas visitadas)
-    const showTimer = setTimeout(() => {
-      // Registra estatísticas para futuras regras
-      const stats = JSON.parse(localStorage.getItem('pwa_stats') || '{}');
-      stats.views = (stats.views || 0) + 1;
-      stats.lastSeen = Date.now();
-      localStorage.setItem('pwa_stats', JSON.stringify(stats));
-
-      console.log('[PWA] Mostrando modal automaticamente (3s)', stats);
-      setVisible(true);
-    }, 3000);
-
-    // MODO PREVIEW: Adiciona listener global para testar modal
-    (window as any).__showPWAModal = () => {
-      console.log('[PWA] Modo preview ativado');
-      setVisible(true);
-    };
+    const timer = setTimeout(() => {
+      if (!isInstalled && !deferredPrompt && !localStorage.getItem('pwa_dismissed')) {
+        setShowInstallPrompt(true);
+      }
+    }, 5000);
 
     return () => {
-      clearTimeout(showTimer);
-      window.removeEventListener('beforeinstallprompt', onBIP);
-      window.removeEventListener('appinstalled', onInstalled);
-      delete (window as any).__showPWAModal;
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
+      clearTimeout(timer);
     };
-  }, []);
+  }, [deferredPrompt, isInstalled]);
 
-  const handleInstall = async () => {
-    if (!bip) return;
-    setInstalling(true);
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) {
+      showManualInstallInstructions();
+      return;
+    }
+
+    setIsInstalling(true);
+
     try {
-      await bip.prompt();
-      const { outcome } = await bip.userChoice;
-      console.log('[PWA] userChoice:', outcome);
+      await deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+
+      if (outcome === 'accepted') {
+        setIsInstalled(true);
+        setShowInstallPrompt(false);
+      }
+
+      setDeferredPrompt(null);
+    } catch (error) {
+      console.error('Erro na instalação:', error);
     } finally {
-      setInstalling(false);
-      setBip(null);
-      setVisible(false);
+      setIsInstalling(false);
     }
   };
 
-  const handleDismiss = () => {
-    setVisible(false);
+  const showManualInstallInstructions = () => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
 
-    // Registra estatísticas (mas não bloqueia futuras exibições)
-    const stats = JSON.parse(localStorage.getItem('pwa_stats') || '{}');
-    stats.dismissCount = (stats.dismissCount || 0) + 1;
-    stats.lastDismissed = Date.now();
-    localStorage.setItem('pwa_stats', JSON.stringify(stats));
+    let instructions = '';
 
-    console.log('[PWA] Modal dispensado', stats);
-    // Nota: Modal voltará a aparecer na próxima visita (3s)
+    if (isIOS) {
+      instructions = 'Para instalar no iPhone/iPad:\n\n1. Toque no ícone de compartilhar (□↗)\n2. Role para baixo e toque em "Adicionar à Tela de Início"\n3. Toque em "Adicionar"';
+    } else if (isAndroid) {
+      instructions = 'Para instalar no Android:\n\n1. Toque no menu (⋮) do navegador\n2. Toque em "Adicionar à tela inicial"\n3. Confirme';
+    } else {
+      instructions = 'Para instalar no computador:\n\n1. Clique no ícone na barra de endereços\n2. Ou menu > "Instalar aplicativo"\n3. Confirme a instalação';
+    }
+
+    alert(instructions);
   };
 
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const handleDismiss = () => {
+    setShowInstallPrompt(false);
+    localStorage.setItem('pwa_dismissed', Date.now().toString());
+  };
 
-  if (!visible && !isIOS) return null;
+  if (isInstalled) {
+    return null;
+  }
+
+  const dismissedTime = localStorage.getItem('pwa_dismissed');
+  if (dismissedTime) {
+    const daysSinceDismissed = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);
+    if (daysSinceDismissed < 7) {
+      return null;
+    }
+  }
+
+  if (!showInstallPrompt) {
+    return null;
+  }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[9999] p-4">
-      <div className="mx-auto max-w-md rounded-2xl border border-[#D4AF37] bg-black/90 backdrop-blur-sm p-4 text-white shadow-2xl">
-        <div className="flex items-center gap-3">
-          <Logo size={48} />
-          <div className="text-lg font-semibold">Instalar The Rich Club</div>
-        </div>
-
-        {!isIOS ? (
-          <>
-            <button
-              onClick={handleInstall}
-              disabled={!bip || installing}
-              className="mt-4 w-full rounded-xl bg-[#D4AF37] px-4 py-3 font-bold text-black disabled:opacity-50"
-            >
-              {installing ? 'Instalando...' : 'Instalar App'}
-            </button>
-            {!bip && (
-              <div className="mt-3 p-3 bg-white/5 rounded-lg text-xs text-gray-300 leading-relaxed">
-                <p className="mb-2">
-                  <strong className="text-[#D4AF37]">Em produção (HTTPS):</strong> Este botão abrirá o instalador nativo do Chrome.
-                </p>
-                <p className="text-gray-400">
-                  <strong>Agora (desenvolvimento):</strong> Use o menu <span className="text-[#D4AF37]">⋮</span> → "Adicionar à tela inicial"
-                </p>
-              </div>
-            )}
-          </>
-        ) : (
-          <p className="mt-3 text-sm text-gray-200">
-            No iPhone: Compartilhar → "Adicionar à Tela de Início".
-          </p>
-        )}
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-[9999]">
+      <div className="bg-gradient-to-br from-black via-gray-900 to-black border border-[#D4AF37] rounded-2xl shadow-[0_8px_32px_rgba(212,175,55,0.25)] backdrop-blur-sm p-6 relative overflow-hidden">
+        {/* Efeito de brilho no fundo */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 via-transparent to-transparent pointer-events-none"></div>
 
         <button
           onClick={handleDismiss}
-          className="mt-2 w-full rounded-xl bg-white/10 px-4 py-2 text-sm"
+          className="absolute top-3 right-3 text-gray-500 hover:text-[#D4AF37] transition-all duration-200 z-10 p-1 hover:bg-white/5 rounded-lg"
+          aria-label="Fechar"
         >
-          Agora não
+          <X className="w-5 h-5" />
         </button>
+
+        <div className="flex items-start gap-4 relative z-10">
+          <div className="flex-shrink-0 bg-black p-3 rounded-2xl shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
+            <Logo size={56} />
+          </div>
+
+          <div className="flex-1 pr-6">
+            <h3 className="text-xl font-bold text-[#D4AF37] mb-1 tracking-tight">
+              Instalar The Rich Club
+            </h3>
+            <p className="text-sm text-gray-400 mb-5 leading-relaxed">
+              Instale nosso app para acesso rápido e experiência premium
+            </p>
+
+            <div className="flex flex-col gap-2.5">
+              <button
+                onClick={handleInstallClick}
+                disabled={isInstalling}
+                className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-[length:200%_100%] text-black font-bold py-3.5 px-6 rounded-xl hover:bg-[position:100%_0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2.5 shadow-lg hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Download size={18} className="animate-bounce" />
+                <span>{isInstalling ? 'Instalando...' : 'Instalar App'}</span>
+              </button>
+
+              <button
+                onClick={handleDismiss}
+                className="w-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-white/10 hover:border-white/20"
+              >
+                Agora não
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
