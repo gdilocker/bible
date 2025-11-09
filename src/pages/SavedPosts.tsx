@@ -4,7 +4,7 @@ import { ArrowLeft, Bookmark, Trash2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { PostCard } from '../components/social/PostCard';
-import Logo from '../assets/Logo copy copy copy.png';
+import Logo from '../assets/logo-therichclub.png';
 
 interface MediaItem {
   type: 'image' | 'video' | 'file';

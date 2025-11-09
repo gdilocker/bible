@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import logoUrl from '../assets/Logo copy copy.png';
+import logoUrl from '../assets/logo-therichclub.png';
 import {
   Store,
   DollarSign,

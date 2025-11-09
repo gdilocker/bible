@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { VerticalFeed } from '../components/social/VerticalFeed';
 import { CreatePostModal } from '../components/social/CreatePostModal';
 import { supabase } from '../lib/supabase';
-import Logo from '../assets/Logo copy copy copy.png';
+import Logo from '../assets/logo-therichclub.png';
 
 type FeedMode = 'all' | 'following';
 

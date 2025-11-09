@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoUrl from '../assets/Logo copy copy.png';
+import logoUrl from '../assets/logo-therichclub.png';
 import { LayoutDashboard, Mail, Globe, CreditCard, Settings, HelpCircle, LogOut, ChevronLeft, ChevronRight, Store, User, Users, CreditCard as Edit3, PlusCircle, BarChart3, ShoppingBag, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useDrawer } from '../contexts/DrawerContext';

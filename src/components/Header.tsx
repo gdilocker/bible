@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, User, LogOut, ChevronDown, Home, Store, Bookmark, Radio, DollarSign, Users, LogIn, UserPlus, UserCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import logoUrl from '../assets/Logo copy copy.png';
+import logoUrl from '../assets/logo-therichclub.png';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

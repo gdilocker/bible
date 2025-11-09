@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ExternalLink, Mail, Twitter, Instagram, Linkedin, Github, Youtube, Facebook, Globe, MessageCircle, Link2, ShoppingBag, Eye, Heart, UserPlus } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { EliteBadge } from './EliteBadge';
-import Logo from '../assets/Logo copy copy.png';
+import Logo from '../assets/logo-therichclub.png';
 import BackgroundImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
 
 interface ProfileLink {

@@ -15,7 +15,7 @@ import { LoginModalSimple } from '../components/LoginModalSimple';
 import { SettingsButton } from '../components/SettingsButton';
 import { ProfileFooterCTA } from '../components/ProfileFooterCTA';
 import { profileLinksService, ProfileLink } from '../lib/services/profileLinks';
-import Logo from '../assets/Logo copy copy.png';
+import Logo from '../assets/logo-therichclub.png';
 import BackgroundImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
 
 interface UserProfile {

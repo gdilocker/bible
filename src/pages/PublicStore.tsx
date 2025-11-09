@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { ShoppingBag, ArrowLeft, ExternalLink, Package, AlertCircle, X, Share2, Edit, Trash2, Save, Upload, DollarSign, Eye, EyeOff, Settings } from 'lucide-react';
-import Logo from '../assets/Logo copy copy.png';
+import Logo from '../assets/logo-therichclub.png';
 import Toast from '../components/Toast';
 import ConfirmModal from '../components/ConfirmModal';
 
