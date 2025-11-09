@@ -22,11 +22,14 @@ const PWAInstallPrompt: React.FC = () => {
       return;
     }
 
+    let testTimer: NodeJS.Timeout;
+
     const onBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setVisible(true);
       console.log('PWA: beforeinstallprompt capturado');
+      if (testTimer) clearTimeout(testTimer);
     };
 
     const onAppInstalled = () => {
@@ -44,11 +47,18 @@ const PWAInstallPrompt: React.FC = () => {
       setTimeout(() => {
         setVisible(true);
       }, 5000);
+    } else {
+      // MODO TESTE: Mostra banner após 3s se não houver evento (para desenvolvimento/teste)
+      testTimer = setTimeout(() => {
+        console.log('PWA: Modo teste - mostrando banner (sem beforeinstallprompt)');
+        setVisible(true);
+      }, 3000);
     }
 
     return () => {
       window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt);
       window.removeEventListener('appinstalled', onAppInstalled);
+      if (testTimer) clearTimeout(testTimer);
     };
   }, []);
 
@@ -120,9 +130,12 @@ const PWAInstallPrompt: React.FC = () => {
               {installing ? 'Instalando...' : 'Instalar App'}
             </button>
             {!deferredPrompt && (
-              <p className="mt-3 text-xs text-gray-300 text-center">
-                Aguardando disponibilidade do instalador...
-              </p>
+              <div className="mt-3 text-xs text-gray-300 text-center leading-relaxed px-2">
+                <p className="mb-2">O instalador nativo estará disponível quando você acessar via <span className="text-[#D4AF37] font-semibold">HTTPS em produção</span>.</p>
+                <p className="text-gray-400">
+                  Por enquanto, use o menu <span className="text-[#D4AF37]">⋮</span> do Chrome → <span className="text-[#D4AF37]">"Adicionar à tela inicial"</span>
+                </p>
+              </div>
             )}
           </>
         ) : (
