@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Download, X, Crown } from 'lucide-react';
+import { Download, X } from 'lucide-react';
+import Logo from './Logo';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -131,11 +132,8 @@ const PWAInstallPrompt: React.FC = () => {
         </button>
 
         <div className="flex items-start gap-4 relative z-10">
-          <div className="flex-shrink-0 bg-black p-3 rounded-2xl shadow-lg border-2 border-[#D4AF37] relative">
-            <Crown className="w-14 h-14 text-[#D4AF37]" strokeWidth={2} />
-            <div className="absolute inset-3 blur-sm pointer-events-none">
-              <Crown className="w-14 h-14 text-[#D4AF37] opacity-50" strokeWidth={2} />
-            </div>
+          <div className="flex-shrink-0 bg-black p-3 rounded-2xl shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
+            <Logo size={56} />
           </div>
 
           <div className="flex-1 pr-6">

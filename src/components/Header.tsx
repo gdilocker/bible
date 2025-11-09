@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, User, LogOut, ChevronDown, Home, Store, Bookmark, Radio, DollarSign, Users, LogIn, UserPlus, UserCircle, Crown } from 'lucide-react';
+import { Menu, X, User, LogOut, ChevronDown, Home, Store, Bookmark, Radio, DollarSign, Users, LogIn, UserPlus, UserCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
+import Logo from './Logo';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,12 +77,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16 gap-2">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="relative">
-              <Crown className="h-9 w-9 text-[#D4AF37]" strokeWidth={2} />
-              <div className="absolute inset-0 blur-sm">
-                <Crown className="h-9 w-9 text-[#D4AF37] opacity-50" strokeWidth={2} />
-              </div>
-            </div>
+            <Logo size={36} />
             <span className="text-[#D4AF37] font-bold text-lg hidden sm:inline-block">The Rich Club</span>
           </Link>
 
