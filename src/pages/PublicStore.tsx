@@ -314,7 +314,7 @@ export default function PublicStore() {
             </button>
 
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="com.rich" className="h-8 w-auto" />
+              <img src="/icons/icon-192x192.png" alt="com.rich" className="h-8 w-auto" />
               <div className="h-6 w-px bg-gray-300" />
               <ShoppingBag className="w-6 h-6 text-yellow-600" />
               <h1 className="text-xl font-bold text-gray-900">Loja</h1>
@@ -774,7 +774,7 @@ export default function PublicStore() {
       <footer className="border-t border-gray-200 bg-white py-8 mt-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <img src="/logo.png" alt="com.rich" className="h-6 w-auto" />
+            <img src="/icons/icon-192x192.png" alt="com.rich" className="h-6 w-auto" />
             <span className="text-yellow-600 font-bold">com.rich</span>
           </div>
           <p className="text-gray-600 text-sm">

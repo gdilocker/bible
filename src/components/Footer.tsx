@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="mb-4">
               <img
-                src="/logo.png"
+                src="/icons/icon-192x192.png"
                 alt="com.rich"
                 className="h-14 w-auto object-contain"
               />

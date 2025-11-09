@@ -65,7 +65,7 @@ export default function MyProfile() {
               className="flex items-center"
             >
               <img
-                src="/logo.png"
+                src="/icons/icon-192x192.png"
                 alt="com.rich"
                 className="h-12 w-auto object-contain"
               />

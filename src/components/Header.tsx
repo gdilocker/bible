@@ -77,13 +77,9 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
-              src="/logo.png"
+              src="/icons/icon-192x192.png"
               alt="The Rich Club"
               className="h-10 w-10 object-contain"
-              onError={(e) => {
-                // Fallback para o ícone se a logo não carregar
-                e.currentTarget.src = '/icons/icon-192x192.png';
-              }}
             />
           </Link>
 

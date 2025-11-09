@@ -133,13 +133,9 @@ const PWAInstallPrompt: React.FC = () => {
         <div className="flex items-start gap-4 relative z-10">
           <div className="flex-shrink-0 bg-black p-3 rounded-2xl shadow-lg border-2 border-[#D4AF37]">
             <img
-              src="/logo.png"
+              src="/icons/icon-192x192.png"
               alt="The Rich Club"
               className="w-14 h-14 object-contain"
-              onError={(e) => {
-                // Fallback para o ícone se a logo não carregar
-                e.currentTarget.src = '/icons/icon-192x192.png';
-              }}
             />
           </div>
 
