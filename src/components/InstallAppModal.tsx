@@ -62,10 +62,10 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="relative w-full max-w-md bg-gradient-to-br from-black via-gray-900 to-black border border-[#FFD700]/20 rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+      <div className="relative w-full max-w-sm bg-gradient-to-br from-black via-gray-900 to-black border border-[#FFD700]/20 rounded-xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
 
         {/* Header com efeito dourado */}
-        <div className="relative bg-gradient-to-r from-[#FFD700]/10 via-[#D4AF37]/10 to-[#FFD700]/10 p-6 border-b border-[#FFD700]/20">
+        <div className="relative bg-gradient-to-r from-[#FFD700]/10 via-[#D4AF37]/10 to-[#FFD700]/10 p-4 border-b border-[#FFD700]/20">
           <button
             onClick={handleDismiss}
             className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
@@ -74,16 +74,16 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
             <X className="w-6 h-6" />
           </button>
 
-          <div className="flex flex-col items-center text-center space-y-3">
-            <div className="w-20 h-20 bg-black rounded-2xl flex items-center justify-center shadow-lg shadow-[#FFD700]/30 border-2 border-[#FFD700]">
-              <Logo size={60} />
+          <div className="flex flex-col items-center text-center space-y-2">
+            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center shadow-lg shadow-[#FFD700]/30 border-2 border-[#FFD700]">
+              <Logo size={48} />
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-white mb-1">
+              <h2 className="text-xl font-bold text-white mb-1">
                 Instalar .com.rich
               </h2>
-              <p className="text-sm text-gray-400">
+              <p className="text-xs text-gray-400">
                 Acesse mais rápido, em tela cheia e com experiência premium
               </p>
             </div>
@@ -91,7 +91,7 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
         </div>
 
         {/* Conteúdo */}
-        <div className="p-6 space-y-6">
+        <div className="p-4 space-y-4">
 
           {/* Badge da plataforma */}
           <div className="flex justify-center">
@@ -103,9 +103,9 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
           </div>
 
           {/* Instruções */}
-          <div className="space-y-4">
-            <h3 className="text-white font-semibold text-center">Como instalar:</h3>
-            <ol className="space-y-3">
+          <div className="space-y-3">
+            <h3 className="text-sm text-white font-semibold text-center">Como instalar:</h3>
+            <ol className="space-y-2">
               {currentInstructions.steps.map((step, index) => (
                 <li key={index} className="flex items-start space-x-3">
                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] text-black font-bold text-sm flex items-center justify-center">
@@ -118,9 +118,9 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
           </div>
 
           {/* Benefícios */}
-          <div className="bg-gradient-to-br from-[#FFD700]/5 to-transparent border border-[#FFD700]/10 rounded-xl p-4 space-y-2">
-            <p className="text-xs font-semibold text-[#FFD700] uppercase tracking-wide">Benefícios</p>
-            <ul className="space-y-1 text-xs text-gray-400">
+          <div className="bg-gradient-to-br from-[#FFD700]/5 to-transparent border border-[#FFD700]/10 rounded-lg p-3 space-y-1">
+            <p className="text-[10px] font-semibold text-[#FFD700] uppercase tracking-wide">Benefícios</p>
+            <ul className="space-y-0.5 text-[10px] text-gray-400">
               <li>✓ Acesso instantâneo da tela inicial</li>
               <li>✓ Experiência em tela cheia</li>
               <li>✓ Funciona offline (em breve)</li>
@@ -130,17 +130,17 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
         </div>
 
         {/* Footer com botões */}
-        <div className="p-6 bg-gradient-to-t from-[#FFD700]/5 to-transparent border-t border-[#FFD700]/10 space-y-3">
+        <div className="p-4 bg-gradient-to-t from-[#FFD700]/5 to-transparent border-t border-[#FFD700]/10 space-y-2">
           <button
             onClick={handleDismiss}
-            className="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-[#FFD700] to-[#D4AF37] text-black font-bold text-sm hover:shadow-lg hover:shadow-[#FFD700]/30 transition-all duration-300 transform hover:scale-[1.02]"
+            className="w-full py-2.5 px-5 rounded-lg bg-gradient-to-r from-[#FFD700] to-[#D4AF37] text-black font-bold text-sm hover:shadow-lg hover:shadow-[#FFD700]/30 transition-all duration-300 transform hover:scale-[1.02]"
           >
             Entendi, vou instalar!
           </button>
 
           <button
             onClick={handleDismiss}
-            className="w-full py-3 px-6 rounded-xl border border-gray-700 text-gray-400 text-sm hover:bg-gray-800/50 hover:text-white transition-all duration-300"
+            className="w-full py-2.5 px-5 rounded-lg border border-gray-700 text-gray-400 text-sm hover:bg-gray-800/50 hover:text-white transition-all duration-300"
           >
             Agora não
           </button>
