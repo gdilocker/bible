@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Logo from '../components/Logo';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ExternalLink, Mail, Twitter, Instagram, Linkedin, Github, Youtube, Facebook, Globe, Palette, BarChart3, Lock, Sparkles, MessageCircle, Link2, Menu, Plus, Users, Home, User, Settings, Eye, Heart, UserPlus, LogOut, ShoppingBag } from 'lucide-react';

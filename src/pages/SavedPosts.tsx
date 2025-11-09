@@ -4,6 +4,7 @@ import { ArrowLeft, Bookmark, Trash2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { PostCard } from '../components/social/PostCard';
+import Logo from '../components/Logo';
 
 
 interface MediaItem {
@@ -116,7 +117,7 @@ export default function SavedPosts() {
           </button>
 
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="com.rich" className="h-8 w-auto" />
+            <Logo size={32} />
             <Bookmark className="w-5 h-5 text-[#D4AF37]" />
             <span className="text-base font-bold text-white">Salvos</span>
           </div>
@@ -139,7 +140,7 @@ export default function SavedPosts() {
               onClick={() => navigate('/')}
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              <img src="/logo.png" alt="com.rich" className="h-10 w-auto" />
+              <Logo size={40} />
             </button>
             <div className="flex items-center gap-2">
               <Bookmark className="w-5 h-5 text-[#D4AF37]" />

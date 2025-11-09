@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Shield, Clock, Lock } from 'lucide-react'; import { Crown } from 'lucide-react';
+import { Mail, Shield, Clock, Lock } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import Logo from './Logo';
 
 
 export default function Footer() {
@@ -19,11 +20,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 mb-8 md:grid-cols-6">
           <div className="md:col-span-2">
             <div className="mb-4">
-              <img
-                src="/logo.png"
-                alt="com.rich"
-                className="h-14 w-auto object-contain"
-              />
+              <Logo size={56} />
             </div>
             <p className="text-[#6B7280] text-sm leading-relaxed max-w-md mb-4">
               A Global Digital Identity é detentora da mais prestigiada extensão digital do mundo, o domínio .com.rich.

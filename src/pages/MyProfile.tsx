@@ -4,6 +4,7 @@ import { ArrowLeft, Plus, Settings, Home, Users, Globe, MessageCircle, User, Sto
 import { useAuth } from '../contexts/AuthContext';
 import { VerticalFeed } from '../components/social/VerticalFeed';
 import { CreatePostModal } from '../components/social/CreatePostModal';
+import Logo from '../components/Logo';
 
 
 type FeedMode = 'all' | 'following';
@@ -64,11 +65,7 @@ export default function MyProfile() {
               onClick={() => navigate('/')}
               className="flex items-center"
             >
-              <img
-                src="/logo.png"
-                alt="com.rich"
-                className="h-12 w-auto object-contain"
-              />
+              <Logo size={48} />
             </button>
             <h1 className="text-base font-medium text-white">Meu Feed</h1>
           </div>

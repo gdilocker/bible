@@ -76,9 +76,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 gap-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center">
             <Logo size={36} />
-            <span className="text-[#D4AF37] font-bold text-lg hidden sm:inline-block">The Rich Club</span>
           </Link>
 
           {/* Right side - All navigation + auth */}

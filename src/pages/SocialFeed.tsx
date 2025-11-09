@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { VerticalFeed } from '../components/social/VerticalFeed';
 import { CreatePostModal } from '../components/social/CreatePostModal';
 import { supabase } from '../lib/supabase';
+import Logo from '../components/Logo';
 
 
 type FeedMode = 'all' | 'following';
@@ -144,11 +145,7 @@ export default function SocialFeed() {
               onClick={() => navigate('/')}
               className="flex items-center"
             >
-              <img
-                src="/logo.png"
-                alt="com.rich"
-                className="h-8 w-auto object-contain"
-              />
+              <Logo size={32} />
             </button>
             <button
               onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
@@ -299,11 +296,7 @@ export default function SocialFeed() {
                 onClick={() => navigate('/')}
                 className="flex items-center"
               >
-                <img
-                  src="/logo.png"
-                  alt="com.rich"
-                  className="h-12 w-auto object-contain"
-                />
+                <Logo size={48} />
               </button>
 
               {isLoggedIn && (
