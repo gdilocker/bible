@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Download, X } from 'lucide-react';
 import Logo from './Logo';
 
@@ -9,84 +9,76 @@ interface BeforeInstallPromptEvent extends Event {
 
 const PWAInstallPrompt: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
-  const [isInstalled, setIsInstalled] = useState(false);
-  const [isInstalling, setIsInstalling] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [installing, setInstalling] = useState(false);
 
   useEffect(() => {
+    // Verifica se já está instalado
     if (window.matchMedia('(display-mode: standalone)').matches) {
-      setIsInstalled(true);
       return;
     }
 
     if ((window.navigator as any).standalone === true) {
-      setIsInstalled(true);
       return;
     }
 
-    const handleBeforeInstallPrompt = (e: Event) => {
+    const onBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      setShowInstallPrompt(true);
-      console.log('PWA: Install prompt disponível');
+      setVisible(true);
+      console.log('PWA: beforeinstallprompt capturado');
     };
 
-    const handleAppInstalled = () => {
-      setIsInstalled(true);
-      setShowInstallPrompt(false);
+    const onAppInstalled = () => {
+      setVisible(false);
       setDeferredPrompt(null);
-      console.log('PWA: App instalado!');
+      console.log('PWA: App instalado com sucesso');
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    window.addEventListener('appinstalled', handleAppInstalled);
+    window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt);
+    window.addEventListener('appinstalled', onAppInstalled);
 
-    const timer = setTimeout(() => {
-      if (!isInstalled && !deferredPrompt && !localStorage.getItem('pwa_dismissed')) {
-        setShowInstallPrompt(true);
-      }
-    }, 5000);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-      window.removeEventListener('appinstalled', handleAppInstalled);
-      clearTimeout(timer);
-    };
-  }, [deferredPrompt, isInstalled]);
-
-  const handleInstallClick = async () => {
-    if (!deferredPrompt) {
-      return;
+    // Mostra banner para iOS após delay (não tem beforeinstallprompt)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (isIOS && !localStorage.getItem('pwa_dismissed')) {
+      setTimeout(() => {
+        setVisible(true);
+      }, 5000);
     }
 
-    setIsInstalling(true);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', onAppInstalled);
+    };
+  }, []);
 
+  const handleInstall = async () => {
+    if (!deferredPrompt) return;
+
+    setInstalling(true);
     try {
       await deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
+      console.log('PWA: User choice:', outcome);
 
       if (outcome === 'accepted') {
-        setIsInstalled(true);
-        setShowInstallPrompt(false);
+        setVisible(false);
       }
-
-      setDeferredPrompt(null);
     } catch (error) {
-      console.error('Erro na instalação:', error);
+      console.error('PWA: Erro ao instalar:', error);
     } finally {
-      setIsInstalling(false);
+      setInstalling(false);
+      setDeferredPrompt(null);
+      setVisible(false);
     }
   };
 
   const handleDismiss = () => {
-    setShowInstallPrompt(false);
+    setVisible(false);
     localStorage.setItem('pwa_dismissed', Date.now().toString());
   };
 
-  if (isInstalled) {
-    return null;
-  }
-
+  // Não mostra se foi dismissed recentemente
   const dismissedTime = localStorage.getItem('pwa_dismissed');
   if (dismissedTime) {
     const daysSinceDismissed = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);
@@ -95,68 +87,56 @@ const PWAInstallPrompt: React.FC = () => {
     }
   }
 
-  if (!showInstallPrompt) {
+  if (!visible) {
     return null;
   }
 
-  return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-[9999]">
-      <div className="bg-gradient-to-br from-black via-gray-900 to-black border border-[#D4AF37] rounded-2xl shadow-[0_8px_32px_rgba(212,175,55,0.25)] backdrop-blur-sm p-6 relative overflow-hidden">
-        {/* Efeito de brilho no fundo */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 via-transparent to-transparent pointer-events-none"></div>
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] p-4">
+      <div className="mx-auto max-w-md rounded-2xl border border-[#D4AF37] bg-black/90 backdrop-blur-sm p-4 text-white shadow-2xl">
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-3 text-gray-500 hover:text-[#D4AF37] transition-all duration-200 z-10 p-1 hover:bg-white/5 rounded-lg"
+          className="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors p-1"
           aria-label="Fechar"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-start gap-4 relative z-10">
-          <div className="flex-shrink-0 bg-black p-3 rounded-2xl shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
-            <Logo size={56} />
-          </div>
-
-          <div className="flex-1 pr-6">
-            <h3 className="text-xl font-bold text-[#D4AF37] mb-1 tracking-tight">
-              Instalar The Rich Club
-            </h3>
-            <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-              Instale nosso app para acesso rápido e experiência premium
-            </p>
-
-            <div className="flex flex-col gap-2.5">
-              <button
-                onClick={handleInstallClick}
-                disabled={isInstalling || !deferredPrompt}
-                className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-[length:200%_100%] text-black font-bold py-3.5 px-6 rounded-xl hover:bg-[position:100%_0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2.5 shadow-lg hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <Download size={18} className={isInstalling ? 'animate-spin' : 'animate-bounce'} />
-                <span>{isInstalling ? 'Instalando...' : 'Instalar App'}</span>
-              </button>
-
-              {!deferredPrompt && (
-                <div className="text-xs text-gray-400 text-center mt-1 px-2 leading-relaxed">
-                  {/iPad|iPhone|iPod/.test(navigator.userAgent) ? (
-                    <>Toque em <span className="text-[#D4AF37]">□↗</span> e depois em "Adicionar à Tela de Início"</>
-                  ) : /Android/.test(navigator.userAgent) ? (
-                    <>Toque no menu <span className="text-[#D4AF37]">⋮</span> e depois em "Adicionar à tela inicial"</>
-                  ) : (
-                    <>Clique no ícone de instalação na barra de endereços</>
-                  )}
-                </div>
-              )}
-
-              <button
-                onClick={handleDismiss}
-                className="w-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-white/10 hover:border-white/20"
-              >
-                Agora não
-              </button>
-            </div>
-          </div>
+        <div className="flex items-center gap-3 mb-4">
+          <Logo size={48} />
+          <div className="text-lg font-semibold text-[#D4AF37]">Instalar The Rich Club</div>
         </div>
+
+        {!isIOS ? (
+          <>
+            <button
+              onClick={handleInstall}
+              disabled={!deferredPrompt || installing}
+              className="mt-4 w-full rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] px-4 py-3 font-bold text-black disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+            >
+              <Download size={18} className={installing ? 'animate-spin' : ''} />
+              {installing ? 'Instalando...' : 'Instalar App'}
+            </button>
+            {!deferredPrompt && (
+              <p className="mt-3 text-xs text-gray-300 text-center">
+                Aguardando disponibilidade do instalador...
+              </p>
+            )}
+          </>
+        ) : (
+          <div className="mt-3 text-sm text-gray-200 leading-relaxed">
+            No iPhone: Toque em <span className="text-[#D4AF37] font-semibold">□↗</span> (Compartilhar) e depois em <span className="text-[#D4AF37] font-semibold">"Adicionar à Tela de Início"</span>.
+          </div>
+        )}
+
+        <button
+          onClick={handleDismiss}
+          className="mt-2 w-full rounded-xl bg-white/10 hover:bg-white/20 px-4 py-2 text-sm transition-colors"
+        >
+          Agora não
+        </button>
       </div>
     </div>
   );
