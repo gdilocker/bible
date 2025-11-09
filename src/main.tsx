@@ -26,11 +26,3 @@ try {
   `;
 }
 
-// Register Service Worker for PWA functionality
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js", { scope: "/" })
-      .then(() => console.log("[PWA] Service Worker registrado"))
-      .catch(console.error);
-  });
-}
