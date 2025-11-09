@@ -117,44 +117,49 @@ const PWAInstallPrompt: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-[9999] animate-fade-in">
-      <div className="bg-black border-2 border-[#D4AF37] rounded-xl shadow-2xl p-5">
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-[9999]">
+      <div className="bg-gradient-to-br from-black via-gray-900 to-black border border-[#D4AF37] rounded-2xl shadow-[0_8px_32px_rgba(212,175,55,0.25)] backdrop-blur-sm p-6 relative overflow-hidden">
+        {/* Efeito de brilho no fundo */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 via-transparent to-transparent pointer-events-none"></div>
+
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors"
+          className="absolute top-3 right-3 text-gray-500 hover:text-[#D4AF37] transition-all duration-200 z-10 p-1 hover:bg-white/5 rounded-lg"
           aria-label="Fechar"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-start gap-4">
-          <img
-            src="/icons/icon-192x192.png"
-            alt="The Rich Club"
-            className="w-16 h-16 rounded-xl"
-          />
+        <div className="flex items-start gap-4 relative z-10">
+          <div className="flex-shrink-0 bg-gradient-to-br from-[#D4AF37] to-[#B8941F] p-1 rounded-2xl shadow-lg">
+            <img
+              src="/icons/icon-192x192.png"
+              alt="The Rich Club"
+              className="w-14 h-14 rounded-xl"
+            />
+          </div>
 
-          <div className="flex-1 pr-8">
-            <h3 className="text-lg font-bold text-[#D4AF37] mb-1">
+          <div className="flex-1 pr-6">
+            <h3 className="text-xl font-bold text-[#D4AF37] mb-1 tracking-tight">
               Instalar The Rich Club
             </h3>
-            <p className="text-sm text-gray-300 mb-4">
-              Instale nosso app para acesso rápido e experiência completa
+            <p className="text-sm text-gray-400 mb-5 leading-relaxed">
+              Instale nosso app para acesso rápido e experiência premium
             </p>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2.5">
               <button
                 onClick={handleInstallClick}
                 disabled={isInstalling}
-                className="flex-1 bg-[#D4AF37] text-black font-semibold py-2.5 px-4 rounded-lg hover:bg-[#FFD700] transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-[length:200%_100%] text-black font-bold py-3.5 px-6 rounded-xl hover:bg-[position:100%_0] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2.5 shadow-lg hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Download size={16} />
-                {isInstalling ? 'Instalando...' : 'Instalar'}
+                <Download size={18} className="animate-bounce" />
+                <span>{isInstalling ? 'Instalando...' : 'Instalar App'}</span>
               </button>
 
               <button
                 onClick={handleDismiss}
-                className="flex-1 bg-gray-800 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-gray-700 transition-all"
+                className="w-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-white/10 hover:border-white/20"
               >
                 Agora não
               </button>
