@@ -1,7 +1,7 @@
 # ✅ TRABALHO COMPLETO - TheRichClub
 
 **Data:** 2025-11-09
-**Sistema:** Licenciamento de Subdomínios .com.rich (SEM Dynadot)
+**Sistema:** Perfis Digitais .com.rich (100% Frontend Simulado)
 
 ---
 
@@ -24,11 +24,14 @@ Finalizei TODA a parte técnica que posso fazer sem acesso às suas contas exter
 
 ### **1. Limpeza de Referências Obsoletas**
 
-✅ **Dynadot Removido Completamente**
-- Sistema confirmado como 100% interno
-- Subdomínios .com.rich licenciados (não vendidos)
-- Sem integração com registradores externos
-- Criado `.env.example` limpo (sem Dynadot)
+✅ **Sistema 100% Simulado no Frontend**
+- ❌ Sem Dynadot
+- ❌ Sem DNS wildcard real (*.com.rich)
+- ❌ Sem domínio .com.rich registrado
+- ✅ Rotas React: `/u/:username`
+- ✅ Display fake: `username.com.rich` (só visual)
+- ✅ Tudo roda em `therichclub.com`
+- ✅ Criado `.env.example` limpo
 
 ### **2. Sistema de Emails Completo**
 
@@ -314,27 +317,26 @@ Dashboard → SQL Editor → Copiar scripts do `SETUP_GUIDE.md`
 
 #### **9. Configurar DNS:**
 
-**Crítico para subdomínios funcionarem:**
+**IMPORTANTE:** Subdomínios .com.rich são **simulados no frontend**.
+
+**Só precisa configurar o domínio principal:**
 ```
 Type: A
 Name: @
 Value: [IP do Netlify]
 
 Type: CNAME
-Name: *.com.rich
+Name: www
 Value: seu-site.netlify.app
 ```
 
-Ou se com.rich for domínio separado:
-```
-Type: A
-Name: *.com.rich
-Value: [IP do Netlify]
-```
+**Como funciona:**
+- URL real: `therichclub.com/u/username`
+- Display fake: `username.com.rich` (só visual no perfil)
+- Sem DNS wildcard necessário!
 
-#### **10. Netlify - Adicionar Domínios:**
-- [ ] therichclub.com
-- [ ] *.com.rich (wildcard)
+#### **10. Netlify - Adicionar Domínio:**
+- [ ] therichclub.com (só esse!)
 - [ ] Aguardar SSL (~15 min)
 
 ---
@@ -363,17 +365,17 @@ Value: [IP do Netlify]
 - [ ] Conectar Netlify ao repositório
 - [ ] Adicionar environment variables
 - [ ] Deploy!
-- [ ] Configurar DNS (wildcard)
-- [ ] Adicionar domínios no Netlify
+- [ ] Configurar DNS (APENAS therichclub.com)
+- [ ] Adicionar therichclub.com no Netlify
 - [ ] Aguardar SSL
 
 ### **Fase 4: Testes (1 hora)**
 - [ ] Criar conta de teste
-- [ ] Criar subdomínio
+- [ ] Criar subdomínio/username
 - [ ] Fazer upgrade (pagamento real)
 - [ ] Verificar webhook recebido
 - [ ] Verificar email enviado
-- [ ] Testar perfil público: `teste.com.rich`
+- [ ] Testar perfil público: `therichclub.com/u/teste` (mostra "teste.com.rich")
 - [ ] Testar loja online
 - [ ] Testar rede social
 

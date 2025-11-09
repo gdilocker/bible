@@ -336,11 +336,23 @@ Adicione todas as variáveis do `.env`
 
 ## 🌐 CONFIGURAÇÃO DNS
 
-**CRÍTICO:** Para subdomínios funcionarem, você precisa configurar wildcard DNS.
+**IMPORTANTE:** Subdomínios .com.rich são **simulados no frontend** via React Router.
 
-### Se usar Netlify:
+### Como Funciona?
 
-#### Passo 1: Domínio Principal
+**NÃO existe:**
+- ❌ DNS wildcard real (*.com.rich)
+- ❌ Domínio .com.rich registrado
+- ❌ Subdomínios reais no DNS
+
+**Existe:**
+- ✅ Rotas React: `/u/:username` → `/profile/:username`
+- ✅ **Display fake** nos perfis: `username.com.rich`
+- ✅ Tudo roda em `therichclub.com`
+
+### Configuração DNS Real (Apenas Domínio Principal):
+
+#### Netlify:
 ```
 Type: A
 Name: @
@@ -351,27 +363,24 @@ Name: www
 Value: seu-site.netlify.app
 ```
 
-#### Passo 2: Wildcard Subdomínios
-```
-Type: CNAME
-Name: *.com.rich
-Value: seu-site.netlify.app
-```
-
-**OU** se `com.rich` for um domínio separado:
-
-```
-Type: A
-Name: *.com.rich
-Value: 75.2.60.5
-```
-
-#### Passo 3: Adicionar Domínio no Netlify
+#### Adicionar Domínio no Netlify:
 1. Site settings → Domain management
 2. Add domain: `therichclub.com`
-3. Add domain: `com.rich` (se for domínio separado)
-4. Add domain alias: `*.com.rich`
-5. Aguarde SSL provisioning (~15 min)
+3. Aguarde SSL provisioning (~15 min)
+
+**Pronto!** Todos os subdomínios são rotas internas.
+
+### Exemplos de URLs Reais:
+
+```
+❌ NÃO EXISTE: https://usa.com.rich
+✅ URL REAL: https://therichclub.com/u/usa
+
+❌ NÃO EXISTE: https://brasil.com.rich
+✅ URL REAL: https://therichclub.com/u/brasil
+```
+
+**O perfil MOSTRA "usa.com.rich" mas roda em therichclub.com/u/usa**
 
 ### Se usar Vercel:
 
