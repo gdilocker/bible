@@ -57,6 +57,9 @@
   Cache-Control: public, max-age=86400
 
 # Critical brand assets (logo and background) - longer cache
+/logo.png
+  Cache-Control: public, max-age=86400
+  Content-Type: image/png
 /logo-comrich.png
   Cache-Control: public, max-age=31536000, immutable
 /background-gala.png

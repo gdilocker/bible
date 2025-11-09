@@ -136,6 +136,10 @@ const PWAInstallPrompt: React.FC = () => {
               src="/logo.png"
               alt="The Rich Club"
               className="w-14 h-14 object-contain"
+              onError={(e) => {
+                // Fallback para o ícone se a logo não carregar
+                e.currentTarget.src = '/icons/icon-192x192.png';
+              }}
             />
           </div>
 
