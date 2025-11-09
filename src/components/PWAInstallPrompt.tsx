@@ -18,33 +18,15 @@ const PWAInstallPrompt: React.FC = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Verificar se usuário já dispensou
-    const dismissed = localStorage.getItem('pwa-dismissed');
-    if (dismissed === 'true') {
-      return;
-    }
+    // DESABILITADO: Não mostrar banner nativo
+    // Usar apenas o modal manual (InstallAppButton)
 
-    // Verificar se já está instalado
-    const isInstalled = window.matchMedia('(display-mode: standalone)').matches ||
-                       (window.navigator as any).standalone ||
-                       document.referrer.includes('android-app://');
-
-    if (isInstalled) {
-      return;
-    }
-
-    // Detectar iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (isIOS) {
-      return;
-    }
-
-    // Capturar evento beforeinstallprompt
+    // Capturar e suprimir o evento beforeinstallprompt
     const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setShowBanner(true);
-      console.log('[PWA] Banner ativado');
+      // NÃO mostrar banner: setShowBanner(false)
+      console.log('[PWA] beforeinstallprompt capturado e suprimido');
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);

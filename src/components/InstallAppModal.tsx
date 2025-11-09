@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Download, Smartphone, Share } from 'lucide-react';
+import Logo from './Logo';
 
 interface InstallAppModalProps {
   onClose: () => void;
@@ -32,9 +33,9 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
       icon: <Smartphone className="w-8 h-8 text-[#FFD700]" />,
       steps: [
         'Toque no menu (⋮) no canto superior direito',
-        'Selecione "Adicionar à tela inicial"',
-        'Confirme tocando em "Adicionar"',
-        'O ícone aparecerá na sua tela inicial'
+        'Selecione "Instalar app"',
+        'Confirme tocando em "Instalar"',
+        'O ícone do diamante aparecerá na sua tela inicial'
       ]
     },
     ios: {
@@ -74,8 +75,8 @@ export function InstallAppModal({ onClose }: InstallAppModalProps) {
           </button>
 
           <div className="flex flex-col items-center text-center space-y-3">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#FFD700] to-[#D4AF37] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FFD700]/20">
-              {currentInstructions.icon}
+            <div className="w-20 h-20 bg-black rounded-2xl flex items-center justify-center shadow-lg shadow-[#FFD700]/30 border-2 border-[#FFD700]">
+              <Logo size={60} />
             </div>
 
             <div>
