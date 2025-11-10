@@ -19,7 +19,7 @@ const DeletionPolicy: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Política de Exclusão de Conta e Dados
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.rich</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 26 de outubro de 2025</span>
@@ -134,7 +134,7 @@ const DeletionPolicy: React.FC = () => {
                       <p className="text-black font-semibold mb-2">Opção 2: Solicitação por Email</p>
                       <p className="text-[#6B7280]/80 mb-2">Envie um email para:</p>
                       <ul className="space-y-1 text-[#6B7280]/80 list-disc list-inside">
-                        <li><strong>Email:</strong> <a href="mailto:deletion@com.rich" className="text-[#3B82F6] hover:underline">deletion@com.rich</a></li>
+                        <li><strong>Email:</strong> <a href="mailto:deletion@com.bible" className="text-[#3B82F6] hover:underline">deletion@com.bible</a></li>
                         <li><strong>Assunto:</strong> "Solicitação de Exclusão de Conta"</li>
                         <li><strong>Informações necessárias:</strong></li>
                       </ul>
@@ -297,7 +297,7 @@ const DeletionPolicy: React.FC = () => {
 
                     <h3 className="text-lg font-semibold text-black mt-6">6.4 Perfis Públicos</h3>
                     <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-                      <li>Perfis públicos (ex: seunome.com.rich) são <strong className="text-[#EF4444]">permanentemente removidos</strong></li>
+                      <li>Perfis públicos (ex: seunome.com.bible) são <strong className="text-[#EF4444]">permanentemente removidos</strong></li>
                       <li>URLs personalizados ficam indisponíveis</li>
                       <li>Visitantes encontrarão página de erro 404</li>
                       <li>Links externos para seu perfil deixarão de funcionar</li>
@@ -469,8 +469,8 @@ const DeletionPolicy: React.FC = () => {
                               Nossa equipe está disponível para esclarecer qualquer dúvida sobre o processo de exclusão antes que você tome a decisão final.
                             </p>
                             <ul className="space-y-2 text-[#6B7280]/80">
-                              <li><strong className="text-black">Email para exclusão:</strong> <a href="mailto:deletion@com.rich" className="text-[#3B82F6] hover:underline">deletion@com.rich</a></li>
-                              <li><strong className="text-black">Suporte geral:</strong> <a href="mailto:contact@com.rich" className="text-[#3B82F6] hover:underline">contact@com.rich</a></li>
+                              <li><strong className="text-black">Email para exclusão:</strong> <a href="mailto:deletion@com.bible" className="text-[#3B82F6] hover:underline">deletion@com.bible</a></li>
+                              <li><strong className="text-black">Suporte geral:</strong> <a href="mailto:contact@com.bible" className="text-[#3B82F6] hover:underline">contact@com.bible</a></li>
                               <li><strong className="text-black">Prazo de resposta:</strong> Até 48 horas</li>
                             </ul>
                           </div>

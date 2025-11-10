@@ -623,7 +623,7 @@ export default function ProfileManager() {
       <div className="max-w-7xl mx-auto">
         <div className="px-4 sm:px-6 lg:px-8">
           <PageHeader
-            title={domainName ? `Gerenciar Página - ${domainName.replace('.com.rich', '')}` : "Gerenciar Página"}
+            title={domainName ? `Gerenciar Página - ${domainName.replace('.com.bible', '')}` : "Gerenciar Página"}
             subtitle={domainName ? `Personalize a página pública do domínio https://${domainName}` : "Personalize sua página pública"}
             badge={isEliteMember ? <EliteBadge size="md" /> : undefined}
             primaryAction={
@@ -1018,7 +1018,7 @@ export default function ProfileManager() {
                   Username
                 </label>
                 <div className="flex items-center gap-2 px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg overflow-x-auto">
-                  <span className="text-slate-500 text-sm whitespace-nowrap">com.rich/</span>
+                  <span className="text-slate-500 text-sm whitespace-nowrap">com.bible/</span>
                   <span className="text-slate-800 font-medium text-sm break-all">{profile.subdomain}</span>
                 </div>
                 <p className="text-xs text-slate-500 mt-1">O username não pode ser alterado</p>

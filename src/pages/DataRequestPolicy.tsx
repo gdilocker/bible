@@ -19,7 +19,7 @@ const DataRequestPolicy: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Política de Solicitação de Dados
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.rich</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 26 de outubro de 2025</span>
@@ -168,7 +168,7 @@ const DataRequestPolicy: React.FC = () => {
                       <p className="text-black font-semibold mb-2">Para Solicitações Complexas</p>
                       <p className="text-[#6B7280]/80 mb-2">Envie um email para:</p>
                       <ul className="space-y-1 text-[#6B7280]/80 list-disc list-inside">
-                        <li><strong>Email:</strong> <a href="mailto:data-request@com.rich" className="text-[#3B82F6] hover:underline">data-request@com.rich</a></li>
+                        <li><strong>Email:</strong> <a href="mailto:data-request@com.bible" className="text-[#3B82F6] hover:underline">data-request@com.bible</a></li>
                         <li><strong>Assunto:</strong> "Solicitação de Dados - [Tipo de Solicitação]"</li>
                         <li><strong>Incluir:</strong></li>
                       </ul>
@@ -265,7 +265,7 @@ const DataRequestPolicy: React.FC = () => {
                       Para situações de urgência legítima (ex: risco à segurança), entre em contato através de:
                     </p>
                     <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-                      <li><strong className="text-black">Email prioritário:</strong> <a href="mailto:urgent@com.rich" className="text-[#3B82F6] hover:underline">urgent@com.rich</a></li>
+                      <li><strong className="text-black">Email prioritário:</strong> <a href="mailto:urgent@com.bible" className="text-[#3B82F6] hover:underline">urgent@com.bible</a></li>
                       <li><strong className="text-black">Prazo de resposta:</strong> Até 24 horas</li>
                     </ul>
                   </div>
@@ -505,7 +505,7 @@ const DataRequestPolicy: React.FC = () => {
                       Caso não esteja satisfeito com nossa resposta à sua solicitação:
                     </p>
                     <ol className="space-y-2 text-[#6B7280]/70 list-decimal list-inside">
-                      <li>Entre em contato com nosso DPO (Data Protection Officer) em <a href="mailto:dpo@com.rich" className="text-[#3B82F6] hover:underline">dpo@com.rich</a></li>
+                      <li>Entre em contato com nosso DPO (Data Protection Officer) em <a href="mailto:dpo@com.bible" className="text-[#3B82F6] hover:underline">dpo@com.bible</a></li>
                       <li>Explique detalhadamente sua preocupação</li>
                       <li>Aguarde revisão e resposta dentro de 15 dias úteis</li>
                     </ol>
@@ -536,9 +536,9 @@ const DataRequestPolicy: React.FC = () => {
                               Nossa equipe de proteção de dados está disponível para ajudar:
                             </p>
                             <ul className="space-y-2 text-[#6B7280]/80">
-                              <li><strong className="text-black">Solicitações de dados:</strong> <a href="mailto:data-request@com.rich" className="text-[#3B82F6] hover:underline">data-request@com.rich</a></li>
-                              <li><strong className="text-black">Data Protection Officer:</strong> <a href="mailto:dpo@com.rich" className="text-[#3B82F6] hover:underline">dpo@com.rich</a></li>
-                              <li><strong className="text-black">Suporte geral:</strong> <a href="mailto:contact@com.rich" className="text-[#3B82F6] hover:underline">contact@com.rich</a></li>
+                              <li><strong className="text-black">Solicitações de dados:</strong> <a href="mailto:data-request@com.bible" className="text-[#3B82F6] hover:underline">data-request@com.bible</a></li>
+                              <li><strong className="text-black">Data Protection Officer:</strong> <a href="mailto:dpo@com.bible" className="text-[#3B82F6] hover:underline">dpo@com.bible</a></li>
+                              <li><strong className="text-black">Suporte geral:</strong> <a href="mailto:contact@com.bible" className="text-[#3B82F6] hover:underline">contact@com.bible</a></li>
                               <li><strong className="text-black">Prazo de resposta:</strong> Até 48 horas</li>
                             </ul>
                           </div>

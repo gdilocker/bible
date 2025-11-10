@@ -34,10 +34,10 @@ const FAQ: React.FC = () => {
       icon: <Building2 className="w-5 h-5" />,
       items: [
         {
-          question: 'O que é o com.rich?',
+          question: 'O que é o com.bible?',
           answer: (
             <div className="space-y-2">
-              <p>O <strong>com.rich</strong> é uma plataforma de identidade digital que oferece domínios exclusivos com a extensão <strong>.com.rich</strong>, desenvolvida para profissionais e marcas que desejam destacar-se online com um nome de domínio sofisticado e premium.</p>
+              <p>O <strong>com.bible</strong> é uma plataforma de identidade digital que oferece domínios exclusivos com a extensão <strong>.com.bible</strong>, desenvolvida para profissionais e marcas que desejam destacar-se online com um nome de domínio sofisticado e premium.</p>
               <p>Além do registro de domínio, oferecemos integração com perfis sociais personalizáveis, permitindo que você centralize sua presença digital em um único lugar profissional.</p>
               <p className="mt-3 text-sm">O serviço é operado por:<br />
                 <strong>Global Digital Identity LTD</strong><br />
@@ -50,8 +50,8 @@ const FAQ: React.FC = () => {
           )
         },
         {
-          question: 'O com.rich é uma empresa independente?',
-          answer: 'Sim. O com.rich é operado pela Global Digital Identity LTD, empresa independente registrada no Reino Unido, que atua de forma autônoma em sua operação comercial e tecnológica. A plataforma mantém controle total sobre a experiência do usuário, suporte e gestão de contas.'
+          question: 'O com.bible é uma empresa independente?',
+          answer: 'Sim. O com.bible é operado pela Global Digital Identity LTD, empresa independente registrada no Reino Unido, que atua de forma autônoma em sua operação comercial e tecnológica. A plataforma mantém controle total sobre a experiência do usuário, suporte e gestão de contas.'
         },
         {
           question: 'Onde os serviços são hospedados?',
@@ -68,7 +68,7 @@ const FAQ: React.FC = () => {
           question: 'O que é o modelo de licenciamento exclusivo?',
           answer: (
             <div className="space-y-2">
-              <p>Ao adquirir um domínio .com.rich, você recebe uma <strong>licença exclusiva de uso</strong>. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com Global Digital Identity LTD.</p>
+              <p>Ao adquirir um domínio .com.bible, você recebe uma <strong>licença exclusiva de uso</strong>. Isso significa que você tem direitos totais de personalização, configuração e uso do domínio, mas a titularidade permanece com Global Digital Identity LTD.</p>
               <p>É similar a alugar um imóvel premium: você tem uso exclusivo e total controle, mas não é o proprietário legal do registro.</p>
             </div>
           )
@@ -83,7 +83,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Posso transferir minha licença para outra pessoa?',
-          answer: 'Sim, transferências de licença são permitidas mediante aprovação. Entre em contato com support@com.rich para iniciar o processo.'
+          answer: 'Sim, transferências de licença são permitidas mediante aprovação. Entre em contato com support@com.bible para iniciar o processo.'
         },
         {
           question: 'O que acontece se eu cancelar minha assinatura?',
@@ -91,7 +91,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Por que vocês usam modelo de licenciamento?',
-          answer: 'O modelo de licenciamento nos permite manter controle central sobre a rede .com.rich, garantir qualidade do ecossistema, prevenir abuso e oferecer melhor suporte. Além disso, facilita resolução de disputas e proteção de marca.'
+          answer: 'O modelo de licenciamento nos permite manter controle central sobre a rede .com.bible, garantir qualidade do ecossistema, prevenir abuso e oferecer melhor suporte. Além disso, facilita resolução de disputas e proteção de marca.'
         }
       ]
     },
@@ -101,8 +101,8 @@ const FAQ: React.FC = () => {
       icon: <Globe className="w-5 h-5" />,
       items: [
         {
-          question: 'O que é um domínio .com.rich?',
-          answer: 'É uma extensão de domínio premium e exclusiva, projetada para profissionais, marcas e indivíduos que buscam uma identidade digital sofisticada. Com uma licença exclusiva .com.rich (exemplo: seunome.com.rich), você terá uma URL personalizada que reflete sucesso e exclusividade.'
+          question: 'O que é um domínio .com.bible?',
+          answer: 'É uma extensão de domínio premium e exclusiva, projetada para profissionais, marcas e indivíduos que buscam uma identidade digital sofisticada. Com uma licença exclusiva .com.bible (exemplo: seunome.com.bible), você terá uma URL personalizada que reflete sucesso e exclusividade.'
         },
         {
           question: 'Como adquiro uma licença de domínio?',
@@ -122,7 +122,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Posso transferir minha licença para outro registrador?',
-          answer: 'Não. A extensão .com.rich é proprietária e exclusiva da Global Digital Identity LTD, e o modelo de licenciamento não permite transferência para outros registradores. Você mantém total controle sobre sua licença e configurações DNS enquanto sua assinatura estiver ativa, podendo apontar para qualquer hospedagem e gerenciar todos os aspectos técnicos através do nosso painel.'
+          answer: 'Não. A extensão .com.bible é proprietária e exclusiva da Global Digital Identity LTD, e o modelo de licenciamento não permite transferência para outros registradores. Você mantém total controle sobre sua licença e configurações DNS enquanto sua assinatura estiver ativa, podendo apontar para qualquer hospedagem e gerenciar todos os aspectos técnicos através do nosso painel.'
         },
         {
           question: 'O que acontece se eu não renovar minha licença?',
@@ -168,7 +168,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Posso usar minha licença para criar um site?',
-          answer: 'Sim. Por padrão, sua licença .com.rich exibe seu perfil social personalizado dentro da nossa plataforma. No entanto, você tem total flexibilidade para configurar os registros DNS pelo painel e redirecionar para qualquer site externo, serviço de hospedagem ou aplicação web de sua escolha. Sua licença permanece sob seu controle exclusivo durante todo o período contratado.'
+          answer: 'Sim. Por padrão, sua licença .com.bible exibe seu perfil social personalizado dentro da nossa plataforma. No entanto, você tem total flexibilidade para configurar os registros DNS pelo painel e redirecionar para qualquer site externo, serviço de hospedagem ou aplicação web de sua escolha. Sua licença permanece sob seu controle exclusivo durante todo o período contratado.'
         },
         {
           question: 'Quantos domínios posso ter no meu plano?',
@@ -228,7 +228,7 @@ const FAQ: React.FC = () => {
       items: [
         {
           question: 'O que é o perfil social personalizado?',
-          answer: 'É uma página web vinculada ao seu domínio .com.rich onde você pode centralizar todos os seus links importantes: redes sociais, portfólio, contatos e muito mais. Funciona como um cartão de visitas digital profissional.'
+          answer: 'É uma página web vinculada ao seu domínio .com.bible onde você pode centralizar todos os seus links importantes: redes sociais, portfólio, contatos e muito mais. Funciona como um cartão de visitas digital profissional.'
         },
         {
           question: 'Como personalizo meu perfil?',
@@ -240,7 +240,7 @@ const FAQ: React.FC = () => {
         },
         {
           question: 'Posso usar meu domínio para criar um site completo?',
-          answer: 'Sim. Seu domínio .com.rich vem com um perfil social personalizado integrado na plataforma, mas você tem liberdade total para configurar os registros DNS e redirecionar para qualquer site ou serviço de hospedagem externo. Dessa forma, você mantém controle completo sobre como utiliza seu domínio.'
+          answer: 'Sim. Seu domínio .com.bible vem com um perfil social personalizado integrado na plataforma, mas você tem liberdade total para configurar os registros DNS e redirecionar para qualquer site ou serviço de hospedagem externo. Dessa forma, você mantém controle completo sobre como utiliza seu domínio.'
         },
         {
           question: 'Como funciona a personalização de temas?',
@@ -351,7 +351,7 @@ const FAQ: React.FC = () => {
                   <li><strong>Afiliados vinculados:</strong> Liberados para se associar a outro patrocinador</li>
                   <li><strong>Comissões ou pontos:</strong> Cancelados definitivamente</li>
                   <li><strong>Posição na estrutura:</strong> Removida da rede</li>
-                  <li><strong>Domínio .com.rich:</strong> Entra em estado protegido</li>
+                  <li><strong>Domínio .com.bible:</strong> Entra em estado protegido</li>
                   <li><strong>Acesso a áreas exclusivas:</strong> Bloqueado</li>
                 </ul>
               </div>
@@ -469,7 +469,7 @@ const FAQ: React.FC = () => {
                 <p className="font-semibold text-blue-900 mb-2">🎁 Período Trial do Prime</p>
                 <p className="text-blue-800">O plano Prime oferece <strong>14 dias de teste</strong>. Se não pagar após o trial, o sistema bloqueia automaticamente a assinatura e impede mudanças de plano até o pagamento.</p>
               </div>
-              <p className="text-sm mt-3"><strong>Por que essas regras?</strong> Elas garantem estabilidade nas assinaturas, protegem contra abusos e reforçam a exclusividade da plataforma .com.rich.</p>
+              <p className="text-sm mt-3"><strong>Por que essas regras?</strong> Elas garantem estabilidade nas assinaturas, protegem contra abusos e reforçam a exclusividade da plataforma .com.bible.</p>
             </div>
           )
         },
@@ -577,12 +577,12 @@ const FAQ: React.FC = () => {
           )
         },
         {
-          question: 'O com.rich utiliza cookies?',
+          question: 'O com.bible utiliza cookies?',
           answer: 'Sim, apenas cookies técnicos essenciais para autenticação, idioma e manutenção de sessão. Não utilizamos cookies de rastreamento publicitário de terceiros.'
         },
         {
           question: 'O que devo fazer em caso de suspeita de fraude?',
-          answer: 'Entre em contato imediatamente pelo e-mail contact@com.rich. Casos comprovados de uso fraudulento resultam em suspensão imediata da conta e notificação às autoridades competentes.'
+          answer: 'Entre em contato imediatamente pelo e-mail contact@com.bible. Casos comprovados de uso fraudulento resultam em suspensão imediata da conta e notificação às autoridades competentes.'
         }
       ]
     },
@@ -595,7 +595,7 @@ const FAQ: React.FC = () => {
           question: 'Como funciona o Programa de Afiliados?',
           answer: (
             <div className="space-y-3">
-              <p>O Programa de Afiliados permite que você ganhe comissões recorrentes promovendo <strong className="text-black">exclusivamente planos de assinatura</strong> da plataforma .com.rich.</p>
+              <p>O Programa de Afiliados permite que você ganhe comissões recorrentes promovendo <strong className="text-black">exclusivamente planos de assinatura</strong> da plataforma .com.bible.</p>
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-2">
                 <p className="text-sm text-amber-900">
                   <strong>⚠️ Importante:</strong> Comissões aplicam-se apenas a vendas de planos de assinatura. Domínios premium são receita exclusiva da empresa e não geram comissão.
@@ -659,7 +659,7 @@ const FAQ: React.FC = () => {
             <div className="space-y-2">
               <p>Para participar do programa de afiliados você DEVE ter:</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li><strong>Licença .com.rich ativa</strong></li>
+                <li><strong>Licença .com.bible ativa</strong></li>
                 <li><strong>Plano de assinatura pago ativo</strong> (Prime ou Elite)</li>
                 <li>Perfil social integrado</li>
                 <li>Ser maior de 18 anos</li>
@@ -722,7 +722,7 @@ const FAQ: React.FC = () => {
           )
         },
         {
-          question: 'O com.rich é responsável pelo conteúdo publicado pelos usuários?',
+          question: 'O com.bible é responsável pelo conteúdo publicado pelos usuários?',
           answer: 'Não. Todo o conteúdo publicado nos perfis públicos ou hospedado através dos domínios é de responsabilidade exclusiva do titular da conta. A Global Digital Identity LTD atua apenas como intermediária técnica e administrativa.'
         },
         {
@@ -741,7 +741,7 @@ const FAQ: React.FC = () => {
           )
         },
         {
-          question: 'Qual é a jurisdição legal do com.rich?',
+          question: 'Qual é a jurisdição legal do com.bible?',
           answer: 'Todas as relações contratuais são regidas pelas leis da Inglaterra e País de Gales (England and Wales). Qualquer disputa será resolvida nos tribunais de Londres, Reino Unido.'
         },
         {
@@ -761,7 +761,7 @@ const FAQ: React.FC = () => {
             <div className="space-y-2">
               <p>O atendimento é realizado <strong>exclusivamente por e-mail</strong> ou pelo <strong>formulário de contato disponível no site</strong>.</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li><strong>E-mail:</strong> contact@com.rich</li>
+                <li><strong>E-mail:</strong> contact@com.bible</li>
                 <li><strong>Formulário:</strong> disponível na página "Contato"</li>
               </ul>
               <p>Não há atendimento telefônico, WhatsApp ou redes sociais, para garantir segurança, privacidade e registro formal de todas as comunicações.</p>
@@ -773,22 +773,22 @@ const FAQ: React.FC = () => {
           answer: 'Respondemos em até 24 horas. Dependendo da complexidade, a resolução pode levar de 3 a 5 dias úteis. Casos urgentes (como problemas críticos de domínio ou falhas técnicas) recebem prioridade imediata.'
         },
         {
-          question: 'O com.rich oferece suporte em outros idiomas?',
+          question: 'O com.bible oferece suporte em outros idiomas?',
           answer: 'Sim. Oferecemos atendimento em português, espanhol e inglês, conforme a origem do cliente. Contudo, em caso de conflito de interpretação, prevalece sempre o idioma inglês.'
         },
         {
           question: 'Como posso reportar abuso ou uso indevido?',
-          answer: 'Envie um e-mail para abuse@com.rich com o máximo de informações possíveis (capturas de tela, URLs, data, domínio envolvido). As denúncias são analisadas pela equipe de conformidade dentro de 48h.'
+          answer: 'Envie um e-mail para abuse@com.bible com o máximo de informações possíveis (capturas de tela, URLs, data, domínio envolvido). As denúncias são analisadas pela equipe de conformidade dentro de 48h.'
         },
         {
-          question: 'Posso usar o com.rich em qualquer país?',
+          question: 'Posso usar o com.bible em qualquer país?',
           answer: 'Sim. O sistema é global, acessível de qualquer lugar do mundo. Alguns países podem ter restrições legais específicas para registro de domínios, que serão informadas caso se apliquem.'
         },
         {
-          question: 'O que diferencia o com.rich de outros serviços?',
+          question: 'O que diferencia o com.bible de outros serviços?',
           answer: (
             <ul className="list-disc list-inside space-y-1">
-              <li>Extensão de domínio exclusiva e premium (.com.rich).</li>
+              <li>Extensão de domínio exclusiva e premium (.com.bible).</li>
               <li>Perfil social integrado para centralizar sua presença online.</li>
               <li>Interface moderna e intuitiva.</li>
               <li>Registro e ativação instantânea.</li>
@@ -816,7 +816,7 @@ const FAQ: React.FC = () => {
               Perguntas <span className="bg-gradient-to-r from-[#60A5FA] via-[#3B82F6] to-[#60A5FA] bg-clip-text text-transparent">Frequentes</span>
             </h1>
             <p className="text-xl text-[#6B7280] leading-relaxed">
-              Encontre respostas para as dúvidas mais comuns sobre domínios .com.rich, perfis sociais, pagamentos, segurança e muito mais
+              Encontre respostas para as dúvidas mais comuns sobre domínios .com.bible, perfis sociais, pagamentos, segurança e muito mais
             </p>
           </div>
         </motion.section>

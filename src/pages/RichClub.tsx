@@ -11,7 +11,7 @@ import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
 import domainImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
 import affiliateImage from '../assets/pessoas-que-participam-de-um-evento-de-alto-protocolo.jpg';
 
-export default function RichClub() {
+export default function BibleClub() {
   return (
     <div className="min-h-screen bg-black">
 
@@ -329,12 +329,12 @@ export default function RichClub() {
 
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               <span className="text-gray-400">yourname</span>
-              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">.com.rich</span>
+              <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">.com.bible</span>
             </h2>
 
             <div className="space-y-3 mb-12">
               <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light">
-                Seu domínio personalizado .com.rich é mais que um endereço web, é uma declaração de identidade, prestígio e posicionamento no cenário digital global.
+                Seu domínio personalizado .com.bible é mais que um endereço web, é uma declaração de identidade, prestígio e posicionamento no cenário digital global.
               </p>
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
                 Uma URL que comunica sucesso instantaneamente.
