@@ -521,7 +521,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"></div>
         </div>
         <motion.section
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12"
           initial="hidden"
           animate="show"
           variants={container}
