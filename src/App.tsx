@@ -13,6 +13,7 @@ import ChatWidget from './components/ChatWidget';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import DomainSearch from './pages/DomainSearch';
 
 // Lazy load - Secondary pages
 const Pricing = lazy(() => import('./pages/Pricing'));
@@ -157,7 +158,7 @@ function AppRoutes() {
         <Routes>
           {/* Public Routes - Main Navigation */}
           <Route path="/" element={<Home />} />
-          <Route path="/registrar" element={<Register />} />
+          <Route path="/registrar" element={<DomainSearch />} />
           <Route path="/precos" element={<Pricing />} />
           <Route path="/app" element={
             <ProtectedRoute>
