@@ -28,10 +28,11 @@ As seguintes páginas já usavam o padrão correto:
 - [x] **Cookies** - Política de cookies
 - [x] Todas as páginas de políticas
 
-#### ✅ Large (Responsivo: pt-32/36/40)
+#### ✅ Large (Responsivo: pt-32/36/40) - 5 páginas
 - [x] **Home** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava pt-16/20/24)
 - [x] **Register** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava pt-16/20/24)
-- [x] **GlobalSystem** - Fixo: `pt-40 pb-20`
+- [x] **Pricing** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava pt-32 fixo)
+- [x] **GlobalSystem** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava pt-40 fixo)
 - [x] **RichClub** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava py-24/32)
 
 ### Componente PageLayout

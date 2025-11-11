@@ -139,7 +139,7 @@ const Pricing: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
-      <div className="relative pt-32 pb-16">
+      <div className="relative pt-32 sm:pt-36 lg:pt-40 pb-16">
         {stateMessage && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}

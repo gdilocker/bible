@@ -67,7 +67,7 @@ const GlobalSystem: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] pt-40 pb-20">
+    <div className="min-h-screen bg-[#0B0B0B] pt-32 sm:pt-36 lg:pt-40 pb-20">
       {/* Hero Section */}
       <section className="relative border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
