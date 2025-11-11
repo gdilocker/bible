@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Globe, Shield, Zap, Check, ArrowRight, Sparkles, Lock, TrendingUp, Users, DollarSign, Hash } from 'lucide-react';
 
+// Página Sobre - Novo Padrão Mundial - v2.0
 const About = () => {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
