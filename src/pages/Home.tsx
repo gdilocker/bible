@@ -532,19 +532,19 @@ const Home = () => {
               className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3"
             >
               <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-amber-400 to-transparent"></div>
-              <span className="text-amber-400 text-[10px] sm:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">Premium Identity</span>
+              <span className="text-amber-400 text-[10px] sm:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">Identidade e Valor Global</span>
               <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-amber-400 to-transparent"></div>
             </motion.div>
 
             <motion.h1
               variants={item}
-              className="font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-4 leading-[1.1] sm:leading-[0.95] tracking-tight px-2"
+              className="font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-3 sm:mb-4 leading-[1.1] tracking-tight px-2"
             >
-              <span className="text-white block">
-                Sua Identidade
+              <span className="text-white block mb-2">
+                Seu nome. Seu valor.
               </span>
               <span className="text-amber-400 block">
-                .pix.global
+                Seu endereço digital global.
               </span>
             </motion.h1>
 
@@ -552,7 +552,7 @@ const Home = () => {
               variants={item}
               className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-light px-4"
             >
-              Possua a identidade digital mais prestigiada e exclusiva do mundo.
+              Registre seu domínio .pix.global e transforme sua identidade em um ativo digital único, reconhecido mundialmente.
             </motion.p>
 
             <motion.div
@@ -618,6 +618,44 @@ const Home = () => {
                 </div>
               </div>
             </motion.form>
+
+            {/* Seção Explicativa */}
+            {!available && !domainError && !provisioning && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="max-w-4xl mx-auto mt-12 px-4"
+              >
+                <div className="bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                  <p className="text-lg sm:text-xl text-gray-200 leading-relaxed mb-6 text-center">
+                    O Pix.Global permite que pessoas e empresas tenham um nome global exclusivo, como <span className="text-amber-400 font-semibold">maria.pix.global</span>, que representa sua identidade na nova economia digital.
+                  </p>
+                  <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 text-center">
+                    Ao registrar, você também recebe um identificador numérico exclusivo, como <span className="text-amber-400 font-mono">9072907237839893833.pix.global</span>, que pode funcionar como um ativo de valor digital, transferível e auditável.
+                  </p>
+                  <div className="bg-gradient-to-r from-amber-500/10 to-blue-500/10 rounded-xl p-6 border border-amber-500/20">
+                    <div className="grid sm:grid-cols-3 gap-4 text-center">
+                      <div>
+                        <Globe className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                        <p className="text-white font-semibold mb-1">Uma identidade global</p>
+                        <p className="text-gray-400 text-sm">Reconhecida mundialmente</p>
+                      </div>
+                      <div>
+                        <Zap className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                        <p className="text-white font-semibold mb-1">Um valor digital</p>
+                        <p className="text-gray-400 text-sm">Transferível e auditável</p>
+                      </div>
+                      <div>
+                        <Shield className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                        <p className="text-white font-semibold mb-1">Sistema legal</p>
+                        <p className="text-gray-400 text-sm">Independente e global</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
             {domainError && (
               <motion.div

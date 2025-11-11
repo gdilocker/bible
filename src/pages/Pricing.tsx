@@ -164,13 +164,13 @@ const Pricing: React.FC = () => {
         >
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
-              Domínios .pix.global:{' '}
+              Valores de Registro{' '}
               <span className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-500 bg-clip-text text-transparent">
-                identidades e ativos digitais com valor real
+                .pix.global
               </span>
             </h1>
             <p className="text-xl text-[#6B7280] leading-relaxed mb-6">
-              Cada nome ou número registrado é único, exclusivo e pode representar valor no mundo digital.
+              Cada nome e número é único — um ativo digital global, exclusivo e verificável.
             </p>
 
             <div className="bg-gradient-to-br from-white to-amber-50 border-2 border-amber-200 rounded-2xl p-8 mb-8 shadow-lg">
@@ -188,9 +188,20 @@ const Pricing: React.FC = () => {
               </p>
 
               <div className="mt-6 pt-6 border-t border-amber-200">
-                <p className="text-center text-2xl font-bold text-black mb-2">
+                <p className="text-center text-2xl font-bold text-black mb-4">
                   Um domínio não é apenas um endereço — é um patrimônio digital global.
                 </p>
+
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-3">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <CreditCard className="w-5 h-5 text-emerald-600" />
+                    <p className="text-sm font-bold text-emerald-900">Pagamento Seguro e Auditado</p>
+                  </div>
+                  <p className="text-sm text-emerald-800 text-center">
+                    Pagamentos processados com segurança via gateways oficiais (PayPal, Stripe, Wise). A Pix.Global não guarda dinheiro nem realiza câmbio. Todos os valores são auditados e registrados digitalmente.
+                  </p>
+                </div>
+
                 <p className="text-sm text-gray-600 text-center italic">
                   O Pix.Global opera dentro da legislação internacional de ativos digitais. Não realizamos intermediação financeira nem custódia de valores.
                 </p>
