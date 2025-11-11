@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Shield, CheckCircle, Lock, FileText, Building2, Scale } from 'lucide-react';
+import HeroSection from '../components/layout/HeroSection';
 
 const GlobalSystem: React.FC = () => {
   const jurisdictions = [
@@ -67,34 +68,32 @@ const GlobalSystem: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B]">
+    <div className="bg-[#0B0B0B]">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-40 pb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 bg-[#FFC107]/10 backdrop-blur-sm border border-[#FFC107]/30 rounded-full px-6 py-2 mb-6">
-              <Globe className="w-4 h-4 text-[#FFC107]" />
-              <span className="text-[#FFC107] text-xs font-semibold tracking-widest uppercase">Sistema Global</span>
-            </div>
+      <HeroSection className="border-b border-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center max-w-4xl mx-auto"
+        >
+          <div className="inline-flex items-center gap-2 bg-[#FFC107]/10 backdrop-blur-sm border border-[#FFC107]/30 rounded-full px-6 py-2 mb-6">
+            <Globe className="w-4 h-4 text-[#FFC107]" />
+            <span className="text-[#FFC107] text-xs font-semibold tracking-widest uppercase">Sistema Global</span>
+          </div>
 
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
-              Sistema Global de <span className="bg-gradient-to-r from-[#FFC107] via-[#FFD54F] to-[#FF9800] bg-clip-text text-transparent">Propriedade Digital</span>
-            </h1>
+          <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+            Sistema Global de <span className="bg-gradient-to-r from-[#FFC107] via-[#FFD54F] to-[#FF9800] bg-clip-text text-transparent">Propriedade Digital</span>
+          </h1>
 
-            <p className="text-2xl text-gray-300 mb-4 leading-relaxed">
-              A nova estrutura legítima para propriedade digital no mundo.
-            </p>
+          <p className="text-2xl text-gray-300 mb-4 leading-relaxed">
+            A nova estrutura legítima para propriedade digital no mundo.
+          </p>
 
-            <p className="text-xl text-gray-400 leading-relaxed">
-              Pix.Global conecta nomes, números e identidades sob uma base auditável, legal e transparente — sem bancos, sem cripto, sem fronteiras.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+          <p className="text-xl text-gray-400 leading-relaxed">
+            Pix.Global conecta nomes, números e identidades sob uma base auditável, legal e transparente — sem bancos, sem cripto, sem fronteiras.
+          </p>
+        </motion.div>
+      </HeroSection>
 
       {/* O que é o Sistema */}
       <section className="py-16 border-b border-white/10">

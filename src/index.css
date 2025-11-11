@@ -11,6 +11,24 @@
     --color-text: #000000;
     --color-text-light: #6B7280;
     --color-border: #E5E7EB;
+
+    /* Hero Section - Standard spacing */
+    --header-height: 80px;
+    --hero-pt: 128px;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --header-height: 88px;
+      --hero-pt: 144px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-height: 96px;
+      --hero-pt: 160px;
+    }
   }
 
   body {
@@ -28,6 +46,12 @@
 }
 
 @layer components {
+  /* Hero Section utility class (optional alternative to HeroSection component) */
+  .hero-pt {
+    padding-top: var(--hero-pt);
+    scroll-margin-top: var(--header-height);
+  }
+
   .btn-primary {
     @apply bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors duration-200;
   }

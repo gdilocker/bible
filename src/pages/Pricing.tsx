@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, Star, Crown, CreditCard, Users, TrendingUp, Sparkles, AlertCircle, Award, DollarSign, Lightbulb, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import HeroSection from '../components/layout/HeroSection';
 
 interface SubscriptionPlan {
   id: string;
@@ -138,31 +139,29 @@ const Pricing: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
-      <section className="relative min-h-screen flex items-center">
-        <div className="relative w-full pt-32 sm:pt-36 lg:pt-40 pb-16">
-          {stateMessage && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-8"
-            >
-              <div className="bg-amber-50 border-2 border-amber-400 rounded-xl p-6 flex items-start gap-4">
-                <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="font-bold text-amber-900 mb-2">Domínio Premium Requer Plano Elite</h3>
-                  <p className="text-amber-800">{stateMessage}</p>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
+    <div className="relative bg-[#F5F5F5]">
+      <HeroSection className="pb-16">
+        {stateMessage && (
           <motion.div
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            className="mb-8"
           >
+            <div className="bg-amber-50 border-2 border-amber-400 rounded-xl p-6 flex items-start gap-4">
+              <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-bold text-amber-900 mb-2">Domínio Premium Requer Plano Elite</h3>
+                <p className="text-amber-800">{stateMessage}</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
               Valores de Registro{' '}
@@ -569,8 +568,7 @@ const Pricing: React.FC = () => {
             </p>
           </div>
         </motion.section>
-        </div>
-      </section>
+      </HeroSection>
     </div>
   );
 };
