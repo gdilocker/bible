@@ -9,7 +9,7 @@ export default function Success() {
   const provider = urlParams.get('provider') || 'paypal';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4 pt-24">
       <div className="max-w-2xl w-full">
         <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
           <div className="mb-6">

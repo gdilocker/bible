@@ -9,13 +9,17 @@ interface PageLayoutProps {
   title?: string;
   subtitle?: string;
   showBlobs?: boolean;
+  headerSpacing?: 'default' | 'compact' | 'large';
+  backgroundColor?: string;
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
   children,
   title,
   subtitle,
-  showBlobs = false
+  showBlobs = false,
+  headerSpacing = 'default',
+  backgroundColor = 'bg-[#FAFAFA]'
 }) => {
   const { isInDrawer, closeDrawer } = useDrawer();
 
@@ -24,6 +28,14 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
     if (!title) return '';
     return sanitizeHtml(title);
   }, [title]);
+
+  // Define spacing classes based on headerSpacing prop
+  const spacingClasses = {
+    compact: 'pt-24 pb-12',
+    default: 'pt-32 pb-16',
+    large: 'pt-40 pb-20'
+  };
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -40,7 +52,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   };
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA]">
+    <div className={`relative min-h-screen ${backgroundColor}`}>
       {isInDrawer && (
         <div className="fixed top-4 left-4 z-[100]">
           <button
@@ -53,7 +65,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
         </div>
       )}
 
-      <div className="relative pt-32 pb-16">
+      <div className={`relative ${spacingClasses[headerSpacing]}`}>
         {title && (
           <motion.section
             className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16"

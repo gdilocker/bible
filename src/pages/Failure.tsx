@@ -36,7 +36,7 @@ const Failure: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] pt-16">
+    <div className="min-h-screen bg-[#F5F5F5] pt-24 pb-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Failure Header */}
         <div className="text-center mb-12">
