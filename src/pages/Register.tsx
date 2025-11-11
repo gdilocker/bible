@@ -291,7 +291,7 @@ const Register: React.FC = () => {
                 >
                   <div className="flex items-center gap-2">
                     <Hash className="w-5 h-5" />
-                    <span>Créditos Numéricos</span>
+                    <span>Créditos Digitais</span>
                   </div>
                 </button>
               </div>
