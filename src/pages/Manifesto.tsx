@@ -126,13 +126,6 @@ const Manifesto = () => {
                   type: "spring",
                   stiffness: 100
                 }}
-                whileInView={{
-                  textShadow: [
-                    "0 0 20px rgba(234, 179, 8, 0.5)",
-                    "0 0 40px rgba(234, 179, 8, 0.8)",
-                    "0 0 20px rgba(234, 179, 8, 0.5)"
-                  ]
-                }}
               >
                 Nós conseguimos.
               </motion.span>
@@ -500,13 +493,6 @@ const Manifesto = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              animate={{
-                textShadow: [
-                  "0 0 20px rgba(234, 179, 8, 0.5)",
-                  "0 0 40px rgba(234, 179, 8, 0.8)",
-                  "0 0 20px rgba(234, 179, 8, 0.5)"
-                ]
-              }}
             >
               O Pix.Global criou liberdade.
             </motion.p>
