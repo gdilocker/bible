@@ -90,6 +90,7 @@ const SocialTerms = lazy(() => import('./pages/SocialTerms'));
 const RichClub = lazy(() => import('./pages/RichClub'));
 const AdminEmail = lazy(() => import('./pages/AdminEmail'));
 const DomainView = lazy(() => import('./pages/DomainView'));
+const AppPage = lazy(() => import('./pages/App'));
 
 // Loading component
 const LoadingFallback = () => (
@@ -240,6 +241,13 @@ function AppRoutes() {
           <Route path="/minha-pagina" element={
             <ProtectedRoute>
               <ProfilePreview />
+            </ProtectedRoute>
+          } />
+
+          {/* App Route - Domains & Payment Routes */}
+          <Route path="/app" element={
+            <ProtectedRoute>
+              <AppPage />
             </ProtectedRoute>
           } />
 
