@@ -89,6 +89,7 @@ const StoreTerms = lazy(() => import('./pages/StoreTerms'));
 const SocialTerms = lazy(() => import('./pages/SocialTerms'));
 const RichClub = lazy(() => import('./pages/RichClub'));
 const AdminEmail = lazy(() => import('./pages/AdminEmail'));
+const DomainView = lazy(() => import('./pages/DomainView'));
 
 // Loading component
 const LoadingFallback = () => (
@@ -222,7 +223,7 @@ function AppRoutes() {
           <Route path="/login" element={<Login />} />
 
           {/* Dynamic Route - Domain Public Page */}
-          <Route path="/d/:fqdn" element={<PublicProfile />} />
+          <Route path="/d/:fqdn" element={<DomainView />} />
 
           {/* Affiliate Redirect Route */}
           <Route path="/r/:code" element={<RefRedirect />} />
