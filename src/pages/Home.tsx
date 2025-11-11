@@ -559,15 +559,6 @@ const Home = () => {
               variants={item}
               className="flex flex-col items-center justify-center gap-3 mb-6"
             >
-              <div className="flex items-center gap-2">
-                <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg shadow-emerald-500/30">
-                  <Sparkles className="w-4 h-4" />
-                  <span>Plano Prime: 14 dias de teste</span>
-                </div>
-                <div className="text-gray-400 text-sm">
-                  • Sem compromisso
-                </div>
-              </div>
               <div className="text-amber-400 text-sm font-medium">
                 Preços em dólares (USD) • 1 PIX = 1 USD
               </div>
