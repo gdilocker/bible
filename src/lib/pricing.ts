@@ -2,8 +2,9 @@
  * Sistema de Precificação Pix.Global
  *
  * Regras:
- * - Personal (nomes): 25 PIX fixo
+ * - Personal (nomes): $25 USD fixo
  * - Numeric (números): baseado em comprimento + multiplicadores
+ * - Moeda padrão: USD (1 PIX = 1 USD)
  */
 
 export interface PricingResult {
@@ -123,21 +124,12 @@ function applyMultipliers(
 }
 
 /**
- * Formata preço para exibição
+ * Formata preço para exibição em USD
  */
-export function formatPrice(price: number, currency: string = 'BRL'): string {
-  if (currency === 'BRL' || currency === 'PIX') {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
-  }
-
-  return new Intl.NumberFormat('pt-BR', {
+export function formatPrice(price: number, currency: string = 'USD'): string {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: currency,
+    currency: 'USD',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(price);
@@ -161,7 +153,7 @@ export function precoPorDominio(
       basePrice: PERSONAL_BASE_PRICE,
       multipliers: [],
       finalPrice: PERSONAL_BASE_PRICE,
-      currency: 'BRL',
+      currency: 'USD',
       type: 'personal',
       details: 'Preço fixo para identidades pessoais',
     };
@@ -189,7 +181,7 @@ export function precoPorDominio(
     basePrice,
     multipliers,
     finalPrice,
-    currency: 'BRL',
+    currency: 'USD',
     type: 'numeric',
     details,
   };
