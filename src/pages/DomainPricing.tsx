@@ -10,7 +10,7 @@ import {
 } from '../lib/pricing';
 
 export default function DomainPricing() {
-  const examples = getAllExamplesWithPrices();
+  const allExamples = getAllExamplesWithPrices();
   const lengthTable = getLengthPricingTable();
   const multipliersTable = getMultipliersTable();
   const [calculatorInput, setCalculatorInput] = useState('');
@@ -19,6 +19,27 @@ export default function DomainPricing() {
   const calculatedPrice = calculatorInput
     ? precoPorDominio(calculatorInput, calculatorType)
     : null;
+
+  const examples = [
+    ...allExamples.personal.map((ex: any) => ({
+      domain: ex.label,
+      type: 'personal' as const,
+      price: ex.pricing.finalPrice,
+      multipliers: ex.pricing.multipliers.map((m: any) => m.name),
+    })),
+    ...allExamples.numeric.basic.map((ex: any) => ({
+      domain: ex.label,
+      type: 'numeric' as const,
+      price: ex.pricing.finalPrice,
+      multipliers: ex.pricing.multipliers.map((m: any) => m.name),
+    })),
+    ...allExamples.numeric.special.map((ex: any) => ({
+      domain: ex.label,
+      type: 'numeric' as const,
+      price: ex.pricing.finalPrice,
+      multipliers: ex.pricing.multipliers.map((m: any) => m.name),
+    })),
+  ].slice(0, 12);
 
   return (
     <div className="min-h-screen bg-[#0B0B0B]">
@@ -169,9 +190,9 @@ export default function DomainPricing() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {lengthTable.map((entry) => (
+            {lengthTable.map((entry, idx) => (
               <div
-                key={entry.length}
+                key={idx}
                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FFC107]/50 transition-all group"
               >
                 <div className="flex items-baseline gap-2 mb-4">
@@ -181,9 +202,9 @@ export default function DomainPricing() {
                   <span className="text-gray-400 text-sm">caracteres</span>
                 </div>
                 <p className="text-2xl font-bold text-[#FFC107] mb-2">
-                  {formatPrice(entry.price, 'BRL')}
+                  {formatPrice(entry.basePrice, 'USD')}
                 </p>
-                <p className="text-sm text-gray-400">{entry.description}</p>
+                <p className="text-sm text-gray-400 font-mono">ex: {entry.example}</p>
               </div>
             ))}
           </div>
