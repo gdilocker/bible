@@ -179,11 +179,11 @@ const Pricing: React.FC = () => {
                 Quanto mais curto, simples ou raro o nome, maior é o seu valor potencial.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                O mesmo vale para os domínios numéricos: sequências raras, repetidas ou simbólicas possuem <span className="text-amber-600 font-semibold">valor colecionável e comercial crescente</span>.
+                O mesmo vale para os créditos digitais: sequências raras, repetidas ou simbólicas possuem <span className="text-amber-600 font-semibold">valor colecionável e comercial crescente</span>.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Você pode adquirir domínios para identidade (ex: <span className="text-blue-600 font-mono">seunome.pix.global</span>)
-                ou domínios puramente numéricos (ex: <span className="text-blue-600 font-mono">111.pix.global</span>, <span className="text-blue-600 font-mono">777.pix.global</span>, <span className="text-blue-600 font-mono">2025.pix.global</span>)
+                ou créditos digitais (ex: <span className="text-blue-600 font-mono">111.pix.global</span>, <span className="text-blue-600 font-mono">777.pix.global</span>, <span className="text-blue-600 font-mono">2025.pix.global</span>)
                 que funcionam como <span className="text-amber-600 font-semibold">ativos digitais independentes</span>.
               </p>
 

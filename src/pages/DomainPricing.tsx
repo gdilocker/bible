@@ -95,7 +95,7 @@ export default function DomainPricing() {
                   onChange={(e) => {
                     const value = e.target.value.toLowerCase();
 
-                    // Se o tipo for "Token", aceitar apenas números
+                    // Se o tipo for "Créditos Digitais", aceitar apenas números
                     if (calculatorType === 'numeric') {
                       // Remove caracteres não numéricos
                       const numericValue = value.replace(/\D/g, '');
@@ -144,7 +144,7 @@ export default function DomainPricing() {
                   }`}
                 >
                   <Hash className="w-5 h-5" />
-                  Token
+                  Créditos Digitais
                 </button>
               </div>
             </div>
@@ -294,7 +294,7 @@ export default function DomainPricing() {
                     <Hash className="w-5 h-5 text-purple-400" />
                   )}
                   <span className="text-sm text-gray-400 uppercase tracking-wide">
-                    {example.type === 'personal' ? 'Identidade' : 'Token'}
+                    {example.type === 'personal' ? 'Identidade' : 'Créditos Digitais'}
                   </span>
                 </div>
 

@@ -108,9 +108,9 @@ export default function DomainSearch() {
       examples: ['seunome', 'suamarca', 'seuapelido'],
     },
     numeric: {
-      title: 'Token Numérico',
+      title: 'Créditos Digitais',
       subtitle: 'Ativo digital exclusivo',
-      description: 'Token numérico único que pode ser usado como identificador ou ativo digital. Ex: 777.pix.global',
+      description: 'Crédito digital único que pode ser usado como identificador ou ativo digital. Ex: 777.pix.global',
       placeholder: '12345',
       icon: Hash,
       examples: ['777', '2024', '100000'],
@@ -172,7 +172,7 @@ export default function DomainSearch() {
             <div className="flex flex-col items-center gap-3">
               <Hash className={`w-8 h-8 ${activeTab === 'numeric' ? 'text-[#FFC107]' : 'text-gray-500'}`} />
               <div>
-                <div className="font-bold text-lg">Token Numérico</div>
+                <div className="font-bold text-lg">Créditos Digitais</div>
                 <div className="text-sm opacity-75">Ativo digital</div>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function DomainSearch() {
                 </span>
                 {searchValue && (
                   <span className="text-sm text-gray-400">
-                    Tipo: {activeTab === 'personal' ? 'Identidade' : 'Token'}
+                    Tipo: {activeTab === 'personal' ? 'Identidade' : 'Créditos Digitais'}
                   </span>
                 )}
               </div>
