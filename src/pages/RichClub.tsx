@@ -55,7 +55,7 @@ export default function PixGlobal() {
               </p>
               <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 mt-6">
                 <p className="text-base sm:text-lg text-white leading-relaxed">
-                  Cada membro possui um <span className="text-amber-400 font-semibold">nome</span> (ex: maria.pix.global) e um <span className="text-amber-400 font-semibold">ativo numérico</span> (ex: 9072907237839893833.pix.global) que podem ser usados para representar presença, reputação e até pagamentos diretos.
+                  Cada membro possui um <span className="text-amber-400 font-semibold">nome</span> (ex: seunome.pix.global) e um <span className="text-amber-400 font-semibold">ativo numérico</span> (ex: 9072907237839893833.pix.global) que podem ser usados para representar presença, reputação e até pagamentos diretos.
                 </p>
               </div>
             </div>

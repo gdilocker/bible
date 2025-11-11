@@ -102,10 +102,10 @@ export default function DomainSearch() {
     personal: {
       title: 'Identidade Global',
       subtitle: 'Seu nome único na internet',
-      description: 'Registre seu nome pessoal e seja encontrado globalmente. Ex: joao.pix.global',
+      description: 'Registre seu nome pessoal e seja encontrado globalmente. Ex: seunome.pix.global',
       placeholder: 'seunome',
       icon: Globe,
-      examples: ['maria', 'joaosilva', 'ana123'],
+      examples: ['seunome', 'suamarca', 'seuapelido'],
     },
     numeric: {
       title: 'Token Numérico',

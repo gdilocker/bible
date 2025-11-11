@@ -263,7 +263,7 @@ const Register: React.FC = () => {
                   type="text"
                   value={domainSearch}
                   onChange={(e) => setDomainSearch(e.target.value)}
-                  placeholder="Pesquisar domínio (ex: maria, joaosilva)"
+                  placeholder="Pesquisar domínio (ex: seunome, suamarca)"
                   className="w-full pl-12 pr-32 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-amber-400 font-medium">
@@ -271,7 +271,7 @@ const Register: React.FC = () => {
                 </span>
               </div>
               <p className="text-sm text-gray-400 mt-3">
-                Exemplos: maria.pix.global, joaosilva.pix.global
+                Exemplos: seunome.pix.global, suamarca.pix.global
               </p>
             </motion.div>
           </div>
@@ -308,9 +308,9 @@ const Register: React.FC = () => {
               </p>
               <div className="bg-black/40 border border-amber-500/20 rounded-xl p-6 font-mono">
                 <div className="flex items-center justify-between text-amber-400 mb-2">
-                  <span>https://maria.pix.global</span>
+                  <span>https://seunome.pix.global</span>
                   <ArrowRight className="w-5 h-5" />
-                  <span>https://pix.global/maria</span>
+                  <span>https://pix.global/seunome</span>
                 </div>
               </div>
               <p className="text-gray-400 text-sm mt-4">
@@ -411,7 +411,7 @@ const Register: React.FC = () => {
                 step: '1',
                 icon: Globe,
                 title: 'Registre seu nome global',
-                description: 'Crie sua identidade digital exclusiva (ex.: maria.pix.global).'
+                description: 'Crie sua identidade digital exclusiva (ex.: seunome.pix.global).'
               },
               {
                 step: '2',

@@ -655,11 +655,11 @@ const Home = () => {
                     </p>
                     <div className="max-w-2xl mx-auto mb-6 space-y-3">
                       <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
-                        <p className="text-amber-400 font-semibold">quem você é (maria.pix.global)</p>
+                        <p className="text-amber-400 font-semibold">quem você é (seunome.pix.global)</p>
                         <p className="text-gray-300 text-sm">— sua identidade pública global;</p>
                       </div>
                       <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
-                        <p className="text-amber-400 font-semibold">como você pode ser encontrado (maria@pix.global, caso ative seu e-mail global)</p>
+                        <p className="text-amber-400 font-semibold">como você pode ser encontrado (seunome@pix.global, caso ative seu e-mail global)</p>
                         <p className="text-gray-300 text-sm">— sua chave opcional de recebimento e comunicação;</p>
                       </div>
                       <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
@@ -668,7 +668,7 @@ const Home = () => {
                       </div>
                     </div>
                     <p className="text-base sm:text-lg text-gray-200 leading-relaxed text-center">
-                      Ao registrar seu nome — como <span className="text-amber-400 font-semibold">maria.pix.global</span> —<br />
+                      Ao registrar seu nome — como <span className="text-amber-400 font-semibold">seunome.pix.global</span> —<br />
                       você recebe automaticamente seus primeiros créditos digitais, como <span className="text-amber-400 font-mono">9072907237839893833.pix.global</span>,<br />
                       que podem ser usados em trocas, transferências e negociações dentro do ecossistema global.
                     </p>
@@ -683,7 +683,7 @@ const Home = () => {
                           <span className="text-amber-400 font-bold text-xl">1</span>
                         </div>
                         <h3 className="text-white font-semibold mb-2">Registre seu nome global</h3>
-                        <p className="text-gray-300 text-sm">Crie sua identidade digital exclusiva: maria.pix.global, joaosilva.pix.global etc.</p>
+                        <p className="text-gray-300 text-sm">Crie sua identidade digital exclusiva: seunome.pix.global, suamarca.pix.global etc.</p>
                       </div>
                       <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6 text-center">
                         <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">

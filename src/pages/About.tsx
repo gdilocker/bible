@@ -226,7 +226,7 @@ const About = () => {
                   boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)"
                 }}
               >
-                <p className="text-blue-400 font-mono text-lg">maria.pix.global</p>
+                <p className="text-blue-400 font-mono text-lg">seunome.pix.global</p>
               </motion.div>
             </motion.div>
 

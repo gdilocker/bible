@@ -369,7 +369,7 @@ const Manifesto = () => {
                   boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)"
                 }}
               >
-                <p className="text-blue-400 font-mono text-lg">joaosilva.pix.global</p>
+                <p className="text-blue-400 font-mono text-lg">suamarca.pix.global</p>
               </motion.div>
               <ul className="space-y-3 relative z-10">
                 {[
@@ -616,7 +616,7 @@ const Manifesto = () => {
 
             <div className="space-y-4 text-slate-300 relative z-10">
               {[
-                { text: "Você registra", highlight: "maria.pix.global", text2: "e recebe um ativo numérico equivalente a", highlight2: "$25" },
+                { text: "Você registra", highlight: "seunome.pix.global", text2: "e recebe um ativo numérico equivalente a", highlight2: "$25" },
                 { text: "Precisa comprar um produto de", highlight2: "$100", text2: "?" },
                 { text: "Basta transferir", highlight: "quatro ativos de $25", text2: "para o vendedor. A troca do domínio equivale à transferência de valor." }
               ].map((item, i) => (
