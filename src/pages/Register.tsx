@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { Mail, Lock, User, Eye, EyeOff, AlertCircle, Loader2, CheckCircle, ArrowRight, Gift } from 'lucide-react';
+import {
+  Mail, Lock, User, Eye, EyeOff, AlertCircle, Loader2, CheckCircle,
+  ArrowRight, Gift, Globe, Hash, Zap, Shield, Search
+} from 'lucide-react';
 import PhoneInput from '../components/PhoneInput';
 import { RegisterForm } from '../types';
 import * as yup from 'yup';
+import backgroundImage from '../assets/hero-richclub.jpg.jpeg';
 
 const registerSchema = yup.object().shape({
   email: yup
@@ -72,6 +76,7 @@ const Register: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [domainSearch, setDomainSearch] = useState('');
 
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -81,13 +86,11 @@ const Register: React.FC = () => {
   const prefilledDomain = location.state?.prefilledDomain;
   const message = location.state?.message;
 
-  // Extract affiliate code from URL or cookie
   const getAffiliateCode = (): string | null => {
     const params = new URLSearchParams(location.search);
     const urlRef = params.get('ref');
     if (urlRef) return urlRef;
 
-    // Fallback to cookie
     const cookies = document.cookie.split(';');
     for (const cookie of cookies) {
       const [name, value] = cookie.trim().split('=');
@@ -105,7 +108,6 @@ const Register: React.FC = () => {
     try {
       await registerSchema.validate(formData, { abortEarly: false });
 
-      // Pass affiliate code to register function
       const affiliateCode = getAffiliateCode();
 
       await register({
@@ -192,351 +194,622 @@ const Register: React.FC = () => {
   const strengthColors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-slate-500', 'bg-green-500'];
   const strengthLabels = ['Muito Fraca', 'Fraca', 'Média', 'Forte', 'Muito Forte'];
 
-  return (
-    <div className="relative min-h-screen bg-white overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.1),transparent_50%),radial-gradient(circle_at_70%_60%,rgba(59,130,246,0.08),transparent_50%)] pointer-events-none" />
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
 
-      <div className="relative flex flex-col justify-center pt-24 pb-12 sm:px-6 lg:px-8 min-h-screen">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="sm:mx-auto sm:w-full sm:max-w-md"
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
+  return (
+    <div className="relative min-h-screen bg-black overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            filter: 'brightness(1.12)'
+          }}
         >
-          <div className="flex justify-center">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="w-16 h-16 bg-gradient-to-br from-black to-[#3B82F6] rounded-2xl flex items-center justify-center shadow-lg"
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/20"></div>
+        </div>
+
+        <motion.section
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12"
+          initial="hidden"
+          animate="show"
+          variants={container}
+        >
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.h1
+              variants={item}
+              className="font-bold text-4xl sm:text-5xl lg:text-6xl mb-4 leading-[1.1] tracking-tight"
             >
-              <User className="w-9 h-9 text-white" />
+              <span className="text-white block mb-2">
+                Registre seu domínio global.
+              </span>
+              <span className="text-amber-400 block">
+                Receba seus créditos digitais exclusivos.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed font-light"
+            >
+              Crie sua identidade global única e receba créditos digitais .pix.global — ativos legítimos, auditáveis e transferíveis, que representam valor no novo sistema mundial de trocas digitais.
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="max-w-2xl mx-auto"
+            >
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  value={domainSearch}
+                  onChange={(e) => setDomainSearch(e.target.value)}
+                  placeholder="Pesquisar domínio (ex: maria, joaosilva)"
+                  className="w-full pl-12 pr-32 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-amber-400 font-medium">
+                  .pix.global
+                </span>
+              </div>
+              <p className="text-sm text-gray-400 mt-3">
+                Exemplos: maria.pix.global, joaosilva.pix.global
+              </p>
             </motion.div>
           </div>
-          <h2 className="mt-6 text-center text-4xl font-black text-black" style={{ fontWeight: 900 }}>
-            Criar Nova Conta
-          </h2>
-          <p className="mt-2 text-center text-lg text-[#6B7280]">
-            Registre seu domínio .pix.global e receba seu ativo digital exclusivo
-          </p>
-          <div className="mt-6 bg-gradient-to-br from-amber-50 to-slate-50 border border-amber-200 rounded-xl p-6">
-            <p className="text-sm text-gray-700 leading-relaxed mb-4">
-              Ao registrar um domínio .pix.global, você recebe dois elementos interligados:
+        </motion.section>
+      </section>
+
+      <section className="relative z-10 py-16 sm:py-20 bg-gradient-to-b from-black via-gray-900 to-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              O que você registra
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Cada domínio <span className="text-amber-400 font-semibold">.pix.global</span> é mais do que um nome — é uma <span className="text-white font-semibold">identidade digital reconhecida globalmente</span>.
             </p>
-            <div className="space-y-3 text-sm text-gray-700">
-              <div className="flex items-start gap-2">
-                <span className="text-amber-600 font-bold mt-0.5">1.</span>
-                <div>
-                  <strong className="text-black">Seu domínio nominal</strong> — ex: maria.pix.global
-                  <p className="text-xs text-gray-600 mt-1">Representa sua identidade digital global e pode ser usado em sites, perfis e conexões profissionais.</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border-2 border-amber-500/30 rounded-2xl p-8">
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Ao registrar, você cria um endereço público e exclusivo, como:
+              </p>
+              <div className="bg-black/40 border border-amber-500/20 rounded-xl p-6 font-mono">
+                <div className="flex items-center justify-between text-amber-400 mb-2">
+                  <span>https://maria.pix.global</span>
+                  <ArrowRight className="w-5 h-5" />
+                  <span>https://pix.global/maria</span>
                 </div>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-amber-600 font-bold mt-0.5">2.</span>
-                <div>
-                  <strong className="text-black">Seu domínio numérico</strong> — ex: 9072907237839893833.pix.global
-                  <p className="text-xs text-gray-600 mt-1">É um ativo digital único e transferível que pode representar valores e ser usado em negociações digitais.</p>
+              <p className="text-gray-400 text-sm mt-4">
+                Esse redirecionamento é configurado automaticamente e serve como sua <span className="text-white font-medium">página de recebimentos e conexões globais</span>.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="relative z-10 py-16 sm:py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              O que você recebe
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Ao registrar seu domínio, você também recebe seus <span className="text-amber-400 font-semibold">créditos digitais .pix.global</span>, identificadores numéricos únicos, como:
+            </p>
+            <div className="max-w-2xl mx-auto bg-gradient-to-r from-amber-500/10 to-amber-600/10 border border-amber-500/30 rounded-xl p-6 mb-8">
+              <code className="text-amber-400 text-lg font-mono">9072907237839893833.pix.global</code>
+            </div>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Esses créditos representam <span className="text-white font-semibold">unidades legítimas de valor digital</span>, que podem ser <span className="text-amber-400">transferidas, somadas, revendidas ou usadas em negociações globais</span> dentro do ecossistema Pix.Global.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12"
+          >
+            {[
+              { icon: ArrowRight, title: 'Receber', text: 'Pagamentos digitais entre países' },
+              { icon: ArrowRight, title: 'Transferir', text: 'Créditos para outra pessoa' },
+              { icon: ArrowRight, title: 'Complementar', text: 'Valores adquirindo novos créditos' },
+              { icon: ArrowRight, title: 'Acumular', text: 'Domínios numéricos como ativo digital legítimo' }
+            ].map((feature, index) => (
+              <div key={index} className="bg-gradient-to-br from-gray-800/50 to-gray-900/30 border border-gray-700/50 rounded-xl p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                    <feature.icon className="w-5 h-5 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">{feature.title}</h3>
+                    <p className="text-gray-400 text-sm">{feature.text}</p>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto bg-gradient-to-r from-amber-500/10 to-gray-800/30 border border-amber-500/20 rounded-xl p-6 text-center"
+          >
+            <p className="text-gray-300 italic">
+              Cada crédito é auditável, transparente e registrado globalmente.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="relative z-10 py-16 sm:py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
+              Como funciona
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8 mb-12"
+          >
+            {[
+              {
+                step: '1',
+                icon: Globe,
+                title: 'Registre seu nome global',
+                description: 'Crie sua identidade digital exclusiva (ex.: maria.pix.global).'
+              },
+              {
+                step: '2',
+                icon: Hash,
+                title: 'Receba seus créditos digitais',
+                description: 'Ao registrar, você recebe identificadores numéricos únicos .pix.global — unidades reais de valor digital.'
+              },
+              {
+                step: '3',
+                icon: Zap,
+                title: 'Use e compartilhe',
+                description: 'Transfira, combine ou utilize seus créditos para trocas e pagamentos entre usuários, sem bancos e sem fronteiras.'
+              }
+            ].map((step, index) => (
+              <div key={index} className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6 text-center">
+                <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-amber-400 font-bold text-xl">{step.step}</span>
+                </div>
+                <div className="mb-4">
+                  <step.icon className="w-8 h-8 text-amber-400 mx-auto" />
+                </div>
+                <h3 className="text-white font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-300 text-sm">{step.description}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto bg-gradient-to-r from-gray-800/50 to-gray-900/30 border border-gray-700/50 rounded-xl p-8 text-center"
+          >
+            <blockquote className="text-xl text-gray-300 italic mb-2">
+              "Tudo bem, você aceita Pix.Global?"
+            </blockquote>
+            <p className="text-gray-400">
+              Uma frase simples que em breve será usada no mundo inteiro.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="relative z-10 py-16 sm:py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center">
+                <Shield className="w-8 h-8 text-white" />
               </div>
             </div>
-          </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Ativação e segurança
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              A ativação é instantânea.
+            </p>
+          </motion.div>
 
-          {getAffiliateCode() && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="mt-6 max-w-md mx-auto"
-            >
-              <div className="bg-gradient-to-r from-emerald-50 to-slate-50 border-2 border-emerald-200 rounded-2xl p-4 shadow-lg">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-slate-600 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-bold text-emerald-900 mb-1 flex items-center gap-1">
-                      <Gift className="w-4 h-4" />
-                      Você foi convidado por um Parceiro Elite
-                    </h3>
-                    <p className="text-xs text-slate-700 leading-relaxed">
-                      Você terá suporte prioritário na ativação e onboarding guiado.
-                      Seu parceiro receberá comissões recorrentes pelas vendas efetivadas.
-                    </p>
-                  </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto space-y-6"
+          >
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/30 border border-gray-700/50 rounded-xl p-6">
+              <p className="text-gray-300 leading-relaxed">
+                Em poucos minutos, seu domínio e seus créditos digitais estarão ativos, verificados e conectados à infraestrutura global da <span className="text-white font-semibold">Global Digital Identity LTD</span> (Reino Unido, Nº 15830191).
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6">
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Todas as operações seguem normas internacionais de <span className="text-amber-400 font-semibold">ativos digitais não financeiros</span>.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Pagamentos processados via <span className="text-white font-medium">PayPal, Stripe ou Wise</span>.
+              </p>
+              <p className="text-gray-400 text-sm mt-4">
+                Sem conversão de moeda. Sem custódia. Apenas legitimidade e auditoria.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="relative z-10 py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-2xl p-8 sm:p-12"
+          >
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-black to-gray-800 rounded-2xl flex items-center justify-center">
+                  <User className="w-9 h-9 text-white" />
                 </div>
               </div>
-            </motion.div>
-          )}
-        </motion.div>
+              <h2 className="text-3xl font-bold text-black mb-2">
+                Criar Nova Conta
+              </h2>
+              <p className="text-gray-600">
+                Sua identidade. Seus créditos. O início da sua presença global começa aqui.
+              </p>
+            </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
-        >
-          <div className="relative">
-            <div className="relative bg-white border border-gray-200 rounded-2xl shadow-xl p-8">
-              {message && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl"
-                >
+            {getAffiliateCode() && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="mb-6"
+              >
+                <div className="bg-gradient-to-r from-emerald-50 to-slate-50 border-2 border-emerald-200 rounded-xl p-4">
                   <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-slate-900 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm text-slate-900 font-medium">{message}</p>
-                      {prefilledDomain && (
-                        <p className="text-xs text-slate-900 mt-1">Domínio selecionado: {prefilledDomain}</p>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl"
-                >
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-red-700">{error}</p>
-                  </div>
-                </motion.div>
-              )}
-
-              <form className="space-y-5" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-black mb-2">Nome</label>
-                    <input
-                      name="firstName"
-                      type="text"
-                      required
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
-                        validationErrors.firstName
-                          ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-[#3B82F6] focus:border-[#3B82F6]'
-                      }`}
-                      placeholder="João"
-                    />
-                    {validationErrors.firstName && (
-                      <p className="mt-1 text-xs text-red-600">{validationErrors.firstName}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-black mb-2">Sobrenome</label>
-                    <input
-                      name="lastName"
-                      type="text"
-                      required
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
-                        validationErrors.lastName
-                          ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-[#3B82F6] focus:border-[#3B82F6]'
-                      }`}
-                      placeholder="Silva"
-                    />
-                    {validationErrors.lastName && (
-                      <p className="mt-1 text-xs text-red-600">{validationErrors.lastName}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-black mb-2">Email</label>
-                  <div className="relative">
-                    <Mail className="w-5 h-5 text-[#6B7280] absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-                    <input
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`w-full pl-12 pr-4 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
-                        validationErrors.email
-                          ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-[#3B82F6] focus:border-[#3B82F6]'
-                      }`}
-                      placeholder="seu@email.com"
-                    />
-                  </div>
-                  {validationErrors.email && (
-                    <p className="mt-1 text-xs text-red-600">{validationErrors.email}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-black mb-2">Senha</label>
-                  <div className="relative">
-                    <Lock className="w-5 h-5 text-[#6B7280] absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-                    <input
-                      name="password"
-                      type={showPassword ? 'text' : 'password'}
-                      required
-                      value={formData.password}
-                      onChange={handleInputChange}
-                      className={`w-full pl-12 pr-12 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
-                        validationErrors.password
-                          ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-[#3B82F6] focus:border-[#3B82F6]'
-                      }`}
-                      placeholder="Mínimo 8 caracteres"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B7280] hover:text-black transition-colors"
-                    >
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                    </button>
-                  </div>
-                  {validationErrors.password && (
-                    <p className="mt-1 text-xs text-red-600">{validationErrors.password}</p>
-                  )}
-                  {formData.password && !validationErrors.password && (
-                    <div className="mt-2 space-y-2">
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <div
-                            key={i}
-                            className={`h-1 flex-1 rounded-full transition-all ${
-                              i < passwordStrength ? strengthColors[passwordStrength - 1] : 'bg-gray-200'
-                            }`}
-                          />
-                        ))}
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-slate-600 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="w-6 h-6 text-white" />
                       </div>
-                      {passwordStrength > 0 && (
-                        <p className="text-xs text-[#6B7280]">
-                          Força: {strengthLabels[passwordStrength - 1]}
-                        </p>
-                      )}
                     </div>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-black mb-2">Confirmar Senha</label>
-                  <div className="relative">
-                    <Lock className="w-5 h-5 text-[#6B7280] absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-                    <input
-                      name="confirmPassword"
-                      type={showConfirmPassword ? 'text' : 'password'}
-                      required
-                      value={formData.confirmPassword}
-                      onChange={handleInputChange}
-                      className={`w-full pl-12 pr-12 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
-                        validationErrors.confirmPassword
-                          ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-[#3B82F6] focus:border-[#3B82F6]'
-                      }`}
-                      placeholder="Repita sua senha"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B7280] hover:text-black transition-colors"
-                    >
-                      {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                    </button>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-bold text-emerald-900 mb-1 flex items-center gap-1">
+                        <Gift className="w-4 h-4" />
+                        Você foi convidado por um Parceiro Elite
+                      </h3>
+                      <p className="text-xs text-slate-700 leading-relaxed">
+                        Você terá suporte prioritário na ativação e onboarding guiado.
+                      </p>
+                    </div>
                   </div>
-                  {validationErrors.confirmPassword && (
-                    <p className="mt-1 text-xs text-red-600">{validationErrors.confirmPassword}</p>
-                  )}
-                  {formData.confirmPassword && formData.password === formData.confirmPassword && !validationErrors.confirmPassword && (
-                    <div className="mt-2 flex items-center gap-2 text-green-600">
-                      <CheckCircle className="w-4 h-4" />
-                      <span className="text-xs">Senhas coincidem</span>
-                    </div>
-                  )}
                 </div>
+              </motion.div>
+            )}
 
-                <PhoneInput
-                  value={formData.phone}
-                  countryCode={formData.countryCode}
-                  onChange={handlePhoneChange}
-                  error={validationErrors.phone || validationErrors.countryCode}
-                  required
-                />
+            {message && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl"
+              >
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-slate-900 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm text-slate-900 font-medium">{message}</p>
+                    {prefilledDomain && (
+                      <p className="text-xs text-slate-900 mt-1">Domínio selecionado: {prefilledDomain}</p>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
-                <div className="flex items-start">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl"
+              >
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-700">{error}</p>
+                </div>
+              </motion.div>
+            )}
+
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-black mb-2">Nome</label>
                   <input
-                    id="acceptTerms"
-                    name="acceptTerms"
-                    type="checkbox"
-                    checked={formData.acceptTerms}
+                    name="firstName"
+                    type="text"
+                    required
+                    value={formData.firstName}
                     onChange={handleInputChange}
-                    className="mt-1 h-4 w-4 rounded border-gray-300 bg-white text-[#3B82F6] focus:ring-[#3B82F6]"
+                    className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
+                      validationErrors.firstName
+                        ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-black focus:border-black'
+                    }`}
+                    placeholder="João"
                   />
-                  <label htmlFor="acceptTerms" className="ml-3 text-sm text-[#6B7280]">
-                    Aceito os{' '}
-                    <Link to="/termos" className="text-[#3B82F6] hover:text-black transition-colors font-medium">
-                      Termos de Uso
-                    </Link>
-                    {' '}e{' '}
-                    <Link to="/politica" className="text-[#3B82F6] hover:text-black transition-colors font-medium">
-                      Política de Privacidade
-                    </Link>
-                  </label>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-black hover:bg-[#1a1b2e] text-white font-bold rounded-xl transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loading ? (
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                  ) : (
-                    <>
-                      Criar Conta
-                      <ArrowRight className="w-5 h-5" />
-                    </>
+                  {validationErrors.firstName && (
+                    <p className="mt-1 text-xs text-red-600">{validationErrors.firstName}</p>
                   )}
-                </motion.button>
-              </form>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-black mb-2">Sobrenome</label>
+                  <input
+                    name="lastName"
+                    type="text"
+                    required
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
+                      validationErrors.lastName
+                        ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-black focus:border-black'
+                    }`}
+                    placeholder="Silva"
+                  />
+                  {validationErrors.lastName && (
+                    <p className="mt-1 text-xs text-red-600">{validationErrors.lastName}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-black mb-2">Email</label>
+                <div className="relative">
+                  <Mail className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className={`w-full pl-12 pr-4 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
+                      validationErrors.email
+                        ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-black focus:border-black'
+                    }`}
+                    placeholder="seu@email.com"
+                  />
+                </div>
+                {validationErrors.email && (
+                  <p className="mt-1 text-xs text-red-600">{validationErrors.email}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-black mb-2">Senha</label>
+                <div className="relative">
+                  <Lock className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+                  <input
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className={`w-full pl-12 pr-12 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
+                      validationErrors.password
+                        ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-black focus:border-black'
+                    }`}
+                    placeholder="Mínimo 8 caracteres"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+                {validationErrors.password && (
+                  <p className="mt-1 text-xs text-red-600">{validationErrors.password}</p>
+                )}
+                {formData.password && !validationErrors.password && (
+                  <div className="mt-2 space-y-2">
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <div
+                          key={i}
+                          className={`h-1 flex-1 rounded-full transition-all ${
+                            i < passwordStrength ? strengthColors[passwordStrength - 1] : 'bg-gray-200'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    {passwordStrength > 0 && (
+                      <p className="text-xs text-gray-600">
+                        Força: {strengthLabels[passwordStrength - 1]}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-black mb-2">Confirmar Senha</label>
+                <div className="relative">
+                  <Lock className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+                  <input
+                    name="confirmPassword"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    required
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    className={`w-full pl-12 pr-12 py-3 bg-gray-50 border rounded-xl text-black placeholder-gray-400 focus:outline-none focus:ring-2 transition-all ${
+                      validationErrors.confirmPassword
+                        ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-black focus:border-black'
+                    }`}
+                    placeholder="Repita sua senha"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
+                  >
+                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+                {validationErrors.confirmPassword && (
+                  <p className="mt-1 text-xs text-red-600">{validationErrors.confirmPassword}</p>
+                )}
+                {formData.confirmPassword && formData.password === formData.confirmPassword && !validationErrors.confirmPassword && (
+                  <div className="mt-2 flex items-center gap-2 text-green-600">
+                    <CheckCircle className="w-4 h-4" />
+                    <span className="text-xs">Senhas coincidem</span>
+                  </div>
+                )}
+              </div>
+
+              <PhoneInput
+                value={formData.phone}
+                countryCode={formData.countryCode}
+                onChange={handlePhoneChange}
+                error={validationErrors.phone || validationErrors.countryCode}
+                required
+              />
+
+              <div className="flex items-start">
+                <input
+                  id="acceptTerms"
+                  name="acceptTerms"
+                  type="checkbox"
+                  checked={formData.acceptTerms}
+                  onChange={handleInputChange}
+                  className="mt-1 h-4 w-4 rounded border-gray-300 bg-white text-black focus:ring-black"
+                />
+                <label htmlFor="acceptTerms" className="ml-3 text-sm text-gray-600">
+                  Aceito os{' '}
+                  <Link to="/termos" className="text-black hover:text-gray-700 transition-colors font-medium underline">
+                    Termos de Uso
+                  </Link>
+                  {' '}e{' '}
+                  <Link to="/politica" className="text-black hover:text-gray-700 transition-colors font-medium underline">
+                    Política de Privacidade
+                  </Link>
+                </label>
+              </div>
+              {validationErrors.acceptTerms && (
+                <p className="text-xs text-red-600">{validationErrors.acceptTerms}</p>
+              )}
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 py-4 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-xl transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <>
+                    Registrar agora
+                    <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
+              </motion.button>
+            </form>
+
+            <div className="mt-6">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-200" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-white text-gray-600">Já tem uma conta?</span>
+                </div>
+              </div>
 
               <div className="mt-6">
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-200" />
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-white text-[#6B7280]">Já tem uma conta?</span>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <Link
-                    to="/login"
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white hover:bg-gray-50 text-black font-semibold rounded-xl transition-all duration-200 border border-gray-300"
-                  >
-                    Fazer Login
-                  </Link>
-                </div>
+                <Link
+                  to="/login"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white hover:bg-gray-50 text-black font-semibold rounded-xl transition-all duration-200 border-2 border-gray-300"
+                >
+                  Fazer Login
+                </Link>
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8 text-center text-sm text-[#9CA3AF]"
-        >
-          Ao criar uma conta, você concorda com nossos termos e políticas
-        </motion.p>
-      </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
