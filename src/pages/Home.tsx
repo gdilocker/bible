@@ -655,12 +655,16 @@ const Home = () => {
                     </p>
                     <div className="max-w-2xl mx-auto mb-6 space-y-3">
                       <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
-                        <p className="text-amber-400 font-semibold">quem você é</p>
-                        <p className="text-gray-300 text-sm">(identidade global)</p>
+                        <p className="text-amber-400 font-semibold">quem você é (maria.pix.global)</p>
+                        <p className="text-gray-300 text-sm">— sua identidade pública global;</p>
                       </div>
                       <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
-                        <p className="text-amber-400 font-semibold">o que você possui</p>
-                        <p className="text-gray-300 text-sm">(créditos digitais .pix.global)</p>
+                        <p className="text-amber-400 font-semibold">como você pode ser encontrado (maria@pix.global, caso ative seu e-mail global)</p>
+                        <p className="text-gray-300 text-sm">— sua chave opcional de recebimento e comunicação;</p>
+                      </div>
+                      <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
+                        <p className="text-amber-400 font-semibold">o que você possui (9072907237839893833.pix.global)</p>
+                        <p className="text-gray-300 text-sm">— seus créditos digitais registrados e transferíveis.</p>
                       </div>
                     </div>
                     <p className="text-base sm:text-lg text-gray-200 leading-relaxed text-center">
