@@ -82,13 +82,6 @@ const DomainSlugPage: React.FC = () => {
   } | null>(null);
   const [brandAuthenticated, setBrandAuthenticated] = useState(false);
 
-  // Lista de rotas reservadas que não devem ser tratadas como domínios
-  const RESERVED_ROUTES = [
-    'sistema-global', 'termos', 'privacidade', 'ajuda', 'contato',
-    'registrar', 'entrar', 'precos', 'buscar-dominio', 'panel',
-    'admin', 'app', 'sobre', 'club', 'afiliados'
-  ];
-
   useEffect(() => {
     let isMounted = true;
     let timeoutId: NodeJS.Timeout;
@@ -99,12 +92,6 @@ const DomainSlugPage: React.FC = () => {
           setError('Slug inválido');
           setLoading(false);
         }
-        return;
-      }
-
-      // Se for uma rota reservada, redireciona para home
-      if (RESERVED_ROUTES.includes(slug.toLowerCase())) {
-        navigate('/');
         return;
       }
 

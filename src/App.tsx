@@ -133,7 +133,7 @@ function AppRoutes() {
     '/politica-conteudo-usuario', '/aviso-direitos-autorais',
     '/conformidade-legal', '/adendo-processamento-dados',
     '/politica-acessibilidade', '/politica-exclusao', '/politica-solicitacao-dados',
-    '/club', '/premium'
+    '/club', '/premium', '/sistema-global'
   ];
 
   // Check if path starts with known public route prefixes
