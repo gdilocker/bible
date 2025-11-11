@@ -667,6 +667,17 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Botão Saiba Mais */}
+                  <div className="mt-6 text-center">
+                    <Link
+                      to="/sobre"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500/20 to-amber-600/20 hover:from-amber-500/30 hover:to-amber-600/30 border border-amber-500/30 hover:border-amber-500/50 rounded-xl text-amber-400 font-semibold transition-all duration-300 group"
+                    >
+                      <span>Saiba mais</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             )}
