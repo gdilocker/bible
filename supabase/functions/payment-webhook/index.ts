@@ -266,45 +266,33 @@ Deno.serve(async (req) => {
         },
       });
 
-      console.log('Creating domain:', order.fqdn);
+      console.log('Triggering domain provisioning:', order.fqdn);
 
-      const { error: domainError } = await supabase.from('domains').insert({
-        fqdn: order.fqdn,
-        type: order.metadata?.type || 'personal',
-        owner_id: order.user_id,
-        status: 'active',
-        metadata: {
-          orderId: order.id,
-          purchasedAt: new Date().toISOString(),
-          pricePaid: order.price_brl,
-          currency: 'USD',
-        },
-      });
+      // Trigger provisioning (async, non-blocking)
+      const supabaseUrl = Deno.env.get('SUPABASE_URL');
+      const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
 
-      if (domainError) {
-        console.error('Error creating domain:', domainError);
-        await supabase.from('audits').insert({
-          table_name: 'domains',
-          record_id: order.fqdn,
-          action: 'INSERT_FAILED',
-          user_id: order.user_id,
-          metadata: {
-            error: domainError.message,
-            orderId: order.id,
+      if (supabaseUrl && supabaseAnonKey) {
+        // Call provision-domain function asynchronously
+        fetch(`${supabaseUrl}/functions/v1/provision-domain`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${supabaseAnonKey}`,
           },
+          body: JSON.stringify({ orderId: order.id }),
+        }).then(async (response) => {
+          if (response.ok) {
+            console.log('Provisioning triggered successfully');
+          } else {
+            const error = await response.text();
+            console.error('Provisioning trigger failed:', error);
+          }
+        }).catch((error) => {
+          console.error('Error triggering provisioning:', error);
         });
       } else {
-        console.log('Domain created successfully');
-        await supabase.from('audits').insert({
-          table_name: 'domains',
-          record_id: order.fqdn,
-          action: 'INSERT',
-          user_id: order.user_id,
-          metadata: {
-            orderId: order.id,
-            source: 'payment_webhook',
-          },
-        });
+        console.warn('Provisioning not configured, skipping');
       }
 
       return new Response(
