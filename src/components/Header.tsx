@@ -119,6 +119,16 @@ export default function Header() {
                 >
                   Preços
                 </Link>
+                <Link
+                  to="/afiliados/sobre"
+                  className={`px-3 py-2 font-medium transition-colors ${
+                    location.pathname === '/afiliados/sobre'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  Sobre
+                </Link>
 
                 {/* Subtle divider */}
                 <div className="h-6 w-px bg-gray-700 mx-2"></div>
@@ -276,6 +286,16 @@ export default function Header() {
                       >
                         <DollarSign className="w-5 h-5" />
                         <span className="text-sm font-medium">Preços</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          navigate('/afiliados/sobre');
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
+                      >
+                        <Users className="w-5 h-5" />
+                        <span className="text-sm font-medium">Sobre</span>
                       </button>
 
                       {/* Auth button for logged out users */}
