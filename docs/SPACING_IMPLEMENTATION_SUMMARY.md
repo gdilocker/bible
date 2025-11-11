@@ -8,7 +8,7 @@
 |------|--------|-------------|-----|
 | **Compact** | `pt-24 pb-12` | 96px | Formulários, páginas de resultado |
 | **Default** | `pt-32 pb-16` | 128px | Conteúdo padrão, políticas |
-| **Large** | `pt-40 pb-20` | 160px | Landing pages, institucional |
+| **Large** | `pt-32 sm:pt-36 lg:pt-40` | 128-160px | Hero sections, landing pages |
 
 ### Páginas Atualizadas
 
@@ -28,11 +28,11 @@ As seguintes páginas já usavam o padrão correto:
 - [x] **Cookies** - Política de cookies
 - [x] Todas as páginas de políticas
 
-#### ✅ Large (pt-40 pb-20)
-- [x] **GlobalSystem** - Sistema global (atualizado)
-- [x] **Home** - Já usava padrão large
-- [x] **Register** - Já usava padrão large
-- [x] **RichClub** - Fullscreen (correto)
+#### ✅ Large (Responsivo: pt-32/36/40)
+- [x] **Home** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava pt-16/20/24)
+- [x] **Register** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava pt-16/20/24)
+- [x] **GlobalSystem** - Fixo: `pt-40 pb-20`
+- [x] **RichClub** - Hero atualizado: `pt-32 sm:pt-36 lg:pt-40` (antes estava py-24/32)
 
 ### Componente PageLayout
 

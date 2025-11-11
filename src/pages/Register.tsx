@@ -229,7 +229,7 @@ const Register: React.FC = () => {
         </div>
 
         <motion.section
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-40 pb-8 sm:pb-12"
           initial="hidden"
           animate="show"
           variants={container}

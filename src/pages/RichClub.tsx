@@ -24,7 +24,7 @@ export default function PixGlobal() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-40 pb-12">
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="h-px w-16 bg-gradient-to-r from-amber-400 to-transparent"></div>
