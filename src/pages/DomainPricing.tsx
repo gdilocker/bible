@@ -94,11 +94,20 @@ export default function DomainPricing() {
                   value={calculatorInput}
                   onChange={(e) => {
                     const value = e.target.value.toLowerCase();
-                    setCalculatorInput(value);
-                    if (value && /^\d+$/.test(value)) {
-                      setCalculatorType('numeric');
-                    } else if (value) {
-                      setCalculatorType('personal');
+
+                    // Se o tipo for "Token", aceitar apenas números
+                    if (calculatorType === 'numeric') {
+                      // Remove caracteres não numéricos
+                      const numericValue = value.replace(/\D/g, '');
+                      setCalculatorInput(numericValue);
+                    } else {
+                      setCalculatorInput(value);
+                      // Auto-detectar tipo baseado no conteúdo
+                      if (value && /^\d+$/.test(value)) {
+                        setCalculatorType('numeric');
+                      } else if (value) {
+                        setCalculatorType('personal');
+                      }
                     }
                   }}
                   placeholder="maria ou 777"
