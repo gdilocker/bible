@@ -124,7 +124,7 @@ function AppRoutes() {
   // Don't show Header/Footer on panel pages, dashboard, and public profiles
   // Define known public routes that should show Header/Footer
   const publicRoutes = [
-    '/', '/registrar', '/precos', '/contato', '/ajuda',
+    '/', '/registrar', '/buscar-dominio', '/precos', '/contato', '/ajuda',
     '/termos', '/privacidade', '/cookies', '/faq',
     '/suporte', '/checkout', '/sucesso', '/falha',
     '/paypal/return', '/paypal/cancel', '/diagnostic',
@@ -164,7 +164,8 @@ function AppRoutes() {
         <Routes>
           {/* Public Routes - Main Navigation */}
           <Route path="/" element={<Home />} />
-          <Route path="/registrar" element={<DomainSearch />} />
+          <Route path="/registrar" element={<Register />} />
+          <Route path="/buscar-dominio" element={<DomainSearch />} />
           <Route path="/precos" element={<DomainPricing />} />
           <Route path="/precos/planos" element={<Pricing />} />
           <Route path="/app" element={
