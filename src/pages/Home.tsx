@@ -610,6 +610,29 @@ const Home = () => {
               </div>
             </motion.form>
 
+            {/* Badges de Confiança */}
+            <motion.div
+              variants={item}
+              className="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm px-2 mb-8"
+            >
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <Lock className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Registro Seguro SSL</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Verificação Instantânea</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Reconhecimento Global</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-white/90 whitespace-nowrap">Ativação Imediata</span>
+              </div>
+            </motion.div>
+
             {/* Seção Explicativa */}
             {!available && !domainError && !provisioning && (
               <motion.div
@@ -999,29 +1022,6 @@ const Home = () => {
                 </div>
               </motion.div>
             )}
-
-            <motion.div
-              variants={item}
-              
-              className="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm px-2"
-            >
-              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-                <Lock className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
-                <span className="text-white/90 whitespace-nowrap">Registro Seguro SSL</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
-                <span className="text-white/90 whitespace-nowrap">Verificação Instantânea</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-                <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
-                <span className="text-white/90 whitespace-nowrap">Reconhecimento Global</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-                <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
-                <span className="text-white/90 whitespace-nowrap">Ativação Imediata</span>
-              </div>
-            </motion.div>
           </div>
         </motion.section>
       </section>
