@@ -552,7 +552,7 @@ const Home = () => {
               variants={item}
               className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-light px-4"
             >
-              Registre seu domínio .pix.global e transforme sua identidade em um ativo digital único, reconhecido mundialmente.
+              Registre seu domínio .pix.global e transforme sua identidade em créditos digitais exclusivos — uma nova forma legítima e global de representar e transferir valor, reconhecida mundialmente.
             </motion.p>
 
             <motion.div
@@ -642,40 +642,109 @@ const Home = () => {
                 className="max-w-4xl mx-auto mt-12 px-4"
               >
                 <div className="bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                  <p className="text-lg sm:text-xl text-gray-200 leading-relaxed mb-6 text-center">
-                    O Pix.Global permite que pessoas e empresas tenham um nome global exclusivo, como <span className="text-amber-400 font-semibold">maria.pix.global</span>, que representa sua identidade na nova economia digital.
-                  </p>
-                  <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 text-center">
-                    Ao registrar, você também recebe um identificador numérico exclusivo, como <span className="text-amber-400 font-mono">9072907237839893833.pix.global</span>, que pode funcionar como um ativo de valor digital, transferível e auditável.
-                  </p>
-                  <div className="bg-gradient-to-r from-amber-500/10 to-blue-500/10 rounded-xl p-6 border border-amber-500/20">
-                    <div className="grid sm:grid-cols-3 gap-4 text-center">
-                      <div>
-                        <Globe className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                        <p className="text-white font-semibold mb-1">Uma identidade global</p>
-                        <p className="text-gray-400 text-sm">Reconhecida mundialmente</p>
+                  {/* O que é o Pix.Global */}
+                  <div className="mb-10">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">O que é o Pix.Global</h2>
+                    <p className="text-lg sm:text-xl text-gray-200 leading-relaxed mb-4 text-center">
+                      O Pix.Global é o primeiro sistema mundial que une identidade e valor digital.
+                      <br />
+                      <span className="text-amber-400 font-semibold">Sem ser banco, sem ser criptomoeda, sem fronteiras.</span>
+                    </p>
+                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 text-center">
+                      Cada domínio .pix.global é um endereço único e auditável que representa:
+                    </p>
+                    <div className="max-w-2xl mx-auto mb-6 space-y-3">
+                      <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
+                        <p className="text-amber-400 font-semibold">quem você é</p>
+                        <p className="text-gray-300 text-sm">(identidade global)</p>
                       </div>
-                      <div>
-                        <Zap className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                        <p className="text-white font-semibold mb-1">Um valor digital</p>
-                        <p className="text-gray-400 text-sm">Transferível e auditável</p>
+                      <div className="bg-white/5 border border-amber-500/20 rounded-lg p-4 text-center">
+                        <p className="text-amber-400 font-semibold">o que você possui</p>
+                        <p className="text-gray-300 text-sm">(créditos digitais .pix.global)</p>
                       </div>
-                      <div>
-                        <Shield className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                        <p className="text-white font-semibold mb-1">Sistema legal</p>
-                        <p className="text-gray-400 text-sm">Independente e global</p>
+                    </div>
+                    <p className="text-base sm:text-lg text-gray-200 leading-relaxed text-center">
+                      Ao registrar seu nome — como <span className="text-amber-400 font-semibold">maria.pix.global</span> —<br />
+                      você recebe automaticamente seus primeiros créditos digitais, como <span className="text-amber-400 font-mono">9072907237839893833.pix.global</span>,<br />
+                      que podem ser usados em trocas, transferências e negociações dentro do ecossistema global.
+                    </p>
+                  </div>
+
+                  {/* Como funciona */}
+                  <div className="mb-10">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">Como funciona</h2>
+                    <div className="grid sm:grid-cols-3 gap-6">
+                      <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6 text-center">
+                        <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span className="text-amber-400 font-bold text-xl">1</span>
+                        </div>
+                        <h3 className="text-white font-semibold mb-2">Registre seu nome global</h3>
+                        <p className="text-gray-300 text-sm">Crie sua identidade digital exclusiva: maria.pix.global, joaosilva.pix.global etc.</p>
+                      </div>
+                      <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6 text-center">
+                        <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span className="text-amber-400 font-bold text-xl">2</span>
+                        </div>
+                        <h3 className="text-white font-semibold mb-2">Ganhe créditos digitais</h3>
+                        <p className="text-gray-300 text-sm">Ao registrar, você recebe créditos .pix.global — endereços numéricos únicos e transferíveis.</p>
+                      </div>
+                      <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6 text-center">
+                        <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span className="text-amber-400 font-bold text-xl">3</span>
+                        </div>
+                        <h3 className="text-white font-semibold mb-2">Use e divulgue</h3>
+                        <p className="text-gray-300 text-sm">Envie, troque, ou combine seus créditos para realizar pagamentos digitais entre usuários.</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Botão Saiba Mais */}
-                  <div className="mt-6 text-center">
+                  {/* Frase de destaque */}
+                  <div className="bg-gradient-to-r from-amber-500/20 via-amber-600/10 to-amber-500/20 border border-amber-500/30 rounded-xl p-6 mb-10 text-center">
+                    <p className="text-xl sm:text-2xl font-semibold text-amber-400 mb-2">
+                      "Tudo bem, você aceita Pix.Global?"
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      Uma pergunta simples que define o novo padrão global de trocas legítimas e seguras.
+                    </p>
+                  </div>
+
+                  {/* Por que isso é importante */}
+                  <div className="mb-10">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Por que isso é importante</h2>
+                    <p className="text-base sm:text-lg text-gray-200 leading-relaxed text-center max-w-3xl mx-auto">
+                      Durante décadas, governos e bancos tentaram criar um sistema mundial de pagamentos.<br />
+                      <span className="text-white font-semibold">Nenhum conseguiu.</span><br />
+                      O Pix.Global criou uma ponte entre identidade e valor digital,<br />
+                      livre de barreiras e taxas, em total conformidade com as leis internacionais.
+                    </p>
+                  </div>
+
+                  {/* Segurança e legitimidade */}
+                  <div className="mb-10">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">Segurança e legitimidade</h2>
+                    <div className="bg-gradient-to-br from-white/5 to-white/0 border border-white/10 rounded-xl p-6 text-center max-w-3xl mx-auto">
+                      <p className="text-gray-200 leading-relaxed mb-3">
+                        Operado pela <span className="text-amber-400 font-semibold">Global Digital Identity LTD</span> (Reino Unido, Nº 15830191),<br />
+                        o Pix.Global segue normas de ativos digitais não financeiros.
+                      </p>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        Pagamentos de registros são processados via PayPal, Stripe ou Wise.<br />
+                        A plataforma não guarda dinheiro nem converte moedas — apenas registra e protege seus créditos digitais exclusivos.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Chamada final */}
+                  <div className="text-center">
+                    <p className="text-xl sm:text-2xl font-bold text-white mb-4">
+                      Pix.Global — o sistema que o mundo tentou criar e só agora existe.
+                    </p>
                     <Link
-                      to="/sobre"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500/20 to-amber-600/20 hover:from-amber-500/30 hover:to-amber-600/30 border border-amber-500/30 hover:border-amber-500/50 rounded-xl text-amber-400 font-semibold transition-all duration-300 group"
+                      to="/registrar"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/50 hover:shadow-amber-400/60 text-lg group"
                     >
-                      <span>Saiba mais</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <span>Registrar agora</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
