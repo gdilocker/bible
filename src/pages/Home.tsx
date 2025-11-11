@@ -538,22 +538,49 @@ const Home = () => {
 
             <motion.h1
               variants={item}
-              className="font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-4 leading-[1.1] sm:leading-[0.95] tracking-tight px-2"
+              className="font-bold text-3xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 leading-[1.15] tracking-tight px-2"
             >
-              <span className="text-white block">
-                Seu nome. Seu valor.
+              <span className="text-white block mb-2">
+                O mundo tentou criar um sistema global de pagamentos.
               </span>
-              <span className="text-amber-400 block">
-                Seu endereço digital global.
+              <span className="text-gray-400 block text-2xl sm:text-4xl lg:text-5xl mb-2">
+                Nenhum governo conseguiu. Nenhum banco conseguiu.
+              </span>
+              <span className="text-amber-400 block text-3xl sm:text-5xl lg:text-6xl xl:text-7xl">
+                Nós conseguimos.
               </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               variants={item}
-              className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-light px-4"
+              className="max-w-4xl mx-auto space-y-4 mb-6 sm:mb-8 px-4"
             >
-              O Pix.Global é o primeiro sistema mundial que une identidade, valor e tecnologia — sem ser banco, sem depender de criptomoedas e totalmente dentro da legalidade internacional.
-            </motion.p>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed font-light">
+                Durante décadas, o planeta buscou um sistema que permitisse enviar e receber valores de forma direta, sem depender de fronteiras, moedas ou bancos.
+              </p>
+
+              <div className="space-y-2 text-base sm:text-lg lg:text-xl">
+                <p className="text-gray-400 font-light">Os governos criaram barreiras.</p>
+                <p className="text-gray-400 font-light">Os bancos criaram taxas.</p>
+                <p className="text-gray-400 font-light">As criptomoedas criaram promessas.</p>
+              </div>
+
+              <p className="text-base sm:text-lg lg:text-xl text-white leading-relaxed font-medium pt-4">
+                Mas ninguém criou uma ponte real entre identidade, valor e legitimidade global — até agora.
+              </p>
+
+              <div className="bg-gradient-to-r from-amber-500/10 to-yellow-500/10 border border-amber-500/30 rounded-2xl p-6 sm:p-8">
+                <p className="text-base sm:text-lg lg:text-xl text-gray-200 leading-relaxed">
+                  O <span className="text-amber-400 font-semibold">Pix.Global</span> é a primeira infraestrutura mundial que une identidade e valor digital,
+                  <span className="text-white font-semibold"> sem ser instituição financeira</span> e em total conformidade com as leis internacionais.
+                </p>
+              </div>
+
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-light pt-4">
+                O Pix.Global é mais do que uma tecnologia. É a resposta a um desafio que governos e bancos nunca conseguiram resolver:
+                <span className="text-white font-medium"> criar um sistema mundial de identidade e valor — livre, legítimo e global.</span>
+              </p>
+            </motion.div>
 
             <motion.div
               variants={item}
@@ -997,8 +1024,106 @@ const Home = () => {
         </motion.section>
       </section>
 
+      {/* Como Funciona */}
       <section className="relative bg-black py-12 sm:py-16 lg:py-20 border-t border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/5 via-transparent to-transparent"></div>
+        <motion.div
+          className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+              Como Funciona
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              O Pix.Global transforma nomes e números em identidades e valores digitais.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-10">
+            {/* Domínio Nominal */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-2 border-blue-500/30 rounded-2xl p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+                  1
+                </div>
+                <h3 className="text-2xl font-bold text-white">Seu domínio nominal</h3>
+              </div>
+              <div className="bg-black/30 rounded-xl p-4 mb-6">
+                <p className="text-blue-400 font-mono text-lg">joaosilva.pix.global</p>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300">Representa sua identidade digital global</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300">É seu endereço público e verificável</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300">Pode ser usado em perfis, cartões digitais, sites e conexões profissionais</span>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Domínio Numérico */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border-2 border-amber-500/30 rounded-2xl p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center text-black font-bold text-xl">
+                  2
+                </div>
+                <h3 className="text-2xl font-bold text-white">Seu domínio numérico</h3>
+              </div>
+              <div className="bg-black/30 rounded-xl p-4 mb-6">
+                <p className="text-amber-400 font-mono text-sm sm:text-base break-all">9072907237839893833.pix.global</p>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300">É um ativo digital exclusivo e transferível</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300">Pode ser usado como identificador em negociações, trocas e pagamentos digitais</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-300">Possui valor simbólico e utilitário, podendo ser transferido entre pessoas e empresas</span>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Bloco de destaque */}
+          <div className="bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border-2 border-amber-500/40 rounded-2xl p-8 text-center">
+            <p className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              Governos criaram barreiras. Bancos criaram taxas.
+            </p>
+            <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
+              O Pix.Global criou liberdade.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Como o Valor Circula */}
+      <section className="relative bg-zinc-950 py-12 sm:py-16 lg:py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
         <motion.div
           className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
           initial={{ opacity: 0, y: 40 }}
@@ -1006,31 +1131,52 @@ const Home = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-              O Novo Padrão Global de Identidade e Valor
+              Como o Valor Circula
             </h2>
           </div>
 
-          <div className="prose prose-lg prose-invert mx-auto max-w-4xl">
+          <div className="prose prose-lg prose-invert max-w-none mb-10">
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
-              Aqui, cada pessoa ou empresa pode registrar um <span className="text-amber-400 font-semibold">nome digital exclusivo</span> — como <span className="text-amber-400">maria.pix.global</span> — que representa sua identidade na nova economia global.
+              No Pix.Global, o valor circula através da propriedade digital.
             </p>
 
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
-              Mas o Pix.Global vai além: ao registrar o seu domínio, você também recebe um <span className="text-amber-400 font-semibold">endereço numérico único</span>, como <span className="text-amber-400">9072907237839893833.pix.global</span>, que funciona como um <span className="text-amber-400 font-semibold">ativo digital transferível</span>.
+              Quando você adquire um domínio, você não compra uma moeda — você adquire um <span className="text-amber-400 font-semibold">ativo digital legítimo</span>, com valor simbólico e utilitário.
             </p>
 
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
-              Esses ativos numéricos têm <span className="text-amber-400 font-semibold">valor próprio</span> e podem ser usados em negociações, pagamentos ou trocas digitais de forma <span className="text-white font-semibold">direta, segura e transparente</span> — sem instituições financeiras, sem burocracia, sem fronteiras.
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8">
+              Esses ativos podem ser trocados ou transferidos entre usuários, empresas ou plataformas, representando valor de forma imediata e global — <span className="text-white font-semibold">sem conversão de moeda, sem banco e sem fronteira.</span>
             </p>
+          </div>
 
-            <div className="bg-gradient-to-r from-amber-500/10 to-amber-600/10 border border-amber-500/30 rounded-2xl p-6 sm:p-8 mt-10">
-              <p className="text-xl sm:text-2xl font-bold text-amber-400 text-center mb-2">
-                Você está prestes a conhecer a próxima evolução da internet:
-              </p>
-              <p className="text-lg sm:text-xl text-white text-center font-medium">
-                onde nomes e números se tornam identidades e valores digitais.
+          {/* Exemplo Prático */}
+          <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border-2 border-emerald-500/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+              <span className="text-emerald-400">→</span> Exemplo Prático
+            </h3>
+
+            <div className="space-y-4 text-gray-300">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-black font-bold text-sm flex-shrink-0 mt-0.5">1</div>
+                <p className="text-base sm:text-lg">Você registra <span className="text-amber-400 font-mono">maria.pix.global</span> e recebe um ativo numérico equivalente a <span className="text-white font-semibold">$25</span></p>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-black font-bold text-sm flex-shrink-0 mt-0.5">2</div>
+                <p className="text-base sm:text-lg">Precisa comprar um produto de <span className="text-white font-semibold">$100</span>?</p>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-black font-bold text-sm flex-shrink-0 mt-0.5">3</div>
+                <p className="text-base sm:text-lg">Basta transferir <span className="text-amber-400 font-semibold">quatro ativos de $25</span> para o vendedor. A troca do domínio equivale à transferência de valor.</p>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-emerald-500/30">
+              <p className="text-center text-white font-semibold text-lg">
+                Tudo é auditável, transparente e totalmente legal — em qualquer país do mundo.
               </p>
             </div>
           </div>

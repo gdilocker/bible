@@ -462,44 +462,93 @@ export default function PixGlobal() {
         </div>
       </section>
 
-      {/* Institutional Section */}
+      {/* Por Que é Legal em Todo o Mundo */}
       <section className="relative bg-gradient-to-b from-zinc-950 to-black py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent"></div>
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-white/5 to-amber-500/5 border border-white/10 rounded-3xl p-8 sm:p-12">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Valor Institucional
-              </h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mx-auto"></div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Por Que o Pix.Global é Legal em Todo o Mundo
+            </h2>
+            <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-transparent mx-auto"></div>
+          </div>
+
+          <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-2 border-blue-500/30 rounded-3xl p-8 sm:p-12 mb-10">
+            <div className="prose prose-lg prose-invert max-w-none">
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+                O Pix.Global <span className="text-white font-semibold">não é um banco</span>, <span className="text-white font-semibold">não é criptomoeda</span> e <span className="text-white font-semibold">não processa pagamentos financeiros</span>.
+              </p>
+
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+                É uma <span className="text-blue-400 font-semibold">plataforma de registro digital</span>, operando sob as leis internacionais que regulam ativos digitais não financeiros — como domínios, certificados e colecionáveis digitais.
+              </p>
+
+              <div className="bg-black/30 rounded-2xl p-6 mb-6">
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                  Toda compra é feita por <span className="text-white font-semibold">gateways oficiais</span> (PayPal, Stripe, Wise), de forma independente e segura.
+                </p>
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mt-3">
+                  A Pix.Global <span className="text-amber-400 font-semibold">não guarda dinheiro</span>, <span className="text-amber-400 font-semibold">não processa transações financeiras</span> nem realiza câmbio.
+                </p>
+              </div>
+
+              <p className="text-lg sm:text-xl text-white leading-relaxed font-semibold">
+                Cada domínio .pix.global é um ativo digital auditado e registrado internacionalmente. Isso torna a plataforma legítima, reconhecida e legal em qualquer país do mundo.
+              </p>
             </div>
+          </div>
+
+          {/* Os Ativos Numéricos */}
+          <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border-2 border-amber-500/30 rounded-3xl p-8 sm:p-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">
+              Os Ativos Numéricos
+            </h3>
 
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                O Pix.Global é uma tecnologia desenvolvida pela <span className="text-white font-semibold">Global Digital Identity LTD</span>, registrada no Reino Unido e em conformidade com normas internacionais de proteção de dados e ativos digitais não financeiros.
+                Os ativos numéricos são <span className="text-amber-400 font-semibold">únicos, rastreáveis e escassos</span>. Cada sequência possui valor próprio, que pode aumentar conforme sua raridade ou demanda de mercado.
               </p>
 
-              <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                A transferência de um domínio numérico entre dois usuários equivale a uma <span className="text-amber-400 font-semibold">troca digital de valor reconhecida</span>, sem intermediação bancária, totalmente dentro da lei e auditável globalmente.
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Esses ativos funcionam como <span className="text-white font-semibold">representações legítimas de valor digital</span> — transferíveis, verificáveis e com registro de propriedade.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/30 rounded-2xl p-8 mt-8">
-                <p className="text-xl sm:text-2xl font-bold text-amber-400 text-center mb-3">
-                  Nosso propósito é simples e poderoso:
-                </p>
-                <p className="text-lg sm:text-xl text-white text-center font-medium">
-                  trazer ao mundo um novo modelo de economia digital — livre, legítimo e global.
-                </p>
+      {/* Chamada Final */}
+      <section className="relative bg-black py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-amber-500/20 to-yellow-500/10 border-2 border-amber-500/40 rounded-3xl p-10 sm:p-16 text-center">
+            <div className="mb-8">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full mb-6">
+                <Sparkles className="w-10 h-10 text-black" />
               </div>
+            </div>
 
-              <div className="mt-10 text-center">
-                <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent mb-2">
-                  Pix.Global — o futuro dos negócios e identidades digitais.
-                </p>
-                <p className="text-base text-gray-400 font-medium">
-                  Sem banco. Sem criptomoeda. Com legitimidade mundial.
-                </p>
-              </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Pix.Global nasceu de uma ideia simples e poderosa
+            </h2>
+
+            <p className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed">
+              Criar o sistema que o mundo tentou e nunca conseguiu.
+            </p>
+
+            <div className="bg-black/40 rounded-2xl p-8 mb-8">
+              <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">
+                Uma economia global baseada em <span className="text-amber-400 font-semibold">nomes</span>, <span className="text-amber-400 font-semibold">números</span> e <span className="text-amber-400 font-semibold">confiança</span> — sem bancos, sem fronteiras, sem limites.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+                Pix.Global — o futuro dos negócios e identidades digitais.
+              </p>
+              <p className="text-xl text-gray-400 font-medium">
+                Sem banco. Sem criptomoeda. Com legitimidade mundial.
+              </p>
             </div>
           </div>
         </div>
