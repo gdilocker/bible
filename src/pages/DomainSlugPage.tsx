@@ -111,7 +111,7 @@ const DomainSlugPage: React.FC = () => {
         if (isMounted) {
           setDomainData({
             status: 'UNAVAILABLE',
-            fqdn: `${normalizedSlug}.com.bible`,
+            fqdn: `${normalizedSlug}.pix.global`,
             isAvailable: false,
             isPremium: false,
             planRequired: null,
@@ -152,11 +152,11 @@ const DomainSlugPage: React.FC = () => {
           return;
         }
 
-        const fqdn = `${normalizedSlug}.com.bible`;
+        const fqdn = `${normalizedSlug}.pix.global`;
         console.log('[DomainSlugPage] Checking domain registration for:', fqdn);
 
         // FIRST: Check if this domain is registered (exists in domains table)
-        const domainsData = await fetch(`${SUPABASE_URL}/rest/v1/domains?fqdn=eq.${normalizedSlug}.com.bible&select=id,customer_id,registrar_status,customers(user_id)`, {
+        const domainsData = await fetch(`${SUPABASE_URL}/rest/v1/domains?fqdn=eq.${normalizedSlug}.pix.global&select=id,customer_id,registrar_status,customers(user_id)`, {
           headers: {
             'apikey': SUPABASE_ANON_KEY,
             'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
@@ -260,13 +260,13 @@ const DomainSlugPage: React.FC = () => {
 
           // SEO: Atualizar meta tags
           document.title = result.isPremium
-            ? `${normalizedSlug}.com.bible - Domínio Premium | com.bible`
-            : `${normalizedSlug}.com.bible | com.bible`;
+            ? `${normalizedSlug}.pix.global - Domínio Premium | pix.global`
+            : `${normalizedSlug}.pix.global | pix.global`;
 
           // Canonical URL
           const canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
           if (canonical) {
-            canonical.href = `https://com.bible/${normalizedSlug}`;
+            canonical.href = `https://pix.global/${normalizedSlug}`;
           }
         } catch (apiError) {
           console.error('[DomainSlugPage] API Error:', apiError);

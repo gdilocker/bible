@@ -19,7 +19,7 @@ const Privacy: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Política de Privacidade
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.pix.global</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 16 de outubro de 2025</span>
@@ -49,10 +49,10 @@ const Privacy: React.FC = () => {
                     A presente Política de Privacidade descreve como a <strong>Global Digital Identity LTD</strong>, registrada na Inglaterra e País de Gales sob o número <strong>Company No. 16339013</strong>, com sede em <strong>71–75 Shelton Street, Covent Garden, Londres, WC2H 9JQ, Reino Unido</strong>, coleta, utiliza, armazena e protege informações pessoais de usuários.
                   </p>
                   <p className="text-[#6B7280]/70 text-sm">
-                    O <strong>.com.bible</strong> atua como <strong>Controlador de Dados</strong> conforme o UK GDPR (Data Protection Act 2018) e o GDPR (UE).
+                    O <strong>.pix.global</strong> atua como <strong>Controlador de Dados</strong> conforme o UK GDPR (Data Protection Act 2018) e o GDPR (UE).
                   </p>
                   <p className="text-[#6B7280]/70 text-sm mt-2">
-                    <strong>Contato oficial de privacidade:</strong> <a href="mailto:support@com.bible" className="text-[#3B82F6] hover:text-[#6B7280]">support@com.bible</a>
+                    <strong>Contato oficial de privacidade:</strong> <a href="mailto:support@pix.global" className="text-[#3B82F6] hover:text-[#6B7280]">support@pix.global</a>
                   </p>
                 </div>
               </div>
@@ -208,7 +208,7 @@ const Privacy: React.FC = () => {
                       <li><strong className="text-black">Retirada de consentimento</strong> (se aplicável).</li>
                     </ul>
                     <p>
-                      Para exercer seus direitos, envie um e-mail para <a href="mailto:support@com.bible" className="text-[#3B82F6] hover:text-[#6B7280] font-semibold">support@com.bible</a> com o assunto <strong className="text-black">"Data Request"</strong>. Podemos solicitar informações adicionais para verificar sua identidade antes de atender ao pedido.
+                      Para exercer seus direitos, envie um e-mail para <a href="mailto:support@pix.global" className="text-[#3B82F6] hover:text-[#6B7280] font-semibold">support@pix.global</a> com o assunto <strong className="text-black">"Data Request"</strong>. Podemos solicitar informações adicionais para verificar sua identidade antes de atender ao pedido.
                     </p>
                   </div>
                 )
@@ -272,7 +272,7 @@ const Privacy: React.FC = () => {
                 content: (
                   <div className="text-[#6B7280]/80 space-y-4">
                     <p>
-                      O .com.bible é destinado a <strong className="text-black">maiores de 18 anos</strong>. Não coletamos intencionalmente dados de crianças. Se tomarmos ciência de coleta indevida, <strong className="text-black">excluiremos</strong> os dados conforme aplicável.
+                      O .pix.global é destinado a <strong className="text-black">maiores de 18 anos</strong>. Não coletamos intencionalmente dados de crianças. Se tomarmos ciência de coleta indevida, <strong className="text-black">excluiremos</strong> os dados conforme aplicável.
                     </p>
                   </div>
                 )
@@ -334,7 +334,7 @@ const Privacy: React.FC = () => {
                     <p>Londres, WC2H 9JQ — Reino Unido</p>
                     <p>Company No. <strong>16339013</strong></p>
                     <p>
-                      E-mail: <a href="mailto:support@com.bible" className="text-[#3B82F6] hover:text-[#6B7280] font-semibold">support@com.bible</a>
+                      E-mail: <a href="mailto:support@pix.global" className="text-[#3B82F6] hover:text-[#6B7280] font-semibold">support@pix.global</a>
                     </p>
                   </div>
                 )
@@ -365,7 +365,7 @@ const Privacy: React.FC = () => {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-slate-500 to-slate-900 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500" />
             <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-xl p-8 text-center">
               <p className="text-[#6B7280]/80 mb-2 text-sm">
-                © 2025 <strong className="text-black">.com.bible</strong> — Todos os direitos reservados.
+                © 2025 <strong className="text-black">.pix.global</strong> — Todos os direitos reservados.
               </p>
               <p className="text-[#6B7280]/80 mb-6">
                 Para exercer seus direitos ou esclarecer dúvidas sobre privacidade, entre em contato conosco.

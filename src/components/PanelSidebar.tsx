@@ -211,7 +211,7 @@ export const PanelSidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, backRo
             <Link to="/" className="flex flex-col gap-2 group">
               <img
                 src="/logo.png"
-                alt="com.bible"
+                alt="pix.global"
                 className="h-16 w-auto object-contain"
               />
               <p className="text-xs text-slate-500">Painel do Cliente</p>

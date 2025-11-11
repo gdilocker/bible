@@ -23,83 +23,56 @@ export default function Footer() {
               <Logo size={56} />
             </div>
             <p className="text-[#6B7280] text-sm leading-relaxed max-w-md mb-4">
-              A Global Digital Identity é detentora da mais prestigiada extensão digital do mundo, o domínio .com.bible.
+              A Global Digital Identity é detentora da mais prestigiada extensão digital do mundo, o domínio .pix.global.
               Oferecemos registro, proteção e gestão profissional com infraestrutura de alta performance, suporte internacional 24/7 e tecnologia de ponta.
-              Eleve sua presença online com um domínio .com.bible que reflete sucesso, credibilidade e sofisticação.
+              Eleve sua presença online com um domínio .pix.global que reflete sucesso, credibilidade e sofisticação.
             </p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-black mb-4">Links Rápidos</h3>
+            <h3 className="text-sm font-semibold text-black mb-4">Navegação</h3>
             <ul className="space-y-2">
               <li>
                 <button
-                  onClick={() => handleNavigation('/club')}
+                  onClick={() => handleNavigation('/')}
                   className="text-[#6B7280] hover:text-black transition-colors text-sm"
                 >
-                  Sobre o Rich Club
+                  Início
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNavigation('/valores')}
+                  onClick={() => handleNavigation('/registrar')}
                   className="text-[#6B7280] hover:text-black transition-colors text-sm"
                 >
-                  Planos
+                  Registrar
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNavigation('/premium')}
-                  className="text-[#6B7280] hover:text-black transition-colors text-sm flex items-center gap-1.5"
+                  onClick={() => handleNavigation('/precos')}
+                  className="text-[#6B7280] hover:text-black transition-colors text-sm"
                 >
-                  Premium
-                  <span className="text-[9px] px-1.5 py-0.5 bg-yellow-500 text-white rounded-full font-bold tracking-tight">Supreme</span>
+                  Preços
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNavigation('/faq')}
+                  onClick={() => handleNavigation('/entrar')}
                   className="text-[#6B7280] hover:text-black transition-colors text-sm"
                 >
-                  FAQ
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNavigation('/social')}
-                  className="text-[#6B7280] hover:text-black transition-colors text-sm"
-                >
-                  Rede Social
-                </button>
-              </li>
-              {user && (
-                <li>
-                  <button
-                    onClick={() => handleNavigation('/suporte')}
-                    className="text-[#6B7280] hover:text-black transition-colors text-sm"
-                  >
-                    Suporte
-                  </button>
-                </li>
-              )}
-              <li>
-                <button
-                  onClick={() => handleNavigation('/contato')}
-                  className="text-[#6B7280] hover:text-black transition-colors text-sm"
-                >
-                  Contato
+                  Entrar
                 </button>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-black mb-4">Afiliados</h3>
+            <h3 className="text-sm font-semibold text-black mb-4">Suporte</h3>
             <ul className="space-y-2">
               {[
-                { to: '/afiliados/sobre', label: 'Sobre o Programa' },
-                { to: '/afiliados/termos', label: 'Como Funciona' }
+                { to: '/ajuda', label: 'Ajuda' },
+                { to: '/contato', label: 'Contato' }
               ].map((link, index) => (
                 <li key={index}>
                   <button
@@ -114,20 +87,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-black mb-4">Políticas</h3>
+            <h3 className="text-sm font-semibold text-black mb-4">Legal</h3>
             <ul className="space-y-2">
               {[
-                { to: '/termos', label: 'Termos de Uso' },
-                { to: '/politica', label: 'Privacidade' },
-                { to: '/cookies', label: 'Cookies' },
-                { to: '/politica-reembolso', label: 'Reembolso' },
-                { to: '/politica-suspensao', label: 'Suspensão' },
-                { to: '/politica-uso-aceitavel', label: 'Uso Aceitável' },
-                { to: '/politica-transferencia-dominio', label: 'Transferência' },
-                { to: '/adendo-processamento-dados', label: 'Processamento de Dados' },
-                { to: '/politica-acessibilidade', label: 'Acessibilidade' },
-                { to: '/politica-exclusao', label: 'Exclusão' },
-                { to: '/politica-solicitacao-dados', label: 'Solicitação de Dados' }
+                { to: '/termos', label: 'Termos' },
+                { to: '/privacidade', label: 'Privacidade' }
               ].map((link, index) => (
                 <li key={index}>
                   <button
@@ -141,29 +105,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-sm font-semibold text-black mb-4">Segurança & Legal</h3>
-            <ul className="space-y-2">
-              {[
-                { to: '/politica-seguranca', label: 'Segurança' },
-                { to: '/politica-padroes-comunidade', label: 'Padrões da Comunidade' },
-                { to: '/politica-conteudo-usuario', label: 'Conteúdo do Usuário' },
-                { to: '/aviso-direitos-autorais', label: 'Direitos Autorais' },
-                { to: '/conformidade-legal', label: 'Conformidade Legal' },
-                { to: '/policies/store-terms', label: 'Termos da Loja' },
-                { to: '/policies/social-terms', label: 'Termos da Rede Social' }
-              ].map((link, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() => handleNavigation(link.to)}
-                    className="text-[#6B7280] hover:text-black transition-colors text-sm"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="border-t border-gray-200 pt-8 space-y-6">

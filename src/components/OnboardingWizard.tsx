@@ -77,7 +77,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
       const { data } = await supabase
         .from('domains')
         .select('domain_name')
-        .eq('domain_name', `${name}.com.bible`)
+        .eq('domain_name', `${name}.pix.global`)
         .maybeSingle();
 
       setDomainAvailable(!data);
@@ -284,7 +284,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     Escolha sua identidade exclusiva
                   </h3>
                   <p className="text-gray-600">
-                    Seu nome único no ecossistema com.bible
+                    Seu nome único no ecossistema pix.global
                   </p>
                 </div>
 
@@ -298,7 +298,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                       className="flex-1 bg-transparent border-none outline-none text-xl font-medium"
                       autoFocus
                     />
-                    <span className="text-gray-500 font-medium">.com.bible</span>
+                    <span className="text-gray-500 font-medium">.pix.global</span>
                   </div>
 
                   <div className="mt-4 text-center min-h-[24px]">
@@ -329,7 +329,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                       className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl"
                     >
                       <p className="text-sm text-blue-800">
-                        <strong>{domainName}.com.bible</strong> será sua licença exclusiva de uso dentro do ecossistema com.bible
+                        <strong>{domainName}.pix.global</strong> será sua licença exclusiva de uso dentro do ecossistema pix.global
                       </p>
                     </motion.div>
                   )}
@@ -598,7 +598,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
 
                 <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full text-xl font-bold mb-8">
                   <Globe className="w-6 h-6" />
-                  {domainName}.com.bible
+                  {domainName}.pix.global
                 </div>
 
                 <div className="flex gap-4 justify-center">
@@ -621,7 +621,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ onComplete, 
                     💼 Programa de Afiliados
                   </h4>
                   <p className="text-sm text-amber-800 mb-3">
-                    Promova com.bible e receba 25-50% de comissão recorrente em vendas confirmadas
+                    Promova pix.global e receba 25-50% de comissão recorrente em vendas confirmadas
                   </p>
                   <button
                     onClick={() => navigate('/affiliate-dashboard')}

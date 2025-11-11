@@ -13,7 +13,7 @@ const LegalCompliance: React.FC = () => {
             <strong className="text-black">Número de Registro:</strong> 16339013<br />
             <strong className="text-black">Jurisdição:</strong> England and Wales<br />
             <strong className="text-black">Tipo de Empresa:</strong> Limited Company<br />
-            <strong className="text-black">Email de Contato:</strong> contact@com.bible
+            <strong className="text-black">Email de Contato:</strong> contact@pix.global
           </p>
         </div>
       )
@@ -211,12 +211,12 @@ const LegalCompliance: React.FC = () => {
         <div className="text-[#6B7280]/80 space-y-4">
           <p>
             Para questões relacionadas à conformidade legal:<br />
-            <strong className="text-black">Email:</strong> contact@com.bible<br />
+            <strong className="text-black">Email:</strong> contact@pix.global<br />
             <strong className="text-black">Assunto:</strong> "Legal Compliance Inquiry"
           </p>
           <p className="mt-4">
             <strong className="text-black">Data Protection Officer:</strong><br />
-            Email: contact@com.bible<br />
+            Email: contact@pix.global<br />
             Assunto: "DPO - Data Protection Inquiry"
           </p>
         </div>
@@ -239,7 +239,7 @@ const LegalCompliance: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Declaração de Conformidade Legal
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.pix.global</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 21 de outubro de 2025</span>

@@ -522,7 +522,7 @@ export default function AdminLinkModeration() {
                       <div className="text-sm">
                         <div className="font-medium text-slate-900">{link.user_name || 'Sem nome'}</div>
                         <div className="text-slate-600">{link.user_email}</div>
-                        <div className="text-slate-500">{link.domain}.com.bible</div>
+                        <div className="text-slate-500">{link.domain}.pix.global</div>
                       </div>
                     </td>
                     <td className="px-4 py-3 text-sm text-slate-600">
@@ -634,7 +634,7 @@ export default function AdminLinkModeration() {
                   </div>
                   <div>
                     <span className="text-slate-600">Domínio:</span>
-                    <span className="ml-2 font-medium">{selectedLink.domain}.com.bible</span>
+                    <span className="ml-2 font-medium">{selectedLink.domain}.pix.global</span>
                   </div>
                   <div>
                     <span className="text-slate-600">Verificações:</span>

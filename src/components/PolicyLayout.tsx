@@ -14,7 +14,7 @@ interface PolicyLayoutProps {
 const PolicyLayout: React.FC<PolicyLayoutProps> = ({
   icon: Icon,
   title,
-  subtitle = ".com.bible",
+  subtitle = ".pix.global",
   lastUpdated,
   legalNote,
   children

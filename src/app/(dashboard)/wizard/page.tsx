@@ -119,8 +119,8 @@ const WizardPage = () => {
       const cf = createCloudflare();
       await cf.applyDefaults({
         fqdn: domain,
-        mxHost: 'mail..com.bible',
-        spfInclude: '_spf..com.bible',
+        mxHost: 'mail..pix.global',
+        spfInclude: '_spf..pix.global',
         dkimTxt: emailDom.dkim,
         dmarcPolicy: 'v=DMARC1; p=none; pct=100'
       });

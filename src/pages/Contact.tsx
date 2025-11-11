@@ -304,7 +304,7 @@ const Contact: React.FC = () => {
 
             <div className="space-y-6">
               {[
-                { icon: Mail, title: 'Email', content: 'contact@com.bible', href: 'mailto:contact@com.bible' },
+                { icon: Mail, title: 'Email', content: 'contact@pix.global', href: 'mailto:contact@pix.global' },
                 { icon: MessageSquare, title: 'Formulário', content: 'Use o formulário ao lado para nos contatar', href: null },
                 { icon: MapPin, title: 'Endereço', content: 'Global Digital Identity LTD, Registered in England and Wales, Company No. 16339013, 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ', href: null }
               ].map((item, i) => (

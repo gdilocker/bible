@@ -118,11 +118,11 @@ function AppRoutes() {
   // Don't show Header/Footer on panel pages, dashboard, and public profiles
   // Define known public routes that should show Header/Footer
   const publicRoutes = [
-    '/', '/pt', '/en', '/es', '/valores', '/transferencia', '/contato', '/contact',
-    '/termos', '/politica', '/cookies', '/faq', '/premium', '/club',
+    '/', '/registrar', '/precos', '/contato', '/ajuda',
+    '/termos', '/privacidade', '/cookies', '/faq',
     '/suporte', '/checkout', '/sucesso', '/falha',
     '/paypal/return', '/paypal/cancel', '/diagnostic',
-    '/login', '/register', '/politica-reembolso', '/politica-suspensao',
+    '/login', '/entrar', '/register', '/politica-reembolso', '/politica-suspensao',
     '/politica-uso-aceitavel', '/politica-padroes-comunidade',
     '/politica-seguranca', '/politica-transferencia-dominio',
     '/politica-conteudo-usuario', '/aviso-direitos-autorais',
@@ -155,16 +155,26 @@ function AppRoutes() {
       {!hideLayout && <Header />}
       <main className={hideLayout ? '' : 'flex-1'}>
         <Routes>
-          {/* Public Routes */}
+          {/* Public Routes - Main Navigation */}
           <Route path="/" element={<Home />} />
-          <Route path="/pt" element={<Home />} />
-          <Route path="/en" element={<Home />} />
-          <Route path="/es" element={<Home />} />
-          <Route path="/valores" element={<Pricing />} />
-          <Route path="/transferencia" element={<Transfer />} />
-          <Route path="/contato" element={<Contact />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/registrar" element={<Register />} />
+          <Route path="/precos" element={<Pricing />} />
+          <Route path="/app" element={
+            <ProtectedRoute>
+              <SubscriptionProtectedRoute>
+                <UserDashboard />
+              </SubscriptionProtectedRoute>
+            </ProtectedRoute>
+          } />
+
+          {/* Footer Routes */}
           <Route path="/termos" element={<Terms />} />
+          <Route path="/privacidade" element={<Privacy />} />
+          <Route path="/ajuda" element={<FAQ />} />
+          <Route path="/contato" element={<Contact />} />
+
+          {/* Legacy/Alternative Routes */}
+          <Route path="/valores" element={<Pricing />} />
           <Route path="/politica" element={<Privacy />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/afiliados/termos" element={<AffiliateTerms />} />
@@ -205,9 +215,11 @@ function AppRoutes() {
           <Route path="/diagnostic" element={<DiagnosticTest />} />
 
           {/* Auth Routes */}
+          <Route path="/entrar" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/iniciar" element={<Register />} />
+
+          {/* Dynamic Route - Domain Public Page */}
+          <Route path="/d/:fqdn" element={<PublicProfile />} />
 
           {/* Affiliate Redirect Route */}
           <Route path="/r/:code" element={<RefRedirect />} />
@@ -228,13 +240,6 @@ function AppRoutes() {
           } />
 
           {/* Protected User Routes - Unified Dashboard */}
-          <Route path="/app" element={
-            <ProtectedRoute>
-              <SubscriptionProtectedRoute>
-                <UserDashboard />
-              </SubscriptionProtectedRoute>
-            </ProtectedRoute>
-          } />
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <SubscriptionProtectedRoute>

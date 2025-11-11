@@ -19,7 +19,7 @@ const AccessibilityPolicy: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Política de Acessibilidade
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.pix.global</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 26 de outubro de 2025</span>
@@ -239,8 +239,8 @@ const AccessibilityPolicy: React.FC = () => {
                           <div>
                             <h3 className="text-lg font-semibold text-black mb-2">Contato para Acessibilidade</h3>
                             <ul className="space-y-2 text-[#6B7280]/80">
-                              <li><strong className="text-black">Email:</strong> <a href="mailto:accessibility@com.bible" className="text-[#3B82F6] hover:underline">accessibility@com.bible</a></li>
-                              <li><strong className="text-black">Email geral:</strong> <a href="mailto:contact@com.bible" className="text-[#3B82F6] hover:underline">contact@com.bible</a></li>
+                              <li><strong className="text-black">Email:</strong> <a href="mailto:accessibility@pix.global" className="text-[#3B82F6] hover:underline">accessibility@pix.global</a></li>
+                              <li><strong className="text-black">Email geral:</strong> <a href="mailto:contact@pix.global" className="text-[#3B82F6] hover:underline">contact@pix.global</a></li>
                               <li><strong className="text-black">Prazo de resposta:</strong> Até 5 dias úteis</li>
                             </ul>
                             <p className="text-[#6B7280]/70 mt-4 text-sm">

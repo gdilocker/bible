@@ -149,7 +149,7 @@ export default function AdminSuggestions() {
   };
 
   const handleDelete = async (id: string, domainName: string) => {
-    if (!confirm(`Tem certeza que deseja excluir "${domainName}.com.bible"?`)) return;
+    if (!confirm(`Tem certeza que deseja excluir "${domainName}.pix.global"?`)) return;
 
     try {
       const { error } = await supabase
@@ -261,7 +261,7 @@ export default function AdminSuggestions() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Nome do Domínio (sem .com.bible)
+                        Nome do Domínio (sem .pix.global)
                       </label>
                       <input
                         type="text"
@@ -366,7 +366,7 @@ export default function AdminSuggestions() {
                 <form onSubmit={handleBulkImport} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Lista de Domínios (um por linha, sem .com.bible)
+                      Lista de Domínios (um por linha, sem .pix.global)
                     </label>
                     <textarea
                       required
@@ -477,7 +477,7 @@ export default function AdminSuggestions() {
                       <tr key={suggestion.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="font-medium text-black">
-                            {suggestion.domain_name}.com.bible
+                            {suggestion.domain_name}.pix.global
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 capitalize">

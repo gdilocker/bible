@@ -22,7 +22,7 @@ const CopyrightNotice: React.FC = () => {
           <p>As seguintes marcas são propriedade da Global Digital Identity:</p>
           <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
             <li>Global Digital Identity</li>
-            <li>com.bible</li>
+            <li>pix.global</li>
             <li>Logotipos e designs associados</li>
             <li>Slogans e marcas de serviço</li>
           </ul>
@@ -78,7 +78,7 @@ const CopyrightNotice: React.FC = () => {
           </ol>
           <p>
             Envie notificações DMCA para:<br />
-            Email: contact@com.bible<br />
+            Email: contact@pix.global<br />
             Assunto: "DMCA Takedown Notice"
           </p>
         </div>
@@ -125,7 +125,7 @@ const CopyrightNotice: React.FC = () => {
         <div className="text-[#6B7280]/80 space-y-4">
           <p>Para uso comercial de nossos materiais, entre em contato conosco para obter uma licença apropriada:</p>
           <ul className="space-y-2 text-[#6B7280]/70 list-disc list-inside">
-            <li>Email: contact@com.bible</li>
+            <li>Email: contact@pix.global</li>
             <li>Assunto: "Solicitação de Licença Comercial"</li>
             <li>Inclua detalhes sobre o uso pretendido</li>
           </ul>
@@ -167,7 +167,7 @@ const CopyrightNotice: React.FC = () => {
           <p>
             Para questões sobre direitos autorais e licenciamento:<br />
             Global Digital Identity LTD<br />
-            Email: contact@com.bible<br />
+            Email: contact@pix.global<br />
             Company № 16339013<br />
             Registered in England and Wales
           </p>
@@ -191,7 +191,7 @@ const CopyrightNotice: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Aviso de Direitos Autorais e Licenciamento
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.pix.global</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 21 de outubro de 2025</span>

@@ -457,7 +457,7 @@ export default function AdminSettings() {
                       </label>
                       <input
                         type="text"
-                        defaultValue=".com.bible"
+                        defaultValue=".pix.global"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
                       />
                     </div>
@@ -467,7 +467,7 @@ export default function AdminSettings() {
                       </label>
                       <input
                         type="url"
-                        defaultValue="https://com.bible"
+                        defaultValue="https://pix.global"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
                       />
                     </div>
@@ -477,7 +477,7 @@ export default function AdminSettings() {
                       </label>
                       <input
                         type="email"
-                        defaultValue="contact@com.bible"
+                        defaultValue="contact@pix.global"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
                       />
                     </div>
@@ -528,7 +528,7 @@ export default function AdminSettings() {
                       </label>
                       <input
                         type="email"
-                        defaultValue="noreply@com.bible"
+                        defaultValue="noreply@pix.global"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
                       />
                     </div>

@@ -113,7 +113,7 @@ const AcceptableUsePolicy: React.FC = () => {
         <div className="text-[#6B7280]/80 space-y-4">
           <p>
             Para denunciar violações desta política:<br />
-            Email: contact@com.bible<br />
+            Email: contact@pix.global<br />
             Todas as denúncias serão investigadas confidencialmente.
           </p>
         </div>
@@ -146,7 +146,7 @@ const AcceptableUsePolicy: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Política de Uso Aceitável
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.pix.global</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 21 de outubro de 2025</span>

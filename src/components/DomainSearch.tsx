@@ -28,13 +28,13 @@ interface DomainSearchResult {
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Converte input do usuário para domínio .com.bible
+// Converte input do usuário para domínio .pix.global
 function toDomain(value: string): string {
   const s = value.trim().toLowerCase();
   if (!s) throw new Error("Informe um nome de domínio");
-  if (s.endsWith(".com.bible")) return s;
+  if (s.endsWith(".pix.global")) return s;
   if (s.includes(".")) return s;
-  return `${s}.com.bible`;
+  return `${s}.pix.global`;
 }
 
 async function checkDomainAvailability(fqdn: string): Promise<DomainSearchResult> {
@@ -116,7 +116,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
     setSuggestions([]);
 
     try {
-      // First, check if it's a profile search (without .com.bible extension)
+      // First, check if it's a profile search (without .pix.global extension)
       if (!cleanSld.includes('.')) {
         // Check if profile exists
         const profileCheckUrl = `${SUPABASE_URL}/rest/v1/user_profiles?subdomain=eq.${cleanSld}&is_public=eq.true&select=subdomain`;
@@ -138,7 +138,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
       }
 
       // If not a profile or profile doesn't exist, check domain availability
-      const domainToCheck = cleanSld.endsWith(".com.bible") ? cleanSld : `${cleanSld}.com.bible`;
+      const domainToCheck = cleanSld.endsWith(".pix.global") ? cleanSld : `${cleanSld}.pix.global`;
       const result = await checkDomainAvailability(domainToCheck);
       setSearchResult(result);
 
@@ -148,7 +148,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
         result.isPremium === true &&
         result.isAvailable === true
       ) {
-        const slug = result.fqdn.replace('.com.bible', '');
+        const slug = result.fqdn.replace('.pix.global', '');
         navigate(`/${slug}`);
         return;
       }
@@ -166,10 +166,10 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
       if (result.status === "UNAVAILABLE" && (!result.suggestions || result.suggestions.length === 0)) {
         const baseName = cleanSld.replace(/\.com\.rich$/, '');
         const suggestionVariations = [
-          `${baseName}1.com.bible`,
-          `${baseName}app.com.bible`,
-          `${baseName}pro.com.bible`,
-          `my${baseName}.com.bible`
+          `${baseName}1.pix.global`,
+          `${baseName}app.pix.global`,
+          `${baseName}pro.pix.global`,
+          `my${baseName}.pix.global`
         ];
 
         const suggestionPromises = suggestionVariations.map(async (domain) => {
@@ -219,7 +219,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
               disabled={isSearching}
             />
             <div className="flex items-center px-4 bg-white border border-l-0 border-gray-300 rounded-r-lg text-gray-500 text-lg font-medium select-none">
-              .com.bible
+              .pix.global
             </div>
           </div>
           <button
@@ -346,7 +346,7 @@ const DomainSearch: React.FC<DomainSearchProps> = ({ onDomainSelected }) => {
                     <button
                       key={idx}
                       onClick={() => {
-                        const name = sugg.replace('.com.bible', '');
+                        const name = sugg.replace('.pix.global', '');
                         setSld(name);
                         handleSearch(new Event('submit') as any);
                       }}

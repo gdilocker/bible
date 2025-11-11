@@ -23,9 +23,9 @@ const FALLBACK_PLANS: SubscriptionPlan[] = [
     plan_type: 'prime',
     price_usd: 50,
     billing_cycle: 'monthly',
-    description: 'A porta de entrada para o clube com.bible. Presença digital exclusiva com elegância e sofisticação.',
+    description: 'A porta de entrada para o clube pix.global. Presença digital exclusiva com elegância e sofisticação.',
     features: [
-      'Licença exclusiva de domínio (seunome.com.bible)',
+      'Licença exclusiva de domínio (seunome.pix.global)',
       'Página de perfil personalizável (pública ou privada)',
       'Editor completo: bio, avatar e links ilimitados',
       'Analytics profissional de acessos e cliques',
@@ -170,7 +170,7 @@ const Pricing: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-[#6B7280] leading-relaxed mb-8">
-              Escolha o plano ideal para sua licença exclusiva .com.bible
+              Escolha o plano ideal para sua licença exclusiva .pix.global
             </p>
 
             {/* Important Notice - Positioned BEFORE trial */}

@@ -18,7 +18,7 @@ const DomainTransferPolicy: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-4">
               Política de Domínios Premium
             </h1>
-            <p className="text-xl text-[#6B7280]/70 mb-4">.com.bible</p>
+            <p className="text-xl text-[#6B7280]/70 mb-4">.pix.global</p>
             <div className="inline-flex items-center gap-2 text-[#6B7280]/80">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">Última atualização: 13 de novembro de 2025</span>
@@ -65,12 +65,12 @@ const DomainTransferPolicy: React.FC = () => {
                 </h2>
                 <div className="text-[#6B7280]/80 space-y-4">
                   <p>
-                    Os domínios <strong>.com.bible</strong> são ativos digitais exclusivos e não se
+                    Os domínios <strong>.pix.global</strong> são ativos digitais exclusivos e não se
                     destinam ao uso genérico ou massivo. Cada registro é analisado e aprovado
                     individualmente pela Global Digital Identity LTD.
                   </p>
                   <p>
-                    Ao adquirir um domínio .com.bible, você recebe uma <strong>licença exclusiva e
+                    Ao adquirir um domínio .pix.global, você recebe uma <strong>licença exclusiva e
                     pessoal de uso</strong>, condicionada ao pagamento regular e conformidade com
                     nossos Termos de Uso.
                   </p>
@@ -93,7 +93,7 @@ const DomainTransferPolicy: React.FC = () => {
                 </h2>
                 <div className="text-[#6B7280]/80 space-y-4">
                   <p className="mb-4">
-                    Todos os domínios .com.bible seguem um ciclo de vida estruturado para proteger
+                    Todos os domínios .pix.global seguem um ciclo de vida estruturado para proteger
                     tanto o titular quanto a integridade da rede.
                   </p>
 
@@ -287,8 +287,8 @@ const DomainTransferPolicy: React.FC = () => {
                   Para questões relacionadas a domínios, prazos ou recuperação, entre em contato:
                 </p>
                 <div className="space-y-2 text-sm">
-                  <p><strong>Suporte Geral:</strong> support@com.bible</p>
-                  <p><strong>Questões Jurídicas:</strong> legal@com.bible</p>
+                  <p><strong>Suporte Geral:</strong> support@pix.global</p>
+                  <p><strong>Questões Jurídicas:</strong> legal@pix.global</p>
                 </div>
               </div>
             </motion.div>

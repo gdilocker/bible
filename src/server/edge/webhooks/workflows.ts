@@ -33,8 +33,8 @@ export async function fulfillOrder(params: FulfillOrderParams): Promise<boolean>
     console.log('[WORKFLOW] Step 3: Applying DNS defaults...');
     await cf.applyDefaults({
       fqdn,
-      mxHost: 'mail..com.bible',
-      spfInclude: '_spf..com.bible',
+      mxHost: 'mail..pix.global',
+      spfInclude: '_spf..pix.global',
       dkimTxt: emailDom.dkim,
       dmarcPolicy: 'v=DMARC1; p=none; pct=100; adkim=s; aspf=s; fo=1'
     });

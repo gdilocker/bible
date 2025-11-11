@@ -88,7 +88,7 @@ const Failure: React.FC = () => {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Domínio:</span>
-                  <span className="font-medium">exemplo.com.bible</span>
+                  <span className="font-medium">exemplo.pix.global</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Valor:</span>
@@ -211,7 +211,7 @@ const Failure: React.FC = () => {
               <span>Falar com Suporte</span>
             </Link>
             <a
-              href="mailto:contact@com.bible"
+              href="mailto:contact@pix.global"
               className="inline-flex items-center px-6 py-2 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-800 transition-colors space-x-2"
             >
               <Mail className="w-5 h-5" />

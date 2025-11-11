@@ -584,7 +584,7 @@ export default function PublicProfile({ subdomain: subdomainProp }: PublicProfil
             <div className="inline-block mb-8 p-4 bg-gradient-to-br from-[#1F1F1F] via-[#252525] to-[#1F1F1F] border-2 border-[#D4AF37] rounded-2xl shadow-2xl shadow-[#D4AF37]/30">
               <img
                 src="/logo.png"
-                alt="com.bible"
+                alt="pix.global"
                 className="h-24 w-24"
               />
             </div>
@@ -602,7 +602,7 @@ export default function PublicProfile({ subdomain: subdomainProp }: PublicProfil
                 {profile.subdomain}
               </span>
               <span className="bg-gradient-to-r from-[#FFD700] via-white to-[#FFD700] bg-clip-text text-transparent animate-shine bg-[length:200%_auto]">
-                .com.bible
+                .pix.global
               </span>
             </h1>
 
@@ -823,7 +823,7 @@ export default function PublicProfile({ subdomain: subdomainProp }: PublicProfil
               <div className="w-32 h-32 rounded-full mx-auto mb-3 sm:mb-4 border-4 border-[#D4AF37] bg-[#1F1F1F] flex items-center justify-center shadow-2xl">
                 <img
                   src="/logo.png"
-                  alt="com.bible"
+                  alt="pix.global"
                   className="w-20 h-20 object-contain"
                 />
               </div>
@@ -841,7 +841,7 @@ export default function PublicProfile({ subdomain: subdomainProp }: PublicProfil
 
             {/* Domain or @username */}
             <div className="text-[#D4AF37] text-base mb-3 sm:mb-4 font-medium">
-              {profile.domain ? `${profile.domain}` : `${profile.subdomain}.com.bible`}
+              {profile.domain ? `${profile.domain}` : `${profile.subdomain}.pix.global`}
             </div>
 
             {/* Bio */}

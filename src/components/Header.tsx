@@ -97,43 +97,37 @@ export default function Header() {
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  Inicial
+                  Início
                 </Link>
                 <Link
-                  to="/valores"
+                  to="/registrar"
                   className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/valores'
+                    location.pathname === '/registrar'
                       ? 'text-white'
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  Planos
+                  Registrar
                 </Link>
                 <Link
-                  to="/afiliados/sobre"
+                  to="/precos"
                   className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/afiliados/sobre'
+                    location.pathname === '/precos'
                       ? 'text-white'
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  Afiliados
+                  Preços
                 </Link>
 
                 {/* Subtle divider */}
                 <div className="h-6 w-px bg-gray-700 mx-2"></div>
 
                 <Link
-                  to="/login"
-                  className="px-4 py-2 text-gray-400 hover:text-white font-medium transition-colors"
-                >
-                  Entrar
-                </Link>
-                <Link
-                  to="/register"
+                  to="/entrar"
                   className="px-6 py-2 bg-white hover:bg-gray-100 text-black font-semibold rounded-lg transition-colors shadow-lg"
                 >
-                  Começar
+                  Entrar
                 </Link>
               </>
             ) : (
@@ -261,51 +255,41 @@ export default function Header() {
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
                         <Home className="w-5 h-5" />
-                        <span className="text-sm font-medium">Inicial</span>
+                        <span className="text-sm font-medium">Início</span>
                       </button>
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          navigate('/valores');
+                          navigate('/registrar');
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
+                      >
+                        <UserPlus className="w-5 h-5" />
+                        <span className="text-sm font-medium">Registrar</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          navigate('/precos');
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
                         <DollarSign className="w-5 h-5" />
-                        <span className="text-sm font-medium">Planos</span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          navigate('/afiliados/sobre');
-                        }}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
-                      >
-                        <Users className="w-5 h-5" />
-                        <span className="text-sm font-medium">Afiliados</span>
+                        <span className="text-sm font-medium">Preços</span>
                       </button>
 
-                      {/* Auth buttons for logged out users */}
+                      {/* Auth button for logged out users */}
                       <div className="border-t border-gray-800 mt-2">
-                        <button
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            navigate('/login');
-                          }}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
-                        >
-                          <LogIn className="w-5 h-5" />
-                          <span className="text-sm font-medium">Entrar</span>
-                        </button>
-                        <div className="px-4 pb-3">
+                        <div className="px-4 py-3">
                           <button
                             onClick={() => {
                               setIsMenuOpen(false);
-                              navigate('/register');
+                              navigate('/entrar');
                             }}
                             className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-colors rounded-lg"
                           >
-                            <UserPlus className="w-5 h-5" />
-                            <span className="text-sm font-medium">Começar</span>
+                            <LogIn className="w-5 h-5" />
+                            <span className="text-sm font-medium">Entrar</span>
                           </button>
                         </div>
                       </div>

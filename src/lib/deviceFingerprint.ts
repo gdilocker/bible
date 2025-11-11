@@ -43,9 +43,9 @@ export async function generateDeviceFingerprint(): Promise<string> {
       ctx.fillStyle = '#f60';
       ctx.fillRect(125, 1, 62, 20);
       ctx.fillStyle = '#069';
-      ctx.fillText('.com.bible', 2, 15);
+      ctx.fillText('.pix.global', 2, 15);
       ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
-      ctx.fillText('.com.bible', 4, 17);
+      ctx.fillText('.pix.global', 4, 17);
 
       const dataURL = canvas.toDataURL();
       components.push(dataURL.slice(-50));

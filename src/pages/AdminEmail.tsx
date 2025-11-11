@@ -61,8 +61,8 @@ export default function AdminEmail() {
       return;
     }
 
-    if (!newAccount.email_address.endsWith('@com.bible')) {
-      alert('O e-mail deve terminar com @com.bible');
+    if (!newAccount.email_address.endsWith('@pix.global')) {
+      alert('O e-mail deve terminar com @pix.global');
       return;
     }
 
@@ -160,7 +160,7 @@ export default function AdminEmail() {
       <div className="bg-white border-b border-gray-200 px-6 py-6">
         <AdminPageHeader
           title="E-mails Institucionais"
-          description="Gerencie contas de envio de e-mail @com.bible (uso interno)"
+          description="Gerencie contas de envio de e-mail @pix.global (uso interno)"
         />
       </div>
 
@@ -325,16 +325,16 @@ export default function AdminEmail() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  E-mail @com.bible *
+                  E-mail @pix.global *
                 </label>
                 <input
                   type="text"
                   value={newAccount.email_address}
                   onChange={(e) => setNewAccount({ ...newAccount, email_address: e.target.value })}
-                  placeholder="noreply@com.bible"
+                  placeholder="noreply@pix.global"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
                 />
-                <p className="text-xs text-gray-500 mt-1">Ex: noreply@com.bible, contact@com.bible</p>
+                <p className="text-xs text-gray-500 mt-1">Ex: noreply@pix.global, contact@pix.global</p>
               </div>
 
               <div>
@@ -345,7 +345,7 @@ export default function AdminEmail() {
                   type="text"
                   value={newAccount.display_name}
                   onChange={(e) => setNewAccount({ ...newAccount, display_name: e.target.value })}
-                  placeholder="com.bible"
+                  placeholder="pix.global"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
                 />
               </div>
