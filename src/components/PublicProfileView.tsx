@@ -3,7 +3,7 @@ import { ExternalLink, Mail, Twitter, Instagram, Linkedin, Github, Youtube, Face
 import * as LucideIcons from 'lucide-react';
 import { EliteBadge } from './EliteBadge';
 
-import BackgroundImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
+import BackgroundImage from '../assets/2222.jpg';
 
 interface ProfileLink {
   id: string;

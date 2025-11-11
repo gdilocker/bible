@@ -9,7 +9,7 @@ import {
 import PhoneInput from '../components/PhoneInput';
 import { RegisterForm } from '../types';
 import * as yup from 'yup';
-import backgroundImage from '../assets/hero-richclub.jpg.jpeg';
+import backgroundImage from '../assets/pessoas-que-participam-de-um-evento-de-alto-protocolo.jpg';
 
 const registerSchema = yup.object().shape({
   email: yup

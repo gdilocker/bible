@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Crown, Sparkles, Award, Globe as Globe2, TrendingUp, Shield, ChevronRight } from 'lucide-react';
 
 // Import images
-import heroImage from '../assets/hero-richclub.jpg copy copy.jpeg';
-import eventosImage from '../assets/eventos-richclub.jpg.png';
-import espacosImage from '../assets/espacos-richapproved.jpg.jpg';
-import designImage from '../assets/design-legado.jpg.jpeg';
-import reconhecimentoImage from '../assets/reconhecimento-oficial.jpg.png';
-import domainImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
+import heroImage from '../assets/pessoas-que-participam-de-um-evento-de-alto-protocolo.jpg';
+import eventosImage from '../assets/2222.jpg';
+import espacosImage from '../assets/2222.jpg';
+import designImage from '../assets/2222.jpg';
+import reconhecimentoImage from '../assets/2222.jpg';
+import domainImage from '../assets/2222.jpg';
 import affiliateImage from '../assets/pessoas-que-participam-de-um-evento-de-alto-protocolo.jpg';
 
 export default function PixGlobal() {

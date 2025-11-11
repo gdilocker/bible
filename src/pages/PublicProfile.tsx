@@ -17,7 +17,7 @@ import { SettingsButton } from '../components/SettingsButton';
 import { ProfileFooterCTA } from '../components/ProfileFooterCTA';
 import { profileLinksService, ProfileLink } from '../lib/services/profileLinks';
 
-import BackgroundImage from '../assets/Fundo-Imagem-Perfil-Geral.png';
+import BackgroundImage from '../assets/2222.jpg';
 
 interface UserProfile {
   id: string;
