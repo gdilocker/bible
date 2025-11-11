@@ -129,16 +129,6 @@ export default function Header() {
                 >
                   Sobre
                 </Link>
-                <Link
-                  to="/manifesto"
-                  className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/manifesto'
-                      ? 'text-white'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  Manifesto
-                </Link>
 
                 {/* Subtle divider */}
                 <div className="h-6 w-px bg-gray-700 mx-2"></div>
@@ -307,17 +297,6 @@ export default function Header() {
                         <Users className="w-5 h-5" />
                         <span className="text-sm font-medium">Sobre</span>
                       </button>
-                      <button
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          navigate('/manifesto');
-                        }}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
-                      >
-                        <Sparkles className="w-5 h-5" />
-                        <span className="text-sm font-medium">Manifesto</span>
-                      </button>
-
                       {/* Auth button for logged out users */}
                       <div className="border-t border-gray-800 mt-2">
                         <div className="px-4 py-3">
