@@ -123,6 +123,13 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Disclaimer */}
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <p className="text-xs text-gray-600 leading-relaxed">
+              <strong className="text-gray-800">Aviso Legal:</strong> Pix.Global é provedora de domínios digitais e infraestrutura de roteamento. Não é banco, instituição de pagamento ou custodiante. Liquidações são realizadas por provedores externos escolhidos pelo usuário. Em caso de falha técnica de emissão de NFT, o valor é automaticamente estornado.
+            </p>
+          </div>
+
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#6B7280]">
             <div>
               <p>© 2025 Global Digital Identity LTD. All rights reserved.</p>

@@ -717,6 +717,23 @@ const Checkout: React.FC = () => {
               </div>
             )}
 
+            {/* Important Notice */}
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-5 mb-6">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 mt-0.5">
+                  <Info className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-blue-900 font-bold text-sm mb-2">
+                    Sobre sua compra
+                  </h3>
+                  <p className="text-blue-800 text-sm leading-relaxed">
+                    Você está comprando um subdomínio de <strong>pix.global</strong> com emissão de certificado digital (NFT) e publicação em DNS real. A Pix.Global não guarda seu dinheiro; pagamentos são processados por provedores parceiros e vão diretamente ao recebedor.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Trial Banner */}
             <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-5 mb-6 shadow-lg">
               <div className="flex items-start gap-3 mb-3">
