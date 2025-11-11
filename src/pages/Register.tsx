@@ -262,7 +262,10 @@ const Register: React.FC = () => {
               <div className="flex gap-3 mb-6 justify-center flex-wrap">
                 <button
                   type="button"
-                  onClick={() => setDomainType('name')}
+                  onClick={() => {
+                    setDomainType('name');
+                    setDomainSearch('');
+                  }}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                     domainType === 'name'
                       ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
@@ -276,7 +279,10 @@ const Register: React.FC = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setDomainType('numeric')}
+                  onClick={() => {
+                    setDomainType('numeric');
+                    setDomainSearch('');
+                  }}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                     domainType === 'numeric'
                       ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
@@ -296,7 +302,20 @@ const Register: React.FC = () => {
                 <input
                   type="text"
                   value={domainSearch}
-                  onChange={(e) => setDomainSearch(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (domainType === 'numeric') {
+                      // Apenas números
+                      if (/^\d*$/.test(value)) {
+                        setDomainSearch(value);
+                      }
+                    } else {
+                      // Apenas letras, números e hífens (sem começar/terminar com hífen)
+                      if (/^[a-zA-Z0-9-]*$/.test(value)) {
+                        setDomainSearch(value);
+                      }
+                    }
+                  }}
                   placeholder={
                     domainType === 'name'
                       ? 'Digite seu nome ou marca (ex: seunome, suamarca)'
