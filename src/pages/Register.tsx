@@ -77,6 +77,7 @@ const Register: React.FC = () => {
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const [domainSearch, setDomainSearch] = useState('');
+  const [domainType, setDomainType] = useState<'name' | 'numeric'>('name');
 
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -255,24 +256,70 @@ const Register: React.FC = () => {
 
             <motion.div
               variants={item}
-              className="max-w-2xl mx-auto"
+              className="max-w-3xl mx-auto"
             >
+              {/* Tabs de seleção */}
+              <div className="flex gap-3 mb-6 justify-center flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setDomainType('name')}
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    domainType === 'name'
+                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
+                      : 'bg-white/10 text-gray-400 hover:bg-white/20'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <User className="w-5 h-5" />
+                    <span>Nome (Identidade)</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDomainType('numeric')}
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    domainType === 'numeric'
+                      ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
+                      : 'bg-white/10 text-gray-400 hover:bg-white/20'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Hash className="w-5 h-5" />
+                    <span>Créditos Numéricos</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Campo de busca */}
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   value={domainSearch}
                   onChange={(e) => setDomainSearch(e.target.value)}
-                  placeholder="Pesquisar domínio (ex: seunome, suamarca)"
+                  placeholder={
+                    domainType === 'name'
+                      ? 'Digite seu nome ou marca (ex: seunome, suamarca)'
+                      : 'Digite números (ex: 777, 2025, 123456)'
+                  }
                   className="w-full pl-12 pr-32 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-amber-400 font-medium">
                   .pix.global
                 </span>
               </div>
-              <p className="text-sm text-gray-400 mt-3">
-                Exemplos: seunome.pix.global, suamarca.pix.global
-              </p>
+
+              <div className="mt-4 text-center">
+                {domainType === 'name' ? (
+                  <p className="text-sm text-gray-400">
+                    Exemplos: <span className="text-amber-400">seunome.pix.global</span>, <span className="text-amber-400">suamarca.pix.global</span>
+                  </p>
+                ) : (
+                  <p className="text-sm text-gray-400">
+                    Exemplos: <span className="text-amber-400">777.pix.global</span>, <span className="text-amber-400">2025.pix.global</span>, <span className="text-amber-400">123456.pix.global</span>
+                  </p>
+                )}
+              </div>
             </motion.div>
           </div>
         </motion.section>
