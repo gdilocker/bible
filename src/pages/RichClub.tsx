@@ -232,12 +232,12 @@ export default function PixGlobal() {
               <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center mb-6">
                 <span className="text-3xl font-bold text-black">3</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Use, some, transfira</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Use, combine, transfira</h3>
               <p className="text-gray-300 leading-relaxed mb-4">
                 Use seus números para enviar, receber ou representar valor digital.
               </p>
               <p className="text-gray-300 leading-relaxed mb-4">
-                Some vários números para compor valores maiores.
+                Combine vários números para compor valores maiores.
               </p>
               <p className="text-gray-400 text-sm">
                 Compre novos números a qualquer momento — tudo simples, legal e registrado.
