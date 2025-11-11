@@ -120,9 +120,9 @@ export default function Header() {
                   Preços
                 </Link>
                 <Link
-                  to="/afiliados/sobre"
+                  to="/club"
                   className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/afiliados/sobre'
+                    location.pathname === '/club'
                       ? 'text-white'
                       : 'text-gray-400 hover:text-white'
                   }`}
@@ -290,7 +290,7 @@ export default function Header() {
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          navigate('/afiliados/sobre');
+                          navigate('/club');
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
