@@ -164,14 +164,38 @@ const Pricing: React.FC = () => {
         >
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
-              Planos de{' '}
+              Domínios .pix.global:{' '}
               <span className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-500 bg-clip-text text-transparent">
-                Assinatura
+                identidades e ativos digitais com valor real
               </span>
             </h1>
-            <p className="text-xl text-[#6B7280] leading-relaxed mb-8">
-              Escolha o plano ideal para sua licença exclusiva .pix.global
+            <p className="text-xl text-[#6B7280] leading-relaxed mb-6">
+              Cada nome ou número registrado é único, exclusivo e pode representar valor no mundo digital.
             </p>
+
+            <div className="bg-gradient-to-br from-white to-amber-50 border-2 border-amber-200 rounded-2xl p-8 mb-8 shadow-lg">
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                Os domínios .pix.global são mais do que endereços — são <span className="text-amber-600 font-semibold">unidades digitais de valor</span>.
+                Quanto mais curto, simples ou raro o nome, maior é o seu valor potencial.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                O mesmo vale para os domínios numéricos: sequências raras, repetidas ou simbólicas possuem <span className="text-amber-600 font-semibold">valor colecionável e comercial crescente</span>.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Você pode adquirir domínios para identidade (ex: <span className="text-blue-600 font-mono">joaosilva.pix.global</span>)
+                ou domínios puramente numéricos (ex: <span className="text-blue-600 font-mono">111.pix.global</span>, <span className="text-blue-600 font-mono">777.pix.global</span>, <span className="text-blue-600 font-mono">2025.pix.global</span>)
+                que funcionam como <span className="text-amber-600 font-semibold">ativos digitais independentes</span>.
+              </p>
+
+              <div className="mt-6 pt-6 border-t border-amber-200">
+                <p className="text-center text-2xl font-bold text-black mb-2">
+                  Um domínio não é apenas um endereço — é um patrimônio digital global.
+                </p>
+                <p className="text-sm text-gray-600 text-center italic">
+                  O Pix.Global opera dentro da legislação internacional de ativos digitais. Não realizamos intermediação financeira nem custódia de valores.
+                </p>
+              </div>
+            </div>
 
             {/* Important Notice - Positioned BEFORE trial */}
             <div className="relative max-w-4xl mx-auto mb-8">

@@ -541,10 +541,10 @@ const Home = () => {
               className="font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-4 leading-[1.1] sm:leading-[0.95] tracking-tight px-2"
             >
               <span className="text-white block">
-                Sua Identidade
+                Seu nome. Seu valor.
               </span>
               <span className="text-amber-400 block">
-                .pix.global
+                Seu endereço digital global.
               </span>
             </motion.h1>
 
@@ -552,7 +552,7 @@ const Home = () => {
               variants={item}
               className="text-base sm:text-xl lg:text-2xl text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-light px-4"
             >
-              Possua a identidade digital mais prestigiada e exclusiva do mundo.
+              O Pix.Global é o primeiro sistema mundial que une identidade, valor e tecnologia — sem ser banco, sem depender de criptomoedas e totalmente dentro da legalidade internacional.
             </motion.p>
 
             <motion.div
@@ -995,6 +995,46 @@ const Home = () => {
             </motion.div>
           </div>
         </motion.section>
+      </section>
+
+      <section className="relative bg-black py-12 sm:py-16 lg:py-20 border-t border-white/10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/5 via-transparent to-transparent"></div>
+        <motion.div
+          className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+              O Novo Padrão Global de Identidade e Valor
+            </h2>
+          </div>
+
+          <div className="prose prose-lg prose-invert mx-auto max-w-4xl">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+              Aqui, cada pessoa ou empresa pode registrar um <span className="text-amber-400 font-semibold">nome digital exclusivo</span> — como <span className="text-amber-400">maria.pix.global</span> — que representa sua identidade na nova economia global.
+            </p>
+
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+              Mas o Pix.Global vai além: ao registrar o seu domínio, você também recebe um <span className="text-amber-400 font-semibold">endereço numérico único</span>, como <span className="text-amber-400">9072907237839893833.pix.global</span>, que funciona como um <span className="text-amber-400 font-semibold">ativo digital transferível</span>.
+            </p>
+
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
+              Esses ativos numéricos têm <span className="text-amber-400 font-semibold">valor próprio</span> e podem ser usados em negociações, pagamentos ou trocas digitais de forma <span className="text-white font-semibold">direta, segura e transparente</span> — sem instituições financeiras, sem burocracia, sem fronteiras.
+            </p>
+
+            <div className="bg-gradient-to-r from-amber-500/10 to-amber-600/10 border border-amber-500/30 rounded-2xl p-6 sm:p-8 mt-10">
+              <p className="text-xl sm:text-2xl font-bold text-amber-400 text-center mb-2">
+                Você está prestes a conhecer a próxima evolução da internet:
+              </p>
+              <p className="text-lg sm:text-xl text-white text-center font-medium">
+                onde nomes e números se tornam identidades e valores digitais.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
         <section className="relative bg-gradient-to-b from-black to-zinc-950 py-6 sm:py-10 lg:py-12">

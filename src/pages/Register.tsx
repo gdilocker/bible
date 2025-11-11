@@ -215,8 +215,29 @@ const Register: React.FC = () => {
             Criar Nova Conta
           </h2>
           <p className="mt-2 text-center text-lg text-[#6B7280]">
-            Comece sua jornada com .pix.global
+            Registre seu domínio .pix.global e receba seu ativo digital exclusivo
           </p>
+          <div className="mt-6 bg-gradient-to-br from-amber-50 to-slate-50 border border-amber-200 rounded-xl p-6">
+            <p className="text-sm text-gray-700 leading-relaxed mb-4">
+              Ao registrar um domínio .pix.global, você recebe dois elementos interligados:
+            </p>
+            <div className="space-y-3 text-sm text-gray-700">
+              <div className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold mt-0.5">1.</span>
+                <div>
+                  <strong className="text-black">Seu domínio nominal</strong> — ex: maria.pix.global
+                  <p className="text-xs text-gray-600 mt-1">Representa sua identidade digital global e pode ser usado em sites, perfis e conexões profissionais.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold mt-0.5">2.</span>
+                <div>
+                  <strong className="text-black">Seu domínio numérico</strong> — ex: 9072907237839893833.pix.global
+                  <p className="text-xs text-gray-600 mt-1">É um ativo digital único e transferível que pode representar valores e ser usado em negociações digitais.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {getAffiliateCode() && (
             <motion.div

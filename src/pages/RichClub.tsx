@@ -39,20 +39,25 @@ export default function PixGlobal() {
             </div>
 
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-              <span className="block">Bem-vindo</span>
-              <span className="block">ao Clube dos</span>
+              <span className="block">A Comunidade Global</span>
+              <span className="block">de Identidades e</span>
               <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
-                Milionários
+                Ativos Digitais
               </span>
             </h1>
 
-            <div className="space-y-3 mb-12">
+            <div className="space-y-4 mb-12">
               <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed font-light">
-                Uma identidade digital que transcende o virtual.
+                Mais do que um registro: um ecossistema mundial que conecta pessoas e empresas por meio de nomes e valores digitais.
               </p>
               <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed font-light">
-                Conexões autênticas. Oportunidades globais. Resultados extraordinários.
+                Ao se tornar membro do Pix.Global, você entra para a primeira rede global que une identidade e valor digital de forma independente e segura.
               </p>
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 mt-6">
+                <p className="text-base sm:text-lg text-white leading-relaxed">
+                  Cada membro possui um <span className="text-amber-400 font-semibold">nome</span> (ex: maria.pix.global) e um <span className="text-amber-400 font-semibold">ativo numérico</span> (ex: 9072907237839893833.pix.global) que podem ser usados para representar presença, reputação e até pagamentos diretos.
+                </p>
+              </div>
             </div>
 
             {/* Features badges - now in normal flow */}
@@ -452,6 +457,49 @@ export default function PixGlobal() {
                 Domínios Premium
                 <Crown className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform" />
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional Section */}
+      <section className="relative bg-gradient-to-b from-zinc-950 to-black py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent"></div>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-white/5 to-amber-500/5 border border-white/10 rounded-3xl p-8 sm:p-12">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Valor Institucional
+              </h2>
+              <div className="h-1 w-20 bg-gradient-to-r from-amber-400 to-transparent mx-auto"></div>
+            </div>
+
+            <div className="prose prose-lg prose-invert max-w-none">
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                O Pix.Global é uma tecnologia desenvolvida pela <span className="text-white font-semibold">Global Digital Identity LTD</span>, registrada no Reino Unido e em conformidade com normas internacionais de proteção de dados e ativos digitais não financeiros.
+              </p>
+
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                A transferência de um domínio numérico entre dois usuários equivale a uma <span className="text-amber-400 font-semibold">troca digital de valor reconhecida</span>, sem intermediação bancária, totalmente dentro da lei e auditável globalmente.
+              </p>
+
+              <div className="bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/30 rounded-2xl p-8 mt-8">
+                <p className="text-xl sm:text-2xl font-bold text-amber-400 text-center mb-3">
+                  Nosso propósito é simples e poderoso:
+                </p>
+                <p className="text-lg sm:text-xl text-white text-center font-medium">
+                  trazer ao mundo um novo modelo de economia digital — livre, legítimo e global.
+                </p>
+              </div>
+
+              <div className="mt-10 text-center">
+                <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent mb-2">
+                  Pix.Global — o futuro dos negócios e identidades digitais.
+                </p>
+                <p className="text-base text-gray-400 font-medium">
+                  Sem banco. Sem criptomoeda. Com legitimidade mundial.
+                </p>
+              </div>
             </div>
           </div>
         </div>

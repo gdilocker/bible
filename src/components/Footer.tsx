@@ -149,11 +149,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Disclaimer */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-            <p className="text-xs text-gray-400 leading-relaxed">
-              <strong className="text-gray-300">Aviso Legal:</strong> Pix.Global é provedora de domínios digitais e infraestrutura de roteamento. Não é banco, instituição de pagamento ou custodiante. Liquidações são realizadas por provedores externos escolhidos pelo usuário. Em caso de falha técnica de emissão de NFT, o valor é automaticamente estornado.
-            </p>
+          {/* Legal Notice - Universal Footer */}
+          <div className="bg-gradient-to-br from-amber-500/5 to-blue-500/5 backdrop-blur-sm rounded-xl p-6 border border-amber-500/20">
+            <div className="space-y-3">
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Pix.Global é operada pela <span className="text-white font-semibold">Global Digital Identity LTD</span> (Company Nº 15830191 — registrada em Inglaterra e País de Gales).
+              </p>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                A plataforma atua em conformidade com as normas internacionais de ativos digitais não financeiros. <span className="text-amber-400 font-semibold">Não somos instituição financeira, banco ou corretora.</span>
+              </p>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Pagamentos são processados de forma independente pelos gateways oficiais escolhidos pelo usuário (ex: PayPal, Stripe, Wise).
+              </p>
+              <p className="text-sm text-amber-400 leading-relaxed font-medium">
+                Cada domínio .pix.global é um ativo digital exclusivo, registrado e auditado globalmente.
+              </p>
+            </div>
           </div>
 
           {/* Copyright */}
