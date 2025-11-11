@@ -120,6 +120,16 @@ export default function Header() {
                   Preços
                 </Link>
                 <Link
+                  to="/sistema-global"
+                  className={`px-3 py-2 font-medium transition-colors ${
+                    location.pathname === '/sistema-global'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  Sistema Global
+                </Link>
+                <Link
                   to="/club"
                   className={`px-3 py-2 font-medium transition-colors ${
                     location.pathname === '/club'

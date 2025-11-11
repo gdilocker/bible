@@ -91,6 +91,7 @@ const RichClub = lazy(() => import('./pages/RichClub'));
 const AdminEmail = lazy(() => import('./pages/AdminEmail'));
 const DomainView = lazy(() => import('./pages/DomainView'));
 const AppPage = lazy(() => import('./pages/App'));
+const GlobalSystem = lazy(() => import('./pages/GlobalSystem'));
 
 // Loading component
 const LoadingFallback = () => (
@@ -179,6 +180,7 @@ function AppRoutes() {
           <Route path="/privacidade" element={<Privacy />} />
           <Route path="/ajuda" element={<FAQ />} />
           <Route path="/contato" element={<Contact />} />
+          <Route path="/sistema-global" element={<GlobalSystem />} />
 
           {/* Legacy/Alternative Routes */}
           <Route path="/valores" element={<Pricing />} />

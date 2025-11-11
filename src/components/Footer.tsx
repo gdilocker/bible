@@ -101,6 +101,14 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <button
+                  onClick={() => handleNavigation('/sistema-global')}
+                  className="text-gray-400 hover:text-[#FFC107] transition-colors text-sm"
+                >
+                  Sistema Global
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => handleNavigation('/termos')}
                   className="text-gray-400 hover:text-[#FFC107] transition-colors text-sm"
                 >
