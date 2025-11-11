@@ -88,20 +88,55 @@ function getNumericBasePrice(num: string): number {
 }
 
 /**
+ * Calcula multiplicador baseado no comprimento do padrão
+ * Padrões mais longos são exponencialmente mais raros e valiosos
+ */
+function getPatternMultiplier(length: number, patternType: 'capicua' | 'repetido' | 'sequencial'): number {
+  // Multiplicadores base por tipo
+  const baseMultipliers = {
+    capicua: 4,
+    repetido: 3,
+    sequencial: 2,
+  };
+
+  // Multiplicadores progressivos por comprimento
+  const lengthMultipliers: Record<number, number> = {
+    2: 1,      // 11, 12
+    3: 2,      // 111, 123
+    4: 5,      // 1111, 1234
+    5: 10,     // 11111, 12345
+    6: 20,     // 111111, 123456
+    7: 50,     // 1111111, 1234567
+    8: 100,    // 11111111, 12345678
+    9: 250,    // 111111111, 123456789
+    10: 500,   // 1111111111, 1234567890
+  };
+
+  const baseFactor = baseMultipliers[patternType];
+  const lengthFactor = lengthMultipliers[length] || (length >= 10 ? 1000 : 1);
+
+  return baseFactor * lengthFactor;
+}
+
+/**
  * Detecta multiplicadores aplicáveis a um número
  */
 function detectMultipliers(num: string): Array<{ name: string; factor: number }> {
   const multipliers: Array<{ name: string; factor: number }> = [];
+  const length = num.length;
 
   // Ordem de verificação: capicua > repetido > sequencial
   // (capicua tem prioridade maior)
 
   if (isCapicua(num)) {
-    multipliers.push({ name: 'Capicua', factor: 4 });
+    const factor = getPatternMultiplier(length, 'capicua');
+    multipliers.push({ name: 'Capicua', factor });
   } else if (isRepeated(num)) {
-    multipliers.push({ name: 'Repetido', factor: 3 });
+    const factor = getPatternMultiplier(length, 'repetido');
+    multipliers.push({ name: 'Repetido', factor });
   } else if (isSequential(num)) {
-    multipliers.push({ name: 'Sequencial', factor: 2 });
+    const factor = getPatternMultiplier(length, 'sequencial');
+    multipliers.push({ name: 'Sequencial', factor });
   }
 
   return multipliers;
@@ -264,21 +299,21 @@ export function getMultipliersTable() {
   return [
     {
       name: 'Capicua',
-      factor: 4,
+      factor: '4× a 2000×',
       description: 'Números palíndromos (ex: 121, 1221, 1331)',
-      examples: ['121', '1221', '12321'],
+      examples: ['121 (×8)', '1221 (×20)', '12321 (×40)'],
     },
     {
       name: 'Repetido',
-      factor: 3,
+      factor: '3× a 1500×',
       description: 'Todos os dígitos iguais (ex: 111, 2222)',
-      examples: ['111', '2222', '55555'],
+      examples: ['111 (×6)', '2222 (×15)', '55555 (×30)'],
     },
     {
       name: 'Sequencial',
-      factor: 2,
+      factor: '2× a 1000×',
       description: 'Sequência crescente ou decrescente (ex: 123, 987)',
-      examples: ['123', '4567', '9876'],
+      examples: ['123 (×4)', '1234 (×10)', '123456 (×40)'],
     },
   ];
 }
