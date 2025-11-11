@@ -88,6 +88,7 @@ const RefRedirect = lazy(() => import('./pages/RefRedirect'));
 const StoreTerms = lazy(() => import('./pages/StoreTerms'));
 const SocialTerms = lazy(() => import('./pages/SocialTerms'));
 const RichClub = lazy(() => import('./pages/RichClub'));
+const About = lazy(() => import('./pages/About'));
 const Manifesto = lazy(() => import('./pages/Manifesto'));
 const AdminEmail = lazy(() => import('./pages/AdminEmail'));
 const DomainView = lazy(() => import('./pages/DomainView'));
@@ -209,6 +210,7 @@ function AppRoutes() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/premium" element={<Marketplace />} />
           <Route path="/club" element={<RichClub />} />
+          <Route path="/sobre" element={<About />} />
           <Route path="/manifesto" element={<Manifesto />} />
           <Route path="/suporte" element={<SupportNew />} />
           <Route path="/suporte/abrir-chamado" element={<OpenTicket />} />
