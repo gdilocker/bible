@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import DomainSearch from './pages/DomainSearch';
+import DomainPricing from './pages/DomainPricing';
 
 // Lazy load - Secondary pages
 const Pricing = lazy(() => import('./pages/Pricing'));
@@ -159,7 +160,8 @@ function AppRoutes() {
           {/* Public Routes - Main Navigation */}
           <Route path="/" element={<Home />} />
           <Route path="/registrar" element={<DomainSearch />} />
-          <Route path="/precos" element={<Pricing />} />
+          <Route path="/precos" element={<DomainPricing />} />
+          <Route path="/precos/planos" element={<Pricing />} />
           <Route path="/app" element={
             <ProtectedRoute>
               <SubscriptionProtectedRoute>
