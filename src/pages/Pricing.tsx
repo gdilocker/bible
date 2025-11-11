@@ -163,6 +163,12 @@ const Pricing: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-amber-500 to-transparent"></div>
+              <span className="text-amber-600 text-[10px] sm:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">Pricing</span>
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-amber-500 to-transparent"></div>
+            </div>
+
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
               Valores de Registro{' '}
               <span className="bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-500 bg-clip-text text-transparent">

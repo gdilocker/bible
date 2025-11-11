@@ -76,9 +76,15 @@ const GlobalSystem: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center max-w-4xl mx-auto"
         >
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+            <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-[#FFC107] to-transparent"></div>
+            <span className="text-[#FFC107] text-[10px] sm:text-xs font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase">Sistema Global</span>
+            <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-[#FFC107] to-transparent"></div>
+          </div>
+
           <div className="inline-flex items-center gap-2 bg-[#FFC107]/10 backdrop-blur-sm border border-[#FFC107]/30 rounded-full px-6 py-2 mb-6">
             <Globe className="w-4 h-4 text-[#FFC107]" />
-            <span className="text-[#FFC107] text-xs font-semibold tracking-widest uppercase">Sistema Global</span>
+            <span className="text-[#FFC107] text-xs font-semibold tracking-widest uppercase">Global System</span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
