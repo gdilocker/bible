@@ -131,7 +131,8 @@ function AppRoutes() {
     '/politica-seguranca', '/politica-transferencia-dominio',
     '/politica-conteudo-usuario', '/aviso-direitos-autorais',
     '/conformidade-legal', '/adendo-processamento-dados',
-    '/politica-acessibilidade', '/politica-exclusao', '/politica-solicitacao-dados'
+    '/politica-acessibilidade', '/politica-exclusao', '/politica-solicitacao-dados',
+    '/club', '/premium'
   ];
 
   // Check if path starts with known public route prefixes
