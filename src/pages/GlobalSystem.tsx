@@ -67,7 +67,7 @@ const GlobalSystem: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B]">
+    <div className="min-h-screen bg-[#0B0B0B] pt-20">
       {/* Hero Section */}
       <section className="relative border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -319,8 +319,8 @@ const GlobalSystem: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer Legal */}
-      <section className="border-t border-white/10 py-12 bg-black/40">
+      {/* Informação Legal Adicional */}
+      <section className="border-t border-white/10 py-12 bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
