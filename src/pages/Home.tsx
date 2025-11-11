@@ -685,7 +685,7 @@ const Home = () => {
                         <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                           <span className="text-amber-400 font-bold text-xl">2</span>
                         </div>
-                        <h3 className="text-white font-semibold mb-2">Ganhe créditos digitais</h3>
+                        <h3 className="text-white font-semibold mb-2">Receba créditos digitais</h3>
                         <p className="text-gray-300 text-sm">Ao registrar, você recebe créditos .pix.global — endereços numéricos únicos e transferíveis.</p>
                       </div>
                       <div className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20 rounded-xl p-6 text-center">
