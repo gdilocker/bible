@@ -506,22 +506,22 @@ const Home = () => {
         </div>
       )}
 
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center top',
             backgroundRepeat: 'no-repeat',
             filter: 'brightness(1.12)'
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/60"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black"></div>
         </div>
         <motion.section
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-40 pb-8 sm:pb-12"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24"
           initial="hidden"
           animate="show"
           variants={container}
