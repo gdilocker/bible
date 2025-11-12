@@ -145,19 +145,19 @@ export default function Header() {
                 {/* Subtle divider */}
                 <div className="h-6 w-px bg-gray-700 mx-2"></div>
 
-                <button
-                  onClick={() => setIsRegisterModalOpen(true)}
-                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-lg transition-all shadow-lg"
-                >
-                  Criar Conta
-                </button>
-
                 <Link
                   to="/entrar"
                   className="px-6 py-2 bg-white hover:bg-gray-100 text-black font-semibold rounded-lg transition-colors shadow-lg"
                 >
                   Entrar
                 </Link>
+
+                <button
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-lg transition-all shadow-lg"
+                >
+                  Criar Conta
+                </button>
               </>
             ) : (
               <>
@@ -322,22 +322,22 @@ export default function Header() {
                           <button
                             onClick={() => {
                               setIsMenuOpen(false);
-                              setIsRegisterModalOpen(true);
-                            }}
-                            className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-colors rounded-lg"
-                          >
-                            <UserPlus className="w-5 h-5" />
-                            <span className="text-sm font-medium">Criar Conta</span>
-                          </button>
-                          <button
-                            onClick={() => {
-                              setIsMenuOpen(false);
                               navigate('/entrar');
                             }}
                             className="w-full flex items-center justify-center gap-2 py-3 bg-white text-black hover:bg-gray-100 transition-colors rounded-lg"
                           >
                             <LogIn className="w-5 h-5" />
                             <span className="text-sm font-medium">Entrar</span>
+                          </button>
+                          <button
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              setIsRegisterModalOpen(true);
+                            }}
+                            className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-colors rounded-lg"
+                          >
+                            <UserPlus className="w-5 h-5" />
+                            <span className="text-sm font-medium">Criar Conta</span>
                           </button>
                         </div>
                       </div>
