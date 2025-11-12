@@ -55,6 +55,14 @@ export default function Footer() {
               </li>
               <li>
                 <button
+                  onClick={() => handleNavigation('/faq')}
+                  className="text-gray-400 hover:text-[#FFC107] transition-colors text-sm"
+                >
+                  FAQ
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => handleNavigation('/sobre')}
                   className="text-gray-400 hover:text-[#FFC107] transition-colors text-sm"
                 >
