@@ -6,9 +6,10 @@ interface LoginModalSimpleProps {
   isOpen: boolean;
   onClose: () => void;
   affiliateCode?: string;
+  onRegisterClick?: () => void;
 }
 
-export function LoginModalSimple({ isOpen, onClose, affiliateCode }: LoginModalSimpleProps) {
+export function LoginModalSimple({ isOpen, onClose, affiliateCode, onRegisterClick }: LoginModalSimpleProps) {
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -19,7 +20,13 @@ export function LoginModalSimple({ isOpen, onClose, affiliateCode }: LoginModalS
   const handleRegister = () => {
     onClose();
 
-    // Se há um affiliate code, adicionar ao URL e cookie
+    // Se há um callback customizado, usar ele
+    if (onRegisterClick) {
+      onRegisterClick();
+      return;
+    }
+
+    // Fallback: navegar para a página de registro
     if (affiliateCode) {
       // Salvar no cookie com 30 dias de expiração
       const maxAge = 60 * 60 * 24 * 30; // 30 dias em segundos

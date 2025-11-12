@@ -4,12 +4,14 @@ import { Menu, X, User, LogOut, ChevronDown, Home, Store, Bookmark, Radio, Dolla
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
+import RegisterModal from './RegisterModal';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isProgramsMenuOpen, setIsProgramsMenuOpen] = useState(false);
   const [isPoliciesMenuOpen, setIsPoliciesMenuOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, logout, loading } = useAuth();
   const location = useLocation();
@@ -99,16 +101,12 @@ export default function Header() {
                 >
                   Início
                 </Link>
-                <Link
-                  to="/registrar"
-                  className={`px-3 py-2 font-medium transition-colors ${
-                    location.pathname === '/registrar'
-                      ? 'text-white'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
+                <button
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="px-3 py-2 font-medium text-gray-400 hover:text-white transition-colors"
                 >
                   Registrar
-                </Link>
+                </button>
                 <Link
                   to="/precos"
                   className={`px-3 py-2 font-medium transition-colors ${
@@ -280,7 +278,7 @@ export default function Header() {
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          navigate('/registrar');
+                          setIsRegisterModalOpen(true);
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
@@ -459,6 +457,12 @@ export default function Header() {
           )}
         </AnimatePresence>
       </div>
+
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onSuccess={() => navigate('/panel/dashboard')}
+      />
     </motion.header>
   );
 }
