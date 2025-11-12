@@ -553,7 +553,7 @@ const Register: React.FC = () => {
           >
             <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/30 border border-gray-700/50 rounded-xl p-6">
               <p className="text-gray-300 leading-relaxed">
-                Em poucos minutos, seu domínio e seus créditos digitais estarão ativos, verificados e conectados à infraestrutura global da <span className="text-white font-semibold">Global Digital Identity LTD</span> (Reino Unido, Nº 15830191).
+                Em uma fração de segundos, seu domínio e seus créditos digitais estarão ativos, verificados e conectados à infraestrutura global da <span className="text-white font-semibold">Global Digital Identity LTD</span> (Reino Unido, Nº 15830191).
               </p>
             </div>
 
