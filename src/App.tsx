@@ -57,6 +57,7 @@ const AdminChatbot = lazy(() => import('./pages/AdminChatbot'));
 const DomainDetails = lazy(() => import('./pages/DomainDetails'));
 const PanelDashboard = lazy(() => import('./pages/PanelDashboard'));
 const Billing = lazy(() => import('./pages/Billing'));
+const RewardsPanel = lazy(() => import('./pages/RewardsPanel'));
 const AccountSettings = lazy(() => import('./pages/AccountSettings'));
 const DomainsPageNew = lazy(() => import('./pages/DomainsPage'));
 const Support = lazy(() => import('./pages/Support'));
@@ -198,6 +199,11 @@ function AppRoutes() {
           <Route path="/afiliados" element={
             <ProtectedRoute>
               <AffiliateDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/recompensas" element={
+            <ProtectedRoute>
+              <RewardsPanel />
             </ProtectedRoute>
           } />
           <Route path="/politica-reembolso" element={<RefundPolicy />} />
