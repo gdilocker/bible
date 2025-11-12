@@ -45,12 +45,12 @@ const FAQ: React.FC = () => {
 
               <p className="font-semibold mt-4">Existem dois tipos principais de domínios:</p>
 
-              <div className="bg-gray-50 p-4 rounded-lg mt-3">
-                <h4 className="font-bold mb-2">1.1 Domínios Personalizados – Identidades Digitais</h4>
-                <p className="mb-2">São nomes escolhidos pelo usuário, como <code className="bg-gray-200 px-2 py-1 rounded">maria.pix.global</code> ou <code className="bg-gray-200 px-2 py-1 rounded">empresa.pix.global</code>.</p>
-                <p>Eles representam <strong>identidades digitais verificadas</strong>, ideais para uso pessoal, profissional ou corporativo.</p>
-                <p className="mt-2">Cada domínio personalizado inclui:</p>
-                <ul className="list-disc ml-6 mt-2 space-y-1">
+              <div className="bg-white border-2 border-gray-200 p-4 rounded-lg mt-3">
+                <h4 className="font-bold text-gray-900 mb-2">1.1 Domínios Personalizados – Identidades Digitais</h4>
+                <p className="text-gray-800 mb-2">São nomes escolhidos pelo usuário, como <code className="bg-gray-100 px-2 py-1 rounded text-gray-900 font-semibold">maria.pix.global</code> ou <code className="bg-gray-100 px-2 py-1 rounded text-gray-900 font-semibold">empresa.pix.global</code>.</p>
+                <p className="text-gray-800">Eles representam <strong className="text-gray-900">identidades digitais verificadas</strong>, ideais para uso pessoal, profissional ou corporativo.</p>
+                <p className="text-gray-800 mt-2">Cada domínio personalizado inclui:</p>
+                <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-800">
                   <li>Painel de controle para gestão completa</li>
                   <li>Caixa de e-mail integrada (nome@pix.global)</li>
                   <li>Endereço digital exclusivo</li>
@@ -58,12 +58,12 @@ const FAQ: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="bg-gray-50 p-4 rounded-lg mt-3">
-                <h4 className="font-bold mb-2">1.2 Domínios Numéricos – Ativos Digitais</h4>
-                <p className="mb-2">São sequências únicas de números, como <code className="bg-gray-200 px-2 py-1 rounded">748373382982838373.pix.global</code>.</p>
-                <p>Eles funcionam como <strong>ativos digitais permanentes</strong>, registrados uma única vez e sem cobrança de anuidade.</p>
-                <p className="mt-2">Cada domínio numérico:</p>
-                <ul className="list-disc ml-6 mt-2 space-y-1">
+              <div className="bg-white border-2 border-gray-200 p-4 rounded-lg mt-3">
+                <h4 className="font-bold text-gray-900 mb-2">1.2 Domínios Numéricos – Ativos Digitais</h4>
+                <p className="text-gray-800 mb-2">São sequências únicas de números, como <code className="bg-gray-100 px-2 py-1 rounded text-gray-900 font-semibold">748373382982838373.pix.global</code>.</p>
+                <p className="text-gray-800">Eles funcionam como <strong className="text-gray-900">ativos digitais permanentes</strong>, registrados uma única vez e sem cobrança de anuidade.</p>
+                <p className="text-gray-800 mt-2">Cada domínio numérico:</p>
+                <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-800">
                   <li>É vendido uma única vez (pagamento único e definitivo)</li>
                   <li>Pode ser transferido entre usuários dentro da plataforma</li>
                   <li>Representa uma chave digital exclusiva ou ativo colecionável</li>
@@ -71,10 +71,10 @@ const FAQ: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
-                <p className="font-semibold">Resumo:</p>
-                <p className="mt-1"><code className="bg-blue-100 px-2 py-1 rounded">maria.pix.global</code> → <strong>Identidade digital personalizada</strong> (com e-mail e renovação anual)</p>
-                <p className="mt-1"><code className="bg-blue-100 px-2 py-1 rounded">748373382982838373.pix.global</code> → <strong>Ativo digital numérico permanente</strong> (sem anuidade, transferível)</p>
+              <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mt-4">
+                <p className="font-bold text-blue-900">Resumo:</p>
+                <p className="mt-1 text-gray-800"><code className="bg-blue-100 px-2 py-1 rounded text-blue-900 font-semibold">maria.pix.global</code> → <strong className="text-gray-900">Identidade digital personalizada</strong> (com e-mail e renovação anual)</p>
+                <p className="mt-1 text-gray-800"><code className="bg-blue-100 px-2 py-1 rounded text-blue-900 font-semibold">748373382982838373.pix.global</code> → <strong className="text-gray-900">Ativo digital numérico permanente</strong> (sem anuidade, transferível)</p>
               </div>
             </div>
           )
@@ -304,12 +304,12 @@ const FAQ: React.FC = () => {
           answer: (
             <div className="space-y-2">
               <p>Sim. O Pix.Global é operado pela <strong>Global Digital Identity LTD</strong>, registrada na <strong>Companies House (Reino Unido)</strong> sob o nº <strong>16339013</strong>, seguindo padrões legais britânicos e europeus.</p>
-              <div className="bg-gray-50 p-4 rounded-lg mt-3">
-                <p className="font-semibold">Global Digital Identity LTD</p>
-                <p>Registered in England and Wales</p>
-                <p>Company No. 16339013</p>
-                <p>71-75 Shelton Street, Covent Garden</p>
-                <p>London, WC2H 9JQ, United Kingdom</p>
+              <div className="bg-white border-2 border-gray-200 p-4 rounded-lg mt-3">
+                <p className="font-bold text-gray-900">Global Digital Identity LTD</p>
+                <p className="text-gray-800">Registered in England and Wales</p>
+                <p className="text-gray-800">Company No. 16339013</p>
+                <p className="text-gray-800">71-75 Shelton Street, Covent Garden</p>
+                <p className="text-gray-800">London, WC2H 9JQ, United Kingdom</p>
               </div>
             </div>
           )
