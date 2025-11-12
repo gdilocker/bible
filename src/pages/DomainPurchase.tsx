@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Search, CreditCard, Zap, User, AlertCircle, CheckCircle } from 'lucide-react';
+import { Search, CreditCard, Zap, User, AlertCircle, CheckCircle, ShoppingCart } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import { validateDomain, generateSuggestions, calculateCreditPrice, calculateQuickAccessPrice, formatPrice, type DomainType, type QuickAccessPattern } from '../lib/domainValidation';
+import { useCart } from '../contexts/CartContext';
 
 type Tab = 'identity' | 'credit' | 'quick_access';
 
@@ -13,6 +14,7 @@ interface Suggestion {
 }
 
 const DomainPurchase: React.FC = () => {
+  const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState<Tab>('identity');
   const [searchInput, setSearchInput] = useState('');
   const [searching, setSearching] = useState(false);
@@ -27,6 +29,10 @@ const DomainPurchase: React.FC = () => {
   // Quick Access pattern selection
   const [quickPattern, setQuickPattern] = useState<QuickAccessPattern>('LN');
   const [quickSuggestions, setQuickSuggestions] = useState<string[]>([]);
+
+  const handleAddToCart = (name: string, type: 'credit' | 'quick_access', price: number, pattern?: string) => {
+    addItem({ name, type, price, pattern });
+  };
 
   const handleSearch = async () => {
     if (!searchInput.trim()) return;
@@ -363,9 +369,28 @@ const DomainPurchase: React.FC = () => {
                     <div className="text-3xl font-bold text-green-400 mb-4">
                       {formatPrice(searchResult.price || 0)}
                     </div>
-                    <button className="w-full bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
-                      Comprar Agora
-                    </button>
+                    {activeTab !== 'identity' ? (
+                      <div className="space-y-3">
+                        <button
+                          onClick={() => handleAddToCart(
+                            searchResult.name,
+                            activeTab as 'credit' | 'quick_access',
+                            searchResult.price || 0
+                          )}
+                          className="w-full bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors flex items-center justify-center gap-2"
+                        >
+                          <ShoppingCart className="w-5 h-5" />
+                          Adicionar ao Carrinho
+                        </button>
+                        <button className="w-full bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
+                          Comprar Agora
+                        </button>
+                      </div>
+                    ) : (
+                      <button className="w-full bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors">
+                        Comprar Agora
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6">

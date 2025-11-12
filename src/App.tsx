@@ -2,12 +2,14 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { DrawerProvider } from './contexts/DrawerContext';
+import { CartProvider } from './contexts/CartContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import { SubscriptionProtectedRoute } from './components/SubscriptionProtectedRoute';
 import ResellerProtectedRoute from './components/ResellerProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import ShoppingCart from './components/ShoppingCart';
 
 // Immediate load - Critical pages
 import Home from './pages/Home';
@@ -108,9 +110,11 @@ function App() {
   return (
     <AuthProvider>
       <DrawerProvider>
-        <Router>
-          <AppRoutes />
-        </Router>
+        <CartProvider>
+          <Router>
+            <AppRoutes />
+          </Router>
+        </CartProvider>
       </DrawerProvider>
     </AuthProvider>
   );
@@ -452,6 +456,7 @@ function AppRoutes() {
       </main>
       {!hideLayout && <Footer />}
       {(pathname === '/suporte' || pathname.startsWith('/suporte/')) && <ChatWidget />}
+      <ShoppingCart />
     </>
   );
 }
