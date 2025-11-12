@@ -31,10 +31,10 @@ export default function PixGlobal() {
               <span className="text-amber-400 text-xs font-bold tracking-[0.4em] uppercase">SOBRE — O NOVO PADRÃO MUNDIAL</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-10 leading-[1.1] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-10 leading-[1.2] tracking-tight">
               <span className="block mb-2">O sistema que</span>
               <span className="block mb-2">ninguém conseguiu</span>
-              <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent pb-2">
+              <span className="inline-block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent pb-3">
                 criar. Até agora.
               </span>
             </h1>
