@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DomainSearch from './pages/DomainSearch';
 import DomainPricing from './pages/DomainPricing';
+import DomainPurchase from './pages/DomainPurchase';
 
 // Lazy load - Secondary pages
 const Pricing = lazy(() => import('./pages/Pricing'));
@@ -123,7 +124,7 @@ function AppRoutes() {
   // Don't show Header/Footer on panel pages, dashboard, and public profiles
   // Define known public routes that should show Header/Footer
   const publicRoutes = [
-    '/', '/registrar', '/register', '/buscar-dominio', '/precos', '/contato', '/ajuda',
+    '/', '/registrar', '/register', '/buscar-dominio', '/comprar', '/precos', '/contato', '/ajuda',
     '/termos', '/privacidade', '/cookies', '/faq',
     '/suporte', '/checkout', '/sucesso', '/falha',
     '/paypal/return', '/paypal/cancel', '/diagnostic',
@@ -166,6 +167,7 @@ function AppRoutes() {
           <Route path="/registrar" element={<Register />} />
           <Route path="/register" element={<Register />} />
           <Route path="/buscar-dominio" element={<DomainSearch />} />
+          <Route path="/comprar" element={<DomainPurchase />} />
           <Route path="/precos" element={<DomainPricing />} />
           <Route path="/precos/planos" element={<Pricing />} />
           <Route path="/app" element={
