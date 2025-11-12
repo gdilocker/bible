@@ -101,12 +101,16 @@ export default function Header() {
                 >
                   Início
                 </Link>
-                <button
-                  onClick={() => setIsRegisterModalOpen(true)}
-                  className="px-3 py-2 font-medium text-gray-400 hover:text-white transition-colors"
+                <Link
+                  to="/registrar"
+                  className={`px-3 py-2 font-medium transition-colors ${
+                    location.pathname === '/registrar'
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
                 >
                   Registrar
-                </button>
+                </Link>
                 <Link
                   to="/precos"
                   className={`px-3 py-2 font-medium transition-colors ${
@@ -140,6 +144,13 @@ export default function Header() {
 
                 {/* Subtle divider */}
                 <div className="h-6 w-px bg-gray-700 mx-2"></div>
+
+                <button
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-lg transition-all shadow-lg"
+                >
+                  Criar Conta
+                </button>
 
                 <Link
                   to="/entrar"
@@ -278,11 +289,11 @@ export default function Header() {
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
-                          setIsRegisterModalOpen(true);
+                          navigate('/registrar');
                         }}
                         className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-gray-800 transition-colors"
                       >
-                        <UserPlus className="w-5 h-5" />
+                        <UserCircle className="w-5 h-5" />
                         <span className="text-sm font-medium">Registrar</span>
                       </button>
                       <button
@@ -305,15 +316,25 @@ export default function Header() {
                         <Users className="w-5 h-5" />
                         <span className="text-sm font-medium">Sobre</span>
                       </button>
-                      {/* Auth button for logged out users */}
+                      {/* Auth buttons for logged out users */}
                       <div className="border-t border-gray-800 mt-2">
-                        <div className="px-4 py-3">
+                        <div className="px-4 py-3 space-y-2">
+                          <button
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              setIsRegisterModalOpen(true);
+                            }}
+                            className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-colors rounded-lg"
+                          >
+                            <UserPlus className="w-5 h-5" />
+                            <span className="text-sm font-medium">Criar Conta</span>
+                          </button>
                           <button
                             onClick={() => {
                               setIsMenuOpen(false);
                               navigate('/entrar');
                             }}
-                            className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-colors rounded-lg"
+                            className="w-full flex items-center justify-center gap-2 py-3 bg-white text-black hover:bg-gray-100 transition-colors rounded-lg"
                           >
                             <LogIn className="w-5 h-5" />
                             <span className="text-sm font-medium">Entrar</span>
